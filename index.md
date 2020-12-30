@@ -1,5 +1,7 @@
 ---
+
 title: Masashi Yamamoto's web site
+
 ---
 
 ## Welcome to GitHub Pages
