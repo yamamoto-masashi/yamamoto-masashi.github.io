@@ -1,7 +1,7 @@
 ---
 
-title: Masashi Yamamoto's web site
-description: Hello!!
+title: Masashi Yamamoto
+description: Professor, School of Social Science, Unviersity of Toyama
 
 ---
 
