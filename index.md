@@ -1,5 +1,5 @@
 ---
-titile: Masashi Yamamoto's web site
+title: Masashi Yamamoto's web site
 ---
 
 ## Welcome to GitHub Pages
