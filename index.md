@@ -1,6 +1,7 @@
 ---
 
 title: Masashi Yamamoto's web site
+description: Hello!!
 
 ---
 
