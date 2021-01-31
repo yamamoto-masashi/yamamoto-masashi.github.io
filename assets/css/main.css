@@ -17,7 +17,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font-family: 'Noto Sans JP', sans-serif;
+		font-family: 'Noto Sans JP', sans-serif;  /*  2021/01/31に追加  */
 		/* font: inherit; */
 		vertical-align: baseline;
 		color:#4C4C4C;  /* 20210131に自分で追加。 */
