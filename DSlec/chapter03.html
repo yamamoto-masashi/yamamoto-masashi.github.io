@@ -33,7 +33,7 @@
   
 <link rel="prev" href="chapter02.html"/>
 <link rel="next" href="chapter04.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -300,12 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-29"><a href="chapter03.html#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-30"><a href="chapter03.html#cb39-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-31"><a href="chapter03.html#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prefnameJ)</span></code></pre></div>
-<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;   &quot;05秋田県&quot;   &quot;06山形県&quot;   &quot;07福島県&quot;  
-##  [8] &quot;08茨城県&quot;   &quot;09栃木県&quot;   &quot;10群馬県&quot;   &quot;11埼玉県&quot;   &quot;12千葉県&quot;   &quot;13東京都&quot;   &quot;14神奈川県&quot;
-## [15] &quot;15新潟県&quot;   &quot;16富山県&quot;   &quot;17石川県&quot;   &quot;18福井県&quot;   &quot;19山梨県&quot;   &quot;20長野県&quot;   &quot;21岐阜県&quot;  
-## [22] &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;   &quot;25滋賀県&quot;   &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;  
-## [29] &quot;29奈良県&quot;   &quot;30和歌山県&quot; &quot;31鳥取県&quot;   &quot;32島根県&quot;   &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;  
-## [36] &quot;36徳島県&quot;   &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;   &quot;41佐賀県&quot;   &quot;42長崎県&quot;  
+<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;   &quot;05秋田県&quot;   &quot;06山形県&quot;  
+##  [7] &quot;07福島県&quot;   &quot;08茨城県&quot;   &quot;09栃木県&quot;   &quot;10群馬県&quot;   &quot;11埼玉県&quot;   &quot;12千葉県&quot;  
+## [13] &quot;13東京都&quot;   &quot;14神奈川県&quot; &quot;15新潟県&quot;   &quot;16富山県&quot;   &quot;17石川県&quot;   &quot;18福井県&quot;  
+## [19] &quot;19山梨県&quot;   &quot;20長野県&quot;   &quot;21岐阜県&quot;   &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;  
+## [25] &quot;25滋賀県&quot;   &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;   &quot;29奈良県&quot;   &quot;30和歌山県&quot;
+## [31] &quot;31鳥取県&quot;   &quot;32島根県&quot;   &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;   &quot;36徳島県&quot;  
+## [37] &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;   &quot;41佐賀県&quot;   &quot;42長崎県&quot;  
 ## [43] &quot;43熊本県&quot;   &quot;44大分県&quot;   &quot;45宮崎県&quot;   &quot;46鹿児島県&quot; &quot;47沖縄県&quot;</code></pre>
 <p><code>print(prefnameJ)</code>で都道府県名を出力しています。ここで<code>[1]</code>は<code>prefnameJ</code>というベクトルの中の第１要素を意味しています。出力が長い場合、改行されるごとに先頭の要素番号が出力されます。</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter03.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のデータは</span></span>
@@ -412,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter03.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chapter03.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
-<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; &quot;1090000&quot; &quot;1864000&quot; &quot;2877000&quot; ...</code></pre>
+<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; &quot;1090000&quot; &quot;1864000&quot; ...</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chapter03.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## Warning in mean.default(testDB$A1101): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
@@ -567,35 +568,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb61-19"><a href="chapter03.html#cb61-19" aria-hidden="true" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
 <span id="cb61-20"><a href="chapter03.html#cb61-20" aria-hidden="true" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
 <span id="cb61-21"><a href="chapter03.html#cb61-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-22"><a href="chapter03.html#cb61-22" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># 現在の作業ディレクトリを確認</span></span></code></pre></div>
-<pre><code>## [1] &quot;/Users/yamamoto/R/bookdown/datalecture&quot;</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter03.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/users/yamamoto/R/ForTeaching&quot;</span>) <span class="co"># 作業ディレクトリの変更</span></span>
-<span id="cb63-2"><a href="chapter03.html#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-3"><a href="chapter03.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
-<span id="cb63-4"><a href="chapter03.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
-<span id="cb63-5"><a href="chapter03.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
-<span id="cb63-6"><a href="chapter03.html#cb63-6" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xlsx&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
+<span id="cb61-22"><a href="chapter03.html#cb61-22" aria-hidden="true" tabindex="-1"></a><span class="co">#自分のパソコンに保存してあるエクセルファイルを読み込む場合は、</span></span>
+<span id="cb61-23"><a href="chapter03.html#cb61-23" aria-hidden="true" tabindex="-1"></a><span class="co">#以下でディレクトリを変更して実行</span></span>
+<span id="cb61-24"><a href="chapter03.html#cb61-24" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd() # 現在の作業ディレクトリを確認</span></span>
+<span id="cb61-25"><a href="chapter03.html#cb61-25" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/users/yamamoto/R/ForTeaching&quot;) # 作業ディレクトリの変更</span></span>
+<span id="cb61-26"><a href="chapter03.html#cb61-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-27"><a href="chapter03.html#cb61-27" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
+<span id="cb61-28"><a href="chapter03.html#cb61-28" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
+<span id="cb61-29"><a href="chapter03.html#cb61-29" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
+<span id="cb61-30"><a href="chapter03.html#cb61-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-31"><a href="chapter03.html#cb61-31" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
+<span id="cb61-32"><a href="chapter03.html#cb61-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
+<span id="cb61-33"><a href="chapter03.html#cb61-33" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
+<span id="cb61-34"><a href="chapter03.html#cb61-34" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## New names:
 ## * `` -&gt; ...1
 ## * `` -&gt; ...2</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter03.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
-<span id="cb65-2"><a href="chapter03.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
-<span id="cb65-3"><a href="chapter03.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-4"><a href="chapter03.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sampleDB)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter03.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
+<span id="cb63-2"><a href="chapter03.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
+<span id="cb63-3"><a href="chapter03.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="chapter03.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sampleDB)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 16
-##   prefcode prefnameJ   A1101  A1301   A1303   B1101   B1103 B4107 B4108 D110101 E6102 E6302 F610201
-##      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-## 1        1 01北海道  5286000 577000 1656000 7842077 2237238   131 1742.     179    38 78122      15
-## 2        2 02青森県  1263000 137000  412000  964565  322971   117 1642       40    10 15196      14
-## 3        3 03岩手県  1241000 140000  403000 1527501  371401   106 1778.      33     6 11373      15
-## 4        4 04宮城県  2316000 276000  643000  728223  315489    63 1998.      35    14 48623      17
-## 5        5 05秋田県   981000  98000  357000 1163752  320437   101 1526.      25     7  8947      13
-## 6        6 06山形県  1090000 127000  358000  932315  288480    89 1765       35     6 11609      16
-## # … with 3 more variables: F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;</code></pre>
+##   prefcode prefnameJ  A1101  A1301  A1303  B1101  B1103 B4107 B4108 D110101 E6102 E6302
+##      &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1        1 01北海道  5.29e6 577000 1.66e6 7.84e6 2.24e6   131 1742.     179    38 78122
+## 2        2 02青森県  1.26e6 137000 4.12e5 9.65e5 3.23e5   117 1642       40    10 15196
+## 3        3 03岩手県  1.24e6 140000 4.03e5 1.53e6 3.71e5   106 1778.      33     6 11373
+## 4        4 04宮城県  2.32e6 276000 6.43e5 7.28e5 3.15e5    63 1998.      35    14 48623
+## 5        5 05秋田県  9.81e5  98000 3.57e5 1.16e6 3.20e5   101 1526.      25     7  8947
+## 6        6 06山形県  1.09e6 127000 3.58e5 9.32e5 2.88e5    89 1765       35     6 11609
+## # … with 4 more variables: F610201 &lt;dbl&gt;, F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;</code></pre>
 <p>表の変数名の下の<code>&lt;dbl&gt;</code>は変数が数値型であることを示しています。</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="chapter03.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel()関数で読み込んだ場合は、文字列になっていないので、平均が計算可能。</span></span>
-<span id="cb67-2"><a href="chapter03.html#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-3"><a href="chapter03.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sampleDB<span class="sc">$</span>A1101)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter03.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel()関数で読み込んだ場合は、文字列になっていないので、平均が計算可能。</span></span>
+<span id="cb65-2"><a href="chapter03.html#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="chapter03.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sampleDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## [1] 2690277</code></pre>
 
 </div>
