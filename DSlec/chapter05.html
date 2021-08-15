@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門</title>
+  <title>chapter: 5 可視化(2)：ggplot2による地図作成 | 2021年度 データ分析入門</title>
   <meta name="description" content="This is my description." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門" />
+  <meta property="og:title" content="chapter: 5 可視化(2)：ggplot2による地図作成 | 2021年度 データ分析入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門" />
+  <meta name="twitter:title" content="chapter: 5 可視化(2)：ggplot2による地図作成 | 2021年度 データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="chapter03.html"/>
+<link rel="prev" href="chapter04.html"/>
+<link rel="next" href="chapter06.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,51 +217,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r及びrstudioのインストール" class="section level1" number="2">
-<h1><span class="header-section-number">chapter: 2</span> R及びRStudioのインストール</h1>
-<div id="インストールを始める前に" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> インストールを始める前に</h2>
-<p>思いつく順にいくつか注意点をまとめてみました。</p>
-<ol style="list-style-type: decimal">
-<li>プログラミングを始めるということは、マウスをあまり使わない世界に足を踏み入れること。
-<ul>
-<li>一つ一つの作業が文字として残るので、作業の再現性が高まります。</li>
-<li>クリックして探していたファイルを「パス(path)」という「住所」を示すことでパソコンに伝えることになります。</li>
-</ul></li>
-<li><strong>全角入力</strong>(日本語入力：原則コメント欄のみ)と<strong>半角入力</strong>(英数字入力)の違いをいつも意識する。
-<ul>
-<li>１２３４５は全角文字です。</li>
-<li>12345は半角文字です。</li>
-<li>1と１は区別がつきにくいですが、全角文字はプログラミングコードには使用できません。</li>
-</ul></li>
-<li>変数やフォルダの名前をつける際に、スペースを入れることはトラブルのもとなのでなるべくスペースを含む名前はつけない。
-<ul>
-<li>ちなみに、スペースの半角と全角は肉眼ではまず区別できません。</li>
-</ul></li>
-<li><code>R</code>は大文字と小文字を区別する言語（プログラミング言語によっては区別しないものもある）。</li>
-<li>頻出する「フォルダ」と「ディレクトリ」は、ほぼ同じ意味と考えて良い。</li>
-<li><code>R</code>はインターネットアクセスのあるところで利用することでその真価を発揮できる。
-<ul>
-<li>学内の無線LANにはすぐにアクセスできる状態にしておきましょう。</li>
-</ul></li>
-</ol>
+<div id="可視化2ggplot2による地図作成" class="section level1" number="5">
+<h1><span class="header-section-number">chapter: 5</span> 可視化(2)：ggplot2による地図作成</h1>
+<p>空間的な広がりのあるデータを扱う際には、地図による可視化がデータの特徴を理解する上で大きな助けになります。グラフ描画に用いた<code>ggplot2</code>を拡張することで様々な地図データを描画できることは<code>R</code>の魅力の一つです。</p>
+<p>地図を使った描画には、位置情報の正確さをそれほど必要としない場合と地理的情報の精度が極めて情報な場合の２通りが考えられます。前者は、コロプレス図と呼ばれるいわゆる「白地図の塗り分け」のようなものが相当します。後者は、GISと呼ばれる地理情報科学の分野に近いケースで、「迷惑施設が県境付近に立地しやすい」という仮説を検証するなど、正確な地理情報が前提となる場合です。</p>
+<div id="塗り分け地図の作成" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> 塗り分け地図の作成</h2>
+<p>はじめに日本の塗り分け地図をなるべく簡単に作成する方法を学びます。この例では地理情報の制度はあまり重視していません。</p>
 </div>
-<div id="rのインストール" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Rのインストール</h2>
-<p><code>R</code>を利用する上で最大の難関が<code>R</code>のインストールです。幸い、高知工科大学の<a href="https://yukiyanai.github.io/jp/">矢内勇生</a>先生が大変わかりやすいインストールガイドを作成してくださっています。自分の使っているマシンに応じて以下のいずれかの資料を参照してインストールを進めましょう。</p>
-<ul>
-<li><p><a href="https://yukiyanai.github.io/jp/resources/docs/install-R_windows.pdf">Windows用のインストールガイド</a></p></li>
-<li><p><a href="https://yukiyanai.github.io/jp/resources/docs/install-R_macOS.pdf">Mac用のインストールガイド</a></p></li>
-</ul>
-<p>重要なことは、上記のガイドに書いてあることを順番に一つずつ実行することです。この作業にはダウンロードなども含めて大変時間がかかります。2回分の講義時間をとってありますので、じっくり腰を据えておこないましょう。</p>
-</div>
-<div id="rstudioのインストール" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> RStudioのインストール</h2>
-<p>こちらは<code>R</code>のインストールに比べるとかなり楽に行うことができます。必ず先に<code>R</code>本体をインストールしてから、<a href="https://www.rstudio.com/">RStudio</a>をインストールしてください。</p>
-<ul>
-<li>Windows版のガイドでは、P82からがRStudioのインストールガイドです。</li>
-<li>MacOS版のガイドでは、P34からがRStudioのインストールガイドです。</li>
-</ul>
+<div id="gisライクな地図の作成" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> GISライクな地図の作成</h2>
 
 </div>
 </div>
@@ -270,8 +235,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter03.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter04.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter06.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -303,7 +268,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/chapter02.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/chapter05.Rmd",
 "text": "Edit"
 },
 "history": {
