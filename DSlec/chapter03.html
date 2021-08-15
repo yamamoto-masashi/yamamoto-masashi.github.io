@@ -159,11 +159,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 章のタイトル3</a>
+<li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="chapter04.html"><a href="chapter04.html#節見出し1"><i class="fa fa-check"></i><b>4.1</b> 節見出し1</a></li>
-<li class="chapter" data-level="4.2" data-path="chapter04.html"><a href="chapter04.html#節見出し2"><i class="fa fa-check"></i><b>4.2</b> 節見出し2</a></li>
-<li class="chapter" data-level="4.3" data-path="chapter04.html"><a href="chapter04.html#節見出し3"><i class="fa fa-check"></i><b>4.3</b> 節見出し3</a></li>
+<li class="chapter" data-level="4.1" data-path="chapter04.html"><a href="chapter04.html#可視化の重要性"><i class="fa fa-check"></i><b>4.1</b> 可視化の重要性</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter04.html"><a href="chapter04.html#ggplot2の考え方"><i class="fa fa-check"></i><b>4.2</b> ggplot2の考え方</a></li>
+<li class="chapter" data-level="4.3" data-path="chapter04.html"><a href="chapter04.html#ggplot2の事例"><i class="fa fa-check"></i><b>4.3</b> ggplot2の事例</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -663,6 +663,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

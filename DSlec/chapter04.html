@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 4 章のタイトル3 | 2021年度 データ分析入門</title>
+  <title>chapter: 4 可視化(1)：ggplot2によるグラフ作成 | 2021年度 データ分析入門</title>
   <meta name="description" content="This is my description." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 4 章のタイトル3 | 2021年度 データ分析入門" />
+  <meta property="og:title" content="chapter: 4 可視化(1)：ggplot2によるグラフ作成 | 2021年度 データ分析入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 4 章のタイトル3 | 2021年度 データ分析入門" />
+  <meta name="twitter:title" content="chapter: 4 可視化(1)：ggplot2によるグラフ作成 | 2021年度 データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -159,11 +159,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 章のタイトル3</a>
+<li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="chapter04.html"><a href="chapter04.html#節見出し1"><i class="fa fa-check"></i><b>4.1</b> 節見出し1</a></li>
-<li class="chapter" data-level="4.2" data-path="chapter04.html"><a href="chapter04.html#節見出し2"><i class="fa fa-check"></i><b>4.2</b> 節見出し2</a></li>
-<li class="chapter" data-level="4.3" data-path="chapter04.html"><a href="chapter04.html#節見出し3"><i class="fa fa-check"></i><b>4.3</b> 節見出し3</a></li>
+<li class="chapter" data-level="4.1" data-path="chapter04.html"><a href="chapter04.html#可視化の重要性"><i class="fa fa-check"></i><b>4.1</b> 可視化の重要性</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter04.html"><a href="chapter04.html#ggplot2の考え方"><i class="fa fa-check"></i><b>4.2</b> ggplot2の考え方</a></li>
+<li class="chapter" data-level="4.3" data-path="chapter04.html"><a href="chapter04.html#ggplot2の事例"><i class="fa fa-check"></i><b>4.3</b> ggplot2の事例</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -185,20 +185,307 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="章のタイトル3" class="section level1" number="4">
-<h1><span class="header-section-number">chapter: 4</span> 章のタイトル3</h1>
-<p>進捗どうですか?</p>
-<div id="節見出し1" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> 節見出し1</h2>
-<p>ほげほげ</p>
+<div id="可視化1ggplot2によるグラフ作成" class="section level1" number="4">
+<h1><span class="header-section-number">chapter: 4</span> 可視化(1)：ggplot2によるグラフ作成</h1>
+<p><code>R</code>を使用することの大きなメリットの一つが多彩なグラフィック機能です。グラフなどを用いて、データを可視化することで自分の分析対象をより深く理解できるようになります。</p>
+<div id="可視化の重要性" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 可視化の重要性</h2>
+<p>はじめにサンプルデータを用いて、可視化の持つ意味について考えます。</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="chapter04.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;datasets&quot;)</span></span>
+<span id="cb67-2"><a href="chapter04.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb67-3"><a href="chapter04.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="chapter04.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anscombe)</span></code></pre></div>
+<pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
+## 1  10 10 10  8  8.04 9.14  7.46  6.58
+## 2   8  8  8  8  6.95 8.14  6.77  5.76
+## 3  13 13 13  8  7.58 8.74 12.74  7.71
+## 4   9  9  9  8  8.81 8.77  7.11  8.84
+## 5  11 11 11  8  8.33 9.26  7.81  8.47
+## 6  14 14 14  8  9.96 8.10  8.84  7.04
+## 7   6  6  6  8  7.24 6.13  6.08  5.25
+## 8   4  4  4 19  4.26 3.10  5.39 12.50
+## 9  12 12 12  8 10.84 9.13  8.15  5.56
+## 10  7  7  7  8  4.82 7.26  6.42  7.91
+## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
+<p>このデータ例は、統計学者のフランク・アンスコムが1973年に紹介した例です。この例では、<span class="math inline">\(x\)</span> の平均(<code>=mean</code>)は<span class="math inline">\(9\)</span>、<span class="math inline">\(x\)</span> の標準偏差(<code>=sd</code>)は<span class="math inline">\(3.32\)</span>、<span class="math inline">\(y\)</span>の平均が<span class="math inline">\(7.50\)</span> (小数第2位まで一致)、<span class="math inline">\(y\)</span>の標準偏差が <span class="math inline">\(2.03\)</span> (小数第3位まで一致)、と等しくなっています。</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="chapter04.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 記述統計を出力するためのpackage</span></span>
+<span id="cb69-2"><a href="chapter04.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># include.packages(&quot;psych)</span></span>
+<span id="cb69-3"><a href="chapter04.html#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="chapter04.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb69-5"><a href="chapter04.html#cb69-5" aria-hidden="true" tabindex="-1"></a>descriptive_statistics<span class="ot">&lt;-</span><span class="fu">describe</span>(anscombe,<span class="at">skew =</span> <span class="cn">FALSE</span>, <span class="at">ranges =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb69-6"><a href="chapter04.html#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="chapter04.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(descriptive_statistics)</span></code></pre></div>
+<pre><code>##    vars  n mean   sd   se
+## x1    1 11  9.0 3.32 1.00
+## x2    2 11  9.0 3.32 1.00
+## x3    3 11  9.0 3.32 1.00
+## x4    4 11  9.0 3.32 1.00
+## y1    5 11  7.5 2.03 0.61
+## y2    6 11  7.5 2.03 0.61
+## y3    7 11  7.5 2.03 0.61
+## y4    8 11  7.5 2.03 0.61</code></pre>
+<p>また、<span class="math inline">\(x_i\)</span>と<span class="math inline">\(y_i\)</span>の間の相関係数も少数第３位で四捨五入して<span class="math inline">\(0.82\)</span>と一致しています。</p>
+<p><span class="math display">\[
+r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}}} = \frac{s_{xy}}{s_{x}s_{y}}
+\]</span></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="chapter04.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x1とy1の相関係数</span></span>
+<span id="cb71-2"><a href="chapter04.html#cb71-2" aria-hidden="true" tabindex="-1"></a>x1y1<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb71-3"><a href="chapter04.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="chapter04.html#cb71-4" aria-hidden="true" tabindex="-1"></a>x2y2<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
+<span id="cb71-5"><a href="chapter04.html#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="chapter04.html#cb71-6" aria-hidden="true" tabindex="-1"></a>x3y3<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
+<span id="cb71-7"><a href="chapter04.html#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-8"><a href="chapter04.html#cb71-8" aria-hidden="true" tabindex="-1"></a>x4y4<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
+<span id="cb71-9"><a href="chapter04.html#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-10"><a href="chapter04.html#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">2</span>)   <span class="co"># 表示桁数を小数点第２位までに変える</span></span>
+<span id="cb71-11"><a href="chapter04.html#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(x1y1,x2y2,x3y3,x4y4))</span></code></pre></div>
+<pre><code>## [1] 0.82 0.82 0.82 0.82</code></pre>
+<p>ところが、このデータをプロットしてみると以下のようになります (描画に用いた<code>ggplot2</code>の解説はこの後に行います)。</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="chapter04.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4組のグラフを作成する</span></span>
+<span id="cb73-2"><a href="chapter04.html#cb73-2" aria-hidden="true" tabindex="-1"></a>plotx1y1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>y1),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb73-3"><a href="chapter04.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 1&quot;</span>)</span>
+<span id="cb73-4"><a href="chapter04.html#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="chapter04.html#cb73-5" aria-hidden="true" tabindex="-1"></a>plotx2y2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x2,<span class="at">y=</span>y2),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb73-6"><a href="chapter04.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 2&quot;</span>)</span>
+<span id="cb73-7"><a href="chapter04.html#cb73-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-8"><a href="chapter04.html#cb73-8" aria-hidden="true" tabindex="-1"></a>plotx3y3<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x3,<span class="at">y=</span>y3),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb73-9"><a href="chapter04.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 3&quot;</span>)</span>
+<span id="cb73-10"><a href="chapter04.html#cb73-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-11"><a href="chapter04.html#cb73-11" aria-hidden="true" tabindex="-1"></a>plotx4y4<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x4,<span class="at">y=</span>y4),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb73-12"><a href="chapter04.html#cb73-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 4&quot;</span>)</span>
+<span id="cb73-13"><a href="chapter04.html#cb73-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-14"><a href="chapter04.html#cb73-14" aria-hidden="true" tabindex="-1"></a><span class="co"># このpackageでグラフを組み合わせる</span></span>
+<span id="cb73-15"><a href="chapter04.html#cb73-15" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;patchwork&quot;)</span></span>
+<span id="cb73-16"><a href="chapter04.html#cb73-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb73-17"><a href="chapter04.html#cb73-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-18"><a href="chapter04.html#cb73-18" aria-hidden="true" tabindex="-1"></a>plotx1y1 <span class="sc">+</span> plotx2y2 <span class="sc">+</span>plotx3y3<span class="sc">+</span>plotx4y4<span class="sc">+</span> </span>
+<span id="cb73-19"><a href="chapter04.html#cb73-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/vis4-1.png" width="672" /></p>
+<p>このように全く異なるデータの分布をしていることがわかります。要約統計量だけをみて判断せずに常にグラフにデータをプロットしてみることが重要です。</p>
 </div>
-<div id="節見出し2" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> 節見出し2</h2>
-<p>ふがふが</p>
+<div id="ggplot2の考え方" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> ggplot2の考え方</h2>
+<p>コマンドラインで図を作成することははじめは面倒に思うかもしれません。しかし、どのようなグラフを作成するかを一つ一つ命令に書きますので、一度作成してしまえばコピーペーストで簡単に複製することができます。ところがクリックベースでグラフを作成した場合、完成したグラフをコピーしたとしても必ずしも元のグラフと同じにはなりません。ズレた場合にも目測で直す必要があります。</p>
+<p><code>ggplot2</code>は、<code>R</code>の中で最もポピュラーな描画packageです。最初は戸惑うかもしれませんが、論理でグラフを作る面白さを一緒に体験しましょう。</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="chapter04.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code></pre></div>
+<pre><code>## 
+## 
+##  demo(graphics)
+##  ---- ~~~~~~~~
+## 
+## &gt; #  Copyright (C) 1997-2009 The R Core Team
+## &gt; 
+## &gt; require(datasets)
+## 
+## &gt; require(grDevices); require(graphics)
+## 
+## &gt; ## Here is some code which illustrates some of the differences between
+## &gt; ## R and S graphics capabilities.  Note that colors are generally specified
+## &gt; ## by a character string name (taken from the X11 rgb.txt file) and that line
+## &gt; ## textures are given similarly.  The parameter &quot;bg&quot; sets the background
+## &gt; ## parameter for the plot and there is also an &quot;fg&quot; parameter which sets
+## &gt; ## the foreground color.
+## &gt; 
+## &gt; 
+## &gt; x &lt;- stats::rnorm(50)
+## 
+## &gt; opar &lt;- par(bg = &quot;white&quot;)
+## 
+## &gt; plot(x, ann = FALSE, type = &quot;n&quot;)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-1.png" width="672" /></p>
+<pre><code>## 
+## &gt; abline(h = 0, col = gray(.90))
+## 
+## &gt; lines(x, col = &quot;green4&quot;, lty = &quot;dotted&quot;)
+## 
+## &gt; points(x, bg = &quot;limegreen&quot;, pch = 21)
+## 
+## &gt; title(main = &quot;Simple Use of Color In a Plot&quot;,
+## +       xlab = &quot;Just a Whisper of a Label&quot;,
+## +       col.main = &quot;blue&quot;, col.lab = gray(.8),
+## +       cex.main = 1.2, cex.lab = 1.0, font.main = 4, font.lab = 3)
+## 
+## &gt; ## A little color wheel.    This code just plots equally spaced hues in
+## &gt; ## a pie chart.    If you have a cheap SVGA monitor (like me) you will
+## &gt; ## probably find that numerically equispaced does not mean visually
+## &gt; ## equispaced.  On my display at home, these colors tend to cluster at
+## &gt; ## the RGB primaries.  On the other hand on the SGI Indy at work the
+## &gt; ## effect is near perfect.
+## &gt; 
+## &gt; par(bg = &quot;gray&quot;)
+## 
+## &gt; pie(rep(1,24), col = rainbow(24), radius = 0.9)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-2.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main = &quot;A Sample Color Wheel&quot;, cex.main = 1.4, font.main = 3)
+## 
+## &gt; title(xlab = &quot;(Use this as a test of monitor linearity)&quot;,
+## +       cex.lab = 0.8, font.lab = 3)
+## 
+## &gt; ## We have already confessed to having these.  This is just showing off X11
+## &gt; ## color names (and the example (from the postscript manual) is pretty &quot;cute&quot;.
+## &gt; 
+## &gt; pie.sales &lt;- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+## 
+## &gt; names(pie.sales) &lt;- c(&quot;Blueberry&quot;, &quot;Cherry&quot;,
+## +              &quot;Apple&quot;, &quot;Boston Cream&quot;, &quot;Other&quot;, &quot;Vanilla Cream&quot;)
+## 
+## &gt; pie(pie.sales,
+## +     col = c(&quot;purple&quot;,&quot;violetred1&quot;,&quot;green3&quot;,&quot;cornsilk&quot;,&quot;cyan&quot;,&quot;white&quot;))</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-3.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main = &quot;January Pie Sales&quot;, cex.main = 1.8, font.main = 1)
+## 
+## &gt; title(xlab = &quot;(Don&#39;t try this at home kids)&quot;, cex.lab = 0.8, font.lab = 3)
+## 
+## &gt; ## Boxplots:  I couldn&#39;t resist the capability for filling the &quot;box&quot;.
+## &gt; ## The use of color seems like a useful addition, it focuses attention
+## &gt; ## on the central bulk of the data.
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; n &lt;- 10
+## 
+## &gt; g &lt;- gl(n, 100, n*100)
+## 
+## &gt; x &lt;- rnorm(n*100) + sqrt(as.numeric(g))
+## 
+## &gt; boxplot(split(x,g), col=&quot;lavender&quot;, notch=TRUE)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-4.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main=&quot;Notched Boxplots&quot;, xlab=&quot;Group&quot;, font.main=4, font.lab=1)
+## 
+## &gt; ## An example showing how to fill between curves.
+## &gt; 
+## &gt; par(bg=&quot;white&quot;)
+## 
+## &gt; n &lt;- 100
+## 
+## &gt; x &lt;- c(0,cumsum(rnorm(n)))
+## 
+## &gt; y &lt;- c(0,cumsum(rnorm(n)))
+## 
+## &gt; xx &lt;- c(0:n, n:0)
+## 
+## &gt; yy &lt;- c(x, rev(y))
+## 
+## &gt; plot(xx, yy, type=&quot;n&quot;, xlab=&quot;Time&quot;, ylab=&quot;Distance&quot;)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-5.png" width="672" /></p>
+<pre><code>## 
+## &gt; polygon(xx, yy, col=&quot;gray&quot;)
+## 
+## &gt; title(&quot;Distance Between Brownian Motions&quot;)
+## 
+## &gt; ## Colored plot margins, axis labels and titles.    You do need to be
+## &gt; ## careful with these kinds of effects.    It&#39;s easy to go completely
+## &gt; ## over the top and you can end up with your lunch all over the keyboard.
+## &gt; ## On the other hand, my market research clients love it.
+## &gt; 
+## &gt; x &lt;- c(0.00, 0.40, 0.86, 0.85, 0.69, 0.48, 0.54, 1.09, 1.11, 1.73, 2.05, 2.02)
+## 
+## &gt; par(bg=&quot;lightgray&quot;)
+## 
+## &gt; plot(x, type=&quot;n&quot;, axes=FALSE, ann=FALSE)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-6.png" width="672" /></p>
+<pre><code>## 
+## &gt; usr &lt;- par(&quot;usr&quot;)
+## 
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;cornsilk&quot;, border=&quot;black&quot;)
+## 
+## &gt; lines(x, col=&quot;blue&quot;)
+## 
+## &gt; points(x, pch=21, bg=&quot;lightcyan&quot;, cex=1.25)
+## 
+## &gt; axis(2, col.axis=&quot;blue&quot;, las=1)
+## 
+## &gt; axis(1, at=1:12, lab=month.abb, col.axis=&quot;blue&quot;)
+## 
+## &gt; box()
+## 
+## &gt; title(main= &quot;The Level of Interest in R&quot;, font.main=4, col.main=&quot;red&quot;)
+## 
+## &gt; title(xlab= &quot;1996&quot;, col.lab=&quot;red&quot;)
+## 
+## &gt; ## A filled histogram, showing how to change the font used for the
+## &gt; ## main title without changing the other annotation.
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; x &lt;- rnorm(1000)
+## 
+## &gt; hist(x, xlim=range(-4, 4, x), col=&quot;lavender&quot;, main=&quot;&quot;)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-7.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main=&quot;1000 Normal Random Variates&quot;, font.main=3)
+## 
+## &gt; ## A scatterplot matrix
+## &gt; ## The good old Iris data (yet again)
+## &gt; 
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, font.main=4, pch=19)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-8.png" width="672" /></p>
+<pre><code>## 
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, pch=21,
+## +       bg = c(&quot;red&quot;, &quot;green3&quot;, &quot;blue&quot;)[unclass(iris$Species)])</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-9.png" width="672" /></p>
+<pre><code>## 
+## &gt; ## Contour plotting
+## &gt; ## This produces a topographic map of one of Auckland&#39;s many volcanic &quot;peaks&quot;.
+## &gt; 
+## &gt; x &lt;- 10*1:nrow(volcano)
+## 
+## &gt; y &lt;- 10*1:ncol(volcano)
+## 
+## &gt; lev &lt;- pretty(range(volcano), 10)
+## 
+## &gt; par(bg = &quot;lightcyan&quot;)
+## 
+## &gt; pin &lt;- par(&quot;pin&quot;)
+## 
+## &gt; xdelta &lt;- diff(range(x))
+## 
+## &gt; ydelta &lt;- diff(range(y))
+## 
+## &gt; xscale &lt;- pin[1]/xdelta
+## 
+## &gt; yscale &lt;- pin[2]/ydelta
+## 
+## &gt; scale &lt;- min(xscale, yscale)
+## 
+## &gt; xadd &lt;- 0.5*(pin[1]/scale - xdelta)
+## 
+## &gt; yadd &lt;- 0.5*(pin[2]/scale - ydelta)
+## 
+## &gt; plot(numeric(0), numeric(0),
+## +      xlim = range(x)+c(-1,1)*xadd, ylim = range(y)+c(-1,1)*yadd,
+## +      type = &quot;n&quot;, ann = FALSE)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-10.png" width="672" /></p>
+<pre><code>## 
+## &gt; usr &lt;- par(&quot;usr&quot;)
+## 
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;green3&quot;)
+## 
+## &gt; contour(x, y, volcano, levels = lev, col=&quot;yellow&quot;, lty=&quot;solid&quot;, add=TRUE)
+## 
+## &gt; box()
+## 
+## &gt; title(&quot;A Topographic Map of Maunga Whau&quot;, font= 4)
+## 
+## &gt; title(xlab = &quot;Meters North&quot;, ylab = &quot;Meters West&quot;, font= 3)
+## 
+## &gt; mtext(&quot;10 Meter Contour Spacing&quot;, side=3, line=0.35, outer=FALSE,
+## +       at = mean(par(&quot;usr&quot;)[1:2]), cex=0.7, font=3)
+## 
+## &gt; ## Conditioning plots
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = &quot;green3&quot;)</code></pre>
+<p><img src="book_filename_files/figure-html/graphicdemo-11.png" width="672" /></p>
+<pre><code>## 
+## &gt; par(opar)</code></pre>
 </div>
-<div id="節見出し3" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> 節見出し3</h2>
-<p>第４章</p>
+<div id="ggplot2の事例" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> ggplot2の事例</h2>
 
 </div>
 </div>
@@ -259,6 +546,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
