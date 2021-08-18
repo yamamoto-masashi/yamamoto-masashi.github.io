@@ -520,6 +520,57 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <div id="ggplot2の考え方" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> ggplot2の考え方</h2>
 <p><code>ggplot2</code>は、<code>R</code>の中で最もポピュラーな描画packageです。最初は戸惑うかもしれませんが、論理でグラフを作る面白さを一緒に体験しましょう。</p>
+<p><code>ggplot2</code>はグラフを特定のパーツに分けてレイヤーとして作成し、それらを重ねて表現していきます。コマンドとしてはそれぞれのレイヤーを「足し算する」形でグラフを完成していきます。</p>
+<p>下の例は最初のコマンドで、<code>ggplot(A,aes(x=B,y=C))</code>で、<code>A</code>というデータセットを使って、x軸に<code>B</code>、y軸に<code>C</code>を使うグラフの基礎となるレイヤーを作ってね、という命令になります。</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="chapter04.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;)</span></span>
+<span id="cb87-2"><a href="chapter04.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="chapter04.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb87-4"><a href="chapter04.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="chapter04.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co"># midewestはgplot2に付属しているデータベースで、アメリカ中西部の</span></span>
+<span id="cb87-6"><a href="chapter04.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ５つの州(IL, IN, MI, OH,WI)のサンプルデータが保存してあります。</span></span>
+<span id="cb87-7"><a href="chapter04.html#cb87-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-8"><a href="chapter04.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest, <span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/ggplotintro1-1.png" width="672" /></p>
+<p>結果は上記のようになります。この例では、横軸が各カウンティの大卒割合、縦軸が、貧困割合を示しています。</p>
+<p>データそのものは、どうやってプロットするか、を命令しないと描かれません。どうやってとは、棒グラフにするのか、折れ線グラフにするのか、円グラフにするのか、といった見た目の問題です。このどうやっての部分は、<code>geom_XXX()</code>という関数群で指定します。例えば、散布図を作成する場合は、<code>geom_point()</code>となります。</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="chapter04.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb88-2"><a href="chapter04.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/ggplotintro2-1.png" width="672" /></p>
+<p>代表的な<code>geom_XXX</code>関数は以下の通りです。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">関数名</th>
+<th align="center">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>geom_point</code></td>
+<td align="center">散布図のように点を描画</td>
+</tr>
+<tr class="even">
+<td align="center"><code>geom_line</code></td>
+<td align="center">折れ線グラフを描画</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>geom_smooth</code></td>
+<td align="center">データのトレンド線を描画</td>
+</tr>
+<tr class="even">
+<td align="center"><code>geom_col</code></td>
+<td align="center">棒グラフの描画</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>geom_polygon</code></td>
+<td align="center">長方形など任意の形状のオブジェクトの描画</td>
+</tr>
+<tr class="even">
+<td align="center"><code>geom_sf</code></td>
+<td align="center">空間情報を持つオブジェクトの描画</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="ggplot2の事例" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> ggplot2の事例</h2>
