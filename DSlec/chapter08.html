@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 8 RによるTwitterデータの分析 | 2021年度 データ分析入門</title>
+  <title>chapter: 8 RによるSNSデータの分析 | 2021年度 データ分析入門</title>
   <meta name="description" content="This is my description." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 8 RによるTwitterデータの分析 | 2021年度 データ分析入門" />
+  <meta property="og:title" content="chapter: 8 RによるSNSデータの分析 | 2021年度 データ分析入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 8 RによるTwitterデータの分析 | 2021年度 データ分析入門" />
+  <meta name="twitter:title" content="chapter: 8 RによるSNSデータの分析 | 2021年度 データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,8 +202,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.4" data-path="chapter07.html"><a href="chapter07.html#logをとった場合"><i class="fa fa-check"></i><b>7.4.4</b> logをとった場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるTwitterデータの分析</a></li>
-<li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a></li>
+<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.2</b> Googleトレンドの分析</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
+<li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
+<li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
+<li class="chapter" data-level="9.4" data-path="chapter09.html"><a href="chapter09.html#データベースとしての利用"><i class="fa fa-check"></i><b>9.4</b> データベースとしての利用</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -225,10 +235,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rによるtwitterデータの分析" class="section level1" number="8">
-<h1><span class="header-section-number">chapter: 8</span> RによるTwitterデータの分析</h1>
-<p>Twitterデータの取得・分析をおこないます。</p>
+<div id="rによるsnsデータの分析" class="section level1" number="8">
+<h1><span class="header-section-number">chapter: 8</span> RによるSNSデータの分析</h1>
+<div id="twitterデータの活用" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Twitterデータの活用</h2>
+<p>Twitterデータの取得・分析をおこないます。分析には、<code>rtweet</code>という<code>package</code>を使用します。</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="chapter08.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rtweet&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     flatten</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="chapter08.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># search_tweets()関数で簡単にテキストを入手。</span></span>
+<span id="cb202-2"><a href="chapter08.html#cb202-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">search_tweets</span>(<span class="st">&quot;ブルーインパルス&quot;</span>, <span class="at">n =</span> <span class="dv">20</span>, <span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb202-3"><a href="chapter08.html#cb202-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="chapter08.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="co"># アカウント名などを含めて表示</span></span>
+<span id="cb202-5"><a href="chapter08.html#cb202-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 90
+##    user_id status_id created_at          screen_name text  source display_text_wi…
+##    &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
+##  1 475422… 14298239… 2021-08-23 15:12:37 squaremania &quot;「ブル… Twitt…               98
+##  2 231809… 14298238… 2021-08-23 15:12:34 urohoboe    &quot;お忙し… Twitt…              146
+##  3 239008… 14298234… 2021-08-23 15:10:42 eeeekosan   &quot;ブルー… Twitt…               41
+##  4 120609… 14298231… 2021-08-23 15:09:47 futakioffi… &quot;ブルー… Twitt…               75
+##  5 891991… 14298230… 2021-08-23 15:09:13 sstar_5el   &quot;@SG… Twitt…              122
+##  6 355949… 14298225… 2021-08-23 15:07:09 goahead135  &quot;ブルー… Twitt…               69
+##  7 456396… 14298224… 2021-08-23 15:06:52 syu_c15     &quot;ブルー… Twitt…               23
+##  8 142711… 14298223… 2021-08-23 15:06:32 tama_08182… &quot;@ko… Twitt…              128
+##  9 721542… 14298223… 2021-08-23 15:06:26 mi_KSW      &quot;肉眼で… Twitt…               98
+## 10 221215… 14298216… 2021-08-23 15:03:51 hebereke36… &quot;@ak… Twitt…               29
+## 11 128284… 14298216… 2021-08-23 15:03:44 h2h2g2      &quot;「あー… Twitt…              156
+## 12 527051… 14298216… 2021-08-23 15:03:37 20margaret… &quot;ブルー… Twitt…               22
+## 13 129814… 14298215… 2021-08-23 15:03:17 kuro447979… &quot;ブルー… Twitt…              157
+## 14 103039… 14298214… 2021-08-23 15:03:02 Parfum5numa &quot;@ch… Twitt…               18
+## 15 153451… 14298214… 2021-08-23 15:03:00 55momotaro  &quot;明日の… Twitt…               98
+## 16 124989… 14298212… 2021-08-23 15:02:16 StayHom126… &quot;都内あ… Twitt…              131
+## 17 315052… 14298212… 2021-08-23 15:02:13 EvoNoisecr… &quot;明日も… Twitt…               73
+## 18 124388… 14298211… 2021-08-23 15:01:39 Bettylong2  &quot;「ブル… Twitt…               73
+## 19 328931… 14298210… 2021-08-23 15:01:10 P2momo      &quot;明日も… Twitt…               32
+## 20 124126… 14298209… 2021-08-23 15:00:43 Pooh_Al     &quot;7/2… Twitt…               84
+## # … with 83 more variables: reply_to_status_id &lt;chr&gt;, reply_to_user_id &lt;chr&gt;,
+## #   reply_to_screen_name &lt;chr&gt;, is_quote &lt;lgl&gt;, is_retweet &lt;lgl&gt;, favorite_count &lt;int&gt;,
+## #   retweet_count &lt;int&gt;, quote_count &lt;int&gt;, reply_count &lt;int&gt;, hashtags &lt;list&gt;,
+## #   symbols &lt;list&gt;, urls_url &lt;list&gt;, urls_t.co &lt;list&gt;, urls_expanded_url &lt;list&gt;,
+## #   media_url &lt;list&gt;, media_t.co &lt;list&gt;, media_expanded_url &lt;list&gt;, media_type &lt;list&gt;,
+## #   ext_media_url &lt;list&gt;, ext_media_t.co &lt;list&gt;, ext_media_expanded_url &lt;list&gt;,
+## #   ext_media_type &lt;chr&gt;, mentions_user_id &lt;list&gt;, mentions_screen_name &lt;list&gt;,
+## #   lang &lt;chr&gt;, quoted_status_id &lt;chr&gt;, quoted_text &lt;chr&gt;, quoted_created_at &lt;dttm&gt;,
+## #   quoted_source &lt;chr&gt;, quoted_favorite_count &lt;int&gt;, quoted_retweet_count &lt;int&gt;,
+## #   quoted_user_id &lt;chr&gt;, quoted_screen_name &lt;chr&gt;, quoted_name &lt;chr&gt;,
+## #   quoted_followers_count &lt;int&gt;, quoted_friends_count &lt;int&gt;,
+## #   quoted_statuses_count &lt;int&gt;, quoted_location &lt;chr&gt;, quoted_description &lt;chr&gt;,
+## #   quoted_verified &lt;lgl&gt;, retweet_status_id &lt;chr&gt;, retweet_text &lt;chr&gt;,
+## #   retweet_created_at &lt;dttm&gt;, retweet_source &lt;chr&gt;, retweet_favorite_count &lt;int&gt;,
+## #   retweet_retweet_count &lt;int&gt;, retweet_user_id &lt;chr&gt;, retweet_screen_name &lt;chr&gt;,
+## #   retweet_name &lt;chr&gt;, retweet_followers_count &lt;int&gt;, retweet_friends_count &lt;int&gt;,
+## #   retweet_statuses_count &lt;int&gt;, retweet_location &lt;chr&gt;, retweet_description &lt;chr&gt;,
+## #   retweet_verified &lt;lgl&gt;, place_url &lt;chr&gt;, place_name &lt;chr&gt;, place_full_name &lt;chr&gt;,
+## #   place_type &lt;chr&gt;, country &lt;chr&gt;, country_code &lt;chr&gt;, geo_coords &lt;list&gt;,
+## #   coords_coords &lt;list&gt;, bbox_coords &lt;list&gt;, status_url &lt;chr&gt;, name &lt;chr&gt;,
+## #   location &lt;chr&gt;, description &lt;chr&gt;, url &lt;chr&gt;, protected &lt;lgl&gt;, followers_count &lt;int&gt;,
+## #   friends_count &lt;int&gt;, listed_count &lt;int&gt;, statuses_count &lt;int&gt;,
+## #   favourites_count &lt;int&gt;, account_created_at &lt;dttm&gt;, verified &lt;lgl&gt;, profile_url &lt;chr&gt;,
+## #   profile_expanded_url &lt;chr&gt;, account_lang &lt;lgl&gt;, profile_banner_url &lt;chr&gt;,
+## #   profile_background_url &lt;chr&gt;, profile_image_url &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="chapter08.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># テキストだけを表示</span></span>
+<span id="cb204-2"><a href="chapter08.html#cb204-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb204-3"><a href="chapter08.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(text)</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 1
+##    text                                                                                   
+##    &lt;chr&gt;                                                                                  
+##  1 &quot;「ブルーインパルス見たかったなあ」時代から「ブルーインパルス飛ばして『感謝してます』とか適当なパフォーマンスして」時代の到来もあっという間でした……\nhttps://t…
+##  2 &quot;お忙しいのにvlog撮ってもらって、ありがてぇ\n\nこの部分は何？と思っていたところが、背景盛り盛りに盛り込まれてて驚き\nロケット？凧？と思ってたものが、ブルーインパ…
+##  3 &quot;ブルーインパルス飛ばすの、やめて欲しいな。絶対、競技場近くに見に行く人いるでしょ。&quot;   
+##  4 &quot;ブルーインパルス飛行、２４日午後２時から　空自〔パラリンピック〕：時事ドットコム https://t.co/uac0BVQLhX @jijicomより&quot;…
+##  5 &quot;@SG_info_kyokai 都下在住の者ですが、ﾌﾞﾙｰｲﾝﾊﾟﾙｽの展示飛行の為に御苑が密になっているのを動画で見てビックリ。オリンピックを無観客にした意味ないです…
+##  6 &quot;ブルーインパルス飛行は午後2時　都心に「スリーアギトス」（共同通信）\n#Yahooニュース https://t.co/jI2LQ5WHt3&quot;…
+##  7 &quot;ブルーインパルス撮りたいけど起きれる自信がない&quot;                                       
+##  8 &quot;@koharu_k0302 \n明後日が試験当日\n\n心のムラムラ💕は解消出来たと思うので、明日は試験勉強に打ち込んで、しっかり睡眠とりましょう😴\n\n午後2時からの…
+##  9 &quot;肉眼ではかなり大きくて迫力あったブルーインパルスが写真撮ったらゴマより更に小さかった。\n人間の目の性能の高さよ。\n\n赤羽　岩淵水門にて。\n思ったより沢山人いて皆で…
+## 10 &quot;@aki_wolfwood ブルーインパルスのジャケットはなかなか暑いです。(･∀･)&quot;                  
+## 11 &quot;「あーほーかーぁぁぁぁぁっっっ！」\n(ノ｀Д´)ノ彡┻━┻\n\n#悪質政権の総辞職を求めます\n#パラリンピックの中止を求めます \n#責任取れよ同罪メディア\n#少…
+## 12 &quot;ブルーインパルス何回飛ばすねん。もうええて。 https://t.co/0ZMSkPDCy7&quot;                 
+## 13 &quot;ブルーインパルス\n松島基地　テストフライト\n\nhttps://t.co/RVPdr2CtoU\n\n＃ブルーインパルス\n＃ブルーインパルステストフライト\n＃ブル…
+## 14 &quot;@change_song ブルーインパルス4回転してますね👏✨&quot;                                     
+## 15 &quot;明日の仕事、リモートでいいかなぁー…ブルーインパルス飛ぶの見たいけどでも今回のルートは仕事場からだとちょっと微妙だし、前回満足して見れたからなぁ…そもそも国が「家で仕事し…
+## 16 &quot;都内あちらこちらで自宅療養で苦しんでいる方々や渋谷の酸素ステーションで横たわっている方々の頭上を飛ぶブルーインパルス✈️ってなんだよ😮‍💨\n\nしかもそれをスマホで撮っ…
+## 17 &quot;明日もブルーインパルス見えると良いな✈️✈️✈️                          Good Night Good Night🌕️&quot;…
+## 18 &quot;「ブルーインパルス」、パラ開会日の24日午後2時から展示飛行 (Traicy) https://t.co/cxEmwVcisO #linenews&quot;…
+## 19 &quot;明日も終日☁️曇りマーク☁️ブルーインパルス🛩三色見えるかなぁ…&quot;                          
+## 20 &quot;7/23 オリンピックの開会式の日\n買い物中、空を見上げたら\nブルーインパルスが✈️\n地元埼玉では見れるとは思って無かったのでとってもびっくりしました\n\n#月曜…</code></pre>
+</div>
+<div id="googleトレンドの分析" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Googleトレンドの分析</h2>
+<p>社会トレンドを分析できる別の手段として、Googleトレンドがあります。検索数ではなく、相対的な変化を表すものですが、人々の関心の変化を時系列で見る上では非常に参考になります。Googleトレンドは、<code>gtrendsR</code>という<code>package</code>で分析することが可能です。</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="chapter08.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
+<span id="cb206-2"><a href="chapter08.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="chapter08.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb206-4"><a href="chapter08.html#cb206-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="chapter08.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
+<span id="cb206-6"><a href="chapter08.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
+<span id="cb206-7"><a href="chapter08.html#cb206-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
+<span id="cb206-8"><a href="chapter08.html#cb206-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
+<span id="cb206-9"><a href="chapter08.html#cb206-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
+<span id="cb206-10"><a href="chapter08.html#cb206-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
+<span id="cb206-11"><a href="chapter08.html#cb206-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
+<span id="cb206-12"><a href="chapter08.html#cb206-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
+<span id="cb206-13"><a href="chapter08.html#cb206-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
+<span id="cb206-14"><a href="chapter08.html#cb206-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
+<span id="cb206-15"><a href="chapter08.html#cb206-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
+<span id="cb206-16"><a href="chapter08.html#cb206-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
+<span id="cb206-17"><a href="chapter08.html#cb206-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
+<span id="cb206-18"><a href="chapter08.html#cb206-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
+<span id="cb206-19"><a href="chapter08.html#cb206-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
+<span id="cb206-20"><a href="chapter08.html#cb206-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
+<span id="cb206-21"><a href="chapter08.html#cb206-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-22"><a href="chapter08.html#cb206-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-23"><a href="chapter08.html#cb206-23" aria-hidden="true" tabindex="-1"></a>trendYokohama5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;横浜市長選挙&quot;</span>, </span>
+<span id="cb206-24"><a href="chapter08.html#cb206-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb206-25"><a href="chapter08.html#cb206-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
+<span id="cb206-26"><a href="chapter08.html#cb206-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendYokohama5yrs)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/SNSintro2-1.png" width="672" /></p>
+<p>デフォルトの<code>plot</code>関数では凡例が文字化けするようなので、<code>ggplot2</code>にて描画します。</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter08.html#cb207-1" aria-hidden="true" tabindex="-1"></a>trendYokohama7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;横浜市長選挙&quot;</span>, </span>
+<span id="cb207-2"><a href="chapter08.html#cb207-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb207-3"><a href="chapter08.html#cb207-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
+<span id="cb207-4"><a href="chapter08.html#cb207-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-5"><a href="chapter08.html#cb207-5" aria-hidden="true" tabindex="-1"></a>trendYokohama7days <span class="sc">%&gt;%</span></span>
+<span id="cb207-6"><a href="chapter08.html#cb207-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb207-7"><a href="chapter08.html#cb207-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
+<span id="cb207-8"><a href="chapter08.html#cb207-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb207-9"><a href="chapter08.html#cb207-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「横浜市長選挙」)&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/SNSintro3-1.png" width="672" /></p>
+<p>複数キーワードに挑戦してみよう。</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter08.html#cb208-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
+<span id="cb208-2"><a href="chapter08.html#cb208-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-3"><a href="chapter08.html#cb208-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
+<span id="cb208-4"><a href="chapter08.html#cb208-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb208-5"><a href="chapter08.html#cb208-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
+<span id="cb208-6"><a href="chapter08.html#cb208-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-7"><a href="chapter08.html#cb208-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
+<span id="cb208-8"><a href="chapter08.html#cb208-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb208-9"><a href="chapter08.html#cb208-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
+<span id="cb208-10"><a href="chapter08.html#cb208-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb208-11"><a href="chapter08.html#cb208-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/SNSintro4-1.png" width="672" /></p>
+<p>上記の例では、<code>time="2021-07-21 2021-08-08"</code>というフォーマットで期間を設定している点にも注意しよう。これをみると、日本女子バスケットボール代表の快進撃で検索数が大きく増加していることがわかる。</p>
 
+</div>
 </div>
             </section>
 
