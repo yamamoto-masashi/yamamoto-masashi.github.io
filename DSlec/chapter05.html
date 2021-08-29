@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="よりgisライクな地図の作成" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> よりGISライクな地図の作成</h2>
-<p>以下では地理情報をできるだけ正確に扱った地図の描画について解説します。例として用いるデータは、2015年国勢調査の平塚市（小地域）です。このファイルは、<a href="https://www.e-stat.go.jp/gis/statmap-search?type=2">総務省統計局</a>のサイトかダウンロードできます。</p>
+<p>以下では地理情報をできるだけ正確に扱った地図の描画について解説します。例として用いるデータは、2015年国勢調査の平塚市（小地域）です。このファイルは、<a href="https://www.e-stat.go.jp/gis/statmap-search?type=2">総務省統計局</a>のサイトからダウンロードできます。</p>
 <p>地図情報のうち、ベクターデータは、シェープファイルという形式で利用することがデフォルトになっています。シェープファイルとは、<a href="https://www.esrij.com/gis-guide/esri-dataformat/shapefile/">Esri社</a>が開発したGIS用のデータフォーマットで、ポイントデータ(1組以上の緯度、経度情報)、ラインデータ(2組のポイントデータを結んだものの集まり)、ポリゴンデータ(ラインデータを結んだもの)を格納できます。</p>
 <p>シェープファイルの拡張子は、<code>.shp</code>ですが、シェープファイルはこのファイル単独では動作しません。データをダウンロードするときはついてくる複数のファイル（最低でも３つはある）を全て同じフォルダに保存するようにしてください。</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter05.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
@@ -401,6 +401,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb128-27"><a href="chapter05.html#cb128-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">139.23</span>,<span class="fl">139.38</span>)<span class="sc">+</span></span>
 <span id="cb128-28"><a href="chapter05.html#cb128-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>) </span></code></pre></div>
 <p><img src="book_filename_files/figure-html/GISlike4-1.png" width="672" /></p>
+<p>続いて、地価公示のデータをプロットしてみよう。地価公示の詳細は<a href="https://www.mlit.go.jp/totikensangyo/totikensangyo_fr4_000043.html">こちら</a>をご覧ください。</p>
+<blockquote>
+<p>地価公示とは、地価公示法に基づいて、国土交通省土地鑑定委員会が、適正な地価の
+形成に寄与するために、毎年1月1日時点における標準地の正常な価格を3月に公示
+(約26,000地点で実施）するもので、社会・経済活動についての制度インフラとなって
+います。</p>
+</blockquote>
+<blockquote>
+<p>主な役割</p>
+</blockquote>
+<blockquote>
+<p>1.一般の土地の取引に対して指標を与えること
+2.不動産鑑定の規準となること
+3.公共事業用地の取得価格算定の規準となること
+4.土地の相続評価および固定資産税評価についての基準となること
+5.国土利用計画法による土地の価格審査の規準となること　　等</p>
+</blockquote>
+<p>以下では、地価の動向をみるために、より大きなスケールで可視化を行いたいので、ベースマップを平塚市から神奈川県に変更する。</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chapter05.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#地価公示</span></span>
+<span id="cb129-2"><a href="chapter05.html#cb129-2" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaLandPrice/L01-21_14.shp&quot;</span>)</span>
+<span id="cb129-3"><a href="chapter05.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="chapter05.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co">#地価を整数型に</span></span>
+<span id="cb129-5"><a href="chapter05.html#cb129-5" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="sc">$</span>price<span class="ot">&lt;-</span><span class="fu">as.integer</span>(KanagawaPrice<span class="sc">$</span>L01_006)</span>
+<span id="cb129-6"><a href="chapter05.html#cb129-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-7"><a href="chapter05.html#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 用途が住宅のもののみに</span></span>
+<span id="cb129-8"><a href="chapter05.html#cb129-8" aria-hidden="true" tabindex="-1"></a>KanagawaPrice <span class="sc">%&gt;%</span></span>
+<span id="cb129-9"><a href="chapter05.html#cb129-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(L01_025<span class="sc">==</span><span class="st">&quot;住宅&quot;</span>) <span class="ot">-&gt;</span> KanagawaPriceHome</span>
+<span id="cb129-10"><a href="chapter05.html#cb129-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-11"><a href="chapter05.html#cb129-11" aria-hidden="true" tabindex="-1"></a><span class="co">#神奈川県の行政界</span></span>
+<span id="cb129-12"><a href="chapter05.html#cb129-12" aria-hidden="true" tabindex="-1"></a>KanaSHP<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaBorder/N03-21_14_210101.shp&quot;</span>,</span>
+<span id="cb129-13"><a href="chapter05.html#cb129-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 神奈川県のシェープファイル</span></span>
+<span id="cb129-14"><a href="chapter05.html#cb129-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-15"><a href="chapter05.html#cb129-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-16"><a href="chapter05.html#cb129-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb129-17"><a href="chapter05.html#cb129-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-18"><a href="chapter05.html#cb129-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb129-19"><a href="chapter05.html#cb129-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb129-20"><a href="chapter05.html#cb129-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb129-21"><a href="chapter05.html#cb129-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb129-22"><a href="chapter05.html#cb129-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanagawaPriceHome,<span class="fu">aes</span>(<span class="at">color =</span> price<span class="sc">/</span><span class="dv">1000</span>),<span class="at">size=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb129-23"><a href="chapter05.html#cb129-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;Spectral&quot;</span>))<span class="sc">+</span></span>
+<span id="cb129-24"><a href="chapter05.html#cb129-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-25"><a href="chapter05.html#cb129-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;単位：千円/m^2&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-26"><a href="chapter05.html#cb129-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/Chika1-1.png" width="672" /></p>
+<p>これをさらにヒートマップの形で表してみよう</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="chapter05.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sf objectから緯度経度を取り出す</span></span>
+<span id="cb130-2"><a href="chapter05.html#cb130-2" aria-hidden="true" tabindex="-1"></a>KanaCoords<span class="ot">&lt;-</span><span class="fu">st_coordinates</span>(KanagawaPrice<span class="sc">$</span>geometry)</span>
+<span id="cb130-3"><a href="chapter05.html#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="chapter05.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="co"># XおよびYとして緯度経度を追加する（もっと美しいやり方あると思いますが）</span></span>
+<span id="cb130-5"><a href="chapter05.html#cb130-5" aria-hidden="true" tabindex="-1"></a>KanaPrice<span class="ot">&lt;-</span><span class="fu">cbind</span>(KanagawaPrice,KanaCoords)</span>
+<span id="cb130-6"><a href="chapter05.html#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="chapter05.html#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb130-8"><a href="chapter05.html#cb130-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-9"><a href="chapter05.html#cb130-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb130-10"><a href="chapter05.html#cb130-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb130-11"><a href="chapter05.html#cb130-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb130-12"><a href="chapter05.html#cb130-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb130-13"><a href="chapter05.html#cb130-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanagawaPriceHome,<span class="fu">aes</span>(<span class="at">color =</span> price<span class="sc">/</span><span class="dv">1000</span>),<span class="at">size=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb130-14"><a href="chapter05.html#cb130-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_2d_filled</span>(<span class="at">data=</span>KanaPrice,<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y,<span class="at">color=</span>price,<span class="at">alpha=</span><span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb130-15"><a href="chapter05.html#cb130-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;Spectral&quot;</span>))<span class="sc">+</span></span>
+<span id="cb130-16"><a href="chapter05.html#cb130-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-17"><a href="chapter05.html#cb130-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-18"><a href="chapter05.html#cb130-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/heatmap-1.png" width="672" /></p>
 
 </div>
 </div>
