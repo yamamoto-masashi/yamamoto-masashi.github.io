@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-08-30" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -241,12 +241,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> はじめに</h2>
 <p>データ分析にかかる時間の大半は、分析目的に合わせてデータをキレイに整える段階に費やされます。<code>R</code>の<code>dplyr</code>という<code>package</code>を用いて、少しでも楽にデータ集計を進めるためのコツを学びます。</p>
 <p>一定の時間が経過した後に見直しをすると、クリック操作で行った手続きを思い出すことは不可能です。できるだけ<code>R</code>の環境の中でデータの整理を行うことでデータ整理自体の時間節約になるだけでなく、<code>dplyr</code>コマンドとして作業を記録しておくことで、過去の自分が何をしたかを思い出す時間も節約することができます。</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter09.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
-<span id="cb211-2"><a href="chapter09.html#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-3"><a href="chapter09.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb211-4"><a href="chapter09.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb211-5"><a href="chapter09.html#cb211-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-6"><a href="chapter09.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter09.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb207-2"><a href="chapter09.html#cb207-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-3"><a href="chapter09.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb207-4"><a href="chapter09.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb207-5"><a href="chapter09.html#cb207-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-6"><a href="chapter09.html#cb207-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 28
 ##     PID county state  area poptotal popdensity popwhite popblack popamerindian popasian
 ##   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;         &lt;int&gt;    &lt;int&gt;
@@ -271,27 +271,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>改行が入るので、コメントを残しやすい。</li>
 </ol>
 <p>一方、デメリットとしては、たまにパイプ演算子を使うとうまく機能させられない関数がありますが、入門の段階ではそのような現象はほとんどなく、導入のメリットしかないと思いますので、積極的に活用ですべきと考えます。</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter09.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いた場合</span></span>
-<span id="cb213-2"><a href="chapter09.html#cb213-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb213-3"><a href="chapter09.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter09.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いた場合</span></span>
+<span id="cb209-2"><a href="chapter09.html#cb209-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb209-3"><a href="chapter09.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="chapter09.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いない場合</span></span>
-<span id="cb215-2"><a href="chapter09.html#cb215-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-3"><a href="chapter09.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">data=</span>midwest,<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter09.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いない場合</span></span>
+<span id="cb211-2"><a href="chapter09.html#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-3"><a href="chapter09.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">data=</span>midwest,<span class="fu">aes</span>(poptotal))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="chapter09.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子で他の演算も行う</span></span>
-<span id="cb217-2"><a href="chapter09.html#cb217-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb217-3"><a href="chapter09.html#cb217-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># 対象をミシガン州だけに</span></span>
-<span id="cb217-4"><a href="chapter09.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter09.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子で他の演算も行う</span></span>
+<span id="cb213-2"><a href="chapter09.html#cb213-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb213-3"><a href="chapter09.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># 対象をミシガン州だけに</span></span>
+<span id="cb213-4"><a href="chapter09.html#cb213-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-3.png" width="672" /></p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="chapter09.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いないで、他の演算も行う</span></span>
-<span id="cb219-2"><a href="chapter09.html#cb219-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-3"><a href="chapter09.html#cb219-3" aria-hidden="true" tabindex="-1"></a>midwestMI<span class="ot">&lt;-</span><span class="fu">filter</span>(midwest, state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>)</span>
-<span id="cb219-4"><a href="chapter09.html#cb219-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-5"><a href="chapter09.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwestMI)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal)) </span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="chapter09.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いないで、他の演算も行う</span></span>
+<span id="cb215-2"><a href="chapter09.html#cb215-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-3"><a href="chapter09.html#cb215-3" aria-hidden="true" tabindex="-1"></a>midwestMI<span class="ot">&lt;-</span><span class="fu">filter</span>(midwest, state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>)</span>
+<span id="cb215-4"><a href="chapter09.html#cb215-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-5"><a href="chapter09.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwestMI)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal)) </span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-4.png" width="672" /></p>
 <p>最後の例では結果として２行になり、<code>midwestMI</code>というデータフレームも作成された。</p>
@@ -299,20 +299,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="エクセル作業を代替してみる" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> エクセル作業を代替してみる</h2>
 <p>エクセルでクリックで行う作業をコードで残そう。</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="chapter09.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の追加 </span></span>
-<span id="cb221-2"><a href="chapter09.html#cb221-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb221-3"><a href="chapter09.html#cb221-3" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb221-4"><a href="chapter09.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poptotal2=</span>poptotal<span class="sc">/</span><span class="dv">1000000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb221-5"><a href="chapter09.html#cb221-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal2))<span class="sc">+</span></span>
-<span id="cb221-6"><a href="chapter09.html#cb221-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Population (unit: million)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="chapter09.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の追加 </span></span>
+<span id="cb217-2"><a href="chapter09.html#cb217-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-3"><a href="chapter09.html#cb217-3" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb217-4"><a href="chapter09.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poptotal2=</span>poptotal<span class="sc">/</span><span class="dv">1000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb217-5"><a href="chapter09.html#cb217-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal2))<span class="sc">+</span></span>
+<span id="cb217-6"><a href="chapter09.html#cb217-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Population (unit: million)&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="chapter09.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の削除</span></span>
-<span id="cb223-2"><a href="chapter09.html#cb223-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-3"><a href="chapter09.html#cb223-3" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb223-4"><a href="chapter09.html#cb223-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state, area, poptotal,popdensity) <span class="ot">-&gt;</span> midwestSmall</span>
-<span id="cb223-5"><a href="chapter09.html#cb223-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-6"><a href="chapter09.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwestSmall)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="chapter09.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の削除</span></span>
+<span id="cb219-2"><a href="chapter09.html#cb219-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-3"><a href="chapter09.html#cb219-3" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb219-4"><a href="chapter09.html#cb219-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state, area, poptotal,popdensity) <span class="ot">-&gt;</span> midwestSmall</span>
+<span id="cb219-5"><a href="chapter09.html#cb219-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-6"><a href="chapter09.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwestSmall)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   state  area poptotal popdensity
 ##   &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;
@@ -325,11 +325,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="データベースとしての利用" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> データベースとしての利用</h2>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter09.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># left_join()関数</span></span>
-<span id="cb225-2"><a href="chapter09.html#cb225-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-3"><a href="chapter09.html#cb225-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize()関数</span></span>
-<span id="cb225-4"><a href="chapter09.html#cb225-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-5"><a href="chapter09.html#cb225-5" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by()関数</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="chapter09.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># left_join()関数</span></span>
+<span id="cb221-2"><a href="chapter09.html#cb221-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-3"><a href="chapter09.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize()関数</span></span>
+<span id="cb221-4"><a href="chapter09.html#cb221-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-5"><a href="chapter09.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by()関数</span></span></code></pre></div>
 
 </div>
 </div>
