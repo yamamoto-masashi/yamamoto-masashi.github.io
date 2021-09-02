@@ -47,6 +47,7 @@ rによる重回帰分析
 logをとった場合
 rによるsnsデータの分析
 twitterデータの活用
+参考-word-cloudの作り方
 googleトレンドの分析
 dplyrによるデータ集計
 はじめに
