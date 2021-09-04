@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-02" />
+<meta name="date" content="2021-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -218,9 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter09.html"><a href="chapter09.html#データベースとしての利用"><i class="fa fa-check"></i><b>9.4</b> データベースとしての利用</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -248,87 +253,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="パレットの追加" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> パレットの追加</h2>
 <p><code>R</code>の中で簡単に追加できる色の組み合わせを提供している<code>package</code>に<code>RColorBrewer</code>があります。慣れてきたらこのカラーパレットを参考にして色を変えてみても良いでしょう。</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chapter05.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;RColorBrewer&quot;)</span></span>
-<span id="cb116-2"><a href="chapter05.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="chapter05.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb116-4"><a href="chapter05.html#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-5"><a href="chapter05.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="chapter05.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;RColorBrewer&quot;)</span></span>
+<span id="cb115-2"><a href="chapter05.html#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-3"><a href="chapter05.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb115-4"><a href="chapter05.html#cb115-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-5"><a href="chapter05.html#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/colorbrewer-1.png" width="672" /></p>
 </div>
 <div id="塗り分け地図の作成" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> 塗り分け地図の作成</h2>
 <p>はじめに日本の塗り分け地図をなるべく簡単に作成する方法を学びます。<code>NipponMap</code>という<code>package</code>では見やすさを重視して、海岸線など一部を単純化しています。都道府県別の塗り分けなどは地理情報の精度よりも見やすさを優先すべきです。</p>
 <p>なお、<code>left_join</code>関数は、<code>left_join(A,B, by="C")</code>であるとき、Cという列をキーにして、AにBの情報を追加する関数です。</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="chapter05.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#一回だけ以下のインストールが必要</span></span>
-<span id="cb117-2"><a href="chapter05.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c(&quot;NipponMap&quot;, &quot;tidyverse&quot;))</span></span>
-<span id="cb117-3"><a href="chapter05.html#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-4"><a href="chapter05.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
-<span id="cb117-5"><a href="chapter05.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb117-6"><a href="chapter05.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NipponMap)</span>
-<span id="cb117-7"><a href="chapter05.html#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chapter05.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#一回だけ以下のインストールが必要</span></span>
+<span id="cb116-2"><a href="chapter05.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c(&quot;NipponMap&quot;, &quot;tidyverse&quot;))</span></span>
+<span id="cb116-3"><a href="chapter05.html#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-4"><a href="chapter05.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
+<span id="cb116-5"><a href="chapter05.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb116-6"><a href="chapter05.html#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NipponMap)</span>
+<span id="cb116-7"><a href="chapter05.html#cb116-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
 <pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="chapter05.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter05.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching packages ───────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ tibble  3.0.1     ✓ purrr   0.3.4
+<pre><code>## ✓ tibble  3.0.1     ✓ dplyr   1.0.2
 ## ✓ tidyr   1.1.1     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+## ✓ readr   1.3.1     ✓ forcats 0.5.0
+## ✓ purrr   0.3.4</code></pre>
 <pre><code>## ── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
 ## x psych::%+%()        masks ggplot2::%+%()
 ## x scales::alpha()     masks psych::alpha(), ggplot2::alpha()
 ## x readr::col_factor() masks scales::col_factor()
 ## x purrr::discard()    masks scales::discard()
 ## x dplyr::filter()     masks stats::filter()
-## x purrr::flatten()    masks rtweet::flatten()
 ## x dplyr::lag()        masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="chapter05.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
-<span id="cb123-2"><a href="chapter05.html#cb123-2" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
-<span id="cb123-3"><a href="chapter05.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
-<span id="cb123-4"><a href="chapter05.html#cb123-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-5"><a href="chapter05.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
-<span id="cb123-6"><a href="chapter05.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
-<span id="cb123-7"><a href="chapter05.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
-<span id="cb123-8"><a href="chapter05.html#cb123-8" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="chapter05.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
+<span id="cb122-2"><a href="chapter05.html#cb122-2" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
+<span id="cb122-3"><a href="chapter05.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
+<span id="cb122-4"><a href="chapter05.html#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="chapter05.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
+<span id="cb122-6"><a href="chapter05.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
+<span id="cb122-7"><a href="chapter05.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
+<span id="cb122-8"><a href="chapter05.html#cb122-8" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## New names:
 ## * `` -&gt; ...1
 ## * `` -&gt; ...2</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter05.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数の対応関係</span></span>
-<span id="cb125-2"><a href="chapter05.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A1101_総人口【人】  </span></span>
-<span id="cb125-3"><a href="chapter05.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A1301_15歳未満人口【人】</span></span>
-<span id="cb125-4"><a href="chapter05.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A1303_65歳以上人口【人】  </span></span>
-<span id="cb125-5"><a href="chapter05.html#cb125-5" aria-hidden="true" tabindex="-1"></a><span class="co"># B1101_ 総面積（北方地域及び竹島を除く）【ｈａ】   </span></span>
-<span id="cb125-6"><a href="chapter05.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co"># B1103_ 可住地面積【ｈａ】  </span></span>
-<span id="cb125-7"><a href="chapter05.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="co"># B4107_ 雪日数（年間）【日】 </span></span>
-<span id="cb125-8"><a href="chapter05.html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="co"># B4108_ 日照時間（年間）【時間】   </span></span>
-<span id="cb125-9"><a href="chapter05.html#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="co"># D110101_市町村数【‐】   </span></span>
-<span id="cb125-10"><a href="chapter05.html#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="co"># E6102_大学数【校】  </span></span>
-<span id="cb125-11"><a href="chapter05.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co"># E6302_大学学生数【人】</span></span>
-<span id="cb125-12"><a href="chapter05.html#cb125-12" aria-hidden="true" tabindex="-1"></a><span class="co"># F610201_超過実労働時間数（男）【時間】   </span></span>
-<span id="cb125-13"><a href="chapter05.html#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
-<span id="cb125-14"><a href="chapter05.html#cb125-14" aria-hidden="true" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
-<span id="cb125-15"><a href="chapter05.html#cb125-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-16"><a href="chapter05.html#cb125-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
-<span id="cb125-17"><a href="chapter05.html#cb125-17" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
-<span id="cb125-18"><a href="chapter05.html#cb125-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-19"><a href="chapter05.html#cb125-19" aria-hidden="true" tabindex="-1"></a><span class="co"># データと地図を結合する際にキーの型が同じ必要があるので</span></span>
-<span id="cb125-20"><a href="chapter05.html#cb125-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 数値型を文字型に変更している。</span></span>
-<span id="cb125-21"><a href="chapter05.html#cb125-21" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="sc">$</span>prefcode<span class="ot">&lt;-</span><span class="fu">as.character</span>(sampleDB<span class="sc">$</span>prefcode)</span>
-<span id="cb125-22"><a href="chapter05.html#cb125-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-23"><a href="chapter05.html#cb125-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図の情報はNipponMapから取り出しています。</span></span>
-<span id="cb125-24"><a href="chapter05.html#cb125-24" aria-hidden="true" tabindex="-1"></a><span class="co"># この方法は以下で教えていただきました。</span></span>
-<span id="cb125-25"><a href="chapter05.html#cb125-25" aria-hidden="true" tabindex="-1"></a><span class="co"># https://ill-identified.hatenablog.com/entry/2020/12/07/134705</span></span>
-<span id="cb125-26"><a href="chapter05.html#cb125-26" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">&quot;shapes/jpn.shp&quot;</span>, <span class="at">package =</span> <span class="st">&quot;NipponMap&quot;</span>)[<span class="dv">1</span>],</span>
-<span id="cb125-27"><a href="chapter05.html#cb125-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>)</span>
-<span id="cb125-28"><a href="chapter05.html#cb125-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-29"><a href="chapter05.html#cb125-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図情報に総務省のデータベースを接続</span></span>
-<span id="cb125-30"><a href="chapter05.html#cb125-30" aria-hidden="true" tabindex="-1"></a>mapDB<span class="ot">&lt;-</span><span class="fu">left_join</span>(map,sampleDB, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;SP_ID&quot;</span><span class="ot">=</span><span class="st">&quot;prefcode&quot;</span>))</span>
-<span id="cb125-31"><a href="chapter05.html#cb125-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-32"><a href="chapter05.html#cb125-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図にプロット</span></span>
-<span id="cb125-33"><a href="chapter05.html#cb125-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mapDB, <span class="fu">aes</span>(<span class="at">fill =</span> B4107)) <span class="sc">+</span> </span>
-<span id="cb125-34"><a href="chapter05.html#cb125-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
-<span id="cb125-35"><a href="chapter05.html#cb125-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
-<span id="cb125-36"><a href="chapter05.html#cb125-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb125-37"><a href="chapter05.html#cb125-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;年間雪日数(日)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb125-38"><a href="chapter05.html#cb125-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;都道府県別の雪日数 (2018年)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter05.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数の対応関係</span></span>
+<span id="cb124-2"><a href="chapter05.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A1101_総人口【人】  </span></span>
+<span id="cb124-3"><a href="chapter05.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A1301_15歳未満人口【人】</span></span>
+<span id="cb124-4"><a href="chapter05.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A1303_65歳以上人口【人】  </span></span>
+<span id="cb124-5"><a href="chapter05.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="co"># B1101_ 総面積（北方地域及び竹島を除く）【ｈａ】   </span></span>
+<span id="cb124-6"><a href="chapter05.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="co"># B1103_ 可住地面積【ｈａ】  </span></span>
+<span id="cb124-7"><a href="chapter05.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="co"># B4107_ 雪日数（年間）【日】 </span></span>
+<span id="cb124-8"><a href="chapter05.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="co"># B4108_ 日照時間（年間）【時間】   </span></span>
+<span id="cb124-9"><a href="chapter05.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="co"># D110101_市町村数【‐】   </span></span>
+<span id="cb124-10"><a href="chapter05.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="co"># E6102_大学数【校】  </span></span>
+<span id="cb124-11"><a href="chapter05.html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="co"># E6302_大学学生数【人】</span></span>
+<span id="cb124-12"><a href="chapter05.html#cb124-12" aria-hidden="true" tabindex="-1"></a><span class="co"># F610201_超過実労働時間数（男）【時間】   </span></span>
+<span id="cb124-13"><a href="chapter05.html#cb124-13" aria-hidden="true" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
+<span id="cb124-14"><a href="chapter05.html#cb124-14" aria-hidden="true" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
+<span id="cb124-15"><a href="chapter05.html#cb124-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-16"><a href="chapter05.html#cb124-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
+<span id="cb124-17"><a href="chapter05.html#cb124-17" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
+<span id="cb124-18"><a href="chapter05.html#cb124-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-19"><a href="chapter05.html#cb124-19" aria-hidden="true" tabindex="-1"></a><span class="co"># データと地図を結合する際にキーの型が同じ必要があるので</span></span>
+<span id="cb124-20"><a href="chapter05.html#cb124-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 数値型を文字型に変更している。</span></span>
+<span id="cb124-21"><a href="chapter05.html#cb124-21" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="sc">$</span>prefcode<span class="ot">&lt;-</span><span class="fu">as.character</span>(sampleDB<span class="sc">$</span>prefcode)</span>
+<span id="cb124-22"><a href="chapter05.html#cb124-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-23"><a href="chapter05.html#cb124-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図の情報はNipponMapから取り出しています。</span></span>
+<span id="cb124-24"><a href="chapter05.html#cb124-24" aria-hidden="true" tabindex="-1"></a><span class="co"># この方法は以下で教えていただきました。</span></span>
+<span id="cb124-25"><a href="chapter05.html#cb124-25" aria-hidden="true" tabindex="-1"></a><span class="co"># https://ill-identified.hatenablog.com/entry/2020/12/07/134705</span></span>
+<span id="cb124-26"><a href="chapter05.html#cb124-26" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">&quot;shapes/jpn.shp&quot;</span>, <span class="at">package =</span> <span class="st">&quot;NipponMap&quot;</span>)[<span class="dv">1</span>],</span>
+<span id="cb124-27"><a href="chapter05.html#cb124-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>)</span>
+<span id="cb124-28"><a href="chapter05.html#cb124-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-29"><a href="chapter05.html#cb124-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図情報に総務省のデータベースを接続</span></span>
+<span id="cb124-30"><a href="chapter05.html#cb124-30" aria-hidden="true" tabindex="-1"></a>mapDB<span class="ot">&lt;-</span><span class="fu">left_join</span>(map,sampleDB, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;SP_ID&quot;</span><span class="ot">=</span><span class="st">&quot;prefcode&quot;</span>))</span>
+<span id="cb124-31"><a href="chapter05.html#cb124-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-32"><a href="chapter05.html#cb124-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 地図にプロット</span></span>
+<span id="cb124-33"><a href="chapter05.html#cb124-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mapDB, <span class="fu">aes</span>(<span class="at">fill =</span> B4107)) <span class="sc">+</span> </span>
+<span id="cb124-34"><a href="chapter05.html#cb124-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
+<span id="cb124-35"><a href="chapter05.html#cb124-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
+<span id="cb124-36"><a href="chapter05.html#cb124-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb124-37"><a href="chapter05.html#cb124-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;年間雪日数(日)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb124-38"><a href="chapter05.html#cb124-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;都道府県別の雪日数 (2018年)&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/map-1.png" width="672" /></p>
 </div>
 <div id="よりgisライクな地図の作成" class="section level2" number="5.3">
@@ -336,76 +341,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下では地理情報をできるだけ正確に扱った地図の描画について解説します。例として用いるデータは、2015年国勢調査の平塚市（小地域）です。このファイルは、<a href="https://www.e-stat.go.jp/gis/statmap-search?type=2">総務省統計局</a>のサイトからダウンロードできます。</p>
 <p>地図情報のうち、ベクターデータは、シェープファイルという形式で利用することがデフォルトになっています。シェープファイルとは、<a href="https://www.esrij.com/gis-guide/esri-dataformat/shapefile/">Esri社</a>が開発したGIS用のデータフォーマットで、ポイントデータ(1組以上の緯度、経度情報)、ラインデータ(2組のポイントデータを結んだものの集まり)、ポリゴンデータ(ラインデータを結んだもの)を格納できます。</p>
 <p>シェープファイルの拡張子は、<code>.shp</code>ですが、シェープファイルはこのファイル単独では動作しません。データをダウンロードするときはついてくる複数のファイル（最低でも３つはある）を全て同じフォルダに保存するようにしてください。</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter05.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb126-2"><a href="chapter05.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="chapter05.html#cb126-3" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Hiratsuka/h27ka14203.shp&quot;</span>,</span>
-<span id="cb126-4"><a href="chapter05.html#cb126-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 平塚市のシェープファイル</span></span>
-<span id="cb126-5"><a href="chapter05.html#cb126-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-6"><a href="chapter05.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter05.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb125-2"><a href="chapter05.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-3"><a href="chapter05.html#cb125-3" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Hiratsuka/h27ka14203.shp&quot;</span>,</span>
+<span id="cb125-4"><a href="chapter05.html#cb125-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 平塚市のシェープファイル</span></span>
+<span id="cb125-5"><a href="chapter05.html#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="chapter05.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/GISlike1-1.png" width="672" /></p>
 <p>各町丁・字等別の人口で塗り分けをしてみましょう。</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chapter05.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map) <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
-<span id="cb127-2"><a href="chapter05.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
-<span id="cb127-3"><a href="chapter05.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb127-4"><a href="chapter05.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
-<span id="cb127-5"><a href="chapter05.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter05.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map) <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
+<span id="cb126-2"><a href="chapter05.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
+<span id="cb126-3"><a href="chapter05.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb126-4"><a href="chapter05.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
+<span id="cb126-5"><a href="chapter05.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/GISlike2-1.png" width="672" /></p>
 <p>さらに鉄道路線、大学の立地などを重ねてみましょう。</p>
 <p>以下の例では、鉄道のデータを<a href="https://nlftp.mlit.go.jp/ksj/">国土数値情報</a>という国土交通省が運営しているウェブサイトからダウンロードして使っています。このサイトの「4.交通」の中にある「鉄道(ライン）」というデータを使用しています。なお年ごとに路線が変化しているため、国勢調査に合わせて2015年のデータを使用しています。</p>
 <p>この鉄道データは全国のJR及び私鉄を全て含むので、このままプロットすると全国の全ての鉄道路線が表示されます。そのため平塚市の路線に限定する必要があります。</p>
 <p>そこで使用しているが、<code>st_intersection</code>という関数です。この関数を使うと二つの地理データに共通の部分だけを残すことができます。鉄道(ライン)データは駅の情報も含むため、駅も赤色で表示しています。</p>
 <p>最後に東海大学の位置を<code>annotate</code>関数を使って東海大学の場所を、<code>geom_text</code>関数を使って、東海大学の名称を表示しました。これらの関数は緯度、経度を使って表示することができます。</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter05.html#cb128-1" aria-hidden="true" tabindex="-1"></a>trainline <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Train/N02-15_RailroadSection.shp&quot;</span>,</span>
-<span id="cb128-2"><a href="chapter05.html#cb128-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 鉄道線路網のシェープファイル</span></span>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chapter05.html#cb127-1" aria-hidden="true" tabindex="-1"></a>trainline <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Train/N02-15_RailroadSection.shp&quot;</span>,</span>
+<span id="cb127-2"><a href="chapter05.html#cb127-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 鉄道線路網のシェープファイル</span></span>
+<span id="cb127-3"><a href="chapter05.html#cb127-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="chapter05.html#cb127-4" aria-hidden="true" tabindex="-1"></a>trainstation <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Train/N02-15_Station.shp&quot;</span>,</span>
+<span id="cb127-5"><a href="chapter05.html#cb127-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 鉄道駅のシェープファイル</span></span>
+<span id="cb127-6"><a href="chapter05.html#cb127-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-7"><a href="chapter05.html#cb127-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-8"><a href="chapter05.html#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map)<span class="sc">+</span></span>
+<span id="cb127-9"><a href="chapter05.html#cb127-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
+<span id="cb127-10"><a href="chapter05.html#cb127-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb127-11"><a href="chapter05.html#cb127-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb127-12"><a href="chapter05.html#cb127-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb127-13"><a href="chapter05.html#cb127-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb127-14"><a href="chapter05.html#cb127-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;point&quot;</span>, <span class="at">x =</span> <span class="fl">139.274823</span>, <span class="at">y =</span> <span class="fl">35.365831</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb127-15"><a href="chapter05.html#cb127-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.266823</span>, <span class="at">y =</span> <span class="fl">35.362831</span>), <span class="at">label =</span> <span class="st">&quot;東海大学&quot;</span>,</span>
+<span id="cb127-16"><a href="chapter05.html#cb127-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb127-17"><a href="chapter05.html#cb127-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
+<span id="cb127-18"><a href="chapter05.html#cb127-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb127-19"><a href="chapter05.html#cb127-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
+<span id="cb127-20"><a href="chapter05.html#cb127-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;経度&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;緯度&quot;</span>)<span class="sc">+</span></span>
+<span id="cb127-21"><a href="chapter05.html#cb127-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>) </span></code></pre></div>
+<p><img src="book_filename_files/figure-html/GISlike3-1.png" width="672" /></p>
+<p>何か足りません。そうです。小田急線が描かれていないのです。その理由は、小田急線が平塚市内を通っていないためです。そこで鉄道ラインデータの切り出しの際にのみ、隣の秦野市のデータを加えて、小田急線を表示したいと思います。</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter05.html#cb128-1" aria-hidden="true" tabindex="-1"></a>HadMap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Hadano/h27ka14211.shp&quot;</span>,</span>
+<span id="cb128-2"><a href="chapter05.html#cb128-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 秦野市のシェープファイル</span></span>
 <span id="cb128-3"><a href="chapter05.html#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-4"><a href="chapter05.html#cb128-4" aria-hidden="true" tabindex="-1"></a>trainstation <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Train/N02-15_Station.shp&quot;</span>,</span>
-<span id="cb128-5"><a href="chapter05.html#cb128-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 鉄道駅のシェープファイル</span></span>
-<span id="cb128-6"><a href="chapter05.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-7"><a href="chapter05.html#cb128-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-8"><a href="chapter05.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map)<span class="sc">+</span></span>
-<span id="cb128-9"><a href="chapter05.html#cb128-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
-<span id="cb128-10"><a href="chapter05.html#cb128-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb128-4"><a href="chapter05.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map)<span class="sc">+</span></span>
+<span id="cb128-5"><a href="chapter05.html#cb128-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
+<span id="cb128-6"><a href="chapter05.html#cb128-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb128-7"><a href="chapter05.html#cb128-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb128-8"><a href="chapter05.html#cb128-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb128-9"><a href="chapter05.html#cb128-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb128-10"><a href="chapter05.html#cb128-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(HadMap),<span class="fu">st_union</span>(trainline))),</span>
 <span id="cb128-11"><a href="chapter05.html#cb128-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb128-12"><a href="chapter05.html#cb128-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb128-12"><a href="chapter05.html#cb128-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(HadMap),<span class="fu">st_union</span>(trainstation))),</span>
 <span id="cb128-13"><a href="chapter05.html#cb128-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
 <span id="cb128-14"><a href="chapter05.html#cb128-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;point&quot;</span>, <span class="at">x =</span> <span class="fl">139.274823</span>, <span class="at">y =</span> <span class="fl">35.365831</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
 <span id="cb128-15"><a href="chapter05.html#cb128-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.266823</span>, <span class="at">y =</span> <span class="fl">35.362831</span>), <span class="at">label =</span> <span class="st">&quot;東海大学&quot;</span>,</span>
 <span id="cb128-16"><a href="chapter05.html#cb128-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-17"><a href="chapter05.html#cb128-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
-<span id="cb128-18"><a href="chapter05.html#cb128-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-19"><a href="chapter05.html#cb128-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-20"><a href="chapter05.html#cb128-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;経度&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;緯度&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-21"><a href="chapter05.html#cb128-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>) </span></code></pre></div>
-<p><img src="book_filename_files/figure-html/GISlike3-1.png" width="672" /></p>
-<p>何か足りません。そうです。小田急線が描かれていないのです。その理由は、小田急線が平塚市内を通っていないためです。そこで鉄道ラインデータの切り出しの際にのみ、隣の秦野市のデータを加えて、小田急線を表示したいと思います。</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chapter05.html#cb129-1" aria-hidden="true" tabindex="-1"></a>HadMap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;Hadano/h27ka14211.shp&quot;</span>,</span>
-<span id="cb129-2"><a href="chapter05.html#cb129-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 秦野市のシェープファイル</span></span>
-<span id="cb129-3"><a href="chapter05.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb129-4"><a href="chapter05.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map)<span class="sc">+</span></span>
-<span id="cb129-5"><a href="chapter05.html#cb129-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>JINKO))<span class="sc">+</span></span>
-<span id="cb129-6"><a href="chapter05.html#cb129-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainline))),</span>
-<span id="cb129-7"><a href="chapter05.html#cb129-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb129-8"><a href="chapter05.html#cb129-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(map),<span class="fu">st_union</span>(trainstation))),</span>
-<span id="cb129-9"><a href="chapter05.html#cb129-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb129-10"><a href="chapter05.html#cb129-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(HadMap),<span class="fu">st_union</span>(trainline))),</span>
-<span id="cb129-11"><a href="chapter05.html#cb129-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb129-12"><a href="chapter05.html#cb129-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(HadMap),<span class="fu">st_union</span>(trainstation))),</span>
-<span id="cb129-13"><a href="chapter05.html#cb129-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb129-14"><a href="chapter05.html#cb129-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;point&quot;</span>, <span class="at">x =</span> <span class="fl">139.274823</span>, <span class="at">y =</span> <span class="fl">35.365831</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb129-15"><a href="chapter05.html#cb129-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.266823</span>, <span class="at">y =</span> <span class="fl">35.362831</span>), <span class="at">label =</span> <span class="st">&quot;東海大学&quot;</span>,</span>
-<span id="cb129-16"><a href="chapter05.html#cb129-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-17"><a href="chapter05.html#cb129-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.28</span>, <span class="at">y =</span> <span class="fl">35.388</span>), <span class="at">label =</span> <span class="st">&quot;小田急線&quot;</span>,</span>
-<span id="cb129-18"><a href="chapter05.html#cb129-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-19"><a href="chapter05.html#cb129-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.283</span>, <span class="at">y =</span> <span class="fl">35.328</span>), <span class="at">label =</span> <span class="st">&quot;新幹線&quot;</span>,</span>
-<span id="cb129-20"><a href="chapter05.html#cb129-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-21"><a href="chapter05.html#cb129-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.375</span>, <span class="at">y =</span> <span class="fl">35.327</span>), <span class="at">label =</span> <span class="st">&quot;東海道線&quot;</span>,</span>
-<span id="cb129-22"><a href="chapter05.html#cb129-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-23"><a href="chapter05.html#cb129-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
-<span id="cb129-24"><a href="chapter05.html#cb129-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-25"><a href="chapter05.html#cb129-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-26"><a href="chapter05.html#cb129-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;経度&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;緯度&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-27"><a href="chapter05.html#cb129-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">139.23</span>,<span class="fl">139.38</span>)<span class="sc">+</span></span>
-<span id="cb129-28"><a href="chapter05.html#cb129-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>) </span></code></pre></div>
+<span id="cb128-17"><a href="chapter05.html#cb128-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.28</span>, <span class="at">y =</span> <span class="fl">35.388</span>), <span class="at">label =</span> <span class="st">&quot;小田急線&quot;</span>,</span>
+<span id="cb128-18"><a href="chapter05.html#cb128-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-19"><a href="chapter05.html#cb128-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.283</span>, <span class="at">y =</span> <span class="fl">35.328</span>), <span class="at">label =</span> <span class="st">&quot;新幹線&quot;</span>,</span>
+<span id="cb128-20"><a href="chapter05.html#cb128-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-21"><a href="chapter05.html#cb128-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">139.375</span>, <span class="at">y =</span> <span class="fl">35.327</span>), <span class="at">label =</span> <span class="st">&quot;東海道線&quot;</span>,</span>
+<span id="cb128-22"><a href="chapter05.html#cb128-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-23"><a href="chapter05.html#cb128-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;GnBu&quot;</span>))<span class="sc">+</span></span>
+<span id="cb128-24"><a href="chapter05.html#cb128-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-25"><a href="chapter05.html#cb128-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;単位：人&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-26"><a href="chapter05.html#cb128-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;経度&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;緯度&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-27"><a href="chapter05.html#cb128-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">139.23</span>,<span class="fl">139.38</span>)<span class="sc">+</span></span>
+<span id="cb128-28"><a href="chapter05.html#cb128-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;国勢調査(2015年)における平塚市の人口 (町丁・字等別)&quot;</span>) </span></code></pre></div>
 <p><img src="book_filename_files/figure-html/GISlike4-1.png" width="672" /></p>
 <p>続いて、地価公示のデータをプロットしてみよう。地価公示の詳細は<a href="https://www.mlit.go.jp/totikensangyo/totikensangyo_fr4_000043.html">こちら</a>をご覧ください。</p>
 <blockquote>
@@ -433,61 +438,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>5.国土利用計画法による土地の価格審査の規準となること　　等</p>
 </blockquote>
 <p>以下では、地価の動向をみるために、より大きなスケールで可視化を行いたいので、ベースマップを平塚市から神奈川県に変更する。</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="chapter05.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#地価公示</span></span>
-<span id="cb130-2"><a href="chapter05.html#cb130-2" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaLandPrice/L01-21_14.shp&quot;</span>)</span>
-<span id="cb130-3"><a href="chapter05.html#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-4"><a href="chapter05.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="co">#地価を整数型に</span></span>
-<span id="cb130-5"><a href="chapter05.html#cb130-5" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="sc">$</span>price<span class="ot">&lt;-</span><span class="fu">as.integer</span>(KanagawaPrice<span class="sc">$</span>L01_006)</span>
-<span id="cb130-6"><a href="chapter05.html#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-7"><a href="chapter05.html#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 用途が住宅のもののみに</span></span>
-<span id="cb130-8"><a href="chapter05.html#cb130-8" aria-hidden="true" tabindex="-1"></a>KanagawaPrice <span class="sc">%&gt;%</span></span>
-<span id="cb130-9"><a href="chapter05.html#cb130-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(L01_025<span class="sc">==</span><span class="st">&quot;住宅&quot;</span>) <span class="ot">-&gt;</span> KanagawaPriceHome</span>
-<span id="cb130-10"><a href="chapter05.html#cb130-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-11"><a href="chapter05.html#cb130-11" aria-hidden="true" tabindex="-1"></a><span class="co">#神奈川県の行政界</span></span>
-<span id="cb130-12"><a href="chapter05.html#cb130-12" aria-hidden="true" tabindex="-1"></a>KanaSHP<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaBorder/N03-21_14_210101.shp&quot;</span>,</span>
-<span id="cb130-13"><a href="chapter05.html#cb130-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 神奈川県のシェープファイル</span></span>
-<span id="cb130-14"><a href="chapter05.html#cb130-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-15"><a href="chapter05.html#cb130-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-16"><a href="chapter05.html#cb130-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb130-17"><a href="chapter05.html#cb130-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-18"><a href="chapter05.html#cb130-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainline))),</span>
-<span id="cb130-19"><a href="chapter05.html#cb130-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb130-20"><a href="chapter05.html#cb130-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainstation))),</span>
-<span id="cb130-21"><a href="chapter05.html#cb130-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb130-22"><a href="chapter05.html#cb130-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanagawaPriceHome,<span class="fu">aes</span>(<span class="at">color =</span> price<span class="sc">/</span><span class="dv">1000</span>),<span class="at">size=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
-<span id="cb130-23"><a href="chapter05.html#cb130-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;Spectral&quot;</span>))<span class="sc">+</span></span>
-<span id="cb130-24"><a href="chapter05.html#cb130-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-25"><a href="chapter05.html#cb130-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;単位：千円/m^2&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-26"><a href="chapter05.html#cb130-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chapter05.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#地価公示</span></span>
+<span id="cb129-2"><a href="chapter05.html#cb129-2" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaLandPrice/L01-21_14.shp&quot;</span>)</span>
+<span id="cb129-3"><a href="chapter05.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="chapter05.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co">#地価を整数型に</span></span>
+<span id="cb129-5"><a href="chapter05.html#cb129-5" aria-hidden="true" tabindex="-1"></a>KanagawaPrice<span class="sc">$</span>price<span class="ot">&lt;-</span><span class="fu">as.integer</span>(KanagawaPrice<span class="sc">$</span>L01_006)</span>
+<span id="cb129-6"><a href="chapter05.html#cb129-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-7"><a href="chapter05.html#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 用途が住宅のもののみに</span></span>
+<span id="cb129-8"><a href="chapter05.html#cb129-8" aria-hidden="true" tabindex="-1"></a>KanagawaPrice <span class="sc">%&gt;%</span></span>
+<span id="cb129-9"><a href="chapter05.html#cb129-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(L01_025<span class="sc">==</span><span class="st">&quot;住宅&quot;</span>) <span class="ot">-&gt;</span> KanagawaPriceHome</span>
+<span id="cb129-10"><a href="chapter05.html#cb129-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-11"><a href="chapter05.html#cb129-11" aria-hidden="true" tabindex="-1"></a><span class="co">#神奈川県の行政界</span></span>
+<span id="cb129-12"><a href="chapter05.html#cb129-12" aria-hidden="true" tabindex="-1"></a>KanaSHP<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">&quot;KanagawaBorder/N03-21_14_210101.shp&quot;</span>,</span>
+<span id="cb129-13"><a href="chapter05.html#cb129-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>) <span class="co"># 神奈川県のシェープファイル</span></span>
+<span id="cb129-14"><a href="chapter05.html#cb129-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-15"><a href="chapter05.html#cb129-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-16"><a href="chapter05.html#cb129-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb129-17"><a href="chapter05.html#cb129-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-18"><a href="chapter05.html#cb129-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainline))),</span>
+<span id="cb129-19"><a href="chapter05.html#cb129-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb129-20"><a href="chapter05.html#cb129-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span><span class="fu">st_sf</span>(<span class="at">geometry=</span><span class="fu">st_intersection</span>(<span class="fu">st_union</span>(KanaSHP),<span class="fu">st_union</span>(trainstation))),</span>
+<span id="cb129-21"><a href="chapter05.html#cb129-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb129-22"><a href="chapter05.html#cb129-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>KanagawaPriceHome,<span class="fu">aes</span>(<span class="at">color =</span> price<span class="sc">/</span><span class="dv">1000</span>),<span class="at">size=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb129-23"><a href="chapter05.html#cb129-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;Spectral&quot;</span>))<span class="sc">+</span></span>
+<span id="cb129-24"><a href="chapter05.html#cb129-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-25"><a href="chapter05.html#cb129-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;単位：千円/m^2&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-26"><a href="chapter05.html#cb129-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/Chika1-1.png" width="672" /></p>
 <p>これをさらにヒートマップの形で表してみよう。</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="chapter05.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;akima&quot;)</span></span>
-<span id="cb131-2"><a href="chapter05.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(akima)</span>
-<span id="cb131-3"><a href="chapter05.html#cb131-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-4"><a href="chapter05.html#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sf objectから緯度経度を取り出す</span></span>
-<span id="cb131-5"><a href="chapter05.html#cb131-5" aria-hidden="true" tabindex="-1"></a>KanaCoords<span class="ot">&lt;-</span><span class="fu">st_coordinates</span>(KanagawaPrice<span class="sc">$</span>geometry)</span>
-<span id="cb131-6"><a href="chapter05.html#cb131-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-7"><a href="chapter05.html#cb131-7" aria-hidden="true" tabindex="-1"></a><span class="co"># XおよびYとして緯度経度を追加する（もっと美しいやり方あると思いますが）</span></span>
-<span id="cb131-8"><a href="chapter05.html#cb131-8" aria-hidden="true" tabindex="-1"></a>KanaPrice<span class="ot">&lt;-</span><span class="fu">cbind</span>(KanagawaPrice,KanaCoords)</span>
-<span id="cb131-9"><a href="chapter05.html#cb131-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-10"><a href="chapter05.html#cb131-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-11"><a href="chapter05.html#cb131-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ポイントデータを補間する</span></span>
-<span id="cb131-12"><a href="chapter05.html#cb131-12" aria-hidden="true" tabindex="-1"></a>interpdf <span class="ot">&lt;-</span><span class="fu">interp2xyz</span>(<span class="fu">interp</span>(<span class="at">x=</span>KanaPrice<span class="sc">$</span>X, <span class="at">y=</span>KanaPrice<span class="sc">$</span>Y, <span class="at">z=</span>KanaPrice<span class="sc">$</span>price<span class="sc">/</span><span class="dv">1000</span>,</span>
-<span id="cb131-13"><a href="chapter05.html#cb131-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">duplicate=</span><span class="st">&quot;mean&quot;</span>), <span class="at">data.frame=</span><span class="cn">TRUE</span>)</span>
-<span id="cb131-14"><a href="chapter05.html#cb131-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-15"><a href="chapter05.html#cb131-15" aria-hidden="true" tabindex="-1"></a>interpdf <span class="sc">%&gt;%</span></span>
-<span id="cb131-16"><a href="chapter05.html#cb131-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(z)) <span class="sc">%&gt;%</span></span>
-<span id="cb131-17"><a href="chapter05.html#cb131-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb131-18"><a href="chapter05.html#cb131-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP)<span class="sc">+</span></span>
-<span id="cb131-19"><a href="chapter05.html#cb131-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">z =</span> z),<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
-<span id="cb131-20"><a href="chapter05.html#cb131-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">z =</span> z, <span class="at">fill =</span> z,<span class="at">alpha=</span><span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb131-21"><a href="chapter05.html#cb131-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;Spectral&quot;</span>, <span class="at">na.value=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb131-22"><a href="chapter05.html#cb131-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb131-23"><a href="chapter05.html#cb131-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;単位：千円/m^2&quot;</span>)<span class="sc">+</span></span>
-<span id="cb131-24"><a href="chapter05.html#cb131-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">alpha=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
-<span id="cb131-25"><a href="chapter05.html#cb131-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)<span class="ot">-&gt;</span>p</span>
-<span id="cb131-26"><a href="chapter05.html#cb131-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-27"><a href="chapter05.html#cb131-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="chapter05.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;akima&quot;)</span></span>
+<span id="cb130-2"><a href="chapter05.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(akima)</span>
+<span id="cb130-3"><a href="chapter05.html#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="chapter05.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sf objectから緯度経度を取り出す</span></span>
+<span id="cb130-5"><a href="chapter05.html#cb130-5" aria-hidden="true" tabindex="-1"></a>KanaCoords<span class="ot">&lt;-</span><span class="fu">st_coordinates</span>(KanagawaPrice<span class="sc">$</span>geometry)</span>
+<span id="cb130-6"><a href="chapter05.html#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="chapter05.html#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="co"># XおよびYとして緯度経度を追加する（もっと美しいやり方あると思いますが）</span></span>
+<span id="cb130-8"><a href="chapter05.html#cb130-8" aria-hidden="true" tabindex="-1"></a>KanaPrice<span class="ot">&lt;-</span><span class="fu">cbind</span>(KanagawaPrice,KanaCoords)</span>
+<span id="cb130-9"><a href="chapter05.html#cb130-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="chapter05.html#cb130-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-11"><a href="chapter05.html#cb130-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ポイントデータを補間する</span></span>
+<span id="cb130-12"><a href="chapter05.html#cb130-12" aria-hidden="true" tabindex="-1"></a>interpdf <span class="ot">&lt;-</span><span class="fu">interp2xyz</span>(<span class="fu">interp</span>(<span class="at">x=</span>KanaPrice<span class="sc">$</span>X, <span class="at">y=</span>KanaPrice<span class="sc">$</span>Y, <span class="at">z=</span>KanaPrice<span class="sc">$</span>price<span class="sc">/</span><span class="dv">1000</span>,</span>
+<span id="cb130-13"><a href="chapter05.html#cb130-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">duplicate=</span><span class="st">&quot;mean&quot;</span>), <span class="at">data.frame=</span><span class="cn">TRUE</span>)</span>
+<span id="cb130-14"><a href="chapter05.html#cb130-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-15"><a href="chapter05.html#cb130-15" aria-hidden="true" tabindex="-1"></a>interpdf <span class="sc">%&gt;%</span></span>
+<span id="cb130-16"><a href="chapter05.html#cb130-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(z)) <span class="sc">%&gt;%</span></span>
+<span id="cb130-17"><a href="chapter05.html#cb130-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb130-18"><a href="chapter05.html#cb130-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">data=</span>KanaSHP)<span class="sc">+</span></span>
+<span id="cb130-19"><a href="chapter05.html#cb130-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">z =</span> z),<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb130-20"><a href="chapter05.html#cb130-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">z =</span> z, <span class="at">fill =</span> z,<span class="at">alpha=</span><span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb130-21"><a href="chapter05.html#cb130-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;Spectral&quot;</span>, <span class="at">na.value=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb130-22"><a href="chapter05.html#cb130-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-23"><a href="chapter05.html#cb130-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;単位：千円/m^2&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-24"><a href="chapter05.html#cb130-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">alpha=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-25"><a href="chapter05.html#cb130-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;神奈川県の地価公示(令和3年)&quot;</span>)<span class="ot">-&gt;</span>p</span>
+<span id="cb130-26"><a href="chapter05.html#cb130-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-27"><a href="chapter05.html#cb130-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/heatmap-1.png" width="672" /></p>
 
 </div>

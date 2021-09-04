@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-02" />
+<meta name="date" content="2021-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -218,9 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter09.html"><a href="chapter09.html#データベースとしての利用"><i class="fa fa-check"></i><b>9.4</b> データベースとしての利用</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -243,9 +248,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rmarkdownの使い方" class="section level1" number="10">
 <h1><span class="header-section-number">chapter: 10</span> Rmarkdownの使い方</h1>
+<div id="rmarkdownを用いる理由" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Rmarkdownを用いる理由</h2>
 <p>個人的にデータを分析して楽しむ?場合には特に問題になりませんが、将来、データ分析の結果を仕事で用いることになった場合、その再現性が重要になります。前の学期に作業したエクセルファイルをどうやって作成したか、ファイルそのものを見直しても全く思い出せない、という経験がある人が皆さんの中にもいるかもしれません。個人の学習としてはともかく、ビジネスでこのようなことがおこることは絶対に避けなければなりません。</p>
 <p>一定の時間が経過した後も同じ結果を確実に再現できるためには当初の分析段階で適切に記録を残しておくことが重要です。分析過程の記録を残すための<code>package</code>として、<code>Rmarkdown</code>というものがあります。この<code>Rmarkdown</code>を使うことで作成者の記録がとりやすいだけでなく、後でこの記録をみる利用者にとってもわかりやす資料を作ることができます。</p>
+</div>
+<div id="rmarkdownの使い方-1" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Rmarkdownの使い方</h2>
+<p>最も簡単に<code>Rmarkdown</code>を使う方法は、<code>RStudio</code>のメニューから<code>New File</code>、<code>R Markdown</code>を選択し、htmlで出力することです。このやり方は講義で画面で説明します。</p>
+<p><code>Rmarkdown</code>を用いることで、htmlの途中に<code>R</code>のコードを簡単に含めることができます。このコードは単にコードを表示するだけでなく、htmlを作成するタイミングで実行して実行結果を含めることができます。このコードを含める部分をチャンクと言います。チャンクで使用できるオプションについては<a href="https://teramonagi.hatenablog.com/entry/20130615/1371303616">こちら</a>を参考にしてください。</p>
+</div>
+<div id="参考資料" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> 参考資料</h2>
+<p>さらに細かい設定などに興味のある人は以下のサイトを参照してください。</p>
+<ul>
+<li><a href="https://kazutan.github.io/kazutanR/Rmd_intro.html">Rmarkdown入門 (by kazutan on web)</a></li>
+<li><a href="https://www.jaysong.net/rmarkdown-intro/">Rmarkdown入門 (by Jaehyun Song)</a></li>
+</ul>
 
+</div>
 </div>
             </section>
 

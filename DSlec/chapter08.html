@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-02" />
+<meta name="date" content="2021-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -218,9 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter09.html"><a href="chapter09.html#データベースとしての利用"><i class="fa fa-check"></i><b>9.4</b> データベースとしての利用</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -246,32 +251,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="twitterデータの活用" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Twitterデータの活用</h2>
 <p>Twitterデータの取得・分析をおこないます。分析には、<code>rtweet</code>という<code>package</code>を使用します。</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="chapter08.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb202-2"><a href="chapter08.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span>
-<span id="cb202-3"><a href="chapter08.html#cb202-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-4"><a href="chapter08.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="co"># search_tweets()関数で簡単にテキストを入手。</span></span>
-<span id="cb202-5"><a href="chapter08.html#cb202-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">search_tweets</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="at">n =</span> <span class="dv">500</span>, <span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## 
-Downloading [===============&gt;-------------------------]  40%
-Downloading [========================&gt;----------------]  60%
-Downloading [================================&gt;--------]  80%
-Downloading [=========================================] 100%</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="chapter08.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># アカウント名などを含めて表示</span></span>
-<span id="cb204-2"><a href="chapter08.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
-<pre><code>## # A tibble: 499 x 90
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="chapter08.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb201-2"><a href="chapter08.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span>
+<span id="cb201-3"><a href="chapter08.html#cb201-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-4"><a href="chapter08.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="co"># search_tweets()関数で簡単にテキストを入手。</span></span>
+<span id="cb201-5"><a href="chapter08.html#cb201-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">search_tweets</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="at">n =</span> <span class="dv">500</span>, <span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb201-6"><a href="chapter08.html#cb201-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-7"><a href="chapter08.html#cb201-7" aria-hidden="true" tabindex="-1"></a><span class="co"># アカウント名などを含めて表示</span></span>
+<span id="cb201-8"><a href="chapter08.html#cb201-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<pre><code>## # A tibble: 500 x 90
 ##    user_id status_id created_at          screen_name text  source
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 615693… 14333556… 2021-09-02 09:06:25 AiPad0701   &quot;最近の… Twitt…
-##  2 272661… 14333554… 2021-09-02 09:05:50 ShomaGanba  &quot;バスケ… Twitt…
-##  3 837930… 14333543… 2021-09-02 09:01:15 KR85914611  &quot;みんな… Peing 
-##  4 972064… 14333530… 2021-09-02 08:56:21 Ichigerc    &quot;女子バ… Twitt…
-##  5 101222… 14333528… 2021-09-02 08:55:18 Asa_asa_sp… &quot;女子バ… Twitt…
-##  6 124388… 14333526… 2021-09-02 08:54:42 Bettylong2  &quot;女子バ… Twitt…
-##  7 427108… 14333514… 2021-09-02 08:49:55 loverokku   &quot;[定期… twitt…
-##  8 427108… 14331397… 2021-09-01 18:48:32 loverokku   &quot;[定期… twitt…
-##  9 427108… 14327547… 2021-08-31 17:18:58 loverokku   &quot;[定期… twitt…
-## 10 427108… 14329362… 2021-09-01 05:19:56 loverokku   &quot;[定期… twitt…
-## # … with 489 more rows, and 84 more variables:
+##  1 304554… 14341677… 2021-09-04 14:53:40 yshnew      &quot;【横総… twitt…
+##  2 304554… 14339714… 2021-09-04 01:53:42 yshnew      &quot;【横総… twitt…
+##  3 127141… 14341676… 2021-09-04 14:53:13 politic_pa… &quot;車いす… Twitt…
+##  4 120752… 14341650… 2021-09-04 14:42:42 maayashika… &quot;@22… Twitt…
+##  5 248309… 14341627… 2021-09-04 14:33:40 kckdko      &quot;今回の… Twitt…
+##  6 248309… 14341219… 2021-09-04 11:51:41 kckdko      &quot;中国\… Twitt…
+##  7 248309… 14341176… 2021-09-04 11:34:30 kckdko      &quot;テレビ… Twitt…
+##  8 139282… 14341627… 2021-09-04 14:33:31 haru87prsk  &quot;@Do… Twitt…
+##  9 139282… 14341272… 2021-09-04 12:12:37 haru87prsk  &quot;@Do… Twitt…
+## 10 109349… 14341625… 2021-09-04 14:32:43 sportskwkm  &quot;✨日本… sport…
+## # … with 490 more rows, and 84 more variables:
 ## #   display_text_width &lt;dbl&gt;, reply_to_status_id &lt;chr&gt;,
 ## #   reply_to_user_id &lt;chr&gt;, reply_to_screen_name &lt;chr&gt;,
 ## #   is_quote &lt;lgl&gt;, is_retweet &lt;lgl&gt;, favorite_count &lt;int&gt;,
@@ -307,23 +308,23 @@ Downloading [=========================================] 100%</code></pre>
 ## #   verified &lt;lgl&gt;, profile_url &lt;chr&gt;, profile_expanded_url &lt;chr&gt;,
 ## #   account_lang &lt;lgl&gt;, profile_banner_url &lt;chr&gt;,
 ## #   profile_background_url &lt;chr&gt;, profile_image_url &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="chapter08.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># テキストだけを表示</span></span>
-<span id="cb206-2"><a href="chapter08.html#cb206-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb206-3"><a href="chapter08.html#cb206-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(text)</span></code></pre></div>
-<pre><code>## # A tibble: 499 x 1
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter08.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># テキストだけを表示</span></span>
+<span id="cb203-2"><a href="chapter08.html#cb203-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb203-3"><a href="chapter08.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(text)</span></code></pre></div>
+<pre><code>## # A tibble: 500 x 1
 ##    text                                                               
 ##    &lt;chr&gt;                                                              
-##  1 &quot;最近の癒しはマンキンと\n熱闘を繰り広げた日本女子バスケの方々が出演されている番組の録画を繰り返し観ること...\nコロナ禍ででき…
-##  2 &quot;バスケ女子　町田瑠唯ら所属の富士通がオータムカップ辞退　チーム内１人がコロナ陽性（デイリースポーツ） - Yahoo!ニュース h…
-##  3 &quot;みんなからの匿名質問を募集中！\n\nこんな質問に答えてるよ\n● 彼女つくんないの…\n● 中学の時可愛かった女子は？\n…\n…
-##  4 &quot;女子バスケ日本代表対トヨタ\nhttps://t.co/jd8ly7AIZx\n後半から見る。&quot;…
-##  5 &quot;女子バスケの練習試合、日本代表vsトヨタ自動車。\n第1Q24-19、第2Q51-32、現在ハーフタイムです。\nスタッツ等がなく…
-##  6 &quot;女子バスケの知られざる歴史　日本初の試合に渋沢栄一貢献　飛鳥山の邸宅、庭を開放 (東京新聞) https://t.co/bewXn…
-##  7 &quot;[定期]黒子のバスケが大好きな腐女子です(^-^)v 黒バス以外にもボカロとか銀魂とかかけいおんとか大好きです♪まぁアニオタなので…
-##  8 &quot;[定期]黒子のバスケが大好きな腐女子です(^-^)v 黒バス以外にもボカロとか銀魂とかかけいおんとか大好きです♪まぁアニオタなので…
-##  9 &quot;[定期]黒子のバスケが大好きな腐女子です(^-^)v 黒バス以外にもボカロとか銀魂とかかけいおんとか大好きです♪まぁアニオタなので…
-## 10 &quot;[定期]黒子のバスケが大好きな腐女子です(^-^)v 黒バス以外にもボカロとか銀魂とかかけいおんとか大好きです♪まぁアニオタなので…
-## # … with 489 more rows</code></pre>
+##  1 &quot;【横総の部活】~運動部編~\n\nアーチェリー/剣道/サッカー/水泳/ソフトテニス/バスケ(男女有)/卓球/テニス/バレー(男女有…
+##  2 &quot;【横総の部活】~運動部編~\n\nアーチェリー/剣道/サッカー/水泳/ソフトテニス/バスケ(男女有)/卓球/テニス/バレー(男女有…
+##  3 &quot;車いすバスケ女子はオランダ初優勝 https://t.co/MuAwQjOQzM @Sankei_newsより&quot;…
+##  4 &quot;@220am1s エッ！？みかちゃんも！！\U0001f97a🌟\nやっぱり女子バスケ最高だったよね！\n因みに昨日､バスケの試合…
+##  5 &quot;今回のオリンピック、バスケ競技の大トリは、女子決勝。\n今回のパラリンピック、車いすバスケ競技の大トリは、男子決勝。\n元々決まっ…
+##  6 &quot;中国\n女子\nバスケ\nと揃えば、世界トップクラスの高さをイメージするが、そうでもなさそうな。\nディフェンス力で勝ち上がってき…
+##  7 &quot;テレビで車いすテニス、男子決勝をみながら、配信で車いすバスケの女子決勝をみる&quot;…
+##  8 &quot;@Dongju_PS バスケ部じゃなかったから正確にはわからんけど、背高い女子が多かった印象ではある🤔もしかしておかのさんは身長が…
+##  9 &quot;@Dongju_PS でもまああんちゃんより身長高い女子もいるからね…バスケのこと考えたら気持ちがわからんでもないw&quot;…
+## 10 &quot;✨日本で人気No2✨バスケ女子日本代表 シャンソンに競り勝つ アジア杯に向け 若手中心の構成 #バスケットボール女子日本代表 #バ…
+## # … with 490 more rows</code></pre>
 </div>
 <div id="参考-word-cloudの作り方" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> (参考)　Word Cloudの作り方</h2>
@@ -335,101 +336,101 @@ Downloading [=========================================] 100%</code></pre>
 <li><p><a href="https://qiita.com/hujuu/items/314a64a50875cdabf755">Macユーザーの場合</a></p></li>
 </ul>
 <p>その後、<code>MeCab</code>を<code>R</code>を通じて操作する<code>RMeCab</code>をインストールします。通常とは異なる方法でインストールしますので、以下のコードを参考にしてください。</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter08.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;RMeCab&quot;,repos=&quot;https://rmecab.jp/R&quot;,</span></span>
-<span id="cb208-2"><a href="chapter08.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                 type=&quot;source&quot;)</span></span>
-<span id="cb208-3"><a href="chapter08.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;wordcloud2&quot;)</span></span>
-<span id="cb208-4"><a href="chapter08.html#cb208-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-5"><a href="chapter08.html#cb208-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
-<span id="cb208-6"><a href="chapter08.html#cb208-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
-<span id="cb208-7"><a href="chapter08.html#cb208-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-8"><a href="chapter08.html#cb208-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Courtesy to </span></span>
-<span id="cb208-9"><a href="chapter08.html#cb208-9" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rpubs.com/hiromasa/713387</span></span>
-<span id="cb208-10"><a href="chapter08.html#cb208-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-11"><a href="chapter08.html#cb208-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 分析に加えたくない記号などを削除する</span></span>
-<span id="cb208-12"><a href="chapter08.html#cb208-12" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;https://.*&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-13"><a href="chapter08.html#cb208-13" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;@&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-14"><a href="chapter08.html#cb208-14" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;RT&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-15"><a href="chapter08.html#cb208-15" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;#&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-16"><a href="chapter08.html#cb208-16" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-17"><a href="chapter08.html#cb208-17" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-18"><a href="chapter08.html#cb208-18" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-19"><a href="chapter08.html#cb208-19" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
-<span id="cb208-20"><a href="chapter08.html#cb208-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-21"><a href="chapter08.html#cb208-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ダブらないようにリツイートを削除</span></span>
-<span id="cb208-22"><a href="chapter08.html#cb208-22" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">filter</span>(x,is_retweet<span class="sc">==</span><span class="cn">FALSE</span>)</span>
-<span id="cb208-23"><a href="chapter08.html#cb208-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-24"><a href="chapter08.html#cb208-24" aria-hidden="true" tabindex="-1"></a><span class="co"># RMeCabを使って頻度を計算</span></span>
-<span id="cb208-25"><a href="chapter08.html#cb208-25" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb208-26"><a href="chapter08.html#cb208-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( tweet <span class="cf">in</span> x<span class="sc">$</span>text ) {</span>
-<span id="cb208-27"><a href="chapter08.html#cb208-27" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">RMeCabC</span>(tweet),<span class="dv">1</span>)</span>
-<span id="cb208-28"><a href="chapter08.html#cb208-28" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">c</span>(words, res[<span class="fu">names</span>(res) <span class="sc">==</span> <span class="st">&quot;名詞&quot;</span>])</span>
-<span id="cb208-29"><a href="chapter08.html#cb208-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">#words &lt;- c(words, res[names(res) == &quot;名詞&quot; | names(res) == &quot;動詞&quot;])</span></span>
-<span id="cb208-30"><a href="chapter08.html#cb208-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb208-31"><a href="chapter08.html#cb208-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-32"><a href="chapter08.html#cb208-32" aria-hidden="true" tabindex="-1"></a><span class="co"># wordcloud2に対応するデータフレームに変形</span></span>
-<span id="cb208-33"><a href="chapter08.html#cb208-33" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(<span class="fu">unlist</span>(words)))</span>
-<span id="cb208-34"><a href="chapter08.html#cb208-34" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> corpus_df <span class="sc">%&gt;%</span> <span class="fu">rename</span>( <span class="at">word =</span> Var1, <span class="at">freq =</span> Freq)</span>
-<span id="cb208-35"><a href="chapter08.html#cb208-35" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(corpus_df, freq <span class="sc">&gt;=</span> <span class="dv">25</span>)</span>
-<span id="cb208-36"><a href="chapter08.html#cb208-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-37"><a href="chapter08.html#cb208-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud2</span>(<span class="at">data=</span>corpus_df, <span class="at">color=</span><span class="st">&quot;random-light&quot;</span>,</span>
-<span id="cb208-38"><a href="chapter08.html#cb208-38" aria-hidden="true" tabindex="-1"></a>           <span class="at">size=</span><span class="dv">2</span>,<span class="at">backgroundColor =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-9651564ee0c4d4f21a49" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9651564ee0c4d4f21a49">{"x":{"word":["-","ー","3","5","58","6","Yahoo","オランダ","オリンピック","こと","さ","さん","チーム","ニュース","の","バスケ","バスケットボール","パラ","パラリンピック","プロ","ん","中","人","代表","位","女子","小学生","差","応援","戦","日","日本","昨日","時","東京","決勝","決定","点","男子","笑","衝撃","試合","質問","車いす","車椅子","選手","部"],"freq":[40,48,34,41,36,29,28,79,31,33,27,39,26,42,67,586,48,37,45,38,66,47,43,69,40,535,36,58,27,58,28,130,25,26,49,58,33,43,88,26,34,46,39,236,43,112,80],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":0.614334470989761,"backgroundColor":"black","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter08.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;RMeCab&quot;,repos=&quot;https://rmecab.jp/R&quot;,</span></span>
+<span id="cb205-2"><a href="chapter08.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                 type=&quot;source&quot;)</span></span>
+<span id="cb205-3"><a href="chapter08.html#cb205-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;wordcloud2&quot;)</span></span>
+<span id="cb205-4"><a href="chapter08.html#cb205-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-5"><a href="chapter08.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
+<span id="cb205-6"><a href="chapter08.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
+<span id="cb205-7"><a href="chapter08.html#cb205-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-8"><a href="chapter08.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Courtesy to </span></span>
+<span id="cb205-9"><a href="chapter08.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rpubs.com/hiromasa/713387</span></span>
+<span id="cb205-10"><a href="chapter08.html#cb205-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-11"><a href="chapter08.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 分析に加えたくない記号などを削除する</span></span>
+<span id="cb205-12"><a href="chapter08.html#cb205-12" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;https://.*&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-13"><a href="chapter08.html#cb205-13" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;@&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-14"><a href="chapter08.html#cb205-14" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;RT&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-15"><a href="chapter08.html#cb205-15" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;#&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-16"><a href="chapter08.html#cb205-16" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-17"><a href="chapter08.html#cb205-17" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-18"><a href="chapter08.html#cb205-18" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-19"><a href="chapter08.html#cb205-19" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;&quot;</span>, x<span class="sc">$</span>text)</span>
+<span id="cb205-20"><a href="chapter08.html#cb205-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-21"><a href="chapter08.html#cb205-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ダブらないようにリツイートを削除</span></span>
+<span id="cb205-22"><a href="chapter08.html#cb205-22" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">filter</span>(x,is_retweet<span class="sc">==</span><span class="cn">FALSE</span>)</span>
+<span id="cb205-23"><a href="chapter08.html#cb205-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-24"><a href="chapter08.html#cb205-24" aria-hidden="true" tabindex="-1"></a><span class="co"># RMeCabを使って頻度を計算</span></span>
+<span id="cb205-25"><a href="chapter08.html#cb205-25" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb205-26"><a href="chapter08.html#cb205-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( tweet <span class="cf">in</span> x<span class="sc">$</span>text ) {</span>
+<span id="cb205-27"><a href="chapter08.html#cb205-27" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">RMeCabC</span>(tweet),<span class="dv">1</span>)</span>
+<span id="cb205-28"><a href="chapter08.html#cb205-28" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">c</span>(words, res[<span class="fu">names</span>(res) <span class="sc">==</span> <span class="st">&quot;名詞&quot;</span>])</span>
+<span id="cb205-29"><a href="chapter08.html#cb205-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">#words &lt;- c(words, res[names(res) == &quot;名詞&quot; | names(res) == &quot;動詞&quot;])</span></span>
+<span id="cb205-30"><a href="chapter08.html#cb205-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb205-31"><a href="chapter08.html#cb205-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-32"><a href="chapter08.html#cb205-32" aria-hidden="true" tabindex="-1"></a><span class="co"># wordcloud2に対応するデータフレームに変形</span></span>
+<span id="cb205-33"><a href="chapter08.html#cb205-33" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(<span class="fu">unlist</span>(words)))</span>
+<span id="cb205-34"><a href="chapter08.html#cb205-34" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> corpus_df <span class="sc">%&gt;%</span> <span class="fu">rename</span>( <span class="at">word =</span> Var1, <span class="at">freq =</span> Freq)</span>
+<span id="cb205-35"><a href="chapter08.html#cb205-35" aria-hidden="true" tabindex="-1"></a>corpus_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(corpus_df, freq <span class="sc">&gt;=</span> <span class="dv">25</span>)</span>
+<span id="cb205-36"><a href="chapter08.html#cb205-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-37"><a href="chapter08.html#cb205-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud2</span>(<span class="at">data=</span>corpus_df, <span class="at">color=</span><span class="st">&quot;random-light&quot;</span>,</span>
+<span id="cb205-38"><a href="chapter08.html#cb205-38" aria-hidden="true" tabindex="-1"></a>           <span class="at">size=</span><span class="dv">2</span>,<span class="at">backgroundColor =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-5cf612da01b0a5b48b5b" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5cf612da01b0a5b48b5b">{"x":{"word":["～","ー","3","TV","オリンピック","こと","サッカー","さん","ちゃん","の","バスケ","バスケットボール","パラリンピック","みんな","ん","中","人","代表","会","体育","募集","女子","日本","時","林","決勝","炎","男子","町田","界","質問","車いす","車椅子","選手","部"],"freq":[28,32,32,111,43,37,26,38,38,57,596,33,47,31,46,37,41,90,134,135,27,546,103,31,40,76,61,77,47,32,44,93,28,109,47],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":0.604026845637584,"backgroundColor":"black","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 <div id="googleトレンドの分析" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Googleトレンドの分析</h2>
 <p>社会トレンドを分析できる別の手段として、Googleトレンドがあります。検索数ではなく、相対的な変化を表すものですが、人々の関心の変化を時系列で見る上では非常に参考になります。Googleトレンドは、<code>gtrendsR</code>という<code>package</code>で分析することが可能です。</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter08.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
-<span id="cb209-2"><a href="chapter08.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-3"><a href="chapter08.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
-<span id="cb209-4"><a href="chapter08.html#cb209-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-5"><a href="chapter08.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
-<span id="cb209-6"><a href="chapter08.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
-<span id="cb209-7"><a href="chapter08.html#cb209-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
-<span id="cb209-8"><a href="chapter08.html#cb209-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
-<span id="cb209-9"><a href="chapter08.html#cb209-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
-<span id="cb209-10"><a href="chapter08.html#cb209-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
-<span id="cb209-11"><a href="chapter08.html#cb209-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
-<span id="cb209-12"><a href="chapter08.html#cb209-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
-<span id="cb209-13"><a href="chapter08.html#cb209-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
-<span id="cb209-14"><a href="chapter08.html#cb209-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
-<span id="cb209-15"><a href="chapter08.html#cb209-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
-<span id="cb209-16"><a href="chapter08.html#cb209-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
-<span id="cb209-17"><a href="chapter08.html#cb209-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
-<span id="cb209-18"><a href="chapter08.html#cb209-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
-<span id="cb209-19"><a href="chapter08.html#cb209-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
-<span id="cb209-20"><a href="chapter08.html#cb209-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
-<span id="cb209-21"><a href="chapter08.html#cb209-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-22"><a href="chapter08.html#cb209-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-23"><a href="chapter08.html#cb209-23" aria-hidden="true" tabindex="-1"></a>trendWB5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb209-24"><a href="chapter08.html#cb209-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb209-25"><a href="chapter08.html#cb209-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
-<span id="cb209-26"><a href="chapter08.html#cb209-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendWB5yrs)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="chapter08.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
+<span id="cb206-2"><a href="chapter08.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="chapter08.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb206-4"><a href="chapter08.html#cb206-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="chapter08.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
+<span id="cb206-6"><a href="chapter08.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
+<span id="cb206-7"><a href="chapter08.html#cb206-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
+<span id="cb206-8"><a href="chapter08.html#cb206-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
+<span id="cb206-9"><a href="chapter08.html#cb206-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
+<span id="cb206-10"><a href="chapter08.html#cb206-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
+<span id="cb206-11"><a href="chapter08.html#cb206-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
+<span id="cb206-12"><a href="chapter08.html#cb206-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
+<span id="cb206-13"><a href="chapter08.html#cb206-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
+<span id="cb206-14"><a href="chapter08.html#cb206-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
+<span id="cb206-15"><a href="chapter08.html#cb206-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
+<span id="cb206-16"><a href="chapter08.html#cb206-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
+<span id="cb206-17"><a href="chapter08.html#cb206-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
+<span id="cb206-18"><a href="chapter08.html#cb206-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
+<span id="cb206-19"><a href="chapter08.html#cb206-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
+<span id="cb206-20"><a href="chapter08.html#cb206-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
+<span id="cb206-21"><a href="chapter08.html#cb206-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-22"><a href="chapter08.html#cb206-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-23"><a href="chapter08.html#cb206-23" aria-hidden="true" tabindex="-1"></a>trendWB5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
+<span id="cb206-24"><a href="chapter08.html#cb206-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb206-25"><a href="chapter08.html#cb206-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
+<span id="cb206-26"><a href="chapter08.html#cb206-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendWB5yrs)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro2-1.png" width="672" /></p>
 <p>デフォルトの<code>plot</code>関数では凡例が文字化けするようなので、<code>ggplot2</code>にて描画します。</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="chapter08.html#cb210-1" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb210-2"><a href="chapter08.html#cb210-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb210-3"><a href="chapter08.html#cb210-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
-<span id="cb210-4"><a href="chapter08.html#cb210-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-5"><a href="chapter08.html#cb210-5" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="sc">%&gt;%</span></span>
-<span id="cb210-6"><a href="chapter08.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb210-7"><a href="chapter08.html#cb210-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
-<span id="cb210-8"><a href="chapter08.html#cb210-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb210-9"><a href="chapter08.html#cb210-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb210-10"><a href="chapter08.html#cb210-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「女子バスケ」)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter08.html#cb207-1" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
+<span id="cb207-2"><a href="chapter08.html#cb207-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb207-3"><a href="chapter08.html#cb207-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
+<span id="cb207-4"><a href="chapter08.html#cb207-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-5"><a href="chapter08.html#cb207-5" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="sc">%&gt;%</span></span>
+<span id="cb207-6"><a href="chapter08.html#cb207-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb207-7"><a href="chapter08.html#cb207-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
+<span id="cb207-8"><a href="chapter08.html#cb207-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb207-9"><a href="chapter08.html#cb207-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb207-10"><a href="chapter08.html#cb207-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「女子バスケ」)&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro3-1.png" width="672" /></p>
 <p>複数キーワードに挑戦してみよう。</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter08.html#cb211-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
-<span id="cb211-2"><a href="chapter08.html#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-3"><a href="chapter08.html#cb211-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
-<span id="cb211-4"><a href="chapter08.html#cb211-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb211-5"><a href="chapter08.html#cb211-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
-<span id="cb211-6"><a href="chapter08.html#cb211-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-7"><a href="chapter08.html#cb211-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
-<span id="cb211-8"><a href="chapter08.html#cb211-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb211-9"><a href="chapter08.html#cb211-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
-<span id="cb211-10"><a href="chapter08.html#cb211-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb211-11"><a href="chapter08.html#cb211-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter08.html#cb208-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
+<span id="cb208-2"><a href="chapter08.html#cb208-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-3"><a href="chapter08.html#cb208-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
+<span id="cb208-4"><a href="chapter08.html#cb208-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb208-5"><a href="chapter08.html#cb208-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
+<span id="cb208-6"><a href="chapter08.html#cb208-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-7"><a href="chapter08.html#cb208-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
+<span id="cb208-8"><a href="chapter08.html#cb208-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb208-9"><a href="chapter08.html#cb208-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
+<span id="cb208-10"><a href="chapter08.html#cb208-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb208-11"><a href="chapter08.html#cb208-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro4-1.png" width="672" /></p>
 <p>上記の例では、<code>time="2021-07-21 2021-08-08"</code>というフォーマットで期間を設定している点にも注意しよう。これをみると、日本女子バスケットボール代表の快進撃で検索数が大きく増加していることがわかる。</p>
 

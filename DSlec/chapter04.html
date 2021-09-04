@@ -24,7 +24,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-02" />
+<meta name="date" content="2021-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -218,9 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter09.html"><a href="chapter09.html#データベースとしての利用"><i class="fa fa-check"></i><b>9.4</b> データベースとしての利用</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -801,18 +806,15 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## This is forecast 8.15 
-##   Stackoverflow is a great place to get help on R issues:
-##   http://stackoverflow.com/tags/forecasting+r.</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter04.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
-<span id="cb114-2"><a href="chapter04.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-3"><a href="chapter04.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
-<span id="cb114-4"><a href="chapter04.html#cb114-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
-<span id="cb114-5"><a href="chapter04.html#cb114-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-6"><a href="chapter04.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb114-7"><a href="chapter04.html#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="chapter04.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb113-2"><a href="chapter04.html#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="chapter04.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
+<span id="cb113-4"><a href="chapter04.html#cb113-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
+<span id="cb113-5"><a href="chapter04.html#cb113-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-6"><a href="chapter04.html#cb113-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb113-7"><a href="chapter04.html#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="chapter04.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter04.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-2.png" width="672" /></p>
 <p>インターネットで検索すると、ggplot2の使い方はたくさん出てきます。以下にまとまって学習できるサイトの例をリンクしておきます。個々の問題もほとんどネットで解決できます。検索のコツをつかむまでが大変ですが、エラーメッセージをコピペして検索することから始めると良いと思います。</p>
 
