@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門</title>
+  <title>chapter: 2 R及びRStudioのインストール | データ分析入門</title>
   <meta name="description" content="This is my description." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門" />
+  <meta property="og:title" content="chapter: 2 R及びRStudioのインストール | データ分析入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is my description." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 2 R及びRStudioのインストール | 2021年度 データ分析入門" />
+  <meta name="twitter:title" content="chapter: 2 R及びRStudioのインストール | データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-04" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="chapter03.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,10 +49,10 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -139,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">データ分析入門</a></li>
+<li><a href="https://yamamoto-masashi.github.io/teaching.html">Teachingへ戻る</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> イントロダクション</a>
@@ -164,6 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
+<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -184,6 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
 <ul>
@@ -210,9 +219,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#参考-word-cloudの作り方"><i class="fa fa-check"></i><b>8.2</b> (参考)　Word Cloudの作り方</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
+<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
+<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
+<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#tweetのネガポジ分析"><i class="fa fa-check"></i><b>8.3</b> Tweetのネガポジ分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.4</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -238,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021年度 データ分析入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">データ分析入門</a>
           </h1>
         </div>
 
@@ -246,10 +262,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r及びrstudioのインストール" class="section level1" number="2">
-<h1><span class="header-section-number">chapter: 2</span> R及びRStudioのインストール</h1>
-<div id="インストールを始める前に" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> インストールを始める前に</h2>
+<div id="r及びrstudioのインストール" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">chapter: 2</span> R及びRStudioのインストール<a href="chapter02.html#r及びrstudioのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="インストールを始める前に" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> インストールを始める前に<a href="chapter02.html#インストールを始める前に" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>思いつく順にいくつか注意点をまとめてみました。</p>
 <ol style="list-style-type: decimal">
 <li>プログラミングを始めるということは、マウスをあまり使わない世界に足を踏み入れること。
@@ -275,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 </div>
-<div id="rのインストール" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Rのインストール</h2>
+<div id="rのインストール" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Rのインストール<a href="chapter02.html#rのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>R</code>を利用する上で最大の難関が<code>R</code>のインストールです。幸い、高知工科大学の<a href="https://yukiyanai.github.io/jp/">矢内勇生</a>先生が大変わかりやすいインストールガイドを作成してくださっています。自分の使っているマシンに応じて以下のいずれかの資料を参照してインストールを進めましょう。</p>
 <ul>
 <li><p><a href="https://yukiyanai.github.io/jp/resources/docs/install-R_windows.pdf">Windows用のインストールガイド</a></p></li>
@@ -298,8 +314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>この作業にはダウンロードなども含めて大変時間がかかります。2回分の講義時間をとってありますので、じっくり腰を据えておこないましょう。</p>
 </div>
-<div id="rstudioのインストール" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> RStudioのインストール</h2>
+<div id="rstudioのインストール" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> RStudioのインストール<a href="chapter02.html#rstudioのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>こちらは<code>R</code>のインストールに比べるとかなり楽に行うことができます。必ず先に<code>R</code>本体をインストールしてから、<a href="https://www.rstudio.com/">RStudio</a>をインストールしてください。</p>
 <ul>
 <li>Windows版のガイドでは、P82からがRStudioのインストールガイドです。</li>
@@ -318,7 +334,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -358,6 +373,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | 2021年度 データ分析入門</title>
+  <title>chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門</title>
   <meta name="description" content="This is my description." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | 2021年度 データ分析入門" />
+  <meta property="og:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is my description." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | 2021年度 データ分析入門" />
+  <meta name="twitter:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-04" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="chapter02.html"/>
 <link rel="next" href="chapter04.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,10 +49,10 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -139,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">データ分析入門</a></li>
+<li><a href="https://yamamoto-masashi.github.io/teaching.html">Teachingへ戻る</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> イントロダクション</a>
@@ -164,6 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
+<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -184,6 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
 <ul>
@@ -210,9 +219,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#参考-word-cloudの作り方"><i class="fa fa-check"></i><b>8.2</b> (参考)　Word Cloudの作り方</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
+<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
+<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
+<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#tweetのネガポジ分析"><i class="fa fa-check"></i><b>8.3</b> Tweetのネガポジ分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.4</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -238,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021年度 データ分析入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">データ分析入門</a>
           </h1>
         </div>
 
@@ -246,10 +262,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rを使ってみよう四則演算から外部データの読み込みまで" class="section level1" number="3">
-<h1><span class="header-section-number">chapter: 3</span> Rを使ってみよう：四則演算から外部データの読み込みまで</h1>
-<div id="基本的な計算" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> 基本的な計算</h2>
+<div id="rを使ってみよう四則演算から外部データの読み込みまで" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">chapter: 3</span> Rを使ってみよう：四則演算から外部データの読み込みまで<a href="chapter03.html#rを使ってみよう四則演算から外部データの読み込みまで" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="基本的な計算" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 基本的な計算<a href="chapter03.html#基本的な計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>計算してみよう</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter03.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算・引き算</span></span>
 <span id="cb1-2"><a href="chapter03.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -281,12 +297,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter03.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">25</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter03.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">8</span>)</span></code></pre></div>
-<pre><code>## [1] 2.828427</code></pre>
+<pre><code>## [1] 2.8</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter03.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.414214</code></pre>
+<pre><code>## [1] 1.4</code></pre>
 </div>
-<div id="変数の定義" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> 変数の定義</h2>
+<div id="変数の定義" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> 変数の定義<a href="chapter03.html#変数の定義" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter03.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 「&lt;-」は代入操作を意味する</span></span>
 <span id="cb25-2"><a href="chapter03.html#cb25-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="dv">4</span></span>
 <span id="cb25-3"><a href="chapter03.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -327,8 +343,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb37-4"><a href="chapter03.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(FSplus)</span></code></pre></div>
 <pre><code>## [1] &quot;Good+mornig&quot;    &quot;Good+afternoon&quot; &quot;Good+evening&quot;</code></pre>
 </div>
-<div id="データフレーム" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> データフレーム</h2>
+<div id="データフレーム" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> データフレーム<a href="chapter03.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>上の例では、<code>c()</code>を使って、ベクトルとしてデータを扱う方法を確認しました。実際の分析では、ベクトルをいくつか集めたデータフレームを使って実証分析を行うことがほとんどです。以下では、ベクトルからデータフレームを作成する方法を示します。ただし、実際の分析では、ほとんどの場合、外部データ（行政が提供するエクセルファイルなど）から直接データフレームとして読み込みます。</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chapter03.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 日本の都道府県には固有の番号がある。</span></span>
 <span id="cb39-2"><a href="chapter03.html#cb39-2" aria-hidden="true" tabindex="-1"></a>prefcode<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,</span>
@@ -361,16 +377,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-29"><a href="chapter03.html#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-30"><a href="chapter03.html#cb39-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-31"><a href="chapter03.html#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prefnameJ)</span></code></pre></div>
-<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;   &quot;05秋田県&quot;  
-##  [6] &quot;06山形県&quot;   &quot;07福島県&quot;   &quot;08茨城県&quot;   &quot;09栃木県&quot;   &quot;10群馬県&quot;  
-## [11] &quot;11埼玉県&quot;   &quot;12千葉県&quot;   &quot;13東京都&quot;   &quot;14神奈川県&quot; &quot;15新潟県&quot;  
-## [16] &quot;16富山県&quot;   &quot;17石川県&quot;   &quot;18福井県&quot;   &quot;19山梨県&quot;   &quot;20長野県&quot;  
-## [21] &quot;21岐阜県&quot;   &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;   &quot;25滋賀県&quot;  
-## [26] &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;   &quot;29奈良県&quot;   &quot;30和歌山県&quot;
-## [31] &quot;31鳥取県&quot;   &quot;32島根県&quot;   &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;  
-## [36] &quot;36徳島県&quot;   &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;  
-## [41] &quot;41佐賀県&quot;   &quot;42長崎県&quot;   &quot;43熊本県&quot;   &quot;44大分県&quot;   &quot;45宮崎県&quot;  
-## [46] &quot;46鹿児島県&quot; &quot;47沖縄県&quot;</code></pre>
+<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;   &quot;05秋田県&quot;   &quot;06山形県&quot;  
+##  [7] &quot;07福島県&quot;   &quot;08茨城県&quot;   &quot;09栃木県&quot;   &quot;10群馬県&quot;   &quot;11埼玉県&quot;   &quot;12千葉県&quot;  
+## [13] &quot;13東京都&quot;   &quot;14神奈川県&quot; &quot;15新潟県&quot;   &quot;16富山県&quot;   &quot;17石川県&quot;   &quot;18福井県&quot;  
+## [19] &quot;19山梨県&quot;   &quot;20長野県&quot;   &quot;21岐阜県&quot;   &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;  
+## [25] &quot;25滋賀県&quot;   &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;   &quot;29奈良県&quot;   &quot;30和歌山県&quot;
+## [31] &quot;31鳥取県&quot;   &quot;32島根県&quot;   &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;   &quot;36徳島県&quot;  
+## [37] &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;   &quot;41佐賀県&quot;   &quot;42長崎県&quot;  
+## [43] &quot;43熊本県&quot;   &quot;44大分県&quot;   &quot;45宮崎県&quot;   &quot;46鹿児島県&quot; &quot;47沖縄県&quot;</code></pre>
 <p><code>print(prefnameJ)</code>で都道府県名を出力しています。ここで<code>[1]</code>は<code>prefnameJ</code>というベクトルの中の第１要素を意味しています。出力が長い場合、改行されるごとに先頭の要素番号が出力されます。</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter03.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のデータは</span></span>
 <span id="cb41-2"><a href="chapter03.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 総務省「統計でみる都道府県のすがた2020」</span></span>
@@ -425,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5        5  05秋田県  981000 1163752      25
 ## 6        6  06山形県 1090000  932315      35</code></pre>
 </div>
-<div id="データの型" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> データの型</h2>
+<div id="データの型" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> データの型<a href="chapter03.html#データの型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>コンピュータが保存しているデータには、型があります。言語によっては事前にどの型で読み込むかを宣言する必要がありますが、<code>R</code>は自動で判断します。</p>
 <table>
 <colgroup>
@@ -476,10 +490,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter03.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chapter03.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
-<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; ...</code></pre>
+<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; &quot;1090000&quot; &quot;1864000&quot; ...</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chapter03.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
-<pre><code>## Warning in mean.default(testDB$A1101): argument is not numeric or
-## logical: returning NA</code></pre>
+<pre><code>## Warning in mean.default(testDB$A1101): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p><code>chr</code>という記号が文字列型であることを示しています。そのため、データの型を文字列型から数値型に変換する必要があります。</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="chapter03.html#cb54-1" aria-hidden="true" tabindex="-1"></a>testDB<span class="sc">$</span>A1101<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(testDB<span class="sc">$</span>A1101)</span>
@@ -488,6 +501,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 2690277</code></pre>
 <p>また、データの尺度にもいくつか種類があります。以下の表は<a href="https://www.kyoritsu-pub.co.jp/bookdetail/9784320124745">こちら</a>から引用しています (p114)。</p>
 <table>
+<colgroup>
+<col width="26%" />
+<col width="48%" />
+<col width="24%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">尺度</th>
@@ -519,156 +537,399 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="パッケージの考え方" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> パッケージの考え方</h2>
+<div id="パッケージの考え方" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> パッケージの考え方<a href="chapter03.html#パッケージの考え方" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>R</code>には<code>package</code>という概念があります。プログラミング言語は様々な用途が想定されています。学術研究に限っても、経済学で使用する内容と工学系あるいは医学系で利用する内容は大きく異なります。これらの用途全てに対応するように<code>R</code>本体を備えてしまうとリソースの無駄が生じます。そのため、<code>R</code>では、<code>R</code>本体の機能を最小限に制限し、自身の目的に合わせて必要な道具を付け足していく方式をとっています。その付け足す道具を<code>package</code>と呼んでいます。</p>
 <p><code>package</code>は一回だけインストールする必要があります。インストールはインターネットを使用しておこないますので、インターネットに接続していることが必要です。そして、インストール済みの<code>package</code>でも使用する際は毎回呼び出す必要があります。この呼び出しは自身の端末の中にあるものを呼び出すので、インターネット接続は不要です。</p>
 <p>文房具に例えると、水彩画を描くために絵の具が必要なので、絵の具を文具店に買いにいくことがインストールです。いざ、今から絵の具を使って絵を描くぞ、というタイミングで絵の具をパレットの上に広げることが「呼び出し」です。</p>
-<p>以下では、例として、<a href="https://github.com/rossdrucker/sportyR/">こちら</a>から各種スポーツのフィールドやコートを描くpackageをインストールして、実際に描画するデモを示したいと思います。</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="chapter03.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packageのインストールコマンド</span></span>
-<span id="cb56-2"><a href="chapter03.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下でsportyRというpackageをインストールしている</span></span>
-<span id="cb56-3"><a href="chapter03.html#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="chapter03.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;sportyR&#39;)</span></span>
-<span id="cb56-5"><a href="chapter03.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-6"><a href="chapter03.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># インストールしていても「呼び出し」を行わないとエラーになる。</span></span>
-<span id="cb56-7"><a href="chapter03.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">#geom_basketball(&#39;nba&#39;, full_surf = FALSE, rotate = TRUE)</span></span></code></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="chapter03.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のコマンドでsportRを呼び出す</span></span>
-<span id="cb57-2"><a href="chapter03.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sportyR)</span>
-<span id="cb57-3"><a href="chapter03.html#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-4"><a href="chapter03.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 100m by 75m FIFA pitch</span></span>
-<span id="cb57-5"><a href="chapter03.html#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_soccer</span>(<span class="st">&#39;fifa&#39;</span>, <span class="at">touchline_length =</span> <span class="dv">100</span>, <span class="at">goal_line_length =</span> <span class="dv">75</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/packagedemo2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chapter03.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_basketball</span>(<span class="st">&#39;nba&#39;</span>, <span class="at">full_surf =</span> <span class="cn">FALSE</span>, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/packagedemo2-2.png" width="672" /></p>
-<p>バスケのコートをNCAA版に変更して、色も若干アレンジした場合。</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="chapter03.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a totally customized NCAA basketball court</span></span>
-<span id="cb59-2"><a href="chapter03.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_basketball</span>(</span>
-<span id="cb59-3"><a href="chapter03.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;ncaa&#39;</span>,</span>
-<span id="cb59-4"><a href="chapter03.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">court_background_color =</span> <span class="st">&#39;#e8e0d7&#39;</span>,</span>
-<span id="cb59-5"><a href="chapter03.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">center_circle_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-6"><a href="chapter03.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">division_line_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-7"><a href="chapter03.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">endline_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-8"><a href="chapter03.html#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sideline_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-9"><a href="chapter03.html#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">team_bench_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-10"><a href="chapter03.html#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">substitution_area_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-11"><a href="chapter03.html#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">court_apron_color =</span> <span class="st">&#39;#e84a27&#39;</span>,</span>
-<span id="cb59-12"><a href="chapter03.html#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">m_three_point_line_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-13"><a href="chapter03.html#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">w_three_point_line_color =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
-<span id="cb59-14"><a href="chapter03.html#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">m_two_point_range_color =</span> <span class="st">&#39;#e8e0d7&#39;</span>,</span>
-<span id="cb59-15"><a href="chapter03.html#cb59-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">w_two_point_range_color =</span> <span class="st">&#39;#ffffff66&#39;</span>,</span>
-<span id="cb59-16"><a href="chapter03.html#cb59-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">amateur_free_throw_lane_color =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
-<span id="cb59-17"><a href="chapter03.html#cb59-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">amateur_painted_area_color =</span> <span class="st">&#39;#e84a27&#39;</span>,</span>
-<span id="cb59-18"><a href="chapter03.html#cb59-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">amateur_free_throw_lane_lines_color =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
-<span id="cb59-19"><a href="chapter03.html#cb59-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">free_throw_semi_circle_line_color =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
-<span id="cb59-20"><a href="chapter03.html#cb59-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">free_throw_semi_circle_fill_color =</span> <span class="st">&#39;#e8e0d7&#39;</span>,</span>
-<span id="cb59-21"><a href="chapter03.html#cb59-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower_defensive_box_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-22"><a href="chapter03.html#cb59-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">restricted_area_arc_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-23"><a href="chapter03.html#cb59-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">backboard_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-24"><a href="chapter03.html#cb59-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">basket_ring_color =</span> <span class="st">&#39;#13294b&#39;</span>,</span>
-<span id="cb59-25"><a href="chapter03.html#cb59-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">net_color =</span> <span class="st">&#39;#ffffff&#39;</span></span>
-<span id="cb59-26"><a href="chapter03.html#cb59-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/packagedemo3-1.png" width="672" /></p>
-<p>以下は、アイスホッケーのコートに、米プロアイスホッケー女子リーグ（NWHL）のミネソタ vs ボストンの試合のシュートが放たれた場所の位置情報をプロットしたもの。</p>
-<p><strong>注意</strong>：このpackageはグラフ作成の有名<code>package</code>である<code>ggplot2</code>に依存しているので、以下のコマンドの実行には、<code>ggplot2</code>のインストールも必要です。</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="chapter03.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># インストールしていない場合、以下も実行</span></span>
-<span id="cb60-2"><a href="chapter03.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggplot2&quot;)</span></span>
-<span id="cb60-3"><a href="chapter03.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="chapter03.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb60-5"><a href="chapter03.html#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-6"><a href="chapter03.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from the Big Data Cup</span></span>
-<span id="cb60-7"><a href="chapter03.html#cb60-7" aria-hidden="true" tabindex="-1"></a>bdc_data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/bigdatacup/Big-Data-Cup-2021/main/hackathon_nwhl.csv&#39;</span>)</span>
-<span id="cb60-8"><a href="chapter03.html#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-9"><a href="chapter03.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Change names of X.Coordinate and Y.coordinate to x and y respectively</span></span>
-<span id="cb60-10"><a href="chapter03.html#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bdc_data)[<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>] <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
-<span id="cb60-11"><a href="chapter03.html#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-12"><a href="chapter03.html#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Shift coordinates to fit on the rink</span></span>
-<span id="cb60-13"><a href="chapter03.html#cb60-13" aria-hidden="true" tabindex="-1"></a>bdc_data <span class="ot">=</span> <span class="fu">translate</span>(bdc_data, <span class="at">translate_x =</span> <span class="sc">-</span><span class="dv">100</span>, <span class="at">translate_y =</span> <span class="sc">-</span><span class="fl">42.5</span>)</span>
-<span id="cb60-14"><a href="chapter03.html#cb60-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-15"><a href="chapter03.html#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset to only be shots from the game on 2021-01-23 between the Minnesota</span></span>
-<span id="cb60-16"><a href="chapter03.html#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="co"># White Caps and Boston Pride</span></span>
-<span id="cb60-17"><a href="chapter03.html#cb60-17" aria-hidden="true" tabindex="-1"></a>bdc_shots <span class="ot">=</span> bdc_data[(bdc_data<span class="sc">$</span>Event <span class="sc">==</span> <span class="st">&#39;Shot&#39;</span>) <span class="sc">&amp;</span></span>
-<span id="cb60-18"><a href="chapter03.html#cb60-18" aria-hidden="true" tabindex="-1"></a>                     (bdc_data<span class="sc">$</span>Home.Team <span class="sc">==</span> <span class="st">&#39;Minnesota Whitecaps&#39;</span>) <span class="sc">&amp;</span></span>
-<span id="cb60-19"><a href="chapter03.html#cb60-19" aria-hidden="true" tabindex="-1"></a>                     (bdc_data<span class="sc">$</span>game_date <span class="sc">==</span> <span class="st">&#39;2021-01-23&#39;</span>), ]</span>
-<span id="cb60-20"><a href="chapter03.html#cb60-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-21"><a href="chapter03.html#cb60-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate shots by team</span></span>
-<span id="cb60-22"><a href="chapter03.html#cb60-22" aria-hidden="true" tabindex="-1"></a>whitecaps_shots <span class="ot">=</span> bdc_shots[bdc_shots<span class="sc">$</span>Team <span class="sc">==</span> <span class="st">&#39;Minnesota Whitecaps&#39;</span>, ]</span>
-<span id="cb60-23"><a href="chapter03.html#cb60-23" aria-hidden="true" tabindex="-1"></a>pride_shots <span class="ot">=</span> bdc_shots[bdc_shots<span class="sc">$</span>Team <span class="sc">==</span> <span class="st">&#39;Boston Pride&#39;</span>, ]</span>
-<span id="cb60-24"><a href="chapter03.html#cb60-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-25"><a href="chapter03.html#cb60-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Reflect the Boston Pride shots to make them appear on the other side of the</span></span>
-<span id="cb60-26"><a href="chapter03.html#cb60-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ice</span></span>
-<span id="cb60-27"><a href="chapter03.html#cb60-27" aria-hidden="true" tabindex="-1"></a>pride_shots <span class="ot">=</span> <span class="fu">reflect</span>(pride_shots, <span class="at">over_y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb60-28"><a href="chapter03.html#cb60-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-29"><a href="chapter03.html#cb60-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the rink</span></span>
-<span id="cb60-30"><a href="chapter03.html#cb60-30" aria-hidden="true" tabindex="-1"></a>nwhl_rink <span class="ot">=</span> <span class="fu">geom_hockey</span>(<span class="st">&#39;nwhl&#39;</span>)</span>
-<span id="cb60-31"><a href="chapter03.html#cb60-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-32"><a href="chapter03.html#cb60-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the shot locations</span></span>
-<span id="cb60-33"><a href="chapter03.html#cb60-33" aria-hidden="true" tabindex="-1"></a>nwhl_rink <span class="sc">+</span></span>
-<span id="cb60-34"><a href="chapter03.html#cb60-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> whitecaps_shots, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&#39;#2251b8&#39;</span>) <span class="sc">+</span></span>
-<span id="cb60-35"><a href="chapter03.html#cb60-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> pride_shots, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&#39;#fec52e&#39;</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/packagedemo4-1.png" width="672" /></p>
 </div>
-<div id="外部ファイルの読み込み" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> 外部ファイルの読み込み</h2>
-<p>では実際に外部ファイルを読み込んでみましょう。</p>
-<p>ここではエクセルファイルの読み込みに、<code>readxl</code>という<code>package</code>を使用します。</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="chapter03.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 一度だけインストールが必要</span></span>
-<span id="cb61-2"><a href="chapter03.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;readxl&quot;)</span></span>
-<span id="cb61-3"><a href="chapter03.html#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="chapter03.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
-<span id="cb61-5"><a href="chapter03.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb61-6"><a href="chapter03.html#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-7"><a href="chapter03.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数の対応関係</span></span>
-<span id="cb61-8"><a href="chapter03.html#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co"># A1101_総人口【人】  </span></span>
-<span id="cb61-9"><a href="chapter03.html#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A1301_15歳未満人口【人】</span></span>
-<span id="cb61-10"><a href="chapter03.html#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="co"># A1303_65歳以上人口【人】  </span></span>
-<span id="cb61-11"><a href="chapter03.html#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="co"># B1101_ 総面積（北方地域及び竹島を除く）【ｈａ】   </span></span>
-<span id="cb61-12"><a href="chapter03.html#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="co"># B1103_ 可住地面積【ｈａ】  </span></span>
-<span id="cb61-13"><a href="chapter03.html#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="co"># B4107_ 雪日数（年間）【日】 </span></span>
-<span id="cb61-14"><a href="chapter03.html#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="co"># B4108_ 日照時間（年間）【時間】   </span></span>
-<span id="cb61-15"><a href="chapter03.html#cb61-15" aria-hidden="true" tabindex="-1"></a><span class="co"># D110101_市町村数【‐】   </span></span>
-<span id="cb61-16"><a href="chapter03.html#cb61-16" aria-hidden="true" tabindex="-1"></a><span class="co"># E6102_大学数【校】  </span></span>
-<span id="cb61-17"><a href="chapter03.html#cb61-17" aria-hidden="true" tabindex="-1"></a><span class="co"># E6302_大学学生数【人】</span></span>
-<span id="cb61-18"><a href="chapter03.html#cb61-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F610201_超過実労働時間数（男）【時間】   </span></span>
-<span id="cb61-19"><a href="chapter03.html#cb61-19" aria-hidden="true" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
-<span id="cb61-20"><a href="chapter03.html#cb61-20" aria-hidden="true" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
-<span id="cb61-21"><a href="chapter03.html#cb61-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-22"><a href="chapter03.html#cb61-22" aria-hidden="true" tabindex="-1"></a><span class="co">#自分のパソコンに保存してあるエクセルファイルを読み込む場合は、</span></span>
-<span id="cb61-23"><a href="chapter03.html#cb61-23" aria-hidden="true" tabindex="-1"></a><span class="co">#以下でディレクトリを変更して実行</span></span>
-<span id="cb61-24"><a href="chapter03.html#cb61-24" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd() # 現在の作業ディレクトリを確認</span></span>
-<span id="cb61-25"><a href="chapter03.html#cb61-25" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/users/yamamoto/R/ForTeaching&quot;) # 作業ディレクトリの変更</span></span>
-<span id="cb61-26"><a href="chapter03.html#cb61-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-27"><a href="chapter03.html#cb61-27" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
-<span id="cb61-28"><a href="chapter03.html#cb61-28" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
-<span id="cb61-29"><a href="chapter03.html#cb61-29" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
-<span id="cb61-30"><a href="chapter03.html#cb61-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-31"><a href="chapter03.html#cb61-31" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
-<span id="cb61-32"><a href="chapter03.html#cb61-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
-<span id="cb61-33"><a href="chapter03.html#cb61-33" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
-<span id="cb61-34"><a href="chapter03.html#cb61-34" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
+<div id="外部ファイルの読み込み" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> 外部ファイルの読み込み<a href="chapter03.html#外部ファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>では実際に<code>package</code>を使って、外部ファイルを読み込んでみましょう。</p>
+<p>デフォルトの<code>R</code>ではエクセルファイルをそのまま読むことはできません。ここではエクセルファイルの読み込みに、<code>readxl</code>という<code>package</code>を使用します。</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="chapter03.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 一度だけインストールが必要</span></span>
+<span id="cb56-2"><a href="chapter03.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;readxl&quot;)</span></span>
+<span id="cb56-3"><a href="chapter03.html#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="chapter03.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
+<span id="cb56-5"><a href="chapter03.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb56-6"><a href="chapter03.html#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="chapter03.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数の対応関係</span></span>
+<span id="cb56-8"><a href="chapter03.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># A1101_総人口【人】  </span></span>
+<span id="cb56-9"><a href="chapter03.html#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A1301_15歳未満人口【人】</span></span>
+<span id="cb56-10"><a href="chapter03.html#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co"># A1303_65歳以上人口【人】  </span></span>
+<span id="cb56-11"><a href="chapter03.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># B1101_ 総面積（北方地域及び竹島を除く）【ｈａ】   </span></span>
+<span id="cb56-12"><a href="chapter03.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># B1103_ 可住地面積【ｈａ】  </span></span>
+<span id="cb56-13"><a href="chapter03.html#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co"># B4107_ 雪日数（年間）【日】 </span></span>
+<span id="cb56-14"><a href="chapter03.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co"># B4108_ 日照時間（年間）【時間】   </span></span>
+<span id="cb56-15"><a href="chapter03.html#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co"># D110101_市町村数【‐】   </span></span>
+<span id="cb56-16"><a href="chapter03.html#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co"># E6102_大学数【校】  </span></span>
+<span id="cb56-17"><a href="chapter03.html#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co"># E6302_大学学生数【人】</span></span>
+<span id="cb56-18"><a href="chapter03.html#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F610201_超過実労働時間数（男）【時間】   </span></span>
+<span id="cb56-19"><a href="chapter03.html#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
+<span id="cb56-20"><a href="chapter03.html#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
+<span id="cb56-21"><a href="chapter03.html#cb56-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-22"><a href="chapter03.html#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="co">#自分のパソコンに保存してあるエクセルファイルを読み込む場合は、</span></span>
+<span id="cb56-23"><a href="chapter03.html#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="co">#以下でディレクトリを変更して実行</span></span>
+<span id="cb56-24"><a href="chapter03.html#cb56-24" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd() # 現在の作業ディレクトリを確認</span></span>
+<span id="cb56-25"><a href="chapter03.html#cb56-25" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/users/yamamoto/R/ForTeaching&quot;) # 作業ディレクトリの変更</span></span>
+<span id="cb56-26"><a href="chapter03.html#cb56-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-27"><a href="chapter03.html#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
+<span id="cb56-28"><a href="chapter03.html#cb56-28" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
+<span id="cb56-29"><a href="chapter03.html#cb56-29" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
+<span id="cb56-30"><a href="chapter03.html#cb56-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-31"><a href="chapter03.html#cb56-31" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
+<span id="cb56-32"><a href="chapter03.html#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
+<span id="cb56-33"><a href="chapter03.html#cb56-33" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
+<span id="cb56-34"><a href="chapter03.html#cb56-34" aria-hidden="true" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## New names:
-## * `` -&gt; ...1
-## * `` -&gt; ...2</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter03.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
-<span id="cb63-2"><a href="chapter03.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
-<span id="cb63-3"><a href="chapter03.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="chapter03.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sampleDB)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 16
-##   prefcode prefnameJ  A1101  A1301  A1303  B1101  B1103 B4107 B4108
-##      &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1        1 01北海道  5.29e6 577000 1.66e6 7.84e6 2.24e6   131 1742.
-## 2        2 02青森県  1.26e6 137000 4.12e5 9.65e5 3.23e5   117 1642 
-## 3        3 03岩手県  1.24e6 140000 4.03e5 1.53e6 3.71e5   106 1778.
-## 4        4 04宮城県  2.32e6 276000 6.43e5 7.28e5 3.15e5    63 1998.
-## 5        5 05秋田県  9.81e5  98000 3.57e5 1.16e6 3.20e5   101 1526.
-## 6        6 06山形県  1.09e6 127000 3.58e5 9.32e5 2.88e5    89 1765 
-## # … with 7 more variables: D110101 &lt;dbl&gt;, E6102 &lt;dbl&gt;, E6302 &lt;dbl&gt;,
-## #   F610201 &lt;dbl&gt;, F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;</code></pre>
+## • `` -&gt; `...1`
+## • `` -&gt; `...2`</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chapter03.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
+<span id="cb58-2"><a href="chapter03.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span>
+<span id="cb58-3"><a href="chapter03.html#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="chapter03.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sampleDB)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 16
+##   prefc…¹ prefn…²  A1101  A1301  A1303  B1101  B1103 B4107 B4108 D110101 E6102 E6302 F610201
+##     &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1       1 01北海… 5.29e6 577000 1.66e6 7.84e6 2.24e6   131 1742.     179    38 78122      15
+## 2       2 02青森… 1.26e6 137000 4.12e5 9.65e5 3.23e5   117 1642       40    10 15196      14
+## 3       3 03岩手… 1.24e6 140000 4.03e5 1.53e6 3.71e5   106 1778.      33     6 11373      15
+## 4       4 04宮城… 2.32e6 276000 6.43e5 7.28e5 3.15e5    63 1998.      35    14 48623      17
+## 5       5 05秋田… 9.81e5  98000 3.57e5 1.16e6 3.20e5   101 1526.      25     7  8947      13
+## 6       6 06山形… 1.09e6 127000 3.58e5 9.32e5 2.88e5    89 1765       35     6 11609      16
+## # … with 3 more variables: F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​prefcode, ²​prefnameJ</code></pre>
 <p>表の変数名の下の<code>&lt;dbl&gt;</code>は変数が数値型であることを示しています。</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter03.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel()関数で読み込んだ場合は、文字列になっていないので、平均が計算可能。</span></span>
-<span id="cb65-2"><a href="chapter03.html#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-3"><a href="chapter03.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sampleDB<span class="sc">$</span>A1101)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="chapter03.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel()関数で読み込んだ場合は、文字列になっていないので、平均が計算可能。</span></span>
+<span id="cb60-2"><a href="chapter03.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="chapter03.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sampleDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## [1] 2690277</code></pre>
+</div>
+<div id="描画系のpackageの例" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> 描画系のpackageの例<a href="chapter03.html#描画系のpackageの例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>以下では、例として、<a href="https://github.com/rossdrucker/sportyR/">こちら</a>から各種スポーツのフィールドやコートを描くpackageをインストールして、実際に描画するデモを示したいと思います。</p>
+<p><strong>注意</strong>：このpackageはグラフ作成の有名<code>package</code>である<code>ggplot2</code>に依存しているので、以下のコマンドの実行には、<code>ggplot2</code>のインストールも必要です。</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="chapter03.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packageのインストールコマンド</span></span>
+<span id="cb62-2"><a href="chapter03.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下でsportyRというpackageをインストールしている</span></span>
+<span id="cb62-3"><a href="chapter03.html#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="chapter03.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;sportyR&#39;)</span></span>
+<span id="cb62-5"><a href="chapter03.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のコマンドでsportRを呼び出す</span></span>
+<span id="cb62-6"><a href="chapter03.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sportyR)</span>
+<span id="cb62-7"><a href="chapter03.html#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="chapter03.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sportyR)</span>
+<span id="cb62-9"><a href="chapter03.html#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="chapter03.html#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 100m by 75m FIFA pitch</span></span>
+<span id="cb62-11"><a href="chapter03.html#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_soccer</span>(</span>
+<span id="cb62-12"><a href="chapter03.html#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;fifa&quot;</span>,</span>
+<span id="cb62-13"><a href="chapter03.html#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">pitch_updates =</span> <span class="fu">list</span>(</span>
+<span id="cb62-14"><a href="chapter03.html#cb62-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">pitch_length =</span> <span class="dv">100</span>,</span>
+<span id="cb62-15"><a href="chapter03.html#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pitch_width =</span> <span class="dv">75</span></span>
+<span id="cb62-16"><a href="chapter03.html#cb62-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb62-17"><a href="chapter03.html#cb62-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter03.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NBAのコート</span></span>
+<span id="cb63-2"><a href="chapter03.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_basketball</span>(<span class="st">&quot;nba&quot;</span>, <span class="at">display_range =</span> <span class="st">&quot;offense&quot;</span>, <span class="at">rotation =</span> <span class="dv">270</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo2-2.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="chapter03.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#カーリングのコート</span></span>
+<span id="cb64-2"><a href="chapter03.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_curling</span>(<span class="st">&quot;wcf&quot;</span>, <span class="at">display_range =</span> <span class="st">&quot;house&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo2-3.png" width="672" /></p>
+<div id="packageの応用例-野球" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> packageの応用例: 野球<a href="chapter03.html#packageの応用例-野球" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>package</code>は複雑な作業を関数化してくれているとも言え、便利なものである。さらに複数の<code>package</code>を同時に利用することでさらに便利になる場合も多い。以下では<code>SportyR</code>で描写したスタジアムにMLBのデータを操作できる<code>baseballr</code>という<code>package</code>を使って打球の情報を追加してみる。</p>
+<p>MLBの公式と思われる<a href="https://baseballsavant.mlb.com/">Baseball Savant</a>では、StatCastと呼ばれる高性能カメラなどを駆使して記録された試合中の一球ごとのボールの動きがプレイヤーや結果の情報と一緒に公開されている。</p>
+<p>以下は2021年と2022年(ただし8月20日まで)の大谷翔平選手のバッテイング記録をプロットしたものである。</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter03.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># インストールしていない場合、以下も実行</span></span>
+<span id="cb65-2"><a href="chapter03.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;baseballr&quot;)</span></span>
+<span id="cb65-3"><a href="chapter03.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb65-4"><a href="chapter03.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggplot2&quot;)</span></span>
+<span id="cb65-5"><a href="chapter03.html#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="chapter03.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baseballr)</span>
+<span id="cb65-7"><a href="chapter03.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb65-8"><a href="chapter03.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb65-9"><a href="chapter03.html#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="chapter03.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="co">#最初に調べたいプレイヤーのIDを探す</span></span>
+<span id="cb65-11"><a href="chapter03.html#cb65-11" aria-hidden="true" tabindex="-1"></a>PID<span class="ot">&lt;-</span><span class="fu">playerid_lookup</span>(<span class="st">&quot;Ohtani&quot;</span>)</span>
+<span id="cb65-12"><a href="chapter03.html#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-13"><a href="chapter03.html#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="co">#これをみると大谷翔平のIDは660271であることがわかる。</span></span>
+<span id="cb65-14"><a href="chapter03.html#cb65-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-15"><a href="chapter03.html#cb65-15" aria-hidden="true" tabindex="-1"></a>Ohtani2021 <span class="ot">&lt;-</span> <span class="fu">scrape_statcast_savant_batter</span>(<span class="st">&quot;2021-04-01&quot;</span>,</span>
+<span id="cb65-16"><a href="chapter03.html#cb65-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2021-09-30&quot;</span>,</span>
+<span id="cb65-17"><a href="chapter03.html#cb65-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">batterid =</span> <span class="dv">660271</span>)</span>
+<span id="cb65-18"><a href="chapter03.html#cb65-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-19"><a href="chapter03.html#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="co">#みやすくするためにエラーなどを削除</span></span>
+<span id="cb65-20"><a href="chapter03.html#cb65-20" aria-hidden="true" tabindex="-1"></a>events2<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;single&quot;</span>,<span class="st">&quot;double&quot;</span>,<span class="st">&quot;triple&quot;</span>,<span class="st">&quot;home_run&quot;</span>,<span class="st">&quot;field_out&quot;</span>)</span>
+<span id="cb65-21"><a href="chapter03.html#cb65-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-22"><a href="chapter03.html#cb65-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-23"><a href="chapter03.html#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="co"># hc_xから125.42を、また、hc_yを198.27から引いているのは打球データの原点をSportyRのホームベースに合わせるためのおまじないで、以下のサイトを参考にして作成した。</span></span>
+<span id="cb65-24"><a href="chapter03.html#cb65-24" aria-hidden="true" tabindex="-1"></a><span class="co">#https://baseballwithr.wordpress.com/2021/04/26/spray-charts-using-the-sportyr-package/</span></span>
+<span id="cb65-25"><a href="chapter03.html#cb65-25" aria-hidden="true" tabindex="-1"></a><span class="co"># また同じサイトを参考にして、単位をfeetに合わせるために2.5をかけている</span></span>
+<span id="cb65-26"><a href="chapter03.html#cb65-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-27"><a href="chapter03.html#cb65-27" aria-hidden="true" tabindex="-1"></a>Ohtani2021 <span class="sc">|&gt;</span></span>
+<span id="cb65-28"><a href="chapter03.html#cb65-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hc_x<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">|</span> hc_y<span class="sc">&gt;</span><span class="dv">0</span>)<span class="sc">|&gt;</span> <span class="co">#見逃したボールを排除するため</span></span>
+<span id="cb65-29"><a href="chapter03.html#cb65-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(events <span class="sc">%in%</span> events2)<span class="sc">|&gt;</span></span>
+<span id="cb65-30"><a href="chapter03.html#cb65-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location_x =</span> hc_x <span class="sc">-</span> <span class="fl">125.42</span>,</span>
+<span id="cb65-31"><a href="chapter03.html#cb65-31" aria-hidden="true" tabindex="-1"></a>         <span class="at">location_y =</span> <span class="fl">198.27</span> <span class="sc">-</span> hc_y) <span class="sc">|&gt;</span></span>
+<span id="cb65-32"><a href="chapter03.html#cb65-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location_x =</span> <span class="fl">2.5</span> <span class="sc">*</span> (hc_x <span class="sc">-</span> <span class="fl">125.42</span>),</span>
+<span id="cb65-33"><a href="chapter03.html#cb65-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">location_y =</span> <span class="fl">2.5</span> <span class="sc">*</span> (<span class="fl">198.27</span> <span class="sc">-</span> hc_y))<span class="ot">-&gt;</span>OhtaniBatDB2021</span>
+<span id="cb65-34"><a href="chapter03.html#cb65-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-35"><a href="chapter03.html#cb65-35" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_baseball</span>(<span class="at">league =</span> <span class="st">&quot;MLB&quot;</span>) <span class="sc">+</span></span>
+<span id="cb65-36"><a href="chapter03.html#cb65-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>OhtaniBatDB2021,<span class="fu">aes</span>(location_x, location_y,</span>
+<span id="cb65-37"><a href="chapter03.html#cb65-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> events)) <span class="sc">+</span></span>
+<span id="cb65-38"><a href="chapter03.html#cb65-38" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_colour_manual(values =</span></span>
+<span id="cb65-39"><a href="chapter03.html#cb65-39" aria-hidden="true" tabindex="-1"></a> <span class="co">#                c(&quot;orange&quot;,&quot;white&quot;, &quot;red&quot;,&quot;blue&quot;,&quot;pink&quot;)) +</span></span>
+<span id="cb65-40"><a href="chapter03.html#cb65-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Shohei Ohtani Batting - 2021&quot;</span>) </span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="chapter03.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb66-2"><a href="chapter03.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022年</span></span>
+<span id="cb66-3"><a href="chapter03.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb66-4"><a href="chapter03.html#cb66-4" aria-hidden="true" tabindex="-1"></a>Ohtani2022 <span class="ot">&lt;-</span> <span class="fu">scrape_statcast_savant_batter</span>(<span class="st">&quot;2022-04-01&quot;</span>,</span>
+<span id="cb66-5"><a href="chapter03.html#cb66-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2022-08-20&quot;</span>,</span>
+<span id="cb66-6"><a href="chapter03.html#cb66-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">batterid =</span> <span class="dv">660271</span>)</span>
+<span id="cb66-7"><a href="chapter03.html#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-8"><a href="chapter03.html#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="chapter03.html#cb66-9" aria-hidden="true" tabindex="-1"></a>Ohtani2022 <span class="sc">|&gt;</span></span>
+<span id="cb66-10"><a href="chapter03.html#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hc_x<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">|</span> hc_y<span class="sc">&gt;</span><span class="dv">0</span>)<span class="sc">|&gt;</span> <span class="co">#見逃したボールを排除するため</span></span>
+<span id="cb66-11"><a href="chapter03.html#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(events <span class="sc">%in%</span> events2)<span class="sc">|&gt;</span></span>
+<span id="cb66-12"><a href="chapter03.html#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location_x =</span> hc_x <span class="sc">-</span> <span class="fl">125.42</span>,</span>
+<span id="cb66-13"><a href="chapter03.html#cb66-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">location_y =</span> <span class="fl">198.27</span> <span class="sc">-</span> hc_y) <span class="sc">|&gt;</span></span>
+<span id="cb66-14"><a href="chapter03.html#cb66-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location_x =</span> <span class="fl">2.5</span> <span class="sc">*</span> (hc_x <span class="sc">-</span> <span class="fl">125.42</span>),</span>
+<span id="cb66-15"><a href="chapter03.html#cb66-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">location_y =</span> <span class="fl">2.5</span> <span class="sc">*</span> (<span class="fl">198.27</span> <span class="sc">-</span> hc_y))<span class="ot">-&gt;</span>OhtaniBatDB2022</span>
+<span id="cb66-16"><a href="chapter03.html#cb66-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-17"><a href="chapter03.html#cb66-17" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_baseball</span>(<span class="at">league =</span> <span class="st">&quot;MLB&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-18"><a href="chapter03.html#cb66-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>OhtaniBatDB2022,<span class="fu">aes</span>(location_x, location_y,</span>
+<span id="cb66-19"><a href="chapter03.html#cb66-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> events)) <span class="sc">+</span></span>
+<span id="cb66-20"><a href="chapter03.html#cb66-20" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_colour_manual(values =</span></span>
+<span id="cb66-21"><a href="chapter03.html#cb66-21" aria-hidden="true" tabindex="-1"></a> <span class="co">#                c(&quot;orange&quot;,&quot;white&quot;, &quot;red&quot;,&quot;blue&quot;,&quot;pink&quot;)) +</span></span>
+<span id="cb66-22"><a href="chapter03.html#cb66-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Shohei Ohtani Batting - 2022&quot;</span>) </span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo4-2.png" width="672" /></p>
+<p>次に大谷選手の投球をみてみよう。</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="chapter03.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#カラーパレットの追加</span></span>
+<span id="cb67-2"><a href="chapter03.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;viridis&quot;)</span></span>
+<span id="cb67-3"><a href="chapter03.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb67-4"><a href="chapter03.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb67-5"><a href="chapter03.html#cb67-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-6"><a href="chapter03.html#cb67-6" aria-hidden="true" tabindex="-1"></a>OhtaniP2021<span class="ot">&lt;-</span><span class="fu">scrape_statcast_savant_pitcher</span>(<span class="st">&quot;2021-04-01&quot;</span>,</span>
+<span id="cb67-7"><a href="chapter03.html#cb67-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2021-09-30&quot;</span>,</span>
+<span id="cb67-8"><a href="chapter03.html#cb67-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pitcherid =</span> <span class="dv">660271</span>)</span>
+<span id="cb67-9"><a href="chapter03.html#cb67-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-10"><a href="chapter03.html#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="co">#以下のコードはこのサイトから</span></span>
+<span id="cb67-11"><a href="chapter03.html#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="co">#https://throughthefencebaseball.com/data-analytics-creating-a-pitching-spray-chart-with-rstudio/</span></span>
+<span id="cb67-12"><a href="chapter03.html#cb67-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-13"><a href="chapter03.html#cb67-13" aria-hidden="true" tabindex="-1"></a><span class="do">##Drawing The Strike Zone</span></span>
+<span id="cb67-14"><a href="chapter03.html#cb67-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">95</span>,.<span class="dv">95</span>,.<span class="dv">95</span>,<span class="sc">-</span>.<span class="dv">95</span>,<span class="sc">-</span>.<span class="dv">95</span>)</span>
+<span id="cb67-15"><a href="chapter03.html#cb67-15" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.6</span>,<span class="fl">1.6</span>,<span class="fl">3.5</span>,<span class="fl">3.5</span>,<span class="fl">1.6</span>)</span>
+<span id="cb67-16"><a href="chapter03.html#cb67-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-17"><a href="chapter03.html#cb67-17" aria-hidden="true" tabindex="-1"></a><span class="co">#store in dataframe</span></span>
+<span id="cb67-18"><a href="chapter03.html#cb67-18" aria-hidden="true" tabindex="-1"></a>sz <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,z)</span>
+<span id="cb67-19"><a href="chapter03.html#cb67-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-20"><a href="chapter03.html#cb67-20" aria-hidden="true" tabindex="-1"></a><span class="do">##Changing Pitch Names</span></span>
+<span id="cb67-21"><a href="chapter03.html#cb67-21" aria-hidden="true" tabindex="-1"></a>pitch_desc <span class="ot">&lt;-</span> OhtaniP2021<span class="sc">$</span>pitch_type</span>
+<span id="cb67-22"><a href="chapter03.html#cb67-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-23"><a href="chapter03.html#cb67-23" aria-hidden="true" tabindex="-1"></a><span class="do">##Changing Pitch Names</span></span>
+<span id="cb67-24"><a href="chapter03.html#cb67-24" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;CH&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Changeup&quot;</span></span>
+<span id="cb67-25"><a href="chapter03.html#cb67-25" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;CU&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Curveball&quot;</span></span>
+<span id="cb67-26"><a href="chapter03.html#cb67-26" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FC&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Cutter&quot;</span></span>
+<span id="cb67-27"><a href="chapter03.html#cb67-27" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FF&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Four seam&quot;</span></span>
+<span id="cb67-28"><a href="chapter03.html#cb67-28" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FS&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Split Flinger&quot;</span></span>
+<span id="cb67-29"><a href="chapter03.html#cb67-29" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FT&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Two-Seam&quot;</span></span>
+<span id="cb67-30"><a href="chapter03.html#cb67-30" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;KC&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Kuckle-Curve&quot;</span></span>
+<span id="cb67-31"><a href="chapter03.html#cb67-31" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;SI&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Sinker&quot;</span></span>
+<span id="cb67-32"><a href="chapter03.html#cb67-32" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;SL&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Slider&quot;</span></span>
+<span id="cb67-33"><a href="chapter03.html#cb67-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-34"><a href="chapter03.html#cb67-34" aria-hidden="true" tabindex="-1"></a><span class="co">#イニング別</span></span>
+<span id="cb67-35"><a href="chapter03.html#cb67-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb67-36"><a href="chapter03.html#cb67-36" aria-hidden="true" tabindex="-1"></a><span class="do">##First plotting the strike zone that we created</span></span>
+<span id="cb67-37"><a href="chapter03.html#cb67-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> sz, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>z)) <span class="sc">+</span></span>
+<span id="cb67-38"><a href="chapter03.html#cb67-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb67-39"><a href="chapter03.html#cb67-39" aria-hidden="true" tabindex="-1"></a><span class="do">##Now plotting the actual pitches</span></span>
+<span id="cb67-40"><a href="chapter03.html#cb67-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> OhtaniP2021, <span class="fu">aes</span>(<span class="at">x =</span> plate_x, <span class="at">y =</span> plate_z, </span>
+<span id="cb67-41"><a href="chapter03.html#cb67-41" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">size =</span> release_speed, </span>
+<span id="cb67-42"><a href="chapter03.html#cb67-42" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">color =</span> pitch_desc),<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb67-43"><a href="chapter03.html#cb67-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.0</span>,<span class="fl">2.5</span>))<span class="sc">+</span></span>
+<span id="cb67-44"><a href="chapter03.html#cb67-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-45"><a href="chapter03.html#cb67-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;Speed&quot;</span>,</span>
+<span id="cb67-46"><a href="chapter03.html#cb67-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Pitch Type&quot;</span>,</span>
+<span id="cb67-47"><a href="chapter03.html#cb67-47" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot; Shohei Ohtani: Pitch Chart (2021, inning)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-48"><a href="chapter03.html#cb67-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Feet Above Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-49"><a href="chapter03.html#cb67-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Feet From Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-50"><a href="chapter03.html#cb67-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">015</span>,<span class="at">vjust=</span><span class="dv">0</span>,</span>
+<span id="cb67-51"><a href="chapter03.html#cb67-51" aria-hidden="true" tabindex="-1"></a>                                <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>,<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb67-52"><a href="chapter03.html#cb67-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;plain&quot;</span>, <span class="at">hjust=</span> <span class="sc">-</span>.<span class="dv">015</span>, <span class="at">vjust=</span> .<span class="dv">09</span>,</span>
+<span id="cb67-53"><a href="chapter03.html#cb67-53" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb67-54"><a href="chapter03.html#cb67-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">vjust =</span> .<span class="dv">5</span>,<span class="at">size=</span><span class="dv">11</span>,</span>
+<span id="cb67-55"><a href="chapter03.html#cb67-55" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb67-56"><a href="chapter03.html#cb67-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb67-57"><a href="chapter03.html#cb67-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb67-58"><a href="chapter03.html#cb67-58" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb67-59"><a href="chapter03.html#cb67-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb67-60"><a href="chapter03.html#cb67-60" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb67-61"><a href="chapter03.html#cb67-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bad2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb67-62"><a href="chapter03.html#cb67-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bdd2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb67-63"><a href="chapter03.html#cb67-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb67-64"><a href="chapter03.html#cb67-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> inning)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="chapter03.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#カウント別</span></span>
+<span id="cb68-2"><a href="chapter03.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb68-3"><a href="chapter03.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="do">##First plotting the strike zone that we created</span></span>
+<span id="cb68-4"><a href="chapter03.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> sz, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>z)) <span class="sc">+</span></span>
+<span id="cb68-5"><a href="chapter03.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb68-6"><a href="chapter03.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="do">##Now plotting the actual pitches</span></span>
+<span id="cb68-7"><a href="chapter03.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> OhtaniP2021, <span class="fu">aes</span>(<span class="at">x =</span> plate_x, <span class="at">y =</span> plate_z, </span>
+<span id="cb68-8"><a href="chapter03.html#cb68-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">size =</span> release_speed, </span>
+<span id="cb68-9"><a href="chapter03.html#cb68-9" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">color =</span> pitch_desc),<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb68-10"><a href="chapter03.html#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.0</span>,<span class="fl">2.5</span>))<span class="sc">+</span></span>
+<span id="cb68-11"><a href="chapter03.html#cb68-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-12"><a href="chapter03.html#cb68-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;Speed&quot;</span>,</span>
+<span id="cb68-13"><a href="chapter03.html#cb68-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Pitch Type&quot;</span>,</span>
+<span id="cb68-14"><a href="chapter03.html#cb68-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot; Shohei Ohtani: Pitch Chart (2021, count)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-15"><a href="chapter03.html#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Feet Above Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-16"><a href="chapter03.html#cb68-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Feet From Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-17"><a href="chapter03.html#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">015</span>,<span class="at">vjust=</span><span class="dv">0</span>,</span>
+<span id="cb68-18"><a href="chapter03.html#cb68-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>,<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb68-19"><a href="chapter03.html#cb68-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;plain&quot;</span>, <span class="at">hjust=</span> <span class="sc">-</span>.<span class="dv">015</span>, <span class="at">vjust=</span> .<span class="dv">09</span>,</span>
+<span id="cb68-20"><a href="chapter03.html#cb68-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb68-21"><a href="chapter03.html#cb68-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">vjust =</span> .<span class="dv">5</span>,<span class="at">size=</span><span class="dv">11</span>,</span>
+<span id="cb68-22"><a href="chapter03.html#cb68-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb68-23"><a href="chapter03.html#cb68-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb68-24"><a href="chapter03.html#cb68-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb68-25"><a href="chapter03.html#cb68-25" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb68-26"><a href="chapter03.html#cb68-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb68-27"><a href="chapter03.html#cb68-27" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb68-28"><a href="chapter03.html#cb68-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bad2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb68-29"><a href="chapter03.html#cb68-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bdd2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb68-30"><a href="chapter03.html#cb68-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb68-31"><a href="chapter03.html#cb68-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> balls<span class="sc">+</span>strikes)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo5-2.png" width="672" /></p>
+<p>同様に2022年(8月20日まで)の投球もプロットしてみる。</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="chapter03.html#cb69-1" aria-hidden="true" tabindex="-1"></a>OhtaniP2022<span class="ot">&lt;-</span><span class="fu">scrape_statcast_savant_pitcher</span>(<span class="st">&quot;2022-04-01&quot;</span>,</span>
+<span id="cb69-2"><a href="chapter03.html#cb69-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2022-08-20&quot;</span>,</span>
+<span id="cb69-3"><a href="chapter03.html#cb69-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pitcherid =</span> <span class="dv">660271</span>)</span>
+<span id="cb69-4"><a href="chapter03.html#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="chapter03.html#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Changing Pitch Names</span></span>
+<span id="cb69-6"><a href="chapter03.html#cb69-6" aria-hidden="true" tabindex="-1"></a>pitch_desc <span class="ot">&lt;-</span> OhtaniP2022<span class="sc">$</span>pitch_type</span>
+<span id="cb69-7"><a href="chapter03.html#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-8"><a href="chapter03.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="do">##Changing Pitch Names</span></span>
+<span id="cb69-9"><a href="chapter03.html#cb69-9" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;CH&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Changeup&quot;</span></span>
+<span id="cb69-10"><a href="chapter03.html#cb69-10" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;CU&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Curveball&quot;</span></span>
+<span id="cb69-11"><a href="chapter03.html#cb69-11" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FC&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Cutter&quot;</span></span>
+<span id="cb69-12"><a href="chapter03.html#cb69-12" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FF&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Four seam&quot;</span></span>
+<span id="cb69-13"><a href="chapter03.html#cb69-13" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FS&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Split Flinger&quot;</span></span>
+<span id="cb69-14"><a href="chapter03.html#cb69-14" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;FT&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Two-Seam&quot;</span></span>
+<span id="cb69-15"><a href="chapter03.html#cb69-15" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;KC&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Kuckle-Curve&quot;</span></span>
+<span id="cb69-16"><a href="chapter03.html#cb69-16" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;SI&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Sinker&quot;</span></span>
+<span id="cb69-17"><a href="chapter03.html#cb69-17" aria-hidden="true" tabindex="-1"></a>pitch_desc[<span class="fu">which</span>(pitch_desc<span class="sc">==</span><span class="st">&#39;SL&#39;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Slider&quot;</span></span>
+<span id="cb69-18"><a href="chapter03.html#cb69-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-19"><a href="chapter03.html#cb69-19" aria-hidden="true" tabindex="-1"></a><span class="co">#イニング別</span></span>
+<span id="cb69-20"><a href="chapter03.html#cb69-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb69-21"><a href="chapter03.html#cb69-21" aria-hidden="true" tabindex="-1"></a><span class="do">##First plotting the strike zone that we created</span></span>
+<span id="cb69-22"><a href="chapter03.html#cb69-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> sz, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>z)) <span class="sc">+</span></span>
+<span id="cb69-23"><a href="chapter03.html#cb69-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb69-24"><a href="chapter03.html#cb69-24" aria-hidden="true" tabindex="-1"></a><span class="do">##Now plotting the actual pitches</span></span>
+<span id="cb69-25"><a href="chapter03.html#cb69-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> OhtaniP2022, <span class="fu">aes</span>(<span class="at">x =</span> plate_x, <span class="at">y =</span> plate_z, </span>
+<span id="cb69-26"><a href="chapter03.html#cb69-26" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">size =</span> release_speed, </span>
+<span id="cb69-27"><a href="chapter03.html#cb69-27" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">color =</span> pitch_desc),<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb69-28"><a href="chapter03.html#cb69-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.0</span>,<span class="fl">2.5</span>))<span class="sc">+</span></span>
+<span id="cb69-29"><a href="chapter03.html#cb69-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-30"><a href="chapter03.html#cb69-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;Speed&quot;</span>,</span>
+<span id="cb69-31"><a href="chapter03.html#cb69-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Pitch Type&quot;</span>,</span>
+<span id="cb69-32"><a href="chapter03.html#cb69-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot; Shohei Ohtani: Pitch Chart (2022, inning)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-33"><a href="chapter03.html#cb69-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Feet Above Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-34"><a href="chapter03.html#cb69-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Feet From Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-35"><a href="chapter03.html#cb69-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">015</span>,<span class="at">vjust=</span><span class="dv">0</span>,</span>
+<span id="cb69-36"><a href="chapter03.html#cb69-36" aria-hidden="true" tabindex="-1"></a>                                <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>,<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb69-37"><a href="chapter03.html#cb69-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;plain&quot;</span>, <span class="at">hjust=</span> <span class="sc">-</span>.<span class="dv">015</span>, <span class="at">vjust=</span> .<span class="dv">09</span>,</span>
+<span id="cb69-38"><a href="chapter03.html#cb69-38" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb69-39"><a href="chapter03.html#cb69-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">vjust =</span> .<span class="dv">5</span>,<span class="at">size=</span><span class="dv">11</span>,</span>
+<span id="cb69-40"><a href="chapter03.html#cb69-40" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb69-41"><a href="chapter03.html#cb69-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb69-42"><a href="chapter03.html#cb69-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb69-43"><a href="chapter03.html#cb69-43" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb69-44"><a href="chapter03.html#cb69-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb69-45"><a href="chapter03.html#cb69-45" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb69-46"><a href="chapter03.html#cb69-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bad2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb69-47"><a href="chapter03.html#cb69-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bdd2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb69-48"><a href="chapter03.html#cb69-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb69-49"><a href="chapter03.html#cb69-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> inning)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo06-1.png" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="chapter03.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#カウント別</span></span>
+<span id="cb70-2"><a href="chapter03.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb70-3"><a href="chapter03.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="do">##First plotting the strike zone that we created</span></span>
+<span id="cb70-4"><a href="chapter03.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> sz, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>z)) <span class="sc">+</span></span>
+<span id="cb70-5"><a href="chapter03.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb70-6"><a href="chapter03.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="do">##Now plotting the actual pitches</span></span>
+<span id="cb70-7"><a href="chapter03.html#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> OhtaniP2022, <span class="fu">aes</span>(<span class="at">x =</span> plate_x, <span class="at">y =</span> plate_z, </span>
+<span id="cb70-8"><a href="chapter03.html#cb70-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">size =</span> release_speed, </span>
+<span id="cb70-9"><a href="chapter03.html#cb70-9" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">color =</span> pitch_desc),<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb70-10"><a href="chapter03.html#cb70-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.0</span>,<span class="fl">2.5</span>))<span class="sc">+</span></span>
+<span id="cb70-11"><a href="chapter03.html#cb70-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-12"><a href="chapter03.html#cb70-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;Speed&quot;</span>,</span>
+<span id="cb70-13"><a href="chapter03.html#cb70-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Pitch Type&quot;</span>,</span>
+<span id="cb70-14"><a href="chapter03.html#cb70-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot; Shohei Ohtani: Pitch Chart (2022, count)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-15"><a href="chapter03.html#cb70-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Feet Above Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-16"><a href="chapter03.html#cb70-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Feet From Homeplate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-17"><a href="chapter03.html#cb70-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">015</span>,<span class="at">vjust=</span><span class="dv">0</span>,</span>
+<span id="cb70-18"><a href="chapter03.html#cb70-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>,<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb70-19"><a href="chapter03.html#cb70-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;plain&quot;</span>, <span class="at">hjust=</span> <span class="sc">-</span>.<span class="dv">015</span>, <span class="at">vjust=</span> .<span class="dv">09</span>,</span>
+<span id="cb70-20"><a href="chapter03.html#cb70-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">colour=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb70-21"><a href="chapter03.html#cb70-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">vjust =</span> .<span class="dv">5</span>,<span class="at">size=</span><span class="dv">11</span>,</span>
+<span id="cb70-22"><a href="chapter03.html#cb70-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb70-23"><a href="chapter03.html#cb70-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb70-24"><a href="chapter03.html#cb70-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb70-25"><a href="chapter03.html#cb70-25" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb70-26"><a href="chapter03.html#cb70-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>,<span class="at">colour=</span><span class="st">&quot;#535353&quot;</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb70-27"><a href="chapter03.html#cb70-27" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vjust=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb70-28"><a href="chapter03.html#cb70-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bad2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb70-29"><a href="chapter03.html#cb70-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;#bdd2d4&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb70-30"><a href="chapter03.html#cb70-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb70-31"><a href="chapter03.html#cb70-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> balls<span class="sc">+</span>strikes)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packagedemo06-2.png" width="672" /></p>
+</div>
+<div id="packageの応用例バスケ" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> packageの応用例：バスケ<a href="chapter03.html#packageの応用例バスケ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>2021-2022シーズンのNBAトロントラプターズのshort chartを作ってみよう。NBAはAPIでデータを公開しているようで、<code>nbastatR</code>というパッケージでダウンロードできる。<code>nbastatR</code>の詳細は<a href="https://www.rdocumentation.org/packages/nbastatR/versions/0.1.110202031">ここ</a>で確認できる(英語)。</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="chapter03.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;VROOM_CONNECTION_SIZE&quot;</span> <span class="ot">=</span> <span class="dv">131072</span> <span class="sc">*</span> <span class="dv">2</span>)</span>
+<span id="cb71-2"><a href="chapter03.html#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="chapter03.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb71-4"><a href="chapter03.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb71-5"><a href="chapter03.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;abresler/nbastatR&quot;)</span></span>
+<span id="cb71-6"><a href="chapter03.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nbastatR)</span>
+<span id="cb71-7"><a href="chapter03.html#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;lbenz730/ncaahoopR&quot;)</span></span>
+<span id="cb71-8"><a href="chapter03.html#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncaahoopR)</span>
+<span id="cb71-9"><a href="chapter03.html#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-10"><a href="chapter03.html#cb71-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-11"><a href="chapter03.html#cb71-11" aria-hidden="true" tabindex="-1"></a>TOR <span class="ot">&lt;-</span> <span class="fu">teams_shots</span>(<span class="at">teams =</span> <span class="st">&quot;Toronto Raptors&quot;</span>,<span class="at">seasons =</span> <span class="dv">2022</span>)</span></code></pre></div>
+<pre><code>## Toronto Raptors 2021-22 shot data</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="chapter03.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のYouTubeより</span></span>
+<span id="cb73-2"><a href="chapter03.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.youtube.com/watch?v=ZQ8fqSnvWcc</span></span>
+<span id="cb73-3"><a href="chapter03.html#cb73-3" aria-hidden="true" tabindex="-1"></a>TOR<span class="sc">$</span>locationX<span class="ot">&lt;-</span>TOR<span class="sc">$</span>locationX<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb73-4"><a href="chapter03.html#cb73-4" aria-hidden="true" tabindex="-1"></a>TOR<span class="sc">$</span>locationY<span class="ot">&lt;-</span>TOR<span class="sc">$</span>locationY<span class="sc">/</span><span class="dv">10</span><span class="fl">-41.75</span></span>
+<span id="cb73-5"><a href="chapter03.html#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="chapter03.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NBAのコート</span></span>
+<span id="cb73-7"><a href="chapter03.html#cb73-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-8"><a href="chapter03.html#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_basketball</span>(<span class="at">league =</span> <span class="st">&quot;nba&quot;</span>, <span class="at">display_range =</span> <span class="st">&quot;offense&quot;</span>, </span>
+<span id="cb73-9"><a href="chapter03.html#cb73-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">x_trans =</span> <span class="dv">0</span>,</span>
+<span id="cb73-10"><a href="chapter03.html#cb73-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">y_trans=</span><span class="dv">0</span>,</span>
+<span id="cb73-11"><a href="chapter03.html#cb73-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">rotation =</span> <span class="dv">270</span>) <span class="sc">+</span></span>
+<span id="cb73-12"><a href="chapter03.html#cb73-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>TOR,<span class="fu">aes</span>(locationX, locationY,</span>
+<span id="cb73-13"><a href="chapter03.html#cb73-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> isShotMade)) <span class="sc">+</span></span>
+<span id="cb73-14"><a href="chapter03.html#cb73-14" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_colour_manual(values =</span></span>
+<span id="cb73-15"><a href="chapter03.html#cb73-15" aria-hidden="true" tabindex="-1"></a> <span class="co">#                c(&quot;orange&quot;,&quot;white&quot;, &quot;red&quot;,&quot;blue&quot;,&quot;pink&quot;)) +</span></span>
+<span id="cb73-16"><a href="chapter03.html#cb73-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Shot Chart - Toronto Raptors (2021-2022)&quot;</span>) </span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packageNBA1-1.png" width="672" /></p>
+<p>次にこのシーズンにトロントラプターズでプレイした渡邊雄太選手のshot chartを作ってみよう。</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="chapter03.html#cb74-1" aria-hidden="true" tabindex="-1"></a>TOR <span class="sc">|&gt;</span></span>
+<span id="cb74-2"><a href="chapter03.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(namePlayer<span class="sc">==</span><span class="st">&quot;Yuta Watanabe&quot;</span>)<span class="ot">-&gt;</span>TOR_YW</span>
+<span id="cb74-3"><a href="chapter03.html#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="chapter03.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_basketball</span>(<span class="at">league =</span> <span class="st">&quot;nba&quot;</span>, <span class="at">display_range =</span> <span class="st">&quot;offense&quot;</span>, </span>
+<span id="cb74-5"><a href="chapter03.html#cb74-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">x_trans =</span> <span class="dv">0</span>,</span>
+<span id="cb74-6"><a href="chapter03.html#cb74-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">y_trans=</span><span class="dv">0</span>,</span>
+<span id="cb74-7"><a href="chapter03.html#cb74-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">rotation =</span> <span class="dv">270</span>) <span class="sc">+</span></span>
+<span id="cb74-8"><a href="chapter03.html#cb74-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>TOR_YW,<span class="fu">aes</span>(locationX, locationY,</span>
+<span id="cb74-9"><a href="chapter03.html#cb74-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> isShotMade)) <span class="sc">+</span></span>
+<span id="cb74-10"><a href="chapter03.html#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Shot Chart - Toronto Raptors (Yuta Watanabe, 2021-2022)&quot;</span>) </span></code></pre></div>
+<p><img src="book_filename_files/figure-html/packageNBA2-1.png" width="672" /></p>
 
+</div>
 </div>
 </div>
             </section>
@@ -681,7 +942,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -721,6 +981,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

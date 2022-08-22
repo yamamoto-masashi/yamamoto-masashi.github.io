@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BQ6V5WJB8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-2BQ6V5WJB8');
-    </script>
-    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2021年度 データ分析入門</title>
+  <title>データ分析入門</title>
   <meta name="description" content="This is my description." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2021年度 データ分析入門" />
+  <meta property="og:title" content="データ分析入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is my description." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2021年度 データ分析入門" />
+  <meta name="twitter:title" content="データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -32,7 +23,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2021-09-04" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,8 +32,8 @@
   
 
 <link rel="next" href="chapter02.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -58,10 +49,10 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -147,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-            <li><a href="https://yamamoto-masashi.github.io/teaching.html">Teachingへ戻る</a></li>
+<li><a href="https://yamamoto-masashi.github.io/teaching.html">Teachingへ戻る</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> イントロダクション</a>
@@ -172,6 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
+<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -192,6 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
 <ul>
@@ -218,9 +219,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#参考-word-cloudの作り方"><i class="fa fa-check"></i><b>8.2</b> (参考)　Word Cloudの作り方</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
+<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
+<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
+<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#tweetのネガポジ分析"><i class="fa fa-check"></i><b>8.3</b> Tweetのネガポジ分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.4</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -246,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021年度 データ分析入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">データ分析入門</a>
           </h1>
         </div>
 
@@ -255,21 +263,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">2021年度 データ分析入門</h1>
+<h1 class="title">データ分析入門</h1>
 <p class="author"><em>山本　雅資</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-09-04</em></p>
+<p class="date"><em>2022-08-22</em></p>
 </div>
 <p>この講義の名称は、シラバスには「応用経済学C」(火曜日２限)及び「応用経済学D」(金曜日2限)として科目登録されています。「データ分析入門」は講義の内容を踏まえた「通称」です。</p>
-<div id="イントロダクション" class="section level1" number="1">
-<h1><span class="header-section-number">chapter: 1</span> イントロダクション</h1>
-<div id="講義の概要" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> 講義の概要</h2>
+<div id="イントロダクション" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">chapter: 1</span> イントロダクション<a href="index.html#イントロダクション" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="講義の概要" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 講義の概要<a href="index.html#講義の概要" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>本講義では、Rというプログラミング言語を用いて、社会・経済関連のデータについて、初歩的な分析することができるようになることを目指します。ビジネスにおける活用を例としたR言語の紹介については以下のリンクを参考にしてください。</p>
 <p><a href="https://xtech.nikkei.com/atcl/learning/lecture/19/00110/00002/">日経クロステック (2020)「統計解析に便利、R言語の基本を実践で理解する」</a></p>
 <p>Rは無料で提供されており、RStudioと呼ばれるインターフェースと同時に用いることで初心者にも比較的直感的に利用できる非常に優れた分析ツールです。講義では、プログラミングが初めての学生を想定して、Rのインストールから丁寧に行います。その上で、データの集計方法、グラフ、地図等による可視化、統計的仮説検定などを実行する方法を学びます。</p>
 </div>
-<div id="履修上の注意点" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> 履修上の注意点</h2>
+<div id="履修上の注意点" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 履修上の注意点<a href="index.html#履修上の注意点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>履修者は以下の条件をすべて満たしていることが必要です。</p>
 <ol style="list-style-type: decimal">
 <li><p>火曜２限の応用経済学Cと金曜２限の応用経済学Dとセット履修できる</p></li>
@@ -279,19 +287,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>また、講義の性質上、30人程度の履修制限を設ける場合があります。</p>
 </div>
-<div id="成績評価の基準および方法" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> 成績評価の基準および方法</h2>
+<div id="成績評価の基準および方法" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 成績評価の基準および方法<a href="index.html#成績評価の基準および方法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>講義内演習での理解度 (70%)及び最終課題 (30%)で評価します。</p>
 </div>
-<div id="授業計画" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> 授業計画</h2>
+<div id="授業計画" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> 授業計画<a href="index.html#授業計画" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>詳細はシラバスを参照してください。</li>
 <li>講義での進捗・理解度に応じて、内容は変更する可能性があります。</li>
 </ul>
 </div>
-<div id="謝辞" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> 謝辞</h2>
+<div id="謝辞" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> 謝辞<a href="index.html#謝辞" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>このページの作成にあたっては多くのウェブサイトや先人の皆様のウェブ・SNSでのやりとりなどを参考にさせていただきました。たくさんありすぎてここに列挙することはできませんが、心より感謝申し上げます。</p>
 
 </div>
@@ -306,7 +314,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -346,6 +353,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
