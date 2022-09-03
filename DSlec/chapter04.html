@@ -23,7 +23,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-08-26" />
+<meta name="date" content="2022-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
@@ -268,10 +270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="可視化の重要性" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> 可視化の重要性<a href="chapter04.html#可視化の重要性" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>はじめにサンプルデータを用いて、可視化の持つ意味について考えます。</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="chapter04.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;datasets&quot;)</span></span>
-<span id="cb104-2"><a href="chapter04.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
-<span id="cb104-3"><a href="chapter04.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-4"><a href="chapter04.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="chapter04.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;datasets&quot;)</span></span>
+<span id="cb77-2"><a href="chapter04.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb77-3"><a href="chapter04.html#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="chapter04.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anscombe)</span></code></pre></div>
 <pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
 ## 1  10 10 10  8  8.04 9.14  7.46  6.58
 ## 2   8  8  8  8  6.95 8.14  6.77  5.76
@@ -285,13 +287,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10  7  7  7  8  4.82 7.26  6.42  7.91
 ## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
 <p>このデータ例は、統計学者のフランク・アンスコムが1973年に紹介した例です。この例では、<span class="math inline">\(x\)</span> の平均(<code>=mean</code>)は<span class="math inline">\(9\)</span>、<span class="math inline">\(x\)</span> の標準偏差(<code>=sd</code>)は<span class="math inline">\(3.32\)</span>、<span class="math inline">\(y\)</span>の平均が<span class="math inline">\(7.50\)</span> (小数第2位まで一致)、<span class="math inline">\(y\)</span>の標準偏差が <span class="math inline">\(2.03\)</span> (小数第3位まで一致)、と等しくなっています。</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="chapter04.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 記述統計を出力するためのpackage</span></span>
-<span id="cb106-2"><a href="chapter04.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># include.packages(&quot;psych)</span></span>
-<span id="cb106-3"><a href="chapter04.html#cb106-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-4"><a href="chapter04.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb106-5"><a href="chapter04.html#cb106-5" aria-hidden="true" tabindex="-1"></a>descriptive_statistics<span class="ot">&lt;-</span><span class="fu">describe</span>(anscombe,<span class="at">skew =</span> <span class="cn">FALSE</span>, <span class="at">ranges =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb106-6"><a href="chapter04.html#cb106-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-7"><a href="chapter04.html#cb106-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(descriptive_statistics)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="chapter04.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 記述統計を出力するためのpackage</span></span>
+<span id="cb79-2"><a href="chapter04.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># include.packages(&quot;psych)</span></span>
+<span id="cb79-3"><a href="chapter04.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="chapter04.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb79-5"><a href="chapter04.html#cb79-5" aria-hidden="true" tabindex="-1"></a>descriptive_statistics<span class="ot">&lt;-</span><span class="fu">describe</span>(anscombe,<span class="at">skew =</span> <span class="cn">FALSE</span>, <span class="at">ranges =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb79-6"><a href="chapter04.html#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="chapter04.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(descriptive_statistics)</span></code></pre></div>
 <pre><code>##    vars  n mean   sd   se
 ## x1    1 11  9.0 3.32 1.00
 ## x2    2 11  9.0 3.32 1.00
@@ -305,38 +307,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}}} = \frac{s_{xy}}{s_{x}s_{y}}
 \]</span></p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="chapter04.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x1とy1の相関係数</span></span>
-<span id="cb108-2"><a href="chapter04.html#cb108-2" aria-hidden="true" tabindex="-1"></a>x1y1<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb108-3"><a href="chapter04.html#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="chapter04.html#cb108-4" aria-hidden="true" tabindex="-1"></a>x2y2<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
-<span id="cb108-5"><a href="chapter04.html#cb108-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-6"><a href="chapter04.html#cb108-6" aria-hidden="true" tabindex="-1"></a>x3y3<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
-<span id="cb108-7"><a href="chapter04.html#cb108-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-8"><a href="chapter04.html#cb108-8" aria-hidden="true" tabindex="-1"></a>x4y4<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
-<span id="cb108-9"><a href="chapter04.html#cb108-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-10"><a href="chapter04.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">2</span>)   <span class="co"># 表示桁数を小数点第２位までに変える</span></span>
-<span id="cb108-11"><a href="chapter04.html#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(x1y1,x2y2,x3y3,x4y4))</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="chapter04.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x1とy1の相関係数</span></span>
+<span id="cb81-2"><a href="chapter04.html#cb81-2" aria-hidden="true" tabindex="-1"></a>x1y1<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb81-3"><a href="chapter04.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="chapter04.html#cb81-4" aria-hidden="true" tabindex="-1"></a>x2y2<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
+<span id="cb81-5"><a href="chapter04.html#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-6"><a href="chapter04.html#cb81-6" aria-hidden="true" tabindex="-1"></a>x3y3<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
+<span id="cb81-7"><a href="chapter04.html#cb81-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-8"><a href="chapter04.html#cb81-8" aria-hidden="true" tabindex="-1"></a>x4y4<span class="ot">&lt;-</span><span class="fu">cor</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
+<span id="cb81-9"><a href="chapter04.html#cb81-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-10"><a href="chapter04.html#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">2</span>)   <span class="co"># 表示桁数を小数点第２位までに変える</span></span>
+<span id="cb81-11"><a href="chapter04.html#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(x1y1,x2y2,x3y3,x4y4))</span></code></pre></div>
 <pre><code>## [1] 0.82 0.82 0.82 0.82</code></pre>
 <p>ところが、このデータをプロットしてみると以下のようになります (描画に用いた<code>ggplot2</code>の解説はこの後に行います)。</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="chapter04.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4組のグラフを作成する</span></span>
-<span id="cb110-2"><a href="chapter04.html#cb110-2" aria-hidden="true" tabindex="-1"></a>plotx1y1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>y1),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb110-3"><a href="chapter04.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 1&quot;</span>)</span>
-<span id="cb110-4"><a href="chapter04.html#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-5"><a href="chapter04.html#cb110-5" aria-hidden="true" tabindex="-1"></a>plotx2y2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x2,<span class="at">y=</span>y2),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb110-6"><a href="chapter04.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 2&quot;</span>)</span>
-<span id="cb110-7"><a href="chapter04.html#cb110-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-8"><a href="chapter04.html#cb110-8" aria-hidden="true" tabindex="-1"></a>plotx3y3<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x3,<span class="at">y=</span>y3),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb110-9"><a href="chapter04.html#cb110-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 3&quot;</span>)</span>
-<span id="cb110-10"><a href="chapter04.html#cb110-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-11"><a href="chapter04.html#cb110-11" aria-hidden="true" tabindex="-1"></a>plotx4y4<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x4,<span class="at">y=</span>y4),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb110-12"><a href="chapter04.html#cb110-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 4&quot;</span>)</span>
-<span id="cb110-13"><a href="chapter04.html#cb110-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-14"><a href="chapter04.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="co"># このpackageでグラフを組み合わせる</span></span>
-<span id="cb110-15"><a href="chapter04.html#cb110-15" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;patchwork&quot;)</span></span>
-<span id="cb110-16"><a href="chapter04.html#cb110-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb110-17"><a href="chapter04.html#cb110-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-18"><a href="chapter04.html#cb110-18" aria-hidden="true" tabindex="-1"></a>plotx1y1 <span class="sc">+</span> plotx2y2 <span class="sc">+</span>plotx3y3<span class="sc">+</span>plotx4y4<span class="sc">+</span> </span>
-<span id="cb110-19"><a href="chapter04.html#cb110-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="chapter04.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4組のグラフを作成する</span></span>
+<span id="cb83-2"><a href="chapter04.html#cb83-2" aria-hidden="true" tabindex="-1"></a>plotx1y1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>y1),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb83-3"><a href="chapter04.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 1&quot;</span>)</span>
+<span id="cb83-4"><a href="chapter04.html#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="chapter04.html#cb83-5" aria-hidden="true" tabindex="-1"></a>plotx2y2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x2,<span class="at">y=</span>y2),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb83-6"><a href="chapter04.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 2&quot;</span>)</span>
+<span id="cb83-7"><a href="chapter04.html#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="chapter04.html#cb83-8" aria-hidden="true" tabindex="-1"></a>plotx3y3<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x3,<span class="at">y=</span>y3),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb83-9"><a href="chapter04.html#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 3&quot;</span>)</span>
+<span id="cb83-10"><a href="chapter04.html#cb83-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-11"><a href="chapter04.html#cb83-11" aria-hidden="true" tabindex="-1"></a>plotx4y4<span class="ot">&lt;-</span><span class="fu">ggplot</span>(anscombe)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x4,<span class="at">y=</span>y4),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb83-12"><a href="chapter04.html#cb83-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">2.5</span>,<span class="dv">20</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">2.5</span>,<span class="fl">12.9</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Set 4&quot;</span>)</span>
+<span id="cb83-13"><a href="chapter04.html#cb83-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-14"><a href="chapter04.html#cb83-14" aria-hidden="true" tabindex="-1"></a><span class="co"># このpackageでグラフを組み合わせる</span></span>
+<span id="cb83-15"><a href="chapter04.html#cb83-15" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;patchwork&quot;)</span></span>
+<span id="cb83-16"><a href="chapter04.html#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb83-17"><a href="chapter04.html#cb83-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-18"><a href="chapter04.html#cb83-18" aria-hidden="true" tabindex="-1"></a>plotx1y1 <span class="sc">+</span> plotx2y2 <span class="sc">+</span>plotx3y3<span class="sc">+</span>plotx4y4<span class="sc">+</span> </span>
+<span id="cb83-19"><a href="chapter04.html#cb83-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/vis4-1.png" width="672" /></p>
 <p>このように全く異なるデータの分布をしていることがわかります。要約統計量だけをみて判断せずに常にグラフにデータをプロットしてみることが重要です。</p>
 </div>
@@ -344,7 +346,7 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <h2><span class="header-section-number">4.2</span> Rによる可視化のデモ<a href="chapter04.html#rによる可視化のデモ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>コマンドラインで図を作成することははじめは面倒に思うかもしれません。しかし、どのようなグラフを作成するかを一つ一つ命令に書きますので、一度作成してしまえばコピーペーストで簡単に複製することができます。ところがクリックベースでグラフを作成した場合、完成したグラフをコピーしたとしても必ずしも元のグラフと同じにはなりません。ズレた場合にも目測で直す必要があります。</p>
 <p><code>R</code>による可視化の例を公式デモにて確認します。</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="chapter04.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="chapter04.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code></pre></div>
 <pre><code>## 
 ## 
 ##  demo(graphics)
@@ -566,69 +568,70 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <p><code>ggplot2</code>は、<code>R</code>の中で最もポピュラーな描画packageです。最初は戸惑うかもしれませんが、論理でグラフを作る面白さを一緒に体験しましょう。</p>
 <p><code>ggplot2</code>はグラフを特定のパーツに分けてレイヤーとして作成し、それらを重ねて表現していきます。コマンドとしてはそれぞれのレイヤーを「足し算する」形でグラフを完成していきます。</p>
 <p>下の例は最初のコマンドで、<code>ggplot(A,aes(x=B,y=C))</code>で、<code>A</code>というデータセットを使って、x軸に<code>B</code>、y軸に<code>C</code>を使うグラフの基礎となるレイヤーを作ってね、という命令になります。</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter04.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;)</span></span>
-<span id="cb124-2"><a href="chapter04.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-3"><a href="chapter04.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb124-4"><a href="chapter04.html#cb124-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-5"><a href="chapter04.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="co"># データフレームの表示</span></span>
-<span id="cb124-6"><a href="chapter04.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="chapter04.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;)</span></span>
+<span id="cb97-2"><a href="chapter04.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="chapter04.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb97-4"><a href="chapter04.html#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="chapter04.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="co"># データフレームの表示</span></span>
+<span id="cb97-6"><a href="chapter04.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 28
-##     PID county   state  area popto…¹ popde…² popwh…³ popbl…⁴ popam…⁵ popas…⁶ popot…⁷ percw…⁸
-##   &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;
-## 1   561 ADAMS    IL    0.052   66090   1271.   63917    1702      98     249     124    96.7
-## 2   562 ALEXAND… IL    0.014   10626    759     7054    3496      19      48       9    66.4
-## 3   563 BOND     IL    0.022   14991    681.   14477     429      35      16      34    96.6
-## 4   564 BOONE    IL    0.017   30806   1812.   29344     127      46     150    1139    95.3
-## 5   565 BROWN    IL    0.018    5836    324.    5264     547      14       5       6    90.2
-## 6   566 BUREAU   IL    0.05    35688    714.   35157      50      65     195     221    98.5
-## # … with 16 more variables: percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;, percasian &lt;dbl&gt;,
-## #   percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
-## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;, percbelowpoverty &lt;dbl&gt;,
-## #   percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;,
-## #   inmetro &lt;int&gt;, category &lt;chr&gt;, and abbreviated variable names ¹​poptotal, ²​popdensity,
-## #   ³​popwhite, ⁴​popblack, ⁵​popamerindian, ⁶​popasian, ⁷​popother, ⁸​percwhite</code></pre>
+##     PID county   state  area popto…¹ popde…² popwh…³ popbl…⁴ popam…⁵
+##   &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+## 1   561 ADAMS    IL    0.052   66090   1271.   63917    1702      98
+## 2   562 ALEXAND… IL    0.014   10626    759     7054    3496      19
+## 3   563 BOND     IL    0.022   14991    681.   14477     429      35
+## 4   564 BOONE    IL    0.017   30806   1812.   29344     127      46
+## 5   565 BROWN    IL    0.018    5836    324.    5264     547      14
+## 6   566 BUREAU   IL    0.05    35688    714.   35157      50      65
+## # … with 19 more variables: popasian &lt;int&gt;, popother &lt;int&gt;,
+## #   percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;,
+## #   percasian &lt;dbl&gt;, percother &lt;dbl&gt;, popadults &lt;int&gt;,
+## #   perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
+## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
+## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;,
+## #   percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;, …</code></pre>
 <p><code>midewest</code>は<code>ggplot2</code>に付属しているデータベースで、アメリカ中西部の５つの州(IL, IN, MI, OH,WI)のサンプルデータが保存してあります。</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter04.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest, <span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="chapter04.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest, <span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro2-1.png" width="672" /></p>
 <p>結果は上記のようになります。この例では、横軸が各カウンティの大卒割合、縦軸が、貧困割合を示しています。</p>
 <p>データそのものは、どうやってプロットするか、を命令しないと描かれません。どうやってとは、棒グラフにするのか、折れ線グラフにするのか、円グラフにするのか、といった見た目の問題です。このどうやっての部分は、<code>geom_XXX()</code>という関数群で指定します。例えば、散布図を作成する場合は、<code>geom_point()</code>となります。</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chapter04.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
-<span id="cb127-2"><a href="chapter04.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="chapter04.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb100-2"><a href="chapter04.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro3a-1.png" width="672" /></p>
 <p>デフォルトでは、軸の名称に変数の名前が入るので、これをわかりやすい文言に変更してみましょう。また、タイトルも加えてみます。</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter04.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
-<span id="cb128-2"><a href="chapter04.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
-<span id="cb128-3"><a href="chapter04.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb128-4"><a href="chapter04.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-5"><a href="chapter04.html#cb128-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb128-6"><a href="chapter04.html#cb128-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="chapter04.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb101-2"><a href="chapter04.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
+<span id="cb101-3"><a href="chapter04.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb101-4"><a href="chapter04.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb101-5"><a href="chapter04.html#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb101-6"><a href="chapter04.html#cb101-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplot3b-1.png" width="672" /></p>
 <p><code>geom_point()</code>の<code>aes()</code>で<code>color=XXX</code>と設定することで<code>XXX</code>変数を用いて色分けをすることができます。<code>state</code>という変数で州の名前が格納されているので、この情報を使って州別に色分けしてみましょう。</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chapter04.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
-<span id="cb129-2"><a href="chapter04.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty,<span class="at">color=</span>state))<span class="sc">+</span></span>
-<span id="cb129-3"><a href="chapter04.html#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb129-4"><a href="chapter04.html#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-5"><a href="chapter04.html#cb129-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb129-6"><a href="chapter04.html#cb129-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="chapter04.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb102-2"><a href="chapter04.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty,<span class="at">color=</span>state))<span class="sc">+</span></span>
+<span id="cb102-3"><a href="chapter04.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb102-4"><a href="chapter04.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb102-5"><a href="chapter04.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb102-6"><a href="chapter04.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro3c-1.png" width="672" /></p>
 <p>あるいは<code>facet_grid()</code>関数で州別に分割することも可能です。</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="chapter04.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 横方向への分割</span></span>
-<span id="cb130-2"><a href="chapter04.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
-<span id="cb130-3"><a href="chapter04.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
-<span id="cb130-4"><a href="chapter04.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> state)<span class="sc">+</span> <span class="co"># stateでグラフを分割 (横方向)</span></span>
-<span id="cb130-5"><a href="chapter04.html#cb130-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb130-6"><a href="chapter04.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-7"><a href="chapter04.html#cb130-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-8"><a href="chapter04.html#cb130-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="chapter04.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 横方向への分割</span></span>
+<span id="cb103-2"><a href="chapter04.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb103-3"><a href="chapter04.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
+<span id="cb103-4"><a href="chapter04.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> state)<span class="sc">+</span> <span class="co"># stateでグラフを分割 (横方向)</span></span>
+<span id="cb103-5"><a href="chapter04.html#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb103-6"><a href="chapter04.html#cb103-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb103-7"><a href="chapter04.html#cb103-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb103-8"><a href="chapter04.html#cb103-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="chapter04.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 縦方向への分割</span></span>
-<span id="cb131-2"><a href="chapter04.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
-<span id="cb131-3"><a href="chapter04.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
-<span id="cb131-4"><a href="chapter04.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(state <span class="sc">~</span>.)<span class="sc">+</span> <span class="co"># stateでグラフを分割 (縦方向)</span></span>
-<span id="cb131-5"><a href="chapter04.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb131-6"><a href="chapter04.html#cb131-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb131-7"><a href="chapter04.html#cb131-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb131-8"><a href="chapter04.html#cb131-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="chapter04.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 縦方向への分割</span></span>
+<span id="cb104-2"><a href="chapter04.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest)<span class="sc">+</span></span>
+<span id="cb104-3"><a href="chapter04.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))<span class="sc">+</span></span>
+<span id="cb104-4"><a href="chapter04.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(state <span class="sc">~</span>.)<span class="sc">+</span> <span class="co"># stateでグラフを分割 (縦方向)</span></span>
+<span id="cb104-5"><a href="chapter04.html#cb104-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb104-6"><a href="chapter04.html#cb104-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;各カウンティにおける大卒の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-7"><a href="chapter04.html#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;貧困の割合 (%)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-8"><a href="chapter04.html#cb104-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;アメリカ中西部５州の現状&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro4-2.png" width="672" /></p>
 <p>代表的な<code>geom_XXX</code>関数は以下の通りです。</p>
 <table>
@@ -666,17 +669,17 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 </tbody>
 </table>
 <p>例えば、棒グラフは以下のように描写できる。</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="chapter04.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
-<span id="cb132-2"><a href="chapter04.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal))<span class="sc">+</span></span>
-<span id="cb132-3"><a href="chapter04.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb132-4"><a href="chapter04.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="chapter04.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
+<span id="cb105-2"><a href="chapter04.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal))<span class="sc">+</span></span>
+<span id="cb105-3"><a href="chapter04.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb105-4"><a href="chapter04.html#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro4b-1.png" width="672" /></p>
 <p>データでは、各州のカウンティレベルでの人口が入っているが自動的に合計されていることに注意。</p>
 <p>人口の軸表示がe+06などとなっていますが、これは学術的な標記で<span class="math inline">\(10^6\)</span>を意味しています。これをより一般にわかりやすい標記に変更します。</p>
 <p>ここでは、<code>scales</code>というpackageの<code>label_number()</code>関数を使って変更していますが、元のデータの単位を変更する(=1,000,000で割るなど)しても同じです。</p>
 <p>また、もう一つの機能として軸を入れ替える<code>coord_flip()</code>関数も紹介しています。</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="chapter04.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;scales&quot;)</span></span>
-<span id="cb133-2"><a href="chapter04.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="chapter04.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;scales&quot;)</span></span>
+<span id="cb106-2"><a href="chapter04.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;scales&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:psych&#39;:
@@ -688,32 +691,32 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <pre><code>## The following object is masked from &#39;package:viridis&#39;:
 ## 
 ##     viridis_pal</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="chapter04.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
-<span id="cb138-2"><a href="chapter04.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal))<span class="sc">+</span></span>
-<span id="cb138-3"><a href="chapter04.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb138-4"><a href="chapter04.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot;&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
-<span id="cb138-5"><a href="chapter04.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口 (単位：百万人)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb138-6"><a href="chapter04.html#cb138-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="chapter04.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
+<span id="cb111-2"><a href="chapter04.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal))<span class="sc">+</span></span>
+<span id="cb111-3"><a href="chapter04.html#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb111-4"><a href="chapter04.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot;&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
+<span id="cb111-5"><a href="chapter04.html#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口 (単位：百万人)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb111-6"><a href="chapter04.html#cb111-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro5-1.png" width="672" /></p>
 <p><code>label_number()</code>関数の<code>suffix</code>というオプションは添字という意味で上の例では空欄としていますが任意の文字列を入れることも可能です。例えば百万を意味するmillionから頭文字をとって、<code>M</code>を追記することが可能です。</p>
 <p>また、<code>fill="XXX</code>でグラフの色を変更しました。<code>aes()</code>の外で設定している点に注意してください。</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="chapter04.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;scales&quot;)</span></span>
-<span id="cb139-2"><a href="chapter04.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb139-3"><a href="chapter04.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-4"><a href="chapter04.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
-<span id="cb139-5"><a href="chapter04.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal), <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb139-6"><a href="chapter04.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb139-7"><a href="chapter04.html#cb139-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot; M&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
-<span id="cb139-8"><a href="chapter04.html#cb139-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口&quot;</span>)<span class="sc">+</span></span>
-<span id="cb139-9"><a href="chapter04.html#cb139-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="chapter04.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;scales&quot;)</span></span>
+<span id="cb112-2"><a href="chapter04.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb112-3"><a href="chapter04.html#cb112-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-4"><a href="chapter04.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
+<span id="cb112-5"><a href="chapter04.html#cb112-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal), <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb112-6"><a href="chapter04.html#cb112-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb112-7"><a href="chapter04.html#cb112-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot; M&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
+<span id="cb112-8"><a href="chapter04.html#cb112-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口&quot;</span>)<span class="sc">+</span></span>
+<span id="cb112-9"><a href="chapter04.html#cb112-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro6-1.png" width="672" /></p>
 <p><code>aes()</code>の中で<code>fill=XXX</code>を実行した場合、<code>XXX</code>の値によって色分けをすることができます。以下の例では、<code>inmetro</code>という変数で色分けをしています。この変数は、あるカウンティがmetro areaに属していれば１、そうでなければ０をとる変数です。このような変数をダミー変数と呼びます。metro areaは日本でいう人口密度が一定以上のエリアのことで、いわゆる都市化されているエリアと考えてもらえれば良いと思います。</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="chapter04.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
-<span id="cb140-2"><a href="chapter04.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal,<span class="at">fill=</span><span class="fu">factor</span>(inmetro)))<span class="sc">+</span></span>
-<span id="cb140-3"><a href="chapter04.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
-<span id="cb140-4"><a href="chapter04.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot;&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
-<span id="cb140-5"><a href="chapter04.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口 (単位：百万人)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb140-6"><a href="chapter04.html#cb140-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;metro areaダミー&quot;</span>) <span class="co"># 凡例のタイトルを変更している</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="chapter04.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span></span>
+<span id="cb113-2"><a href="chapter04.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>state,<span class="at">y=</span>poptotal,<span class="at">fill=</span><span class="fu">factor</span>(inmetro)))<span class="sc">+</span></span>
+<span id="cb113-3"><a href="chapter04.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span> <span class="co"># 日本語表示のために必要</span></span>
+<span id="cb113-4"><a href="chapter04.html#cb113-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot;&quot;</span>, <span class="at">scale =</span> <span class="fl">1e-6</span>))<span class="sc">+</span></span>
+<span id="cb113-5"><a href="chapter04.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;州名&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;州全体の人口 (単位：百万人)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb113-6"><a href="chapter04.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;metro areaダミー&quot;</span>) <span class="co"># 凡例のタイトルを変更している</span></span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro7-1.png" width="672" /></p>
 <p><code>ggplot2</code>には数多くの機能があります。そしてこの機能は日々進化しています。もし、グラフをこのように変更したい、というアイディアが何かあったらまずはgoogle検索してみてください。最初は適切な検索ワードが見つけられずに苦労するかもしれませんが、慣れてくるとかなりの確率で答えが見つかると思います。場合によっては、自分がイメージしていた可視化よりも優れたアイディアに出会えることもあると思います。</p>
 <p>最終的なアウトプットの完成度を高めることが最初の目標ですが、その後はその過程の効率化にも目を向けてみてください。自分のスタイルを確立することができたら、それに至る時間を短縮するための様々な方法が<code>ggplot2</code>あるいは<code>R</code>には用意されています。</p>
@@ -723,121 +726,118 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <p>以下は、<a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">このサイト</a>から引用した例です。講義では触れませんが、使いたいものがあれば是非試してみてください。</p>
 <div id="バブルチャート" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> バブルチャート<a href="chapter04.html#バブルチャート" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="chapter04.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
-<span id="cb141-2"><a href="chapter04.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-3"><a href="chapter04.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg, <span class="at">package=</span><span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb141-4"><a href="chapter04.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co"># mpg &lt;- read.csv(&quot;http://goo.gl/uEeRGu&quot;)</span></span>
-<span id="cb141-5"><a href="chapter04.html#cb141-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-6"><a href="chapter04.html#cb141-6" aria-hidden="true" tabindex="-1"></a>mpg_select <span class="ot">&lt;-</span> mpg[mpg<span class="sc">$</span>manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;audi&quot;</span>, <span class="st">&quot;ford&quot;</span>, <span class="st">&quot;honda&quot;</span>, <span class="st">&quot;hyundai&quot;</span>), ]</span>
-<span id="cb141-7"><a href="chapter04.html#cb141-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-8"><a href="chapter04.html#cb141-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
-<span id="cb141-9"><a href="chapter04.html#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())  <span class="co"># pre-set the bw theme.</span></span>
-<span id="cb141-10"><a href="chapter04.html#cb141-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg_select, <span class="fu">aes</span>(displ, cty)) <span class="sc">+</span> </span>
-<span id="cb141-11"><a href="chapter04.html#cb141-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;mpg: Displacement vs City Mileage&quot;</span>,</span>
-<span id="cb141-12"><a href="chapter04.html#cb141-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Bubble chart&quot;</span>)</span>
-<span id="cb141-13"><a href="chapter04.html#cb141-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-14"><a href="chapter04.html#cb141-14" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">col=</span>manufacturer, <span class="at">size=</span>hwy)) <span class="sc">+</span> </span>
-<span id="cb141-15"><a href="chapter04.html#cb141-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">col=</span>manufacturer), <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter04.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
+<span id="cb114-2"><a href="chapter04.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-3"><a href="chapter04.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg, <span class="at">package=</span><span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb114-4"><a href="chapter04.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="co"># mpg &lt;- read.csv(&quot;http://goo.gl/uEeRGu&quot;)</span></span>
+<span id="cb114-5"><a href="chapter04.html#cb114-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-6"><a href="chapter04.html#cb114-6" aria-hidden="true" tabindex="-1"></a>mpg_select <span class="ot">&lt;-</span> mpg[mpg<span class="sc">$</span>manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;audi&quot;</span>, <span class="st">&quot;ford&quot;</span>, <span class="st">&quot;honda&quot;</span>, <span class="st">&quot;hyundai&quot;</span>), ]</span>
+<span id="cb114-7"><a href="chapter04.html#cb114-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-8"><a href="chapter04.html#cb114-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb114-9"><a href="chapter04.html#cb114-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())  <span class="co"># pre-set the bw theme.</span></span>
+<span id="cb114-10"><a href="chapter04.html#cb114-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg_select, <span class="fu">aes</span>(displ, cty)) <span class="sc">+</span> </span>
+<span id="cb114-11"><a href="chapter04.html#cb114-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;mpg: Displacement vs City Mileage&quot;</span>,</span>
+<span id="cb114-12"><a href="chapter04.html#cb114-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Bubble chart&quot;</span>)</span>
+<span id="cb114-13"><a href="chapter04.html#cb114-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-14"><a href="chapter04.html#cb114-14" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">col=</span>manufacturer, <span class="at">size=</span>hwy)) <span class="sc">+</span> </span>
+<span id="cb114-15"><a href="chapter04.html#cb114-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">col=</span>manufacturer), <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="book_filename_files/figure-html/ggplotExample1-1.png" width="672" /></p>
 </div>
 <div id="ロリポップチャート" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> ロリポップチャート<a href="chapter04.html#ロリポップチャート" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter04.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
-<span id="cb143-2"><a href="chapter04.html#cb143-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-3"><a href="chapter04.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb143-4"><a href="chapter04.html#cb143-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-5"><a href="chapter04.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data: group mean city mileage by manufacturer.</span></span>
-<span id="cb143-6"><a href="chapter04.html#cb143-6" aria-hidden="true" tabindex="-1"></a>cty_mpg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(mpg<span class="sc">$</span>cty, <span class="at">by=</span><span class="fu">list</span>(mpg<span class="sc">$</span>manufacturer), <span class="at">FUN=</span>mean)  <span class="co"># aggregate</span></span>
-<span id="cb143-7"><a href="chapter04.html#cb143-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cty_mpg) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;make&quot;</span>, <span class="st">&quot;mileage&quot;</span>)  <span class="co"># change column names</span></span>
-<span id="cb143-8"><a href="chapter04.html#cb143-8" aria-hidden="true" tabindex="-1"></a>cty_mpg <span class="ot">&lt;-</span> cty_mpg[<span class="fu">order</span>(cty_mpg<span class="sc">$</span>mileage), ]  <span class="co"># sort</span></span>
-<span id="cb143-9"><a href="chapter04.html#cb143-9" aria-hidden="true" tabindex="-1"></a>cty_mpg<span class="sc">$</span>make <span class="ot">&lt;-</span> <span class="fu">factor</span>(cty_mpg<span class="sc">$</span>make, <span class="at">levels =</span> cty_mpg<span class="sc">$</span>make)  <span class="co"># to retain the order in plot.</span></span>
-<span id="cb143-10"><a href="chapter04.html#cb143-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cty_mpg, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chapter04.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
+<span id="cb116-2"><a href="chapter04.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="chapter04.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb116-4"><a href="chapter04.html#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-5"><a href="chapter04.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data: group mean city mileage by manufacturer.</span></span>
+<span id="cb116-6"><a href="chapter04.html#cb116-6" aria-hidden="true" tabindex="-1"></a>cty_mpg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(mpg<span class="sc">$</span>cty, <span class="at">by=</span><span class="fu">list</span>(mpg<span class="sc">$</span>manufacturer), <span class="at">FUN=</span>mean)  <span class="co"># aggregate</span></span>
+<span id="cb116-7"><a href="chapter04.html#cb116-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cty_mpg) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;make&quot;</span>, <span class="st">&quot;mileage&quot;</span>)  <span class="co"># change column names</span></span>
+<span id="cb116-8"><a href="chapter04.html#cb116-8" aria-hidden="true" tabindex="-1"></a>cty_mpg <span class="ot">&lt;-</span> cty_mpg[<span class="fu">order</span>(cty_mpg<span class="sc">$</span>mileage), ]  <span class="co"># sort</span></span>
+<span id="cb116-9"><a href="chapter04.html#cb116-9" aria-hidden="true" tabindex="-1"></a>cty_mpg<span class="sc">$</span>make <span class="ot">&lt;-</span> <span class="fu">factor</span>(cty_mpg<span class="sc">$</span>make, <span class="at">levels =</span> cty_mpg<span class="sc">$</span>make)  <span class="co"># to retain the order in plot.</span></span>
+<span id="cb116-10"><a href="chapter04.html#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cty_mpg, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##          make mileage
 ## 9     lincoln      11
 ## 8  land rover      12
 ## 3       dodge      13
 ## 10    mercury      13</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter04.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb145-2"><a href="chapter04.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cty_mpg, <span class="fu">aes</span>(<span class="at">x=</span>make, <span class="at">y=</span>mileage)) <span class="sc">+</span> </span>
-<span id="cb145-3"><a href="chapter04.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb145-4"><a href="chapter04.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span>make, </span>
-<span id="cb145-5"><a href="chapter04.html#cb145-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend=</span>make, </span>
-<span id="cb145-6"><a href="chapter04.html#cb145-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y=</span><span class="dv">0</span>, </span>
-<span id="cb145-7"><a href="chapter04.html#cb145-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">yend=</span>mileage)) <span class="sc">+</span> </span>
-<span id="cb145-8"><a href="chapter04.html#cb145-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Lollipop Chart&quot;</span>, </span>
-<span id="cb145-9"><a href="chapter04.html#cb145-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Make Vs Avg. Mileage&quot;</span>, </span>
-<span id="cb145-10"><a href="chapter04.html#cb145-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;source: mpg&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb145-11"><a href="chapter04.html#cb145-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">65</span>, <span class="at">vjust=</span><span class="fl">0.6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter04.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb118-2"><a href="chapter04.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cty_mpg, <span class="fu">aes</span>(<span class="at">x=</span>make, <span class="at">y=</span>mileage)) <span class="sc">+</span> </span>
+<span id="cb118-3"><a href="chapter04.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb118-4"><a href="chapter04.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span>make, </span>
+<span id="cb118-5"><a href="chapter04.html#cb118-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend=</span>make, </span>
+<span id="cb118-6"><a href="chapter04.html#cb118-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y=</span><span class="dv">0</span>, </span>
+<span id="cb118-7"><a href="chapter04.html#cb118-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">yend=</span>mileage)) <span class="sc">+</span> </span>
+<span id="cb118-8"><a href="chapter04.html#cb118-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Lollipop Chart&quot;</span>, </span>
+<span id="cb118-9"><a href="chapter04.html#cb118-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Make Vs Avg. Mileage&quot;</span>, </span>
+<span id="cb118-10"><a href="chapter04.html#cb118-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;source: mpg&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb118-11"><a href="chapter04.html#cb118-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">65</span>, <span class="at">vjust=</span><span class="fl">0.6</span>))</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample2-1.png" width="672" /></p>
 </div>
 <div id="ヒストグラム" class="section level3 hasAnchor" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> ヒストグラム<a href="chapter04.html#ヒストグラム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="chapter04.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
-<span id="cb146-2"><a href="chapter04.html#cb146-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-3"><a href="chapter04.html#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
-<span id="cb146-4"><a href="chapter04.html#cb146-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-5"><a href="chapter04.html#cb146-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram on a Continuous (Numeric) Variable</span></span>
-<span id="cb146-6"><a href="chapter04.html#cb146-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ)) <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</span>
-<span id="cb146-7"><a href="chapter04.html#cb146-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-8"><a href="chapter04.html#cb146-8" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>class), </span>
-<span id="cb146-9"><a href="chapter04.html#cb146-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">binwidth =</span> .<span class="dv">1</span>, </span>
-<span id="cb146-10"><a href="chapter04.html#cb146-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col=</span><span class="st">&quot;black&quot;</span>, </span>
-<span id="cb146-11"><a href="chapter04.html#cb146-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size=</span>.<span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># change binwidth</span></span>
-<span id="cb146-12"><a href="chapter04.html#cb146-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Histogram with Auto Binning&quot;</span>, </span>
-<span id="cb146-13"><a href="chapter04.html#cb146-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Engine Displacement across Vehicle Classes&quot;</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="chapter04.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
+<span id="cb119-2"><a href="chapter04.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="chapter04.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb119-4"><a href="chapter04.html#cb119-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-5"><a href="chapter04.html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram on a Continuous (Numeric) Variable</span></span>
+<span id="cb119-6"><a href="chapter04.html#cb119-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ)) <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</span>
+<span id="cb119-7"><a href="chapter04.html#cb119-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-8"><a href="chapter04.html#cb119-8" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>class), </span>
+<span id="cb119-9"><a href="chapter04.html#cb119-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">binwidth =</span> .<span class="dv">1</span>, </span>
+<span id="cb119-10"><a href="chapter04.html#cb119-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col=</span><span class="st">&quot;black&quot;</span>, </span>
+<span id="cb119-11"><a href="chapter04.html#cb119-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size=</span>.<span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># change binwidth</span></span>
+<span id="cb119-12"><a href="chapter04.html#cb119-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Histogram with Auto Binning&quot;</span>, </span>
+<span id="cb119-13"><a href="chapter04.html#cb119-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Engine Displacement across Vehicle Classes&quot;</span>)  </span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter04.html#cb147-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>class), </span>
-<span id="cb147-2"><a href="chapter04.html#cb147-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bins=</span><span class="dv">5</span>, </span>
-<span id="cb147-3"><a href="chapter04.html#cb147-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col=</span><span class="st">&quot;black&quot;</span>, </span>
-<span id="cb147-4"><a href="chapter04.html#cb147-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size=</span>.<span class="dv">1</span>) <span class="sc">+</span>   <span class="co"># change number of bins</span></span>
-<span id="cb147-5"><a href="chapter04.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Histogram with Fixed Bins&quot;</span>, </span>
-<span id="cb147-6"><a href="chapter04.html#cb147-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Engine Displacement across Vehicle Classes&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="chapter04.html#cb120-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>class), </span>
+<span id="cb120-2"><a href="chapter04.html#cb120-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bins=</span><span class="dv">5</span>, </span>
+<span id="cb120-3"><a href="chapter04.html#cb120-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col=</span><span class="st">&quot;black&quot;</span>, </span>
+<span id="cb120-4"><a href="chapter04.html#cb120-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size=</span>.<span class="dv">1</span>) <span class="sc">+</span>   <span class="co"># change number of bins</span></span>
+<span id="cb120-5"><a href="chapter04.html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Histogram with Fixed Bins&quot;</span>, </span>
+<span id="cb120-6"><a href="chapter04.html#cb120-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Engine Displacement across Vehicle Classes&quot;</span>) </span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample3-2.png" width="672" /></p>
 </div>
 <div id="ボックスプロット" class="section level3 hasAnchor" number="4.4.4">
 <h3><span class="header-section-number">4.4.4</span> ボックスプロット<a href="chapter04.html#ボックスプロット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="chapter04.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
-<span id="cb148-2"><a href="chapter04.html#cb148-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-3"><a href="chapter04.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb148-4"><a href="chapter04.html#cb148-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-5"><a href="chapter04.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb148-6"><a href="chapter04.html#cb148-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(manufacturer, cty))</span>
-<span id="cb148-7"><a href="chapter04.html#cb148-7" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb148-8"><a href="chapter04.html#cb148-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binaxis=</span><span class="st">&#39;y&#39;</span>, </span>
-<span id="cb148-9"><a href="chapter04.html#cb148-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">stackdir=</span><span class="st">&#39;center&#39;</span>, </span>
-<span id="cb148-10"><a href="chapter04.html#cb148-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">dotsize =</span> .<span class="dv">5</span>, </span>
-<span id="cb148-11"><a href="chapter04.html#cb148-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-12"><a href="chapter04.html#cb148-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">65</span>, <span class="at">vjust=</span><span class="fl">0.6</span>)) <span class="sc">+</span> </span>
-<span id="cb148-13"><a href="chapter04.html#cb148-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Box plot + Dot plot&quot;</span>, </span>
-<span id="cb148-14"><a href="chapter04.html#cb148-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;City Mileage vs Class: Each dot represents 1 row in source data&quot;</span>,</span>
-<span id="cb148-15"><a href="chapter04.html#cb148-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: mpg&quot;</span>,</span>
-<span id="cb148-16"><a href="chapter04.html#cb148-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Class of Vehicle&quot;</span>,</span>
-<span id="cb148-17"><a href="chapter04.html#cb148-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;City Mileage&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="chapter04.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
+<span id="cb121-2"><a href="chapter04.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="chapter04.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb121-4"><a href="chapter04.html#cb121-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-5"><a href="chapter04.html#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb121-6"><a href="chapter04.html#cb121-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(manufacturer, cty))</span>
+<span id="cb121-7"><a href="chapter04.html#cb121-7" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb121-8"><a href="chapter04.html#cb121-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binaxis=</span><span class="st">&#39;y&#39;</span>, </span>
+<span id="cb121-9"><a href="chapter04.html#cb121-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">stackdir=</span><span class="st">&#39;center&#39;</span>, </span>
+<span id="cb121-10"><a href="chapter04.html#cb121-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">dotsize =</span> .<span class="dv">5</span>, </span>
+<span id="cb121-11"><a href="chapter04.html#cb121-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-12"><a href="chapter04.html#cb121-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">65</span>, <span class="at">vjust=</span><span class="fl">0.6</span>)) <span class="sc">+</span> </span>
+<span id="cb121-13"><a href="chapter04.html#cb121-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Box plot + Dot plot&quot;</span>, </span>
+<span id="cb121-14"><a href="chapter04.html#cb121-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;City Mileage vs Class: Each dot represents 1 row in source data&quot;</span>,</span>
+<span id="cb121-15"><a href="chapter04.html#cb121-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: mpg&quot;</span>,</span>
+<span id="cb121-16"><a href="chapter04.html#cb121-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Class of Vehicle&quot;</span>,</span>
+<span id="cb121-17"><a href="chapter04.html#cb121-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;City Mileage&quot;</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/ggplotExample4-1.png" width="672" /></p>
 </div>
 <div id="時系列データ" class="section level3 hasAnchor" number="4.4.5">
 <h3><span class="header-section-number">4.4.5</span> 時系列データ<a href="chapter04.html#時系列データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="chapter04.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
-<span id="cb150-2"><a href="chapter04.html#cb150-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-3"><a href="chapter04.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;forecast&quot;)</span></span>
-<span id="cb150-4"><a href="chapter04.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="chapter04.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Source:http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</span></span>
+<span id="cb123-2"><a href="chapter04.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="chapter04.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;forecast&quot;)</span></span>
+<span id="cb123-4"><a href="chapter04.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## This is forecast 8.17.0 
-##   Need help getting started? Try the online textbook FPP:
-##   http://otexts.com/fpp2/</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="chapter04.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
-<span id="cb153-2"><a href="chapter04.html#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-3"><a href="chapter04.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
-<span id="cb153-4"><a href="chapter04.html#cb153-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
-<span id="cb153-5"><a href="chapter04.html#cb153-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-6"><a href="chapter04.html#cb153-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb153-7"><a href="chapter04.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter04.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb125-2"><a href="chapter04.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-3"><a href="chapter04.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
+<span id="cb125-4"><a href="chapter04.html#cb125-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
+<span id="cb125-5"><a href="chapter04.html#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="chapter04.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb125-7"><a href="chapter04.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="chapter04.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter04.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-2.png" width="672" /></p>
 <p>インターネットで検索すると、ggplot2の使い方はたくさん出てきます。以下にまとまって学習できるサイトの例をリンクしておきます。個々の問題もほとんどネットで解決できます。検索のコツをつかむまでが大変ですが、エラーメッセージをコピペして検索することから始めると良いと思います。</p>
 

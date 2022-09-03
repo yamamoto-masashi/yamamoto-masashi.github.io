@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 2 R及びRStudioのインストール | データ分析入門</title>
+  <title>Page not found | データ分析入門</title>
   <meta name="description" content="This is my description." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 2 R及びRStudioのインストール | データ分析入門" />
+  <meta property="og:title" content="Page not found | データ分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is my description." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 2 R及びRStudioのインストール | データ分析入門" />
+  <meta name="twitter:title" content="Page not found | データ分析入門" />
   
   <meta name="twitter:description" content="This is my description." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="chapter03.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -264,75 +264,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r及びrstudioのインストール" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">chapter: 2</span> R及びRStudioのインストール<a href="chapter02.html#r及びrstudioのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="インストールを始める前に" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> インストールを始める前に<a href="chapter02.html#インストールを始める前に" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>思いつく順にいくつか注意点をまとめてみました。</p>
-<ol style="list-style-type: decimal">
-<li>プログラミングを始めるということは、マウスをあまり使わない世界に足を踏み入れること。
-<ul>
-<li>一つ一つの作業が文字として残るので、作業の再現性が高まります。</li>
-<li>クリックして探していたファイルを「パス(path)」という「住所」を示すことでパソコンに伝えることになります。</li>
-</ul></li>
-<li><strong>全角入力</strong>(日本語入力：原則コメント欄のみ)と<strong>半角入力</strong>(英数字入力)の違いをいつも意識する。
-<ul>
-<li>１２３４５は全角文字です。</li>
-<li>12345は半角文字です。</li>
-<li>1と１は区別がつきにくいですが、全角文字はプログラミングコードには使用できません。</li>
-</ul></li>
-<li>変数やフォルダの名前をつける際に、スペースを入れることはトラブルのもとなのでなるべくスペースを含む名前はつけない。
-<ul>
-<li>ちなみに、スペースの半角と全角は肉眼ではまず区別できません。</li>
-</ul></li>
-<li><code>R</code>は大文字と小文字を区別する言語（プログラミング言語によっては区別しないものもある）。</li>
-<li>頻出する「フォルダ」と「ディレクトリ」は、ほぼ同じ意味と考えて良い。</li>
-<li><code>R</code>はインターネットアクセスのあるところで利用することでその真価を発揮できる。
-<ul>
-<li>学内の無線LANにはすぐにアクセスできる状態にしておきましょう。</li>
-</ul></li>
-</ol>
-</div>
-<div id="rのインストール" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Rのインストール<a href="chapter02.html#rのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>R</code>を利用する上で最大の難関が<code>R</code>のインストールです。幸い、高知工科大学の<a href="https://yukiyanai.github.io/jp/">矢内勇生</a>先生が大変わかりやすいインストールガイドを作成してくださっています。自分の使っているマシンに応じて以下のいずれかの資料を参照してインストールを進めましょう。</p>
-<ul>
-<li><p><a href="https://yukiyanai.github.io/jp/resources/docs/install-R_windows.pdf">Windows用のインストールガイド</a></p></li>
-<li><p><a href="https://yukiyanai.github.io/jp/resources/docs/install-R_macOS.pdf">Mac用のインストールガイド</a></p></li>
-</ul>
-<p><code>R</code>のインストールは環境によっては非常に簡単です。本講義の学生にとって、矢内先生のマニュアルに沿ってインストールすることが重要なのは、多くの学生が日本語版のウィンドウズかMacOSを使用しているためです。<code>R</code>が利用するディレクトリなどに、半角英数以外の名前(日本語など）が使用されていると大きな問題を引き起こすことがあります。</p>
-<p>上記のインストールガイドに書いてあることを順番に一つずつ実行すれば必ず成功します。ただし、以下はガイドのうち、とばしてもらっても大丈夫なものです。</p>
-<ol style="list-style-type: decimal">
-<li>ウィンドウズユーザー
-<ul>
-<li>プログラミング用のフォントの話題</li>
-<li>Rtoolsのインストール</li>
-<li>RStudioのカスタマイズ</li>
-</ul></li>
-<li>Macユーザー
-<ul>
-<li>RStudioのカスタマイズ</li>
-</ul></li>
-</ol>
-<p>この作業にはダウンロードなども含めて大変時間がかかります。2回分の講義時間をとってありますので、じっくり腰を据えておこないましょう。</p>
-</div>
-<div id="rstudioのインストール" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> RStudioのインストール<a href="chapter02.html#rstudioのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>こちらは<code>R</code>のインストールに比べるとかなり楽に行うことができます。必ず先に<code>R</code>本体をインストールしてから、<a href="https://www.rstudio.com/">RStudio</a>をインストールしてください。</p>
-<ul>
-<li>Windows版のガイドでは、P82からがRStudioのインストールガイドです。</li>
-<li>MacOS版のガイドでは、P34からがRStudioのインストールガイドです。</li>
-</ul>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter03.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -363,7 +307,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/chapter02.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
 "text": "Edit"
 },
 "history": {
