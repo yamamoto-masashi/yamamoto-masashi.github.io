@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門</title>
-  <meta name="description" content="This is my description." />
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is my description." />
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chapter: 3 Rを使ってみよう：四則演算から外部データの読み込みまで | データ分析入門" />
   
-  <meta name="twitter:description" content="This is my description." />
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   
 
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-03" />
+<meta name="date" content="2022-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
@@ -195,6 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
 <li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.5</b> さらに学びたい人へ</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
 <ul>
@@ -229,8 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#tweetのネガポジ分析"><i class="fa fa-check"></i><b>8.3</b> Tweetのネガポジ分析</a></li>
-<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.4</b> Googleトレンドの分析</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -379,18 +381,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-29"><a href="chapter03.html#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-30"><a href="chapter03.html#cb39-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-31"><a href="chapter03.html#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prefnameJ)</span></code></pre></div>
-<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;  
-##  [5] &quot;05秋田県&quot;   &quot;06山形県&quot;   &quot;07福島県&quot;   &quot;08茨城県&quot;  
-##  [9] &quot;09栃木県&quot;   &quot;10群馬県&quot;   &quot;11埼玉県&quot;   &quot;12千葉県&quot;  
-## [13] &quot;13東京都&quot;   &quot;14神奈川県&quot; &quot;15新潟県&quot;   &quot;16富山県&quot;  
-## [17] &quot;17石川県&quot;   &quot;18福井県&quot;   &quot;19山梨県&quot;   &quot;20長野県&quot;  
-## [21] &quot;21岐阜県&quot;   &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;  
-## [25] &quot;25滋賀県&quot;   &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;  
-## [29] &quot;29奈良県&quot;   &quot;30和歌山県&quot; &quot;31鳥取県&quot;   &quot;32島根県&quot;  
-## [33] &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;   &quot;36徳島県&quot;  
-## [37] &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;  
-## [41] &quot;41佐賀県&quot;   &quot;42長崎県&quot;   &quot;43熊本県&quot;   &quot;44大分県&quot;  
-## [45] &quot;45宮崎県&quot;   &quot;46鹿児島県&quot; &quot;47沖縄県&quot;</code></pre>
+<pre><code>##  [1] &quot;01北海道&quot;   &quot;02青森県&quot;   &quot;03岩手県&quot;   &quot;04宮城県&quot;   &quot;05秋田県&quot;   &quot;06山形県&quot;  
+##  [7] &quot;07福島県&quot;   &quot;08茨城県&quot;   &quot;09栃木県&quot;   &quot;10群馬県&quot;   &quot;11埼玉県&quot;   &quot;12千葉県&quot;  
+## [13] &quot;13東京都&quot;   &quot;14神奈川県&quot; &quot;15新潟県&quot;   &quot;16富山県&quot;   &quot;17石川県&quot;   &quot;18福井県&quot;  
+## [19] &quot;19山梨県&quot;   &quot;20長野県&quot;   &quot;21岐阜県&quot;   &quot;22静岡県&quot;   &quot;23愛知県&quot;   &quot;24三重県&quot;  
+## [25] &quot;25滋賀県&quot;   &quot;26京都府&quot;   &quot;27大阪府&quot;   &quot;28兵庫県&quot;   &quot;29奈良県&quot;   &quot;30和歌山県&quot;
+## [31] &quot;31鳥取県&quot;   &quot;32島根県&quot;   &quot;33岡山県&quot;   &quot;34広島県&quot;   &quot;35山口県&quot;   &quot;36徳島県&quot;  
+## [37] &quot;37香川県&quot;   &quot;38愛媛県&quot;   &quot;39高知県&quot;   &quot;40福岡県&quot;   &quot;41佐賀県&quot;   &quot;42長崎県&quot;  
+## [43] &quot;43熊本県&quot;   &quot;44大分県&quot;   &quot;45宮崎県&quot;   &quot;46鹿児島県&quot; &quot;47沖縄県&quot;</code></pre>
 <p><code>print(prefnameJ)</code>で都道府県名を出力しています。ここで<code>[1]</code>は<code>prefnameJ</code>というベクトルの中の第１要素を意味しています。出力が長い場合、改行されるごとに先頭の要素番号が出力されます。</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter03.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下のデータは</span></span>
 <span id="cb41-2"><a href="chapter03.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 総務省「統計でみる都道府県のすがた2020」</span></span>
@@ -496,10 +494,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter03.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chapter03.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
-<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; ...</code></pre>
+<pre><code>##  chr [1:47] &quot;5286000&quot; &quot;1263000&quot; &quot;1241000&quot; &quot;2316000&quot; &quot;981000&quot; &quot;1090000&quot; &quot;1864000&quot; ...</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chapter03.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(testDB<span class="sc">$</span>A1101)</span></code></pre></div>
-<pre><code>## Warning in mean.default(testDB$A1101): argument is not numeric or
-## logical: returning NA</code></pre>
+<pre><code>## Warning in mean.default(testDB$A1101): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p><code>chr</code>という記号が文字列型であることを示しています。そのため、データの型を文字列型から数値型に変換する必要があります。</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="chapter03.html#cb54-1" aria-hidden="true" tabindex="-1"></a>testDB<span class="sc">$</span>A1101<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(testDB<span class="sc">$</span>A1101)</span>
@@ -596,16 +593,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb58-3"><a href="chapter03.html#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-4"><a href="chapter03.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sampleDB)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 16
-##   prefcode prefnameJ   A1101  A1301  A1303  B1101  B1103 B4107 B4108
-##      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1        1 01北海道  5286000 577000 1.66e6 7.84e6 2.24e6   131 1742.
-## 2        2 02青森県  1263000 137000 4.12e5 9.65e5 3.23e5   117 1642 
-## 3        3 03岩手県  1241000 140000 4.03e5 1.53e6 3.71e5   106 1778.
-## 4        4 04宮城県  2316000 276000 6.43e5 7.28e5 3.15e5    63 1998.
-## 5        5 05秋田県   981000  98000 3.57e5 1.16e6 3.20e5   101 1526.
-## 6        6 06山形県  1090000 127000 3.58e5 9.32e5 2.88e5    89 1765 
-## # … with 7 more variables: D110101 &lt;dbl&gt;, E6102 &lt;dbl&gt;, E6302 &lt;dbl&gt;,
-## #   F610201 &lt;dbl&gt;, F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;</code></pre>
+##   prefcode prefnameJ   A1101  A1301   A1303  B1101  B1103 B4107 B4108 D110101 E6102 E6302
+##      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1        1 01北海道  5286000 577000 1656000 7.84e6 2.24e6   131 1742.     179    38 78122
+## 2        2 02青森県  1263000 137000  412000 9.65e5 3.23e5   117 1642       40    10 15196
+## 3        3 03岩手県  1241000 140000  403000 1.53e6 3.71e5   106 1778.      33     6 11373
+## 4        4 04宮城県  2316000 276000  643000 7.28e5 3.15e5    63 1998.      35    14 48623
+## 5        5 05秋田県   981000  98000  357000 1.16e6 3.20e5   101 1526.      25     7  8947
+## 6        6 06山形県  1090000 127000  358000 9.32e5 2.88e5    89 1765       35     6 11609
+## # … with 4 more variables: F610201 &lt;dbl&gt;, F610202 &lt;dbl&gt;, H110202 &lt;dbl&gt;, Kanto &lt;dbl&gt;</code></pre>
 <p>表の変数名の下の<code>&lt;dbl&gt;</code>は変数が数値型であることを示しています。</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="chapter03.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel()関数で読み込んだ場合は、文字列になっていないので、平均が計算可能。</span></span>
 <span id="cb60-2"><a href="chapter03.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -644,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.7.1</span> packageの応用例: 野球<a href="chapter03.html#packageの応用例-野球" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>package</code>は複雑な作業を関数化してくれているとも言え、便利なものである。さらに複数の<code>package</code>を同時に利用することでさらに便利になる場合も多い。以下では<code>SportyR</code>で描写したスタジアムにMLBのデータを操作できる<code>baseballr</code>という<code>package</code>を使って打球の情報を追加してみる。</p>
 <p>MLBの公式と思われる<a href="https://baseballsavant.mlb.com/">Baseball Savant</a>では、StatCastと呼ばれる高性能カメラなどを駆使して記録された試合中の一球ごとのボールの動きがプレイヤーや結果の情報と一緒に公開されている。</p>
-<p>以下は2021年と2022年(ただし8月20日まで)の大谷翔平選手のバッテイング記録をプロットしたものである。</p>
+<p>以下は2021年と2022年(ただし9月8日まで)の大谷翔平選手のバッテイング記録をプロットしたものである。</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter03.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># インストールしていない場合、以下も実行</span></span>
 <span id="cb65-2"><a href="chapter03.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;baseballr&quot;)</span></span>
 <span id="cb65-3"><a href="chapter03.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
@@ -690,7 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb66-2"><a href="chapter03.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022年</span></span>
 <span id="cb66-3"><a href="chapter03.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb66-4"><a href="chapter03.html#cb66-4" aria-hidden="true" tabindex="-1"></a>Ohtani2022 <span class="ot">&lt;-</span> <span class="fu">scrape_statcast_savant_batter</span>(<span class="st">&quot;2022-04-01&quot;</span>,</span>
-<span id="cb66-5"><a href="chapter03.html#cb66-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2022-08-20&quot;</span>,</span>
+<span id="cb66-5"><a href="chapter03.html#cb66-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;2022-09-08&quot;</span>,</span>
 <span id="cb66-6"><a href="chapter03.html#cb66-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">batterid =</span> <span class="dv">660271</span>)</span>
 <span id="cb66-7"><a href="chapter03.html#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-8"><a href="chapter03.html#cb66-8" aria-hidden="true" tabindex="-1"></a></span>

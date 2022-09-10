@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>chapter: 4 可視化(1)：ggplot2によるグラフ作成 | データ分析入門</title>
-  <meta name="description" content="This is my description." />
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="chapter: 4 可視化(1)：ggplot2によるグラフ作成 | データ分析入門" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is my description." />
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chapter: 4 可視化(1)：ggplot2によるグラフ作成 | データ分析入門" />
   
-  <meta name="twitter:description" content="This is my description." />
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
   
 
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-03" />
+<meta name="date" content="2022-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
@@ -195,6 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
 <li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.5</b> さらに学びたい人へ</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
 <ul>
@@ -229,8 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#tweetのネガポジ分析"><i class="fa fa-check"></i><b>8.3</b> Tweetのネガポジ分析</a></li>
-<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.4</b> Googleトレンドの分析</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -575,21 +577,20 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <span id="cb97-5"><a href="chapter04.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="co"># データフレームの表示</span></span>
 <span id="cb97-6"><a href="chapter04.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 28
-##     PID county   state  area popto…¹ popde…² popwh…³ popbl…⁴ popam…⁵
-##   &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
-## 1   561 ADAMS    IL    0.052   66090   1271.   63917    1702      98
-## 2   562 ALEXAND… IL    0.014   10626    759     7054    3496      19
-## 3   563 BOND     IL    0.022   14991    681.   14477     429      35
-## 4   564 BOONE    IL    0.017   30806   1812.   29344     127      46
-## 5   565 BROWN    IL    0.018    5836    324.    5264     547      14
-## 6   566 BUREAU   IL    0.05    35688    714.   35157      50      65
-## # … with 19 more variables: popasian &lt;int&gt;, popother &lt;int&gt;,
-## #   percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;,
-## #   percasian &lt;dbl&gt;, percother &lt;dbl&gt;, popadults &lt;int&gt;,
-## #   perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
-## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
-## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;,
-## #   percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;, …</code></pre>
+##     PID county    state  area poptotal popdensity popwh…¹ popbl…² popam…³ popas…⁴ popot…⁵
+##   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+## 1   561 ADAMS     IL    0.052    66090      1271.   63917    1702      98     249     124
+## 2   562 ALEXANDER IL    0.014    10626       759     7054    3496      19      48       9
+## 3   563 BOND      IL    0.022    14991       681.   14477     429      35      16      34
+## 4   564 BOONE     IL    0.017    30806      1812.   29344     127      46     150    1139
+## 5   565 BROWN     IL    0.018     5836       324.    5264     547      14       5       6
+## 6   566 BUREAU    IL    0.05     35688       714.   35157      50      65     195     221
+## # … with 17 more variables: percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;,
+## #   percasian &lt;dbl&gt;, percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;,
+## #   percprof &lt;dbl&gt;, poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
+## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;,
+## #   percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;, category &lt;chr&gt;, and abbreviated variable
+## #   names ¹​popwhite, ²​popblack, ³​popamerindian, ⁴​popasian, ⁵​popother</code></pre>
 <p><code>midewest</code>は<code>ggplot2</code>に付属しているデータベースで、アメリカ中西部の５つの州(IL, IN, MI, OH,WI)のサンプルデータが保存してあります。</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="chapter04.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>midwest, <span class="fu">aes</span>(<span class="at">x=</span>percollege,<span class="at">y=</span>percadultpoverty))</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotintro2-1.png" width="672" /></p>
@@ -829,15 +830,18 @@ r = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sq
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter04.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
-<span id="cb125-2"><a href="chapter04.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="chapter04.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
-<span id="cb125-4"><a href="chapter04.html#cb125-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
-<span id="cb125-5"><a href="chapter04.html#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-6"><a href="chapter04.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb125-7"><a href="chapter04.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
+<pre><code>## This is forecast 8.17.0 
+##   Want to stay up-to-date? Read the Hyndsight blog:
+##   https://robjhyndman.com/hyndsight/</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter04.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb126-2"><a href="chapter04.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="chapter04.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data</span></span>
+<span id="cb126-4"><a href="chapter04.html#cb126-4" aria-hidden="true" tabindex="-1"></a>nottem_small <span class="ot">&lt;-</span> <span class="fu">window</span>(nottem, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">1925</span>, <span class="dv">12</span>))  <span class="co"># subset a smaller timewindow</span></span>
+<span id="cb126-5"><a href="chapter04.html#cb126-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-6"><a href="chapter04.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb126-7"><a href="chapter04.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(AirPassengers) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: International Airline Passengers&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter04.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chapter04.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseasonplot</span>(nottem_small) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Seasonal plot: Air temperatures at Nottingham Castle&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/ggplotExample5-2.png" width="672" /></p>
 <p>インターネットで検索すると、ggplot2の使い方はたくさん出てきます。以下にまとまって学習できるサイトの例をリンクしておきます。個々の問題もほとんどネットで解決できます。検索のコツをつかむまでが大変ですが、エラーメッセージをコピペして検索することから始めると良いと思います。</p>
 
