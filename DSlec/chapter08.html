@@ -23,7 +23,7 @@
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-10" />
+<meta name="date" content="2022-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,22 +272,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="twitterデータの活用" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Twitterデータの活用<a href="chapter08.html#twitterデータの活用" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Twitterデータの取得・分析をおこないます。分析には、<code>rtweet</code>という<code>package</code>を使用します。ワードクラウドを作るための準備として、最初に形態素解析のためのソフトウェアを下記の手順でインストールします（ここは大きな山場です）。</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="chapter08.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;wordcloud2&quot;)</span></span>
-<span id="cb223-2"><a href="chapter08.html#cb223-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-3"><a href="chapter08.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb223-4"><a href="chapter08.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span>
-<span id="cb223-5"><a href="chapter08.html#cb223-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb223-6"><a href="chapter08.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb223-7"><a href="chapter08.html#cb223-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
-<span id="cb223-8"><a href="chapter08.html#cb223-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
-<span id="cb223-9"><a href="chapter08.html#cb223-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb223-10"><a href="chapter08.html#cb223-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb223-11"><a href="chapter08.html#cb223-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb223-12"><a href="chapter08.html#cb223-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-13"><a href="chapter08.html#cb223-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-14"><a href="chapter08.html#cb223-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ディレクトリの設定</span></span>
-<span id="cb223-15"><a href="chapter08.html#cb223-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ここで指定したディレクトリにtmp_dataというフォルダを事前に作成する。</span></span>
-<span id="cb223-16"><a href="chapter08.html#cb223-16" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/Users/yamamoto/R/forTeaching/&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="chapter08.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;wordcloud2&quot;)</span></span>
+<span id="cb226-2"><a href="chapter08.html#cb226-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb226-3"><a href="chapter08.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb226-4"><a href="chapter08.html#cb226-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rtweet&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     flatten</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter08.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb229-2"><a href="chapter08.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb229-3"><a href="chapter08.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
+<span id="cb229-4"><a href="chapter08.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
+<span id="cb229-5"><a href="chapter08.html#cb229-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:cowplot&#39;:
+## 
+##     stamp</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter08.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb233-2"><a href="chapter08.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb233-3"><a href="chapter08.html#cb233-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-4"><a href="chapter08.html#cb233-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-5"><a href="chapter08.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ディレクトリの設定</span></span>
+<span id="cb233-6"><a href="chapter08.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ここで指定したディレクトリにtmp_dataというフォルダを事前に作成する。</span></span>
+<span id="cb233-7"><a href="chapter08.html#cb233-7" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/Users/yamamoto/R/forTeaching/&quot;)</span></span></code></pre></div>
 <div id="mecabのインストール" class="section level3 hasAnchor" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Mecabのインストール<a href="chapter08.html#mecabのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>はじめに日本語の形態素解析に必要なMecabというソフトウェアをインストールする。</p>
@@ -341,124 +354,124 @@ MeCab本体がデフォルトとは違うフォルダにインストールされ
 <h3><span class="header-section-number">8.1.4</span> Twitterでの検索ワード<a href="chapter08.html#twitterでの検索ワード" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>以下の<span class="math inline">\(x\)</span>に検索したいワードを指定する。
 <span class="math inline">\(n\)</span>は入手するtweetの数（ただし、無料版では1週間程度しかさかのぼれない）。</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="chapter08.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co">#検索ワード</span></span>
-<span id="cb224-2"><a href="chapter08.html#cb224-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="st">&quot;エリザベス女王&quot;</span></span>
-<span id="cb224-3"><a href="chapter08.html#cb224-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb224-4"><a href="chapter08.html#cb224-4" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
-<span id="cb224-5"><a href="chapter08.html#cb224-5" aria-hidden="true" tabindex="-1"></a><span class="co">#https://medium.com/@afrasyab/the-best-way-to-use-r-to-get-twitter-data-56ad122194f</span></span>
-<span id="cb224-6"><a href="chapter08.html#cb224-6" aria-hidden="true" tabindex="-1"></a>rt<span class="ot">&lt;-</span><span class="fu">search_tweets</span>(x, <span class="at">n=</span><span class="dv">10000</span>,<span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="chapter08.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co">#検索ワード</span></span>
+<span id="cb234-2"><a href="chapter08.html#cb234-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="st">&quot;エリザベス女王&quot;</span></span>
+<span id="cb234-3"><a href="chapter08.html#cb234-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-4"><a href="chapter08.html#cb234-4" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
+<span id="cb234-5"><a href="chapter08.html#cb234-5" aria-hidden="true" tabindex="-1"></a><span class="co">#https://medium.com/@afrasyab/the-best-way-to-use-r-to-get-twitter-data-56ad122194f</span></span>
+<span id="cb234-6"><a href="chapter08.html#cb234-6" aria-hidden="true" tabindex="-1"></a>rt<span class="ot">&lt;-</span><span class="fu">search_tweets</span>(x, <span class="at">n=</span><span class="dv">10000</span>,<span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="ワードクラウド" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> ワードクラウド<a href="chapter08.html#ワードクラウド" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ワードクラウドでカウントしたくない記号などを排除する。</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter08.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分析に加えたくない記号などを削除する</span></span>
-<span id="cb225-2"><a href="chapter08.html#cb225-2" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;https://.*&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-3"><a href="chapter08.html#cb225-3" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;@&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-4"><a href="chapter08.html#cb225-4" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;RT&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-5"><a href="chapter08.html#cb225-5" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;#&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-6"><a href="chapter08.html#cb225-6" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-7"><a href="chapter08.html#cb225-7" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-8"><a href="chapter08.html#cb225-8" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-9"><a href="chapter08.html#cb225-9" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb225-10"><a href="chapter08.html#cb225-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-11"><a href="chapter08.html#cb225-11" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
-<span id="cb225-12"><a href="chapter08.html#cb225-12" aria-hidden="true" tabindex="-1"></a><span class="co"># https://note.com/text_tier2718/n/n6b20ccd3cb49</span></span>
-<span id="cb225-13"><a href="chapter08.html#cb225-13" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span></span>
-<span id="cb225-14"><a href="chapter08.html#cb225-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">p{ASCII}&#39;</span>,<span class="at">replacement =</span> <span class="st">&quot;&quot;</span>) <span class="co"># 記号を消します。</span></span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="chapter08.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分析に加えたくない記号などを削除する</span></span>
+<span id="cb235-2"><a href="chapter08.html#cb235-2" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;https://.*&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-3"><a href="chapter08.html#cb235-3" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;@&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-4"><a href="chapter08.html#cb235-4" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;RT&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-5"><a href="chapter08.html#cb235-5" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;#&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-6"><a href="chapter08.html#cb235-6" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-7"><a href="chapter08.html#cb235-7" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-8"><a href="chapter08.html#cb235-8" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-9"><a href="chapter08.html#cb235-9" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
+<span id="cb235-10"><a href="chapter08.html#cb235-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-11"><a href="chapter08.html#cb235-11" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
+<span id="cb235-12"><a href="chapter08.html#cb235-12" aria-hidden="true" tabindex="-1"></a><span class="co"># https://note.com/text_tier2718/n/n6b20ccd3cb49</span></span>
+<span id="cb235-13"><a href="chapter08.html#cb235-13" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span></span>
+<span id="cb235-14"><a href="chapter08.html#cb235-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">p{ASCII}&#39;</span>,<span class="at">replacement =</span> <span class="st">&quot;&quot;</span>) <span class="co"># 記号を消します。</span></span></code></pre></div>
 <p>形態素解析を実施</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="chapter08.html#cb226-1" aria-hidden="true" tabindex="-1"></a>rt_text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span> </span>
-<span id="cb226-2"><a href="chapter08.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb226-3"><a href="chapter08.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#iconv(from = &quot;UTF-8&quot;, to = &quot;CP932&quot;) %&gt;%  # windowsのみEncodeの変更が必要です。</span></span>
-<span id="cb226-4"><a href="chapter08.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)    <span class="co"># テキストを結合</span></span>
-<span id="cb226-5"><a href="chapter08.html#cb226-5" aria-hidden="true" tabindex="-1"></a>textfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()    <span class="co"># 一時ファイルの入れ物を作成</span></span>
-<span id="cb226-6"><a href="chapter08.html#cb226-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(rt_text, textfile) <span class="co"># docDFで読むために一時ファイルを作成</span></span>
-<span id="cb226-7"><a href="chapter08.html#cb226-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb226-8"><a href="chapter08.html#cb226-8" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> <span class="fu">docDF</span>(textfile, <span class="at">type =</span> <span class="dv">1</span>) <span class="co">#形態素解析を行う際に特定の品詞に絞って抽出</span></span></code></pre></div>
-<pre><code>## file_name =  /var/folders/13/9dn0stxj0ms73960hn9c5b9r0000gn/T//Rtmpvq0FYV/file6a0433e7c3f3 opened
-## number of extracted terms = 15141
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter08.html#cb236-1" aria-hidden="true" tabindex="-1"></a>rt_text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span> </span>
+<span id="cb236-2"><a href="chapter08.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb236-3"><a href="chapter08.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#iconv(from = &quot;UTF-8&quot;, to = &quot;CP932&quot;) %&gt;%  # windowsのみEncodeの変更が必要です。</span></span>
+<span id="cb236-4"><a href="chapter08.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)    <span class="co"># テキストを結合</span></span>
+<span id="cb236-5"><a href="chapter08.html#cb236-5" aria-hidden="true" tabindex="-1"></a>textfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()    <span class="co"># 一時ファイルの入れ物を作成</span></span>
+<span id="cb236-6"><a href="chapter08.html#cb236-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(rt_text, textfile) <span class="co"># docDFで読むために一時ファイルを作成</span></span>
+<span id="cb236-7"><a href="chapter08.html#cb236-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-8"><a href="chapter08.html#cb236-8" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> <span class="fu">docDF</span>(textfile, <span class="at">type =</span> <span class="dv">1</span>) <span class="co">#形態素解析を行う際に特定の品詞に絞って抽出</span></span></code></pre></div>
+<pre><code>## file_name =  /var/folders/13/9dn0stxj0ms73960hn9c5b9r0000gn/T//RtmpAjqaZH/file32ab4b41ef2d opened
+## number of extracted terms = 16408
 ## now making a data frame. wait a while!</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="chapter08.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cloud &lt;- docDF(textfile, type = 1, pos = &quot;名詞&quot;) </span></span>
-<span id="cb228-2"><a href="chapter08.html#cb228-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-3"><a href="chapter08.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(textfile) <span class="co"># 一時ファイル消去</span></span>
-<span id="cb228-4"><a href="chapter08.html#cb228-4" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span> </span>
-<span id="cb228-5"><a href="chapter08.html#cb228-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="at">FREQ =</span> <span class="fu">starts_with</span>(<span class="st">&quot;file&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># 4列目のfile****....という名前が長いためFREQへ変更</span></span>
-<span id="cb228-6"><a href="chapter08.html#cb228-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(FREQ))</span>
-<span id="cb228-7"><a href="chapter08.html#cb228-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-8"><a href="chapter08.html#cb228-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 消したい不要なワードを設定</span></span>
-<span id="cb228-9"><a href="chapter08.html#cb228-9" aria-hidden="true" tabindex="-1"></a>exclude_word <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;する&quot;</span>,<span class="st">&quot;なる&quot;</span>,<span class="st">&quot;やる&quot;</span>,<span class="st">&quot;ある&quot;</span>,<span class="st">&quot;いる&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;♪&quot;</span>,<span class="st">&quot;エリザベス&quot;</span>,<span class="st">&quot;女王&quot;</span>,x)</span>
-<span id="cb228-10"><a href="chapter08.html#cb228-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-11"><a href="chapter08.html#cb228-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 動詞と名詞で良い感じのやつを残す</span></span>
-<span id="cb228-12"><a href="chapter08.html#cb228-12" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span></span>
-<span id="cb228-13"><a href="chapter08.html#cb228-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;動詞|名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
-<span id="cb228-14"><a href="chapter08.html#cb228-14" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;助動詞|代名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
-<span id="cb228-15"><a href="chapter08.html#cb228-15" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;非自立|接尾|数|代名詞&quot;</span>, <span class="at">x =</span> POS2)</span>
-<span id="cb228-16"><a href="chapter08.html#cb228-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb228-17"><a href="chapter08.html#cb228-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>TERM <span class="sc">%in%</span> exclude_word)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter08.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cloud &lt;- docDF(textfile, type = 1, pos = &quot;名詞&quot;) </span></span>
+<span id="cb238-2"><a href="chapter08.html#cb238-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-3"><a href="chapter08.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(textfile) <span class="co"># 一時ファイル消去</span></span>
+<span id="cb238-4"><a href="chapter08.html#cb238-4" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span> </span>
+<span id="cb238-5"><a href="chapter08.html#cb238-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="at">FREQ =</span> <span class="fu">starts_with</span>(<span class="st">&quot;file&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># 4列目のfile****....という名前が長いためFREQへ変更</span></span>
+<span id="cb238-6"><a href="chapter08.html#cb238-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(FREQ))</span>
+<span id="cb238-7"><a href="chapter08.html#cb238-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-8"><a href="chapter08.html#cb238-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 消したい不要なワードを設定</span></span>
+<span id="cb238-9"><a href="chapter08.html#cb238-9" aria-hidden="true" tabindex="-1"></a>exclude_word <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;する&quot;</span>,<span class="st">&quot;なる&quot;</span>,<span class="st">&quot;やる&quot;</span>,<span class="st">&quot;ある&quot;</span>,<span class="st">&quot;いる&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;♪&quot;</span>,<span class="st">&quot;エリザベス&quot;</span>,<span class="st">&quot;女王&quot;</span>,x)</span>
+<span id="cb238-10"><a href="chapter08.html#cb238-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-11"><a href="chapter08.html#cb238-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 動詞と名詞で良い感じのやつを残す</span></span>
+<span id="cb238-12"><a href="chapter08.html#cb238-12" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span></span>
+<span id="cb238-13"><a href="chapter08.html#cb238-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;動詞|名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
+<span id="cb238-14"><a href="chapter08.html#cb238-14" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;助動詞|代名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
+<span id="cb238-15"><a href="chapter08.html#cb238-15" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;非自立|接尾|数|代名詞&quot;</span>, <span class="at">x =</span> POS2)</span>
+<span id="cb238-16"><a href="chapter08.html#cb238-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb238-17"><a href="chapter08.html#cb238-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>TERM <span class="sc">%in%</span> exclude_word)</span></code></pre></div>
 <p>可視化をする。</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter08.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Takaoフォント様 https://launchpad.net/takao-fonts</span></span>
-<span id="cb229-2"><a href="chapter08.html#cb229-2" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="sc">%&gt;%</span></span>
-<span id="cb229-3"><a href="chapter08.html#cb229-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(TERM,FREQ) <span class="sc">%&gt;%</span></span>
-<span id="cb229-4"><a href="chapter08.html#cb229-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># 描画する範囲を設定</span></span>
-<span id="cb229-5"><a href="chapter08.html#cb229-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">fontFamily =</span> <span class="st">&#39;Takao Pゴシック&#39;</span>, <span class="at">color =</span> <span class="st">&quot;random-light&quot;</span>,</span>
-<span id="cb229-6"><a href="chapter08.html#cb229-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">minRotation =</span> <span class="dv">0</span>, <span class="at">maxRotation =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="fl">1.2</span>)</span></code></pre></div>
-<div id="htmlwidget-8194b20830a58b86a0d4" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8194b20830a58b86a0d4">{"x":{"word":["国葬","安倍","思う","死去","陛下","日本","天皇陛下","英国","亡くなる","出席","イギリス","ニュース","人","英","国民","見る","崩御","言う","調整","方向","年","首相","世界","冥福","独自","歳","参列","お祈り","天皇","追悼","王室","反対","晋","逝去","日テレ","知る","国王","世","葬儀","国","チャールズ","総理","前","今","競馬","受ける","いう","死","大統領","出る","岸田","虹","行く","哀悼","愛す","写真","在位","即位","訃報","心","時代","話","自分","意","皇室","ロンドン","本物","行う","できる","政治","好き","世界中","今日","報道","気持ち","発表","関係","おはよう","感じる","比較","考える","違う","聞く","素敵","生きる","上皇","来る","殿下","存在","言葉","韓国","バイデン","君主","弔意","表す","声","安らか","わかる","外交","歴史"],"freq":[3426,1241,924,920,868,854,845,832,772,772,731,684,602,585,579,548,496,481,456,444,427,427,422,390,386,368,356,352,342,324,303,299,299,295,294,293,279,278,271,259,252,249,248,240,239,229,226,224,218,217,212,211,208,201,200,198,198,197,195,194,192,179,173,171,170,169,168,164,163,161,160,155,154,154,154,153,153,150,150,150,147,145,142,141,140,137,137,135,133,132,132,131,131,131,130,129,129,127,127,126],"fontFamily":"Takao Pゴシック","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":0.0630472854640981,"backgroundColor":"white","gridSize":0,"minRotation":0,"maxRotation":0,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="chapter08.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Takaoフォント様 https://launchpad.net/takao-fonts</span></span>
+<span id="cb239-2"><a href="chapter08.html#cb239-2" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="sc">%&gt;%</span></span>
+<span id="cb239-3"><a href="chapter08.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(TERM,FREQ) <span class="sc">%&gt;%</span></span>
+<span id="cb239-4"><a href="chapter08.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># 描画する範囲を設定</span></span>
+<span id="cb239-5"><a href="chapter08.html#cb239-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">fontFamily =</span> <span class="st">&#39;Takao Pゴシック&#39;</span>, <span class="at">color =</span> <span class="st">&quot;random-light&quot;</span>,</span>
+<span id="cb239-6"><a href="chapter08.html#cb239-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">minRotation =</span> <span class="dv">0</span>, <span class="at">maxRotation =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="fl">1.2</span>)</span></code></pre></div>
+<div id="htmlwidget-7c7d2dbbd1df4eedf651" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c7d2dbbd1df4eedf651">{"x":{"word":["国葬","陛下","弔問","参列","イギリス","英","英国","中国","議会","ニュース","日本","天皇","安倍","政府","皇后","時間","出発","思う","人","並ぶ","拒否","見る","葬儀","首相","岸田","招待","外務省","言う","反対","国民","王室","外交","列","棺","礼節","ロンドン","国","追悼","出席","速報","一般","即位","訪問","総理","専用","オンライン","議決","石破","外国","世界","会","見送り","国王","行く","ベッカム","亡くなる","晋","キャスター","前","年","天皇陛下","世","市民","死去","読売新聞","とる","聞く","国会","チャールズ","関係","知る","今","報道","参加","できる","国家","崩御","マスク","誤り","日","出る","ベッカム","一緒","代表","統一教会","話","内閣","行う","いう","行列","愛子","愛す","決定","回答","幹事","議員","情報","立憲","違う","招待客"],"freq":[5796,1649,1620,1419,1401,1347,1316,1253,1128,1089,1066,1008,991,917,871,838,827,743,733,705,647,619,605,593,586,585,579,549,544,530,512,508,467,448,418,380,379,371,357,344,343,340,340,335,327,322,322,315,313,312,303,301,294,292,282,279,279,267,267,262,260,257,257,254,238,230,229,228,220,219,217,215,211,207,205,202,202,198,195,191,190,189,183,182,182,182,179,179,178,178,175,171,171,170,166,164,162,161,159,157],"fontFamily":"Takao Pゴシック","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":0.0372670807453416,"backgroundColor":"white","gridSize":0,"minRotation":0,"maxRotation":0,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 <div id="googleトレンドの分析" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Googleトレンドの分析<a href="chapter08.html#googleトレンドの分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>社会トレンドを分析できる別の手段として、Googleトレンドがあります。検索数ではなく、相対的な変化を表すものですが、人々の関心の変化を時系列で見る上では非常に参考になります。Googleトレンドは、<code>gtrendsR</code>という<code>package</code>で分析することが可能です。</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="chapter08.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
-<span id="cb230-2"><a href="chapter08.html#cb230-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-3"><a href="chapter08.html#cb230-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
-<span id="cb230-4"><a href="chapter08.html#cb230-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-5"><a href="chapter08.html#cb230-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
-<span id="cb230-6"><a href="chapter08.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
-<span id="cb230-7"><a href="chapter08.html#cb230-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
-<span id="cb230-8"><a href="chapter08.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
-<span id="cb230-9"><a href="chapter08.html#cb230-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
-<span id="cb230-10"><a href="chapter08.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
-<span id="cb230-11"><a href="chapter08.html#cb230-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
-<span id="cb230-12"><a href="chapter08.html#cb230-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
-<span id="cb230-13"><a href="chapter08.html#cb230-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
-<span id="cb230-14"><a href="chapter08.html#cb230-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
-<span id="cb230-15"><a href="chapter08.html#cb230-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
-<span id="cb230-16"><a href="chapter08.html#cb230-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
-<span id="cb230-17"><a href="chapter08.html#cb230-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
-<span id="cb230-18"><a href="chapter08.html#cb230-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
-<span id="cb230-19"><a href="chapter08.html#cb230-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
-<span id="cb230-20"><a href="chapter08.html#cb230-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
-<span id="cb230-21"><a href="chapter08.html#cb230-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-22"><a href="chapter08.html#cb230-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-23"><a href="chapter08.html#cb230-23" aria-hidden="true" tabindex="-1"></a>trendWB5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb230-24"><a href="chapter08.html#cb230-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb230-25"><a href="chapter08.html#cb230-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
-<span id="cb230-26"><a href="chapter08.html#cb230-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendWB5yrs)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="chapter08.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
+<span id="cb240-2"><a href="chapter08.html#cb240-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-3"><a href="chapter08.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb240-4"><a href="chapter08.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="chapter08.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
+<span id="cb240-6"><a href="chapter08.html#cb240-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
+<span id="cb240-7"><a href="chapter08.html#cb240-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
+<span id="cb240-8"><a href="chapter08.html#cb240-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
+<span id="cb240-9"><a href="chapter08.html#cb240-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
+<span id="cb240-10"><a href="chapter08.html#cb240-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
+<span id="cb240-11"><a href="chapter08.html#cb240-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
+<span id="cb240-12"><a href="chapter08.html#cb240-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
+<span id="cb240-13"><a href="chapter08.html#cb240-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
+<span id="cb240-14"><a href="chapter08.html#cb240-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
+<span id="cb240-15"><a href="chapter08.html#cb240-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
+<span id="cb240-16"><a href="chapter08.html#cb240-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
+<span id="cb240-17"><a href="chapter08.html#cb240-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
+<span id="cb240-18"><a href="chapter08.html#cb240-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
+<span id="cb240-19"><a href="chapter08.html#cb240-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
+<span id="cb240-20"><a href="chapter08.html#cb240-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
+<span id="cb240-21"><a href="chapter08.html#cb240-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-22"><a href="chapter08.html#cb240-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-23"><a href="chapter08.html#cb240-23" aria-hidden="true" tabindex="-1"></a>trendWB5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
+<span id="cb240-24"><a href="chapter08.html#cb240-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb240-25"><a href="chapter08.html#cb240-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
+<span id="cb240-26"><a href="chapter08.html#cb240-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendWB5yrs)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro2-1.png" width="672" /></p>
 <p>デフォルトの<code>plot</code>関数では凡例が文字化けするようなので、<code>ggplot2</code>にて描画します。</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="chapter08.html#cb231-1" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb231-2"><a href="chapter08.html#cb231-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb231-3"><a href="chapter08.html#cb231-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
-<span id="cb231-4"><a href="chapter08.html#cb231-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-5"><a href="chapter08.html#cb231-5" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="sc">%&gt;%</span></span>
-<span id="cb231-6"><a href="chapter08.html#cb231-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb231-7"><a href="chapter08.html#cb231-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
-<span id="cb231-8"><a href="chapter08.html#cb231-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb231-9"><a href="chapter08.html#cb231-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb231-10"><a href="chapter08.html#cb231-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「女子バスケ」)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="chapter08.html#cb241-1" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
+<span id="cb241-2"><a href="chapter08.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb241-3"><a href="chapter08.html#cb241-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
+<span id="cb241-4"><a href="chapter08.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="chapter08.html#cb241-5" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="sc">%&gt;%</span></span>
+<span id="cb241-6"><a href="chapter08.html#cb241-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb241-7"><a href="chapter08.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
+<span id="cb241-8"><a href="chapter08.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb241-9"><a href="chapter08.html#cb241-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb241-10"><a href="chapter08.html#cb241-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「女子バスケ」)&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro3-1.png" width="672" /></p>
 <p>複数キーワードに挑戦してみよう。</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="chapter08.html#cb232-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
-<span id="cb232-2"><a href="chapter08.html#cb232-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb232-3"><a href="chapter08.html#cb232-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
-<span id="cb232-4"><a href="chapter08.html#cb232-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb232-5"><a href="chapter08.html#cb232-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
-<span id="cb232-6"><a href="chapter08.html#cb232-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb232-7"><a href="chapter08.html#cb232-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
-<span id="cb232-8"><a href="chapter08.html#cb232-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb232-9"><a href="chapter08.html#cb232-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
-<span id="cb232-10"><a href="chapter08.html#cb232-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb232-11"><a href="chapter08.html#cb232-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter08.html#cb242-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
+<span id="cb242-2"><a href="chapter08.html#cb242-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-3"><a href="chapter08.html#cb242-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
+<span id="cb242-4"><a href="chapter08.html#cb242-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
+<span id="cb242-5"><a href="chapter08.html#cb242-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
+<span id="cb242-6"><a href="chapter08.html#cb242-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-7"><a href="chapter08.html#cb242-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
+<span id="cb242-8"><a href="chapter08.html#cb242-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
+<span id="cb242-9"><a href="chapter08.html#cb242-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
+<span id="cb242-10"><a href="chapter08.html#cb242-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb242-11"><a href="chapter08.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/SNSintro4-1.png" width="672" /></p>
 <p>上記の例では、<code>time="2021-07-21 2021-08-08"</code>というフォーマットで期間を設定している点にも注意しよう。これをみると、日本女子バスケットボール代表の快進撃で検索数が大きく増加していることがわかる。</p>
 
