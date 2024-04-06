@@ -272,8 +272,7 @@
 
 .onecol
 {
-	width: 1250px;
-	float: left;
+	display: inline-block;
 	font-size: 14pt;
 	line-height: 150%;
 	color: rgba(0,0,0,1);
