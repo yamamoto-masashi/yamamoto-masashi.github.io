@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 7 Rによる重回帰分析 | データ分析入門</title>
-  <meta name="description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <title>chapter: 7 Rによる統計的仮説検定 | データ分析入門</title>
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 7 Rによる重回帰分析 | データ分析入門" />
+  <meta property="og:title" content="chapter: 7 Rによる統計的仮説検定 | データ分析入門" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 7 Rによる重回帰分析 | データ分析入門" />
+  <meta name="twitter:title" content="chapter: 7 Rによる統計的仮説検定 | データ分析入門" />
   
-  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-17" />
+<meta name="date" content="2025-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,20 +52,11 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
-<script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -114,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -149,9 +144,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#講義の概要"><i class="fa fa-check"></i><b>1.1</b> 講義の概要</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.3</b> 授業計画</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.4</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -167,11 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
-<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
-</ul></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -189,50 +179,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter05.html"><a href="chapter05.html"><i class="fa fa-check"></i><b>5</b> 可視化(2)：ggplot2による地図作成</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
-<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-1"><i class="fa fa-check"></i><b>5.1</b> パレットの追加 (1)</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-2"><i class="fa fa-check"></i><b>5.2</b> パレットの追加 (2)</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.3</b> 塗り分け地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.4</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.5</b> 世界地図の活用</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
-<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+<li class="chapter" data-level="5.5.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.5.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.5.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.5.2</b> 世界銀行データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.5</b> さらに学びたい人へ</a></li>
+<li class="chapter" data-level="5.6" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.6</b> さらに学びたい人へ</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
+<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> 可視化(3)：貿易統計の可視化</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.1</b> データの読み込み</a></li>
-<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#平均分散標準偏差"><i class="fa fa-check"></i><b>6.2</b> 平均・分散・標準偏差</a></li>
-<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>6.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
-<li class="chapter" data-level="6.4" data-path="chapter06.html"><a href="chapter06.html#データフレームの要約"><i class="fa fa-check"></i><b>6.4</b> データフレームの要約</a></li>
-<li class="chapter" data-level="6.5" data-path="chapter06.html"><a href="chapter06.html#相関係数"><i class="fa fa-check"></i><b>6.5</b> 相関係数</a></li>
-<li class="chapter" data-level="6.6" data-path="chapter06.html"><a href="chapter06.html#仮説検定"><i class="fa fa-check"></i><b>6.6</b> 仮説検定</a></li>
-<li class="chapter" data-level="6.7" data-path="chapter06.html"><a href="chapter06.html#t検定"><i class="fa fa-check"></i><b>6.7</b> t検定</a></li>
+<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#貿易統計とは"><i class="fa fa-check"></i><b>6.1</b> 貿易統計とは</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#りんごの輸出データの可視化"><i class="fa fa-check"></i><b>6.3</b> りんごの輸出データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる重回帰分析</a>
+<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる統計的仮説検定</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>7.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
-<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#単回帰の事例"><i class="fa fa-check"></i><b>7.2</b> 単回帰の事例</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#重回帰分析"><i class="fa fa-check"></i><b>7.3</b> 重回帰分析</a></li>
-<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>7.4</b> 因果推論 (Quasi Experiment)の例</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="chapter07.html"><a href="chapter07.html#例1"><i class="fa fa-check"></i><b>7.4.1</b> 例1</a></li>
-<li class="chapter" data-level="7.4.2" data-path="chapter07.html"><a href="chapter07.html#例2"><i class="fa fa-check"></i><b>7.4.2</b> 例2</a></li>
-<li class="chapter" data-level="7.4.3" data-path="chapter07.html"><a href="chapter07.html#例3"><i class="fa fa-check"></i><b>7.4.3</b> 例3</a></li>
-<li class="chapter" data-level="7.4.4" data-path="chapter07.html"><a href="chapter07.html#logをとった場合"><i class="fa fa-check"></i><b>7.4.4</b> logをとった場合</a></li>
+<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#データの読み込み-1"><i class="fa fa-check"></i><b>7.1</b> データの読み込み</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#平均分散標準偏差"><i class="fa fa-check"></i><b>7.2</b> 平均・分散・標準偏差</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>7.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#データフレームの要約"><i class="fa fa-check"></i><b>7.4</b> データフレームの要約</a></li>
+<li class="chapter" data-level="7.5" data-path="chapter07.html"><a href="chapter07.html#相関係数"><i class="fa fa-check"></i><b>7.5</b> 相関係数</a></li>
+<li class="chapter" data-level="7.6" data-path="chapter07.html"><a href="chapter07.html#仮説検定"><i class="fa fa-check"></i><b>7.6</b> 仮説検定</a></li>
+<li class="chapter" data-level="7.7" data-path="chapter07.html"><a href="chapter07.html#t検定"><i class="fa fa-check"></i><b>7.7</b> t検定</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
+<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> Rによる重回帰分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>8.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#単回帰の事例"><i class="fa fa-check"></i><b>8.2</b> 単回帰の事例</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#重回帰分析"><i class="fa fa-check"></i><b>8.3</b> 重回帰分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>8.4</b> 因果推論 (Quasi Experiment)の例</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
-<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
-<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
-<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+<li class="chapter" data-level="8.4.1" data-path="chapter08.html"><a href="chapter08.html#例1"><i class="fa fa-check"></i><b>8.4.1</b> 例1</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapter08.html"><a href="chapter08.html#例2"><i class="fa fa-check"></i><b>8.4.2</b> 例2</a></li>
+<li class="chapter" data-level="8.4.3" data-path="chapter08.html"><a href="chapter08.html#例3"><i class="fa fa-check"></i><b>8.4.3</b> 例3</a></li>
+<li class="chapter" data-level="8.4.4" data-path="chapter08.html"><a href="chapter08.html#logをとった場合"><i class="fa fa-check"></i><b>8.4.4</b> logをとった場合</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -245,6 +230,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
 <li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
 <li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter11.html"><a href="chapter11.html"><i class="fa fa-check"></i><b>11</b> グラフを書いてみよう・問題を解いてみよう</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter11.html"><a href="chapter11.html#基礎編"><i class="fa fa-check"></i><b>11.1</b> 1. 基礎編</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter11.html"><a href="chapter11.html#応用編"><i class="fa fa-check"></i><b>11.2</b> 2. 応用編</a></li>
+<li class="chapter" data-level="11.3" data-path="chapter11.html"><a href="chapter11.html#応用編-1"><i class="fa fa-check"></i><b>11.3</b> 3. 応用編</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter12.html"><a href="chapter12.html"><i class="fa fa-check"></i><b>12</b> 参考になるウェブサイト</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter12.html"><a href="chapter12.html#データ"><i class="fa fa-check"></i><b>12.1</b> データ</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter12.html"><a href="chapter12.html#rについて"><i class="fa fa-check"></i><b>12.2</b> Rについて</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter12.html"><a href="chapter12.html#このサイトにある他の情報"><i class="fa fa-check"></i><b>12.3</b> このサイトにある他の情報</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -266,1106 +263,269 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rによる重回帰分析" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">chapter: 7</span> Rによる重回帰分析<a href="chapter07.html#rによる重回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter07.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gt&quot;)</span></span>
-<span id="cb203-2"><a href="chapter07.html#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
-<span id="cb203-3"><a href="chapter07.html#cb203-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="chapter07.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
-<span id="cb203-5"><a href="chapter07.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb203-6"><a href="chapter07.html#cb203-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb203-7"><a href="chapter07.html#cb203-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb203-8"><a href="chapter07.html#cb203-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb203-9"><a href="chapter07.html#cb203-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb203-10"><a href="chapter07.html#cb203-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb203-11"><a href="chapter07.html#cb203-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
-<span id="cb203-12"><a href="chapter07.html#cb203-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-13"><a href="chapter07.html#cb203-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-14"><a href="chapter07.html#cb203-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Macユーザ向けの日本語フォント</span></span>
-<span id="cb203-15"><a href="chapter07.html#cb203-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">10</span>, <span class="at">base_family =</span> <span class="st">&quot;HiraginoSans-W3&quot;</span>))</span>
-<span id="cb203-16"><a href="chapter07.html#cb203-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-17"><a href="chapter07.html#cb203-17" aria-hidden="true" tabindex="-1"></a><span class="co">#ウィンドウズユーザー向けの日本語フォント</span></span>
-<span id="cb203-18"><a href="chapter07.html#cb203-18" aria-hidden="true" tabindex="-1"></a><span class="co">#windowsFonts(YuGothic = windowsFont(&quot;Yu Gothic&quot;))</span></span>
-<span id="cb203-19"><a href="chapter07.html#cb203-19" aria-hidden="true" tabindex="-1"></a><span class="co">#theme_set(theme_gray(base_size = 10, base_family = &quot;YuGothic&quot;))</span></span>
-<span id="cb203-20"><a href="chapter07.html#cb203-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-21"><a href="chapter07.html#cb203-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-22"><a href="chapter07.html#cb203-22" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd() # 現在の作業ディレクトリを確認</span></span>
-<span id="cb203-23"><a href="chapter07.html#cb203-23" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/users/yamamoto/R/ForTeaching&quot;</span>) <span class="co"># 作業ディレクトリの変更</span></span></code></pre></div>
-<div id="最小二乗法ordinary-least-squere-methodとは" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> 最小二乗法(Ordinary Least Squere Method)とは<a href="chapter07.html#最小二乗法ordinary-least-squere-methodとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>観測されたデータ<span class="math inline">\((X,Y)\)</span>に対して、</p>
-<p><span class="math display">\[Y=a+bX\]</span></p>
-<p>という直線を当てはめることを考える。データが現実を反映しているとすれば、当てはまりが良ければ良いほど、求められた直線は現実のメカニズムを反映していることになる。もし、完全に当てはまったとすれば問題はないがそのようなことはまずないので、当てはまりの良さを判断する客観的な基準が必要になる。</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="chapter07.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># courtesy to</span></span>
-<span id="cb204-2"><a href="chapter07.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://shohei-doi.github.io/notes/posts/2019-05-17-regression/</span></span>
-<span id="cb204-3"><a href="chapter07.html#cb204-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="chapter07.html#cb204-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb204-5"><a href="chapter07.html#cb204-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb204-6"><a href="chapter07.html#cb204-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-7"><a href="chapter07.html#cb204-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb204-8"><a href="chapter07.html#cb204-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb204-9"><a href="chapter07.html#cb204-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> x)) <span class="sc">+</span> </span>
-<span id="cb204-10"><a href="chapter07.html#cb204-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> x, <span class="at">ymax =</span> y),<span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/OLSpre-1.png" width="672" /></p>
-<p>上の図でいう垂直方向の直線は試しに引いてみた直線</p>
-<p><span class="math display">\[ \tilde{Y}=\tilde{a}+\tilde{b}x \]</span>
-と実際の観測値との誤差を示すものである。この誤差の二乗を最小にするような直線が最も当てはまりの良い直線と考える。誤差を<span class="math inline">\(u\)</span>とすれば、</p>
-<p><span class="math display">\[ \min J=\sum \tilde{u}_i^2=\sum(Y_i-\tilde{a}-\tilde{b}X_i)^2 \]</span></p>
-<p>の解である<span class="math inline">\(\hat{a}\)</span>と<span class="math inline">\(\hat{b}\)</span>を最小二乗推定量と呼ぶ。上式を微分してゼロとおくと、</p>
-<p><span class="math display">\[\frac{\partial J}{\partial \tilde{a}}=\sum(-2(Y_i-\hat{a}-\hat{b}X_i))=0\]</span>
-及び</p>
-<p><span class="math display">\[\frac{\partial J}{\partial \tilde{b}}=\sum(-2X_i(Y_i-\hat{a}-\hat{b}X_i))=0\]</span>
-となる。ここで、<span class="math inline">\(\hat{a}\)</span>と<span class="math inline">\(\hat{b}\)</span>は上式を満たす傾きと切片として、任意の<span class="math inline">\(a\)</span>と<span class="math inline">\(b\)</span>から区別する意味で使用している。これを変形すると以下を得る。</p>
-<p><span class="math display">\[n\hat{a}+\left(\sum X_i \right)\hat{b}=\sum Y_i\]</span>
-及び</p>
-<p><span class="math display">\[ \left(\sum X_i \right)\hat{a}+\left(\sum X_i^2 \right)\hat{b}=\sum X_i Y_i\]</span>
-これを連立して解くと、</p>
-<p><span class="math display">\[ \hat{b}=\frac{\sum \left(X_i - \overline{X}\right)\left(Y_i-\overline{Y}\right)}{\sum \left(X_i - \overline{X}\right)^2}\]</span>
-及び</p>
-<p><span class="math display">\[\hat{a}=\overline{Y}-\hat{b} \overline{X} \]</span>
-ただし、<span class="math inline">\(\overline{X}\)</span>と<span class="math inline">\(\overline{Y}\)</span>は平均値を意味する。</p>
-<p><span class="math inline">\(X\)</span>及び<span class="math inline">\(Y\)</span>は観測値なので、観測値から傾きと切片を計算できることがわかる。また、回帰直線は必ず標本平均を通ることも確認できる。</p>
-<p>なお、最小二乗法に必要な仮定やその優れた性質については、</p>
-<p><a href="http://www.yuhikaku.co.jp/books/detail/9784641053854" class="uri">http://www.yuhikaku.co.jp/books/detail/9784641053854</a></p>
-<p>などの入門の計量経済学の本を参照のこと。</p>
+<div id="rによる統計的仮説検定" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">chapter: 7</span> Rによる統計的仮説検定<a href="chapter07.html#rによる統計的仮説検定" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>統計学の講義で学んだ検定を<code>R</code>で実行する方法を学びます。</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="chapter07.html#cb137-1" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
+<span id="cb137-2"><a href="chapter07.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb137-3"><a href="chapter07.html#cb137-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb137-4"><a href="chapter07.html#cb137-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb137-5"><a href="chapter07.html#cb137-5" tabindex="-1"></a><span class="co">#library(foreign)</span></span>
+<span id="cb137-6"><a href="chapter07.html#cb137-6" tabindex="-1"></a></span>
+<span id="cb137-7"><a href="chapter07.html#cb137-7" tabindex="-1"></a><span class="co"># Macユーザ向けの日本語フォント</span></span>
+<span id="cb137-8"><a href="chapter07.html#cb137-8" tabindex="-1"></a><span class="co"># theme_set(theme_gray(base_size = 10, base_family = &quot;HiraginoSans-W3&quot;))</span></span>
+<span id="cb137-9"><a href="chapter07.html#cb137-9" tabindex="-1"></a></span>
+<span id="cb137-10"><a href="chapter07.html#cb137-10" tabindex="-1"></a><span class="co">#ウィンドウズユーザー向けの日本語フォント</span></span>
+<span id="cb137-11"><a href="chapter07.html#cb137-11" tabindex="-1"></a><span class="co">#windowsFonts(YuGothic = windowsFont(&quot;Yu Gothic&quot;))</span></span>
+<span id="cb137-12"><a href="chapter07.html#cb137-12" tabindex="-1"></a><span class="co">#theme_set(theme_gray(base_size = 10, base_family = &quot;YuGothic&quot;))</span></span></code></pre></div>
+<div id="データの読み込み-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> データの読み込み<a href="chapter07.html#データの読み込み-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="chapter07.html#cb138-1" tabindex="-1"></a><span class="co"># 変数の対応関係</span></span>
+<span id="cb138-2"><a href="chapter07.html#cb138-2" tabindex="-1"></a><span class="co"># A1101_総人口【人】  </span></span>
+<span id="cb138-3"><a href="chapter07.html#cb138-3" tabindex="-1"></a><span class="co"># A1301_15歳未満人口【人】</span></span>
+<span id="cb138-4"><a href="chapter07.html#cb138-4" tabindex="-1"></a><span class="co"># A1303_65歳以上人口【人】  </span></span>
+<span id="cb138-5"><a href="chapter07.html#cb138-5" tabindex="-1"></a><span class="co"># B1101_ 総面積（北方地域及び竹島を除く）【ｈａ】   </span></span>
+<span id="cb138-6"><a href="chapter07.html#cb138-6" tabindex="-1"></a><span class="co"># B1103_ 可住地面積【ｈａ】  </span></span>
+<span id="cb138-7"><a href="chapter07.html#cb138-7" tabindex="-1"></a><span class="co"># B4107_ 雪日数（年間）【日】 </span></span>
+<span id="cb138-8"><a href="chapter07.html#cb138-8" tabindex="-1"></a><span class="co"># B4108_ 日照時間（年間）【時間】   </span></span>
+<span id="cb138-9"><a href="chapter07.html#cb138-9" tabindex="-1"></a><span class="co"># D110101_市町村数【‐】   </span></span>
+<span id="cb138-10"><a href="chapter07.html#cb138-10" tabindex="-1"></a><span class="co"># E6102_大学数【校】  </span></span>
+<span id="cb138-11"><a href="chapter07.html#cb138-11" tabindex="-1"></a><span class="co"># E6302_大学学生数【人】</span></span>
+<span id="cb138-12"><a href="chapter07.html#cb138-12" tabindex="-1"></a><span class="co"># F610201_超過実労働時間数（男）【時間】   </span></span>
+<span id="cb138-13"><a href="chapter07.html#cb138-13" tabindex="-1"></a><span class="co"># F610202_超過実労働時間数（女）【時間】   </span></span>
+<span id="cb138-14"><a href="chapter07.html#cb138-14" tabindex="-1"></a><span class="co"># H110202_空き家数【戸】</span></span>
+<span id="cb138-15"><a href="chapter07.html#cb138-15" tabindex="-1"></a></span>
+<span id="cb138-16"><a href="chapter07.html#cb138-16" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
+<span id="cb138-17"><a href="chapter07.html#cb138-17" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/20201028sample.xls&quot;</span></span>
+<span id="cb138-18"><a href="chapter07.html#cb138-18" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;20201028sample.xls&quot;</span>)</span>
+<span id="cb138-19"><a href="chapter07.html#cb138-19" tabindex="-1"></a></span>
+<span id="cb138-20"><a href="chapter07.html#cb138-20" tabindex="-1"></a></span>
+<span id="cb138-21"><a href="chapter07.html#cb138-21" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
+<span id="cb138-22"><a href="chapter07.html#cb138-22" tabindex="-1"></a><span class="co"># ヘッダ部分を読み飛ばしている</span></span>
+<span id="cb138-23"><a href="chapter07.html#cb138-23" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
+<span id="cb138-24"><a href="chapter07.html#cb138-24" tabindex="-1"></a>sampleDB<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">&quot;20201028sample.xls&quot;</span>,<span class="at">skip=</span><span class="dv">5</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb138-25"><a href="chapter07.html#cb138-25" tabindex="-1"></a></span>
+<span id="cb138-26"><a href="chapter07.html#cb138-26" tabindex="-1"></a><span class="co"># 列１と列２の名前を変更している。</span></span>
+<span id="cb138-27"><a href="chapter07.html#cb138-27" tabindex="-1"></a><span class="fu">names</span>(sampleDB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;prefcode&quot;</span>,<span class="st">&quot;prefnameJ&quot;</span>)</span></code></pre></div>
 </div>
-<div id="単回帰の事例" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> 単回帰の事例<a href="chapter07.html#単回帰の事例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter07.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wooldridge (2016) Introductory Econometrics, Thomson.</span></span>
-<span id="cb205-2"><a href="chapter07.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="co"># の事例より。</span></span>
-<span id="cb205-3"><a href="chapter07.html#cb205-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-4"><a href="chapter07.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb205-5"><a href="chapter07.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CEOのサラリーは会社のROEでどの程度説明できるか？</span></span>
-<span id="cb205-6"><a href="chapter07.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb205-7"><a href="chapter07.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb205-8"><a href="chapter07.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 自己資本利益率（ROE：Return on Equity）とは、自己資本（純資産）に対してどれだけの</span></span>
-<span id="cb205-9"><a href="chapter07.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 利益が生み出されたのかを示す財務分析の指標</span></span>
-<span id="cb205-10"><a href="chapter07.html#cb205-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-11"><a href="chapter07.html#cb205-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-12"><a href="chapter07.html#cb205-12" aria-hidden="true" tabindex="-1"></a><span class="co"># from Wooldridge(2016, section 2.2)</span></span>
-<span id="cb205-13"><a href="chapter07.html#cb205-13" aria-hidden="true" tabindex="-1"></a><span class="co">#ceosal1の最後の２文字は、小文字のエルと数字の１なので注意</span></span>
-<span id="cb205-14"><a href="chapter07.html#cb205-14" aria-hidden="true" tabindex="-1"></a>ceosal1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/ceosal1.dta&quot;</span>)</span>
-<span id="cb205-15"><a href="chapter07.html#cb205-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-16"><a href="chapter07.html#cb205-16" aria-hidden="true" tabindex="-1"></a>ceoresult<span class="ot">&lt;-</span><span class="fu">lm</span>(salary<span class="sc">~</span>roe,<span class="at">data=</span>ceosal1)</span>
-<span id="cb205-17"><a href="chapter07.html#cb205-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-18"><a href="chapter07.html#cb205-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ceoresult)</span></code></pre></div>
+<div id="平均分散標準偏差" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 平均・分散・標準偏差<a href="chapter07.html#平均分散標準偏差" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>都道府県別の市町村数を例に基本統計量の計算方法を示す。</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="chapter07.html#cb139-1" tabindex="-1"></a><span class="co">#平均</span></span>
+<span id="cb139-2"><a href="chapter07.html#cb139-2" tabindex="-1"></a><span class="fu">mean</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 37</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="chapter07.html#cb141-1" tabindex="-1"></a><span class="co"># 合計する</span></span>
+<span id="cb141-2"><a href="chapter07.html#cb141-2" tabindex="-1"></a><span class="fu">sum</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 1741</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter07.html#cb143-1" tabindex="-1"></a><span class="co">#データの個数を求める</span></span>
+<span id="cb143-2"><a href="chapter07.html#cb143-2" tabindex="-1"></a><span class="fu">length</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 47</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter07.html#cb145-1" tabindex="-1"></a><span class="co">#中央値を求める</span></span>
+<span id="cb145-2"><a href="chapter07.html#cb145-2" tabindex="-1"></a><span class="fu">median</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 33</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter07.html#cb147-1" tabindex="-1"></a><span class="co">#最大値を求める</span></span>
+<span id="cb147-2"><a href="chapter07.html#cb147-2" tabindex="-1"></a><span class="fu">max</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 179</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="chapter07.html#cb149-1" tabindex="-1"></a><span class="co">#最小値を求める</span></span>
+<span id="cb149-2"><a href="chapter07.html#cb149-2" tabindex="-1"></a><span class="fu">min</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="chapter07.html#cb151-1" tabindex="-1"></a><span class="co"># 度数分布</span></span>
+<span id="cb151-2"><a href="chapter07.html#cb151-2" tabindex="-1"></a><span class="fu">table</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
 <pre><code>## 
-## Call:
-## lm(formula = salary ~ roe, data = ceosal1)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-##  -1160   -526   -254    139  13500 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    963.2      213.2    4.52  1.1e-05 ***
-## roe             18.5       11.1    1.66    0.098 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 1370 on 207 degrees of freedom
-## Multiple R-squared:  0.0132, Adjusted R-squared:  0.00842 
-## F-statistic: 2.77 on 1 and 207 DF,  p-value: 0.0978</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter07.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ceosal1<span class="sc">$</span>roe,ceosal1<span class="sc">$</span>salary,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4000</span>))</span>
-<span id="cb207-2"><a href="chapter07.html#cb207-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb207-3"><a href="chapter07.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(ceoresult)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/sigleOLS-1.png" width="672" /></p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter07.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb208-2"><a href="chapter07.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 選挙費用で投票結果はどの程度説明できるか？</span></span>
-<span id="cb208-3"><a href="chapter07.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb208-4"><a href="chapter07.html#cb208-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-5"><a href="chapter07.html#cb208-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-6"><a href="chapter07.html#cb208-6" aria-hidden="true" tabindex="-1"></a><span class="co"># from Wooldridge(2016, section 2.2のexample 2.5)</span></span>
-<span id="cb208-7"><a href="chapter07.html#cb208-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1988年のアメリカのとある州における国会議員選挙の結果</span></span>
-<span id="cb208-8"><a href="chapter07.html#cb208-8" aria-hidden="true" tabindex="-1"></a><span class="co"># voteAは候補者Aの得票シェア、shareAは候補者Aの選挙運動費のシェア</span></span>
-<span id="cb208-9"><a href="chapter07.html#cb208-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-10"><a href="chapter07.html#cb208-10" aria-hidden="true" tabindex="-1"></a>vote1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/vote1.dta&quot;</span>)</span>
-<span id="cb208-11"><a href="chapter07.html#cb208-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-12"><a href="chapter07.html#cb208-12" aria-hidden="true" tabindex="-1"></a>voteAresult<span class="ot">&lt;-</span><span class="fu">lm</span>(voteA<span class="sc">~</span>shareA,<span class="at">data=</span>vote1)</span>
-<span id="cb208-13"><a href="chapter07.html#cb208-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-14"><a href="chapter07.html#cb208-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(voteAresult)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = voteA ~ shareA, data = vote1)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -16.89  -4.07  -0.17   3.50  29.98 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  26.8125     0.8872    30.2   &lt;2e-16 ***
-## shareA        0.4638     0.0145    31.9   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 6.4 on 171 degrees of freedom
-## Multiple R-squared:  0.856,  Adjusted R-squared:  0.855 
-## F-statistic: 1.02e+03 on 1 and 171 DF,  p-value: &lt;2e-16</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="chapter07.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vote1<span class="sc">$</span>shareA,vote1<span class="sc">$</span>voteA)</span>
-<span id="cb210-2"><a href="chapter07.html#cb210-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-3"><a href="chapter07.html#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(voteAresult)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/sigleOLS-2.png" width="672" /></p>
-<p>上の２つ目の結果で、shareAのt値は31.9でt分布の97.5%よりもはるかに大きな値となっている。そのためめったに起らない事象と位置付けることができる。</p>
-<p>この時の事象は帰無仮説：<span class="math inline">\(\hat{b}=0\)</span>であるから、この帰無仮説を棄却し、<span class="math inline">\(X\)</span>と<span class="math inline">\(Y\)</span>は正の相関関係にあると言える。</p>
+##  15  17  18  19  20  21  23  24  25  26  27  29  30  33  34  35  39  40  41  42  43  44  45  54 
+##   1   2   1   5   2   1   1   1   2   2   2   1   2   2   1   4   1   1   2   1   2   1   1   2 
+##  59  60  62  63  77 179 
+##   1   1   1   1   1   1</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="chapter07.html#cb153-1" tabindex="-1"></a><span class="co">#ヒストグラムを描く (標準)</span></span>
+<span id="cb153-2"><a href="chapter07.html#cb153-2" tabindex="-1"></a><span class="fu">hist</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/statistics-1.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="chapter07.html#cb154-1" tabindex="-1"></a><span class="co">#ヒストグラムを描く (ggplot2で)</span></span>
+<span id="cb154-2"><a href="chapter07.html#cb154-2" tabindex="-1"></a>sampleDB <span class="sc">%&gt;%</span></span>
+<span id="cb154-3"><a href="chapter07.html#cb154-3" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb154-4"><a href="chapter07.html#cb154-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>D110101,<span class="at">fill=</span><span class="fu">factor</span>(Kanto)),</span>
+<span id="cb154-5"><a href="chapter07.html#cb154-5" tabindex="-1"></a>                 <span class="at">bins=</span><span class="dv">80</span>,<span class="at">position=</span><span class="st">&quot;nudge&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)<span class="sc">+</span></span>
+<span id="cb154-6"><a href="chapter07.html#cb154-6" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>D110101,<span class="at">y=</span>..count..),<span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb154-7"><a href="chapter07.html#cb154-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;Kanto dummy&quot;</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;Number of municipalities&quot;</span>)<span class="sc">+</span></span>
+<span id="cb154-8"><a href="chapter07.html#cb154-8" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">33</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/statistics-2.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="chapter07.html#cb155-1" tabindex="-1"></a><span class="co">#平方根を求める</span></span>
+<span id="cb155-2"><a href="chapter07.html#cb155-2" tabindex="-1"></a><span class="fu">sqrt</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>##  [1] 13.4  6.3  5.7  5.9  5.0  5.9  7.7  6.6  5.0  5.9  7.9  7.3  7.9  5.7  5.5  3.9  4.4  4.1
+## [19]  5.2  8.8  6.5  5.9  7.3  5.4  4.4  5.1  6.6  6.4  6.2  5.5  4.4  4.4  5.2  4.8  4.4  4.9
+## [37]  4.1  4.5  5.8  7.7  4.5  4.6  6.7  4.2  5.1  6.6  6.4</code></pre>
+<p>以下の定義は覚えておこう。</p>
+<ul>
+<li><p>母集団 (population)：調査対象となる要素の全体</p></li>
+<li><p>標本 (sample)：母集団から抽出された個体の集まり</p></li>
+<li><p>一致性 (consistency)：標本の数が多くなったら、サンプルの推定量が母数に一致すること</p></li>
+<li><p>不偏性 (unbiasedness)：標本の推定量が母数に等しくなること</p></li>
+</ul>
+<p>標本分散: <span class="math inline">\(s_{xx}=\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2\)</span></p>
+<p>不偏分散: <span class="math inline">\(\sigma_xx =\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\overline{x})^2=\frac{n}{n-1}\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2=\frac{n}{n-1}s_{xx}\)</span></p>
+<p>推定量としては、不偏分散が望ましい。なお、分散の平方根を標準偏差(standard deviation)と呼ぶ。</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="chapter07.html#cb157-1" tabindex="-1"></a><span class="co">#不偏分散を求める</span></span>
+<span id="cb157-2"><a href="chapter07.html#cb157-2" tabindex="-1"></a><span class="fu">var</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 659</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="chapter07.html#cb159-1" tabindex="-1"></a><span class="co">#標準偏差を求める</span></span>
+<span id="cb159-2"><a href="chapter07.html#cb159-2" tabindex="-1"></a><span class="fu">sd</span>(sampleDB<span class="sc">$</span>D110101)</span></code></pre></div>
+<pre><code>## [1] 26</code></pre>
 </div>
-<div id="重回帰分析" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> 重回帰分析<a href="chapter07.html#重回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter07.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb211-2"><a href="chapter07.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 大学の成績は何で説明できるか？</span></span>
-<span id="cb211-3"><a href="chapter07.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################</span></span>
-<span id="cb211-4"><a href="chapter07.html#cb211-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-5"><a href="chapter07.html#cb211-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-6"><a href="chapter07.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="co"># from Wooldridge(2016, example 4.3)</span></span>
-<span id="cb211-7"><a href="chapter07.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="co"># colGPA: 大学での成績</span></span>
-<span id="cb211-8"><a href="chapter07.html#cb211-8" aria-hidden="true" tabindex="-1"></a><span class="co"># hsGPA: 高校での成績</span></span>
-<span id="cb211-9"><a href="chapter07.html#cb211-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ACT: 大学入試の際に受ける共通テストの成績</span></span>
-<span id="cb211-10"><a href="chapter07.html#cb211-10" aria-hidden="true" tabindex="-1"></a><span class="co"># skipped: １週間の平均講義欠席回数</span></span>
-<span id="cb211-11"><a href="chapter07.html#cb211-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-12"><a href="chapter07.html#cb211-12" aria-hidden="true" tabindex="-1"></a>gpa1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/gpa1.dta&quot;</span>)</span>
-<span id="cb211-13"><a href="chapter07.html#cb211-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-14"><a href="chapter07.html#cb211-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-15"><a href="chapter07.html#cb211-15" aria-hidden="true" tabindex="-1"></a>GPAresult<span class="ot">&lt;-</span><span class="fu">lm</span>(colGPA<span class="sc">~</span>hsGPA<span class="sc">+</span>ACT<span class="sc">+</span>skipped,<span class="at">data=</span>gpa1)</span>
-<span id="cb211-16"><a href="chapter07.html#cb211-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-17"><a href="chapter07.html#cb211-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GPAresult)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = colGPA ~ hsGPA + ACT + skipped, data = gpa1)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.8570 -0.2320 -0.0393  0.2482  0.8166 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   1.3896     0.3316    4.19  5.0e-05 ***
-## hsGPA         0.4118     0.0937    4.40  2.2e-05 ***
-## ACT           0.0147     0.0106    1.39   0.1658    
-## skipped      -0.0831     0.0260   -3.20   0.0017 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.33 on 137 degrees of freedom
-## Multiple R-squared:  0.234,  Adjusted R-squared:  0.217 
-## F-statistic: 13.9 on 3 and 137 DF,  p-value: 5.65e-08</code></pre>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter07.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gpa1<span class="sc">$</span>colGPA,gpa1<span class="sc">$</span>skipped)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/multiOLS-1.png" width="672" /></p>
+<div id="分散標準偏差が大きいことのイメージ" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 分散・標準偏差が大きいことのイメージ<a href="chapter07.html#分散標準偏差が大きいことのイメージ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="chapter07.html#cb161-1" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb161-2"><a href="chapter07.html#cb161-2" tabindex="-1"></a><span class="co"># A大学の共通試験結果</span></span>
+<span id="cb161-3"><a href="chapter07.html#cb161-3" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb161-4"><a href="chapter07.html#cb161-4" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="chapter07.html#cb161-5" tabindex="-1"></a><span class="co"># １から２５まで１刻みで</span></span>
+<span id="cb161-6"><a href="chapter07.html#cb161-6" tabindex="-1"></a>largeV<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">25</span></span>
+<span id="cb161-7"><a href="chapter07.html#cb161-7" tabindex="-1"></a></span>
+<span id="cb161-8"><a href="chapter07.html#cb161-8" tabindex="-1"></a><span class="fu">mean</span>(largeV)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="chapter07.html#cb163-1" tabindex="-1"></a><span class="fu">sd</span>(largeV)</span></code></pre></div>
+<pre><code>## [1] 7.4</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="chapter07.html#cb165-1" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb165-2"><a href="chapter07.html#cb165-2" tabindex="-1"></a><span class="co"># B大学の共通試験の結果</span></span>
+<span id="cb165-3"><a href="chapter07.html#cb165-3" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb165-4"><a href="chapter07.html#cb165-4" tabindex="-1"></a></span>
+<span id="cb165-5"><a href="chapter07.html#cb165-5" tabindex="-1"></a>smallV<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>,</span>
+<span id="cb165-6"><a href="chapter07.html#cb165-6" tabindex="-1"></a>          <span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>,</span>
+<span id="cb165-7"><a href="chapter07.html#cb165-7" tabindex="-1"></a>          <span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>,</span>
+<span id="cb165-8"><a href="chapter07.html#cb165-8" tabindex="-1"></a>          <span class="dv">13</span>,<span class="dv">13</span>,<span class="dv">13</span>,<span class="dv">13</span>)</span>
+<span id="cb165-9"><a href="chapter07.html#cb165-9" tabindex="-1"></a></span>
+<span id="cb165-10"><a href="chapter07.html#cb165-10" tabindex="-1"></a><span class="fu">mean</span>(smallV)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter07.html#cb167-1" tabindex="-1"></a><span class="fu">sd</span>(smallV)</span></code></pre></div>
+<pre><code>## [1] 1.9</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="chapter07.html#cb169-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span><span class="fu">mean</span>(largeV),<span class="at">sd=</span><span class="fu">sd</span>(largeV)),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>),<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">25</span>)</span>
+<span id="cb169-2"><a href="chapter07.html#cb169-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span><span class="fu">mean</span>(smallV),<span class="at">sd=</span><span class="fu">sd</span>(smallV)),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>),<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">25</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/variance-1.png" width="672" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="chapter07.html#cb170-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">X=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">25</span>)), <span class="fu">aes</span>(<span class="at">x=</span>X))<span class="sc">+</span></span>
+<span id="cb170-2"><a href="chapter07.html#cb170-2" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span>dnorm, <span class="at">args=</span><span class="fu">list</span>(<span class="at">mean=</span><span class="fu">mean</span>(largeV),</span>
+<span id="cb170-3"><a href="chapter07.html#cb170-3" tabindex="-1"></a>                                     <span class="at">sd=</span><span class="fu">sd</span>(largeV)),<span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb170-4"><a href="chapter07.html#cb170-4" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span>dnorm, <span class="at">args=</span><span class="fu">list</span>(<span class="at">mean=</span><span class="fu">mean</span>(smallV), </span>
+<span id="cb170-5"><a href="chapter07.html#cb170-5" tabindex="-1"></a>                                     <span class="at">sd=</span><span class="fu">sd</span>(smallV)),<span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb170-6"><a href="chapter07.html#cb170-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;density&quot;</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fl">0.01</span>,<span class="fl">0.25</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 62 rows containing missing values or values outside the scale range
+## (`geom_function()`).</code></pre>
+<p><img src="book_filename_files/figure-html/variance-2.png" width="672" /></p>
 </div>
-<div id="因果推論-quasi-experimentの例" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> 因果推論 (Quasi Experiment)の例<a href="chapter07.html#因果推論-quasi-experimentの例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>因果推論の方法として、Wooldridge(2016, Example 13.3)を例にDifference-in-Differencesを解説する。この例は、Kiel and McClain(1995, JEEM)からの抜粋であり、Massachusetts州のNorth Andoverにおいて、焼却炉を建設することで周辺の住宅価値が下がったかどうかをDifference-in-Differencesで分析している。</p>
-<p>分析の前提条件として、1978年には焼却炉建設の噂さえなかったが1981年には建設の噂が出回ったという背景がある。</p>
-<p>住宅価格(<span class="math inline">\(=rprice\)</span>)を、1981年のデータだけを使って焼却炉に近い物件のダミー変数(<span class="math inline">\(=nearinc\)</span>)で回帰する。</p>
-<p><span class="math display">\[ rprice=a+b\times nearinc+u \]</span></p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="chapter07.html#cb214-1" aria-hidden="true" tabindex="-1"></a>kielmc<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/kielmc.dta&quot;</span>)</span>
-<span id="cb214-2"><a href="chapter07.html#cb214-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb214-3"><a href="chapter07.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate regressions for 1978 and 1981: report coeeficients only</span></span>
-<span id="cb214-4"><a href="chapter07.html#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>( <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc, <span class="at">data=</span>kielmc, <span class="at">subset=</span>(year<span class="sc">==</span><span class="dv">1981</span>)) )</span></code></pre></div>
-<pre><code>## (Intercept)     nearinc 
-##      101308      -30688</code></pre>
-<p><span class="math inline">\(\hat{b}=-30,688.7\)</span>という結果を得る。<span class="math inline">\(\hat{a}\)</span>は平均的な1981年の住宅価格を意味している。しかし、この結果は焼却炉建設の噂がもたらしたマイナス要因とは言えない。なぜなら、まだ噂がなかった1978年のデータだけで上記の式を回帰しても、<span class="math inline">\(\hat{b}=-18824.37\)</span>というマイナスの結果となるためである。</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="chapter07.html#cb216-1" aria-hidden="true" tabindex="-1"></a>kielmc<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/kielmc.dta&quot;</span>)</span>
-<span id="cb216-2"><a href="chapter07.html#cb216-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb216-3"><a href="chapter07.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate regressions for 1978 and 1981: report coeeficients only</span></span>
-<span id="cb216-4"><a href="chapter07.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>( <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc, <span class="at">data=</span>kielmc, <span class="at">subset=</span>(year<span class="sc">==</span><span class="dv">1978</span>)) )</span></code></pre></div>
-<pre><code>## (Intercept)     nearinc 
-##       82517      -18824</code></pre>
-<p>つまり、もともと住宅価格の安い地域に焼却炉の建設が行われたのである。よって、焼却炉立地の影響は、</p>
-<p><span class="math display">\[\hat{b}_{81}-\hat{b}_{78}=-30,68.27-(-18,824.37)=-11,863.9\]</span>
-と考えるのが自然である。これを差の差の推定量(difference-in-differences estimator)と呼ぶ。なぜなら、</p>
-<p><span class="math display">\[\hat{b}_{81}-\hat{b}_{78}=\left(\overline{rprice}_{81,n}-\overline{rprice}_{81,f}\right)-\left(\overline{rprice}_{78,n}-\overline{rprice}_{78,f}\right)\]</span>
-と書き直せるからである。ここで、添字の<span class="math inline">\(n\)</span>は焼却炉に近い住宅の価格、<span class="math inline">\(f\)</span>は遠い住宅の価格を表している。</p>
-<p>実践的には、統計的検定ができるように以下の回帰分析で推定量を計算する。</p>
-<p><span class="math display">\[rprice=a+b_{1} \cdot y81 + b_{2} \cdot  nearinc + b_{3} \cdot (y81 \times nearinc) + u\]</span>
-を1978年と1981年の両方のデータを使って推定する。ただし、<span class="math inline">\(y81\)</span>は1981年の住宅価格で1、1978年の住宅価格に対して0をとるダミー変数である。この時、<span class="math inline">\(a\)</span>は1978年の平均住宅価格、<span class="math inline">\(b_1\)</span>は1978年から1981年における住宅価格の変化を意味する。<span class="math inline">\(b_2\)</span>は、焼却炉建設と関係なく、焼却炉周辺地域の住宅価格の他地域との差を表す。最後に、<span class="math inline">\(b_3\)</span>は焼却炉建設の噂による価格変化を表す(=DiD estimator)。</p>
-<p>このように、焼却炉建設など政策の影響を受けるサンプルをTreatment groupと呼ぶ。影響を受けないグループをControl groupと言う。因果推論を行うためには、Treatment groupとControl groupの両方が必ず必要である。より一般には以下のように書ける。</p>
-<p><span class="math display">\[Y=a+b_{1} \cdot YD + b_{2} \cdot  T + b_{3} \cdot (YD \times T) +\mathbf{z}+ u\]</span>
-ここで、<span class="math inline">\(YD\)</span>はtreatmentの前と後でそれぞれ<span class="math inline">\(0\)</span>と<span class="math inline">\(1\)</span>をとるダミー変数、<span class="math inline">\(T\)</span>はtreatmentのあるなしでそれぞれ<span class="math inline">\(1\)</span>や<span class="math inline">\(0\)</span>をとるダミー変数、<span class="math inline">\(\mathbf{z}\)</span>はその他の変数をさす。DiD estimatorはもちろん<span class="math inline">\(b_3\)</span>である。</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Before</th>
-<th align="center">After</th>
-<th align="center">After - Before</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">Control</td>
-<td align="center"><span class="math inline">\(a\)</span></td>
-<td align="center"><span class="math inline">\(a+b_1\)</span></td>
-<td align="center"><span class="math inline">\(b_1\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">Treatment</td>
-<td align="center"><span class="math inline">\(a+b_2\)</span></td>
-<td align="center"><span class="math inline">\(a+b_1+b_2+b_3\)</span></td>
-<td align="center"><span class="math inline">\(b_1+b_3\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">Treatment - Control</td>
-<td align="center"><span class="math inline">\(b_2\)</span></td>
-<td align="center"><span class="math inline">\(b_2+b_3\)</span></td>
-<td align="center"><span class="math inline">\(b_3\)</span></td>
-</tr>
-</tbody>
-</table>
-<div id="例1" class="section level3 hasAnchor" number="7.4.1">
-<h3><span class="header-section-number">7.4.1</span> 例1<a href="chapter07.html#例1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="chapter07.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Joint regression including an interaction term </span></span>
-<span id="cb218-2"><a href="chapter07.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 他のコントロール変数を含めない場合</span></span>
-<span id="cb218-3"><a href="chapter07.html#cb218-3" aria-hidden="true" tabindex="-1"></a>result1<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81), <span class="at">data=</span>kielmc)</span>
-<span id="cb218-4"><a href="chapter07.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = rprice ~ nearinc + y81 + I(nearinc * y81), data = kielmc)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -60678 -17693  -3031  12483 236307 
-## 
-## Coefficients:
-##                  Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         82517       2727   30.26  &lt; 2e-16 ***
-## nearinc            -18824       4875   -3.86  0.00014 ***
-## y81                 18790       4050    4.64  5.1e-06 ***
-## I(nearinc * y81)   -11864       7457   -1.59  0.11259    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 30200 on 317 degrees of freedom
-## Multiple R-squared:  0.174,  Adjusted R-squared:  0.166 
-## F-statistic: 22.3 on 3 and 317 DF,  p-value: 4.22e-13</code></pre>
+<div id="データフレームの要約" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> データフレームの要約<a href="chapter07.html#データフレームの要約" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="chapter07.html#cb172-1" tabindex="-1"></a><span class="fu">summary</span>(sampleDB)</span></code></pre></div>
+<pre><code>##     prefcode   prefnameJ             A1101              A1301             A1303        
+##  Min.   : 1   Length:47          Min.   :  560000   Min.   :  71000   Min.   : 177000  
+##  1st Qu.:12   Class :character   1st Qu.: 1085500   1st Qu.: 132000   1st Qu.: 339000  
+##  Median :24   Mode  :character   Median : 1614000   Median : 216000   Median : 506000  
+##  Mean   :24                      Mean   : 2690277   Mean   : 328043   Mean   : 756915  
+##  3rd Qu.:36                      3rd Qu.: 2704000   3rd Qu.: 326500   3rd Qu.: 783000  
+##  Max.   :47                      Max.   :13822000   Max.   :1550000   Max.   :3189000  
+##      B1101             B1103             B4107         B4108         D110101        E6102    
+##  Min.   : 187678   Min.   :  85553   Min.   :  0   Min.   :1526   Min.   : 15   Min.   :  2  
+##  1st Qu.: 416640   1st Qu.: 131898   1st Qu.: 13   1st Qu.:1898   1st Qu.: 22   1st Qu.:  6  
+##  Median : 609733   Median : 205919   Median : 20   Median :2120   Median : 33   Median :  9  
+##  Mean   : 793555   Mean   : 260924   Mean   : 35   Mean   :2070   Mean   : 37   Mean   : 17  
+##  3rd Qu.: 808915   3rd Qu.: 298550   3rd Qu.: 54   3rd Qu.:2238   3rd Qu.: 42   3rd Qu.: 18  
+##  Max.   :7842077   Max.   :2237238   Max.   :131   Max.   :2391   Max.   :179   Max.   :138  
+##      E6302           F610201        F610202        H110202           Kanto     
+##  Min.   :  6710   Min.   :11.0   Min.   : 5.0   Min.   : 39900   Min.   :0.00  
+##  1st Qu.: 11696   1st Qu.:15.0   1st Qu.: 7.0   1st Qu.: 82700   1st Qu.:0.00  
+##  Median : 18376   Median :16.0   Median : 8.0   Median :126800   Median :0.00  
+##  Mean   : 55312   Mean   :15.9   Mean   : 7.7   Mean   :180615   Mean   :0.15  
+##  3rd Qu.: 43465   3rd Qu.:17.0   3rd Qu.: 9.0   3rd Qu.:197250   3rd Qu.:0.00  
+##  Max.   :669191   Max.   :20.0   Max.   :10.0   Max.   :809900   Max.   :1.00</code></pre>
 </div>
-<div id="例2" class="section level3 hasAnchor" number="7.4.2">
-<h3><span class="header-section-number">7.4.2</span> 例2<a href="chapter07.html#例2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="chapter07.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 住宅の築年数だけ含めた場合</span></span>
-<span id="cb220-2"><a href="chapter07.html#cb220-2" aria-hidden="true" tabindex="-1"></a>result2<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81), <span class="at">data=</span>kielmc)</span>
-<span id="cb220-3"><a href="chapter07.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result2)</span></code></pre></div>
+<div id="相関係数" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> 相関係数<a href="chapter07.html#相関係数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>二つの変数の直線的な関係を数値的に表す方法として相関係数 (correlation)がある。</p>
+<p>相関係数の定義は以下の通り</p>
+<p><span class="math display">\[r_{xy}=\frac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}\]</span></p>
+<p>ただし、</p>
+<p><span class="math display">\[s_{xy}=\frac{1}{n}\sum_{i=1}^{n}\left(x_i-\overline{x}\right)\left(y_i-\overline{y}\right)\]</span></p>
+<p>は共分散である。</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="chapter07.html#cb174-1" tabindex="-1"></a><span class="co"># 二つのデータは無相関であるという帰無仮説を検定</span></span>
+<span id="cb174-2"><a href="chapter07.html#cb174-2" tabindex="-1"></a><span class="co"># 市町村数と都道府県の総面接</span></span>
+<span id="cb174-3"><a href="chapter07.html#cb174-3" tabindex="-1"></a><span class="fu">cor.test</span>(sampleDB<span class="sc">$</span>D110101,sampleDB<span class="sc">$</span>B1101)</span></code></pre></div>
 <pre><code>## 
-## Call:
-## lm(formula = rprice ~ nearinc + y81 + age + I(age^2) + I(nearinc * 
-##     y81), data = kielmc)
+##  Pearson&#39;s product-moment correlation
 ## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -79349 -14431  -1711  10069 201486 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)       8.91e+04   2.41e+03   37.04  &lt; 2e-16 ***
-## nearinc           9.40e+03   4.81e+03    1.95  0.05171 .  
-## y81               2.13e+04   3.44e+03    6.19  1.9e-09 ***
-## age              -1.49e+03   1.32e+02  -11.33  &lt; 2e-16 ***
-## I(age^2)          8.69e+00   8.48e-01   10.25  &lt; 2e-16 ***
-## I(nearinc * y81) -2.19e+04   6.36e+03   -3.45  0.00064 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 25500 on 315 degrees of freedom
-## Multiple R-squared:  0.414,  Adjusted R-squared:  0.405 
-## F-statistic: 44.6 on 5 and 315 DF,  p-value: &lt;2e-16</code></pre>
-</div>
-<div id="例3" class="section level3 hasAnchor" number="7.4.3">
-<h3><span class="header-section-number">7.4.3</span> 例3<a href="chapter07.html#例3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="chapter07.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 他のコントロール変数も含めた場合</span></span>
-<span id="cb222-2"><a href="chapter07.html#cb222-2" aria-hidden="true" tabindex="-1"></a>result3<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81)<span class="sc">+</span>intst<span class="sc">+</span></span>
-<span id="cb222-3"><a href="chapter07.html#cb222-3" aria-hidden="true" tabindex="-1"></a>               land<span class="sc">+</span>area<span class="sc">+</span>rooms<span class="sc">+</span>baths, <span class="at">data=</span>kielmc)</span>
-<span id="cb222-4"><a href="chapter07.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result3)</span></code></pre></div>
+## data:  sampleDB$D110101 and sampleDB$B1101
+## t = 10, df = 45, p-value = 6e-13
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.71 0.90
+## sample estimates:
+##  cor 
+## 0.83</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="chapter07.html#cb176-1" tabindex="-1"></a><span class="co"># 市町村数と都道府県の可住地面接</span></span>
+<span id="cb176-2"><a href="chapter07.html#cb176-2" tabindex="-1"></a><span class="fu">cor.test</span>(sampleDB<span class="sc">$</span>D110101,sampleDB<span class="sc">$</span>B1103)</span></code></pre></div>
 <pre><code>## 
-## Call:
-## lm(formula = rprice ~ nearinc + y81 + age + I(age^2) + I(nearinc * 
-##     y81) + intst + land + area + rooms + baths, data = kielmc)
+##  Pearson&#39;s product-moment correlation
 ## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -76721  -8885   -252   8433 136649 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)       1.38e+04   1.12e+04    1.24   0.2172    
-## nearinc           3.78e+03   4.45e+03    0.85   0.3966    
-## y81               1.39e+04   2.80e+03    4.98  1.1e-06 ***
-## age              -7.39e+02   1.31e+02   -5.64  3.8e-08 ***
-## I(age^2)          3.45e+00   8.13e-01    4.25  2.9e-05 ***
-## I(nearinc * y81) -1.42e+04   4.99e+03   -2.84   0.0048 ** 
-## intst            -5.39e-01   1.96e-01   -2.74   0.0064 ** 
-## land              1.41e-01   3.11e-02    4.55  7.7e-06 ***
-## area              1.81e+01   2.31e+00    7.84  7.2e-14 ***
-## rooms             3.30e+03   1.66e+03    1.99   0.0476 *  
-## baths             6.98e+03   2.58e+03    2.70   0.0073 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19600 on 310 degrees of freedom
-## Multiple R-squared:  0.66,   Adjusted R-squared:  0.649 
-## F-statistic: 60.2 on 10 and 310 DF,  p-value: &lt;2e-16</code></pre>
-<p><code>modelsummary</code>というパッケージでまとめて表示できる。</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="chapter07.html#cb224-1" aria-hidden="true" tabindex="-1"></a>DiDresults <span class="ot">&lt;-</span><span class="fu">list</span>(</span>
-<span id="cb224-2"><a href="chapter07.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Base&quot;</span> <span class="ot">=</span> result1,</span>
-<span id="cb224-3"><a href="chapter07.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;With year&quot;</span><span class="ot">=</span>result2,</span>
-<span id="cb224-4"><a href="chapter07.html#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;With all&quot;</span><span class="ot">=</span>result3</span>
-<span id="cb224-5"><a href="chapter07.html#cb224-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb224-6"><a href="chapter07.html#cb224-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb224-7"><a href="chapter07.html#cb224-7" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(DiDresults,<span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Base
-</th>
-<th style="text-align:center;">
-With year
-</th>
-<th style="text-align:center;">
-With all
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:center;">
-82517.228***
-</td>
-<td style="text-align:center;">
-89116.535***
-</td>
-<td style="text-align:center;">
-1.4e+04
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(2726.910)
-</td>
-<td style="text-align:center;">
-(2406.051)
-</td>
-<td style="text-align:center;">
-(1.1e+04)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-nearinc
-</td>
-<td style="text-align:center;">
-−18824.370***
-</td>
-<td style="text-align:center;">
-9397.936+
-</td>
-<td style="text-align:center;">
-3.8e+03
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(4875.322)
-</td>
-<td style="text-align:center;">
-(4812.222)
-</td>
-<td style="text-align:center;">
-(4.5e+03)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-y81
-</td>
-<td style="text-align:center;">
-18790.286***
-</td>
-<td style="text-align:center;">
-21321.042***
-</td>
-<td style="text-align:center;">
-1.4e+04***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(4050.065)
-</td>
-<td style="text-align:center;">
-(3443.631)
-</td>
-<td style="text-align:center;">
-(2.8e+03)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I(nearinc * y81)
-</td>
-<td style="text-align:center;">
-−11863.903
-</td>
-<td style="text-align:center;">
-−21920.270***
-</td>
-<td style="text-align:center;">
-−1.4e+04**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(7456.646)
-</td>
-<td style="text-align:center;">
-(6359.745)
-</td>
-<td style="text-align:center;">
-(5.0e+03)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-age
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-−1494.424***
-</td>
-<td style="text-align:center;">
-−7.4e+02***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(131.860)
-</td>
-<td style="text-align:center;">
-(1.3e+02)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I(age^2)
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-8.691***
-</td>
-<td style="text-align:center;">
-3.5e+00***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.848)
-</td>
-<td style="text-align:center;">
-(8.1e−01)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-intst
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-−5.4e−01**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(2.0e−01)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-land
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-1.4e−01***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(3.1e−02)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-area
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-1.8e+01***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(2.3e+00)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-rooms
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-3.3e+03*
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(1.7e+03)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-baths
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-7.0e+03**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(2.6e+03)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-321
-</td>
-<td style="text-align:center;">
-321
-</td>
-<td style="text-align:center;">
-321
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2
-</td>
-<td style="text-align:center;">
-0.174
-</td>
-<td style="text-align:center;">
-0.414
-</td>
-<td style="text-align:center;">
-0.660
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Adj.
-</td>
-<td style="text-align:center;">
-0.166
-</td>
-<td style="text-align:center;">
-0.405
-</td>
-<td style="text-align:center;">
-0.649
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-7540.5
-</td>
-<td style="text-align:center;">
-7434.0
-</td>
-<td style="text-align:center;">
-7269.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-7559.3
-</td>
-<td style="text-align:center;">
-7460.4
-</td>
-<td style="text-align:center;">
-7314.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Log.Lik.
-</td>
-<td style="text-align:center;">
-−3765.229
-</td>
-<td style="text-align:center;">
-−3710.001
-</td>
-<td style="text-align:center;">
-−3622.729
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-22.251
-</td>
-<td style="text-align:center;">
-44.591
-</td>
-<td style="text-align:center;">
-60.189
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-30053.88
-</td>
-<td style="text-align:center;">
-25303.44
-</td>
-<td style="text-align:center;">
-19279.94
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
-</td>
-</tr>
-</tfoot>
-</table>
+## data:  sampleDB$D110101 and sampleDB$B1103
+## t = 12, df = 45, p-value = 3e-15
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.77 0.93
+## sample estimates:
+##  cor 
+## 0.87</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="chapter07.html#cb178-1" tabindex="-1"></a><span class="co"># 相関関係の可視化</span></span>
+<span id="cb178-2"><a href="chapter07.html#cb178-2" tabindex="-1"></a><span class="fu">plot</span>(sampleDB<span class="sc">$</span>D110101,sampleDB<span class="sc">$</span>B1101)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/statistics4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="chapter07.html#cb179-1" tabindex="-1"></a><span class="co"># ggplotによる可視化</span></span>
+<span id="cb179-2"><a href="chapter07.html#cb179-2" tabindex="-1"></a>sampleDB <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="chapter07.html#cb179-3" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb179-4"><a href="chapter07.html#cb179-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>D110101,<span class="at">y=</span>B1101<span class="sc">/</span><span class="dv">1000</span>,<span class="at">color=</span><span class="fu">factor</span>(Kanto)))<span class="sc">+</span></span>
+<span id="cb179-5"><a href="chapter07.html#cb179-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of municipalities&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;Total Area (thousand ha)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb179-6"><a href="chapter07.html#cb179-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Kanto Dummy&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/statistics4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="chapter07.html#cb180-1" tabindex="-1"></a><span class="co"># 相関係数を３つ表示</span></span>
+<span id="cb180-2"><a href="chapter07.html#cb180-2" tabindex="-1"></a>sampleDB <span class="sc">%&gt;%</span></span>
+<span id="cb180-3"><a href="chapter07.html#cb180-3" tabindex="-1"></a>  <span class="fu">select</span>(D110101,B1101,B1103)<span class="ot">-&gt;</span>sampleDBsmall</span>
+<span id="cb180-4"><a href="chapter07.html#cb180-4" tabindex="-1"></a></span>
+<span id="cb180-5"><a href="chapter07.html#cb180-5" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb180-6"><a href="chapter07.html#cb180-6" tabindex="-1"></a><span class="fu">pairs.panels</span>(sampleDBsmall)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/statistics4-3.png" width="672" /></p>
 </div>
-<div id="logをとった場合" class="section level3 hasAnchor" number="7.4.4">
-<h3><span class="header-section-number">7.4.4</span> logをとった場合<a href="chapter07.html#logをとった場合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>効果を割合として解釈できる。より当てはまりがよくなる場合もある。</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter07.html#cb225-1" aria-hidden="true" tabindex="-1"></a>DiD      <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rprice)<span class="sc">~</span>nearinc<span class="sc">*</span>y81, <span class="at">data=</span>kielmc)</span>
-<span id="cb225-2"><a href="chapter07.html#cb225-2" aria-hidden="true" tabindex="-1"></a>DiDcontr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rprice)<span class="sc">~</span>nearinc<span class="sc">*</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">log</span>(intst)<span class="sc">+</span></span>
-<span id="cb225-3"><a href="chapter07.html#cb225-3" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">log</span>(land)<span class="sc">+</span><span class="fu">log</span>(area)<span class="sc">+</span>rooms<span class="sc">+</span>baths, <span class="at">data=</span>kielmc)</span>
-<span id="cb225-4"><a href="chapter07.html#cb225-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-5"><a href="chapter07.html#cb225-5" aria-hidden="true" tabindex="-1"></a>DiDlogresults<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
-<span id="cb225-6"><a href="chapter07.html#cb225-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Base (log)&quot;</span><span class="ot">=</span>DiD,</span>
-<span id="cb225-7"><a href="chapter07.html#cb225-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;With all (log)&quot;</span> <span class="ot">=</span> DiDcontr</span>
-<span id="cb225-8"><a href="chapter07.html#cb225-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb225-9"><a href="chapter07.html#cb225-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-10"><a href="chapter07.html#cb225-10" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(DiDlogresults,<span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Base (log)
-</th>
-<th style="text-align:center;">
-With all (log)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:center;">
-11.285***
-</td>
-<td style="text-align:center;">
-7.652***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.031)
-</td>
-<td style="text-align:center;">
-(0.416)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-nearinc
-</td>
-<td style="text-align:center;">
-−0.340***
-</td>
-<td style="text-align:center;">
-0.032
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.055)
-</td>
-<td style="text-align:center;">
-(0.047)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-y81
-</td>
-<td style="text-align:center;">
-0.193***
-</td>
-<td style="text-align:center;">
-0.162***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.045)
-</td>
-<td style="text-align:center;">
-(0.028)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-nearinc × y81
-</td>
-<td style="text-align:center;">
-−0.063
-</td>
-<td style="text-align:center;">
-−0.132*
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.083)
-</td>
-<td style="text-align:center;">
-(0.052)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-age
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-−0.008***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.001)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I(age^2)
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.000***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.000)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(intst)
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-−0.061+
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.032)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(land)
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.100***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.024)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-log(area)
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.351***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.051)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-rooms
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.047**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.017)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-baths
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.094***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.028)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-321
-</td>
-<td style="text-align:center;">
-321
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2
-</td>
-<td style="text-align:center;">
-0.246
-</td>
-<td style="text-align:center;">
-0.733
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Adj.
-</td>
-<td style="text-align:center;">
-0.239
-</td>
-<td style="text-align:center;">
-0.724
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-7451.2
-</td>
-<td style="text-align:center;">
-7132.4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-7470.0
-</td>
-<td style="text-align:center;">
-7177.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Log.Lik.
-</td>
-<td style="text-align:center;">
-−105.675
-</td>
-<td style="text-align:center;">
-60.690
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-34.470
-</td>
-<td style="text-align:center;">
-84.915
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-0.34
-</td>
-<td style="text-align:center;">
-0.20
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
-</td>
-</tr>
-</tfoot>
-</table>
-<p>焼却炉立地の噂は13.2％の住宅価格押し下げ効果があったことがわかる。</p>
+<div id="仮説検定" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> 仮説検定<a href="chapter07.html#仮説検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ミクロ経済学は一定の仮定をもうけることで「必ず○○となる」と言った確定的な結論を提供する。しかし場合によってはその仮定が非現実的であることもある。実証分析は実際のデータに基づいているので、その方が優れているかというと必ずしもそうではない。例えば、教室にいる女性に「一番好きな食べ物は何か？」と聞いて、仮に全員が「焼き芋」と答えたとしても「世界中の女性が最も好きな食べ物は焼き芋である」ということにはならない。</p>
+<p>母集団全体からデータを集めることは通常不可能である。そこで、どの程度の確率で自分の仮説が確からしいかを数量的に評価する方法が求められる。これが推測統計学を基礎とした計量経済学の基本的な考え方である。</p>
+<p>そのための重要な考え方が、統計的仮説検定と呼ばれるものである。これは自身が主張したい仮説と逆の命題を「帰無仮説」として設定し、この「帰無仮説」がめったに起らないかどうかを確認する。このめったに起らないの「めったに」を有意水準といい、経済学では通常100回やったら5回以下しか起こらないような事象を指す。これを有意水準5%での仮説検定と呼ぶ。もし、有意水準5%で帰無仮説が棄却されたら、帰無仮説の逆の命題（対立仮説と呼ばれる）が消極的に指示されるのである。</p>
+</div>
+<div id="t検定" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> t検定<a href="chapter07.html#t検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>母分散が未知である場合の一つの平均値の検定</p>
+<p>標準正規分布の標本分散を不偏分散で置き換えた以下の推定量</p>
+<p><span class="math display">\[t=\frac{\overline{x}-\mu}{\hat{\sigma}/\sqrt{n}}\]</span>
+は自由度<span class="math inline">\(n-1\)</span>の<span class="math inline">\(t\)</span>分布に従うことが知られている。</p>
+<p>分散・標準偏差の大きさのイメージで使用したデータが、正規分布しているA大学及びB大学の成績分布の中から抽出されたものだとしよう。例として、</p>
+<ul>
+<li><p>帰無仮説：<span class="math inline">\(\mu=15\)</span></p></li>
+<li><p>対立仮説：<span class="math inline">\(\mu \neq 15\)</span></p></li>
+</ul>
+<p>を検定しよう。</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="chapter07.html#cb181-1" tabindex="-1"></a><span class="co">#自由度=24のt分布</span></span>
+<span id="cb181-2"><a href="chapter07.html#cb181-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="dv">24</span>),<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb181-3"><a href="chapter07.html#cb181-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">qt</span>(<span class="fl">0.025</span>,<span class="dv">24</span>)) <span class="co"># 2.5%のライン</span></span>
+<span id="cb181-4"><a href="chapter07.html#cb181-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">24</span>)) <span class="co"># 97.5%のライン</span></span></code></pre></div>
+<p><img src="book_filename_files/figure-html/test1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="chapter07.html#cb182-1" tabindex="-1"></a><span class="co"># t検定を実施するコマンド</span></span>
+<span id="cb182-2"><a href="chapter07.html#cb182-2" tabindex="-1"></a><span class="fu">t.test</span>(smallV,<span class="at">mu=</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  smallV
+## t = -5, df = 24, p-value = 2e-05
+## alternative hypothesis: true mean is not equal to 15
+## 95 percent confidence interval:
+##  12 14
+## sample estimates:
+## mean of x 
+##        13</code></pre>
+<p>t値が-5.3452であり、2.5%ラインを大きく下回っている。つまり、<span class="math inline">\(\mu=15\)</span>という帰無仮説が誤っていたと結論づけられる。母平均は15とは言えないという結論が有意水準5%で得られた。</p>
+<p>来週以降に行う回帰分析においては、<span class="math inline">\(\mu=0\)</span>という帰無仮説を検定する。</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -1434,7 +594,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

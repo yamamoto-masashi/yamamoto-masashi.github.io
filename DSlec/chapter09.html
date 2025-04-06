@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>chapter: 9 dplyrによるデータ集計 | データ分析入門</title>
-  <meta name="description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="chapter: 9 dplyrによるデータ集計 | データ分析入門" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chapter: 9 dplyrによるデータ集計 | データ分析入門" />
   
-  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-17" />
+<meta name="date" content="2025-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,20 +52,11 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
-<script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -114,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -149,9 +144,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#講義の概要"><i class="fa fa-check"></i><b>1.1</b> 講義の概要</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.3</b> 授業計画</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.4</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -167,11 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
-<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
-</ul></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -189,50 +179,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter05.html"><a href="chapter05.html"><i class="fa fa-check"></i><b>5</b> 可視化(2)：ggplot2による地図作成</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
-<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-1"><i class="fa fa-check"></i><b>5.1</b> パレットの追加 (1)</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-2"><i class="fa fa-check"></i><b>5.2</b> パレットの追加 (2)</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.3</b> 塗り分け地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.4</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.5</b> 世界地図の活用</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
-<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+<li class="chapter" data-level="5.5.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.5.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.5.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.5.2</b> 世界銀行データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.5</b> さらに学びたい人へ</a></li>
+<li class="chapter" data-level="5.6" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.6</b> さらに学びたい人へ</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
+<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> 可視化(3)：貿易統計の可視化</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.1</b> データの読み込み</a></li>
-<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#平均分散標準偏差"><i class="fa fa-check"></i><b>6.2</b> 平均・分散・標準偏差</a></li>
-<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>6.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
-<li class="chapter" data-level="6.4" data-path="chapter06.html"><a href="chapter06.html#データフレームの要約"><i class="fa fa-check"></i><b>6.4</b> データフレームの要約</a></li>
-<li class="chapter" data-level="6.5" data-path="chapter06.html"><a href="chapter06.html#相関係数"><i class="fa fa-check"></i><b>6.5</b> 相関係数</a></li>
-<li class="chapter" data-level="6.6" data-path="chapter06.html"><a href="chapter06.html#仮説検定"><i class="fa fa-check"></i><b>6.6</b> 仮説検定</a></li>
-<li class="chapter" data-level="6.7" data-path="chapter06.html"><a href="chapter06.html#t検定"><i class="fa fa-check"></i><b>6.7</b> t検定</a></li>
+<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#貿易統計とは"><i class="fa fa-check"></i><b>6.1</b> 貿易統計とは</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#りんごの輸出データの可視化"><i class="fa fa-check"></i><b>6.3</b> りんごの輸出データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる重回帰分析</a>
+<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる統計的仮説検定</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>7.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
-<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#単回帰の事例"><i class="fa fa-check"></i><b>7.2</b> 単回帰の事例</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#重回帰分析"><i class="fa fa-check"></i><b>7.3</b> 重回帰分析</a></li>
-<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>7.4</b> 因果推論 (Quasi Experiment)の例</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="chapter07.html"><a href="chapter07.html#例1"><i class="fa fa-check"></i><b>7.4.1</b> 例1</a></li>
-<li class="chapter" data-level="7.4.2" data-path="chapter07.html"><a href="chapter07.html#例2"><i class="fa fa-check"></i><b>7.4.2</b> 例2</a></li>
-<li class="chapter" data-level="7.4.3" data-path="chapter07.html"><a href="chapter07.html#例3"><i class="fa fa-check"></i><b>7.4.3</b> 例3</a></li>
-<li class="chapter" data-level="7.4.4" data-path="chapter07.html"><a href="chapter07.html#logをとった場合"><i class="fa fa-check"></i><b>7.4.4</b> logをとった場合</a></li>
+<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#データの読み込み-1"><i class="fa fa-check"></i><b>7.1</b> データの読み込み</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#平均分散標準偏差"><i class="fa fa-check"></i><b>7.2</b> 平均・分散・標準偏差</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>7.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#データフレームの要約"><i class="fa fa-check"></i><b>7.4</b> データフレームの要約</a></li>
+<li class="chapter" data-level="7.5" data-path="chapter07.html"><a href="chapter07.html#相関係数"><i class="fa fa-check"></i><b>7.5</b> 相関係数</a></li>
+<li class="chapter" data-level="7.6" data-path="chapter07.html"><a href="chapter07.html#仮説検定"><i class="fa fa-check"></i><b>7.6</b> 仮説検定</a></li>
+<li class="chapter" data-level="7.7" data-path="chapter07.html"><a href="chapter07.html#t検定"><i class="fa fa-check"></i><b>7.7</b> t検定</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
+<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> Rによる重回帰分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>8.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#単回帰の事例"><i class="fa fa-check"></i><b>8.2</b> 単回帰の事例</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#重回帰分析"><i class="fa fa-check"></i><b>8.3</b> 重回帰分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>8.4</b> 因果推論 (Quasi Experiment)の例</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
-<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
-<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
-<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+<li class="chapter" data-level="8.4.1" data-path="chapter08.html"><a href="chapter08.html#例1"><i class="fa fa-check"></i><b>8.4.1</b> 例1</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapter08.html"><a href="chapter08.html#例2"><i class="fa fa-check"></i><b>8.4.2</b> 例2</a></li>
+<li class="chapter" data-level="8.4.3" data-path="chapter08.html"><a href="chapter08.html#例3"><i class="fa fa-check"></i><b>8.4.3</b> 例3</a></li>
+<li class="chapter" data-level="8.4.4" data-path="chapter08.html"><a href="chapter08.html#logをとった場合"><i class="fa fa-check"></i><b>8.4.4</b> logをとった場合</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -245,6 +230,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
 <li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
 <li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter11.html"><a href="chapter11.html"><i class="fa fa-check"></i><b>11</b> グラフを書いてみよう・問題を解いてみよう</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter11.html"><a href="chapter11.html#基礎編"><i class="fa fa-check"></i><b>11.1</b> 1. 基礎編</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter11.html"><a href="chapter11.html#応用編"><i class="fa fa-check"></i><b>11.2</b> 2. 応用編</a></li>
+<li class="chapter" data-level="11.3" data-path="chapter11.html"><a href="chapter11.html#応用編-1"><i class="fa fa-check"></i><b>11.3</b> 3. 応用編</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter12.html"><a href="chapter12.html"><i class="fa fa-check"></i><b>12</b> 参考になるウェブサイト</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter12.html"><a href="chapter12.html#データ"><i class="fa fa-check"></i><b>12.1</b> データ</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter12.html"><a href="chapter12.html#rについて"><i class="fa fa-check"></i><b>12.2</b> Rについて</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter12.html"><a href="chapter12.html#このサイトにある他の情報"><i class="fa fa-check"></i><b>12.3</b> このサイトにある他の情報</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -272,26 +269,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> はじめに<a href="chapter09.html#はじめに" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>データ分析にかかる時間の大半は、分析目的に合わせてデータをキレイに整える段階に費やされます。<code>R</code>の<code>dplyr</code>という<code>package</code>を用いて、少しでも楽にデータ集計を進めるためのコツを学びます。</p>
 <p>一定の時間が経過した後に見直しをすると、クリック操作で行った手続きを思い出すことは不可能です。できるだけ<code>R</code>の環境の中でデータの整理を行うことでデータ整理自体の時間節約になるだけでなく、<code>dplyr</code>コマンドとして作業を記録しておくことで、過去の自分が何をしたかを思い出す時間も節約することができます。</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="chapter09.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
-<span id="cb243-2"><a href="chapter09.html#cb243-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb243-3"><a href="chapter09.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb243-4"><a href="chapter09.html#cb243-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb243-5"><a href="chapter09.html#cb243-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb243-6"><a href="chapter09.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter09.html#cb207-1" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb207-2"><a href="chapter09.html#cb207-2" tabindex="-1"></a></span>
+<span id="cb207-3"><a href="chapter09.html#cb207-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb207-4"><a href="chapter09.html#cb207-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb207-5"><a href="chapter09.html#cb207-5" tabindex="-1"></a></span>
+<span id="cb207-6"><a href="chapter09.html#cb207-6" tabindex="-1"></a><span class="fu">head</span>(midwest)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 28
-##     PID county  state  area popto…¹ popde…² popwh…³ popbl…⁴ popam…⁵ popas…⁶ popot…⁷ percw…⁸ percb…⁹ perca…˟ perca…˟
-##   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1   561 ADAMS   IL    0.052   66090   1271.   63917    1702      98     249     124    96.7   2.58    0.148  0.377 
-## 2   562 ALEXAN… IL    0.014   10626    759     7054    3496      19      48       9    66.4  32.9     0.179  0.452 
-## 3   563 BOND    IL    0.022   14991    681.   14477     429      35      16      34    96.6   2.86    0.233  0.107 
-## 4   564 BOONE   IL    0.017   30806   1812.   29344     127      46     150    1139    95.3   0.412   0.149  0.487 
-## 5   565 BROWN   IL    0.018    5836    324.    5264     547      14       5       6    90.2   9.37    0.240  0.0857
-## 6   566 BUREAU  IL    0.05    35688    714.   35157      50      65     195     221    98.5   0.140   0.182  0.546 
-## # … with 13 more variables: percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
-## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;, percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;,
-## #   percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;, category &lt;chr&gt;, and abbreviated variable
-## #   names ¹​poptotal, ²​popdensity, ³​popwhite, ⁴​popblack, ⁵​popamerindian, ⁶​popasian, ⁷​popother, ⁸​percwhite,
-## #   ⁹​percblack, ˟​percamerindan, ˟​percasian</code></pre>
+##     PID county state  area poptotal popdensity popwhite popblack popamerindian popasian popother
+##   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;         &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+## 1   561 ADAMS  IL    0.052    66090      1271.    63917     1702            98      249      124
+## 2   562 ALEXA… IL    0.014    10626       759      7054     3496            19       48        9
+## 3   563 BOND   IL    0.022    14991       681.    14477      429            35       16       34
+## 4   564 BOONE  IL    0.017    30806      1812.    29344      127            46      150     1139
+## 5   565 BROWN  IL    0.018     5836       324.     5264      547            14        5        6
+## 6   566 BUREAU IL    0.05     35688       714.    35157       50            65      195      221
+## # ℹ 17 more variables: percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;, percasian &lt;dbl&gt;,
+## #   percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
+## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;, percbelowpoverty &lt;dbl&gt;,
+## #   percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;,
+## #   inmetro &lt;int&gt;, category &lt;chr&gt;</code></pre>
 </div>
 <div id="パイプ演算子について" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> パイプ演算子について<a href="chapter09.html#パイプ演算子について" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -302,27 +299,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>改行が入るので、コメントを残しやすい。</li>
 </ol>
 <p>一方、デメリットとしては、たまにパイプ演算子を使うとうまく機能させられない関数がありますが、入門の段階ではそのような現象はほとんどなく、導入のメリットしかないと思いますので、積極的に活用ですべきと考えます。</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="chapter09.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いた場合</span></span>
-<span id="cb245-2"><a href="chapter09.html#cb245-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb245-3"><a href="chapter09.html#cb245-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter09.html#cb209-1" tabindex="-1"></a><span class="co"># パイプ演算子を用いた場合</span></span>
+<span id="cb209-2"><a href="chapter09.html#cb209-2" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb209-3"><a href="chapter09.html#cb209-3" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="chapter09.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いない場合</span></span>
-<span id="cb247-2"><a href="chapter09.html#cb247-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-3"><a href="chapter09.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">data=</span>midwest,<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter09.html#cb211-1" tabindex="-1"></a><span class="co"># パイプ演算子を用いない場合</span></span>
+<span id="cb211-2"><a href="chapter09.html#cb211-2" tabindex="-1"></a></span>
+<span id="cb211-3"><a href="chapter09.html#cb211-3" tabindex="-1"></a><span class="fu">ggplot</span>(midwest)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">data=</span>midwest,<span class="fu">aes</span>(poptotal))<span class="sc">+</span></span>
+<span id="cb211-4"><a href="chapter09.html#cb211-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="chapter09.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子で他の演算も行う</span></span>
-<span id="cb249-2"><a href="chapter09.html#cb249-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb249-3"><a href="chapter09.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># 対象をミシガン州だけに</span></span>
-<span id="cb249-4"><a href="chapter09.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter09.html#cb213-1" tabindex="-1"></a><span class="co"># パイプ演算子で他の演算も行う</span></span>
+<span id="cb213-2"><a href="chapter09.html#cb213-2" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb213-3"><a href="chapter09.html#cb213-3" tabindex="-1"></a>  <span class="fu">filter</span>(state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># 対象をミシガン州だけに</span></span>
+<span id="cb213-4"><a href="chapter09.html#cb213-4" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))<span class="sc">+</span></span>
+<span id="cb213-5"><a href="chapter09.html#cb213-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-3.png" width="672" /></p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="chapter09.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプ演算子を用いないで、他の演算も行う</span></span>
-<span id="cb251-2"><a href="chapter09.html#cb251-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-3"><a href="chapter09.html#cb251-3" aria-hidden="true" tabindex="-1"></a>midwestMI<span class="ot">&lt;-</span><span class="fu">filter</span>(midwest, state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>)</span>
-<span id="cb251-4"><a href="chapter09.html#cb251-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-5"><a href="chapter09.html#cb251-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwestMI)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal)) </span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="chapter09.html#cb215-1" tabindex="-1"></a><span class="co"># パイプ演算子を用いないで、他の演算も行う</span></span>
+<span id="cb215-2"><a href="chapter09.html#cb215-2" tabindex="-1"></a></span>
+<span id="cb215-3"><a href="chapter09.html#cb215-3" tabindex="-1"></a>midwestMI<span class="ot">&lt;-</span><span class="fu">filter</span>(midwest, state<span class="sc">==</span><span class="st">&quot;MI&quot;</span>)</span>
+<span id="cb215-4"><a href="chapter09.html#cb215-4" tabindex="-1"></a></span>
+<span id="cb215-5"><a href="chapter09.html#cb215-5" tabindex="-1"></a><span class="fu">ggplot</span>(midwestMI)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(poptotal))<span class="sc">+</span></span>
+<span id="cb215-6"><a href="chapter09.html#cb215-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="book_filename_files/figure-html/dplyrIntro2-4.png" width="672" /></p>
 <p>最後の例では結果として２行になり、<code>midwestMI</code>というデータフレームも作成された。</p>
@@ -385,107 +385,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="chapter09.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb253-2"><a href="chapter09.html#cb253-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-3"><a href="chapter09.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
-<span id="cb253-4"><a href="chapter09.html#cb253-4" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/kakei2000.xlsx&quot;</span></span>
-<span id="cb253-5"><a href="chapter09.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url1,<span class="at">destfile=</span><span class="st">&quot;kakei2000.xlsx&quot;</span>)</span>
-<span id="cb253-6"><a href="chapter09.html#cb253-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-7"><a href="chapter09.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
-<span id="cb253-8"><a href="chapter09.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
-<span id="cb253-9"><a href="chapter09.html#cb253-9" aria-hidden="true" tabindex="-1"></a>kakeiDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;kakei2000.xlsx&quot;</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="chapter09.html#cb217-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb217-2"><a href="chapter09.html#cb217-2" tabindex="-1"></a></span>
+<span id="cb217-3"><a href="chapter09.html#cb217-3" tabindex="-1"></a><span class="co">#ウェブサイトから直接ダウンロードする場合</span></span>
+<span id="cb217-4"><a href="chapter09.html#cb217-4" tabindex="-1"></a>url3<span class="ot">&lt;-</span><span class="st">&quot;https://yamamoto-masashi.github.io/DSlec/kakei2000.xlsx&quot;</span></span>
+<span id="cb217-5"><a href="chapter09.html#cb217-5" tabindex="-1"></a><span class="fu">download.file</span>(url3,<span class="at">destfile=</span><span class="st">&quot;kakei2000.xlsx&quot;</span>)</span>
+<span id="cb217-6"><a href="chapter09.html#cb217-6" tabindex="-1"></a></span>
+<span id="cb217-7"><a href="chapter09.html#cb217-7" tabindex="-1"></a><span class="co"># エクセルファイルの読み込み</span></span>
+<span id="cb217-8"><a href="chapter09.html#cb217-8" tabindex="-1"></a><span class="co"># sheet=1を変更することで別のシートも読める</span></span>
+<span id="cb217-9"><a href="chapter09.html#cb217-9" tabindex="-1"></a>kakeiDB<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;kakei2000.xlsx&quot;</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
 <p>データベースの列を増減する。<code>mutate()</code>関数で新しい変数を加えることができます。<code>select()</code>関数はデータフレームに維持する変数名を指定して任意の大きさのデータフレームに変更できます。以下の例では変数名に「-」(マイナス)をつけることで指定した変数だけを除外したデータフレームを作成しています。</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="chapter09.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の追加 </span></span>
-<span id="cb254-2"><a href="chapter09.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-3"><a href="chapter09.html#cb254-3" aria-hidden="true" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
-<span id="cb254-4"><a href="chapter09.html#cb254-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb254-5"><a href="chapter09.html#cb254-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rSum1920=</span><span class="fu">sum</span>(FY2019, FY2020)) <span class="ot">-&gt;</span>kakeiDB</span>
-<span id="cb254-6"><a href="chapter09.html#cb254-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-7"><a href="chapter09.html#cb254-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kakeiDB)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="chapter09.html#cb218-1" tabindex="-1"></a><span class="co"># 列の追加 </span></span>
+<span id="cb218-2"><a href="chapter09.html#cb218-2" tabindex="-1"></a></span>
+<span id="cb218-3"><a href="chapter09.html#cb218-3" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
+<span id="cb218-4"><a href="chapter09.html#cb218-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb218-5"><a href="chapter09.html#cb218-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rSum1920=</span><span class="fu">sum</span>(FY2019, FY2020)) <span class="ot">-&gt;</span>kakeiDB</span>
+<span id="cb218-6"><a href="chapter09.html#cb218-6" tabindex="-1"></a></span>
+<span id="cb218-7"><a href="chapter09.html#cb218-7" tabindex="-1"></a><span class="fu">head</span>(kakeiDB)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 28
 ## # Rowwise: 
-##   Category1 Catego…¹ Categ…² Categ…³ Categ…⁴ Categ…⁵ FY2000 FY2001 FY2002 FY2003 FY2004 FY2005 FY2006 FY2007 FY2008
-##       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1         1 食料          10 穀類    1       米       40256  38293  36593  37256  37294  32896  30967  30679  31230
-## 2         1 食料          10 穀類    2       パン     27512  26358  26750  27189  27610  26253  26559  27096  28220
-## 3         1 食料          10 穀類    3       麺類     18771  18373  18389  18165  18053  16662  16292  16414  17985
-## 4         1 食料          10 穀類    4       他の穀…   4354   4266   4169   4170   4041   4759   4643   4880   5127
-## 5         1 食料          11 魚介類  1       生鮮魚…  67847  65056  64564  60487  57670  56018  55315  55007  52070
-## 6         1 食料          11 魚介類  2       塩干魚…  19876  19360  18741  18009  17293  17165  16955  16859  16671
-## # … with 13 more variables: FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
-## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;, rSum1920 &lt;dbl&gt;, and
-## #   abbreviated variable names ¹​Category1J, ²​Category2, ³​Category2J, ⁴​Category3, ⁵​Category3J</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="chapter09.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列の削除</span></span>
-<span id="cb256-2"><a href="chapter09.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-3"><a href="chapter09.html#cb256-3" aria-hidden="true" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
-<span id="cb256-4"><a href="chapter09.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>rSum1920) <span class="ot">-&gt;</span> kakeiDB</span>
-<span id="cb256-5"><a href="chapter09.html#cb256-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-6"><a href="chapter09.html#cb256-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kakeiDB)</span></code></pre></div>
+##   Category1 Category1J Category2 Category2J Category3 Category3J FY2000 FY2001 FY2002 FY2003
+##       &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1         1 食料              10 穀類       1         米          40256  38293  36593  37256
+## 2         1 食料              10 穀類       2         パン        27512  26358  26750  27189
+## 3         1 食料              10 穀類       3         麺類        18771  18373  18389  18165
+## 4         1 食料              10 穀類       4         他の穀類     4354   4266   4169   4170
+## 5         1 食料              11 魚介類     1         生鮮魚介    67847  65056  64564  60487
+## 6         1 食料              11 魚介類     2         塩干魚介    19876  19360  18741  18009
+## # ℹ 18 more variables: FY2004 &lt;dbl&gt;, FY2005 &lt;dbl&gt;, FY2006 &lt;dbl&gt;, FY2007 &lt;dbl&gt;, FY2008 &lt;dbl&gt;,
+## #   FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
+## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;,
+## #   rSum1920 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="chapter09.html#cb220-1" tabindex="-1"></a><span class="co"># 列の削除</span></span>
+<span id="cb220-2"><a href="chapter09.html#cb220-2" tabindex="-1"></a></span>
+<span id="cb220-3"><a href="chapter09.html#cb220-3" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
+<span id="cb220-4"><a href="chapter09.html#cb220-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>rSum1920) <span class="ot">-&gt;</span> kakeiDB</span>
+<span id="cb220-5"><a href="chapter09.html#cb220-5" tabindex="-1"></a></span>
+<span id="cb220-6"><a href="chapter09.html#cb220-6" tabindex="-1"></a><span class="fu">head</span>(kakeiDB)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 27
 ## # Rowwise: 
-##   Category1 Catego…¹ Categ…² Categ…³ Categ…⁴ Categ…⁵ FY2000 FY2001 FY2002 FY2003 FY2004 FY2005 FY2006 FY2007 FY2008
-##       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1         1 食料          10 穀類    1       米       40256  38293  36593  37256  37294  32896  30967  30679  31230
-## 2         1 食料          10 穀類    2       パン     27512  26358  26750  27189  27610  26253  26559  27096  28220
-## 3         1 食料          10 穀類    3       麺類     18771  18373  18389  18165  18053  16662  16292  16414  17985
-## 4         1 食料          10 穀類    4       他の穀…   4354   4266   4169   4170   4041   4759   4643   4880   5127
-## 5         1 食料          11 魚介類  1       生鮮魚…  67847  65056  64564  60487  57670  56018  55315  55007  52070
-## 6         1 食料          11 魚介類  2       塩干魚…  19876  19360  18741  18009  17293  17165  16955  16859  16671
-## # … with 12 more variables: FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
-## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​Category1J, ²​Category2, ³​Category2J, ⁴​Category3, ⁵​Category3J</code></pre>
+##   Category1 Category1J Category2 Category2J Category3 Category3J FY2000 FY2001 FY2002 FY2003
+##       &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1         1 食料              10 穀類       1         米          40256  38293  36593  37256
+## 2         1 食料              10 穀類       2         パン        27512  26358  26750  27189
+## 3         1 食料              10 穀類       3         麺類        18771  18373  18389  18165
+## 4         1 食料              10 穀類       4         他の穀類     4354   4266   4169   4170
+## 5         1 食料              11 魚介類     1         生鮮魚介    67847  65056  64564  60487
+## 6         1 食料              11 魚介類     2         塩干魚介    19876  19360  18741  18009
+## # ℹ 17 more variables: FY2004 &lt;dbl&gt;, FY2005 &lt;dbl&gt;, FY2006 &lt;dbl&gt;, FY2007 &lt;dbl&gt;, FY2008 &lt;dbl&gt;,
+## #   FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
+## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;</code></pre>
 <p><code>filter()</code>関数を使って条件をつけてデータベースの行を絞り込む。</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="chapter09.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 魚介類だけを取り出す</span></span>
-<span id="cb258-2"><a href="chapter09.html#cb258-2" aria-hidden="true" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
-<span id="cb258-3"><a href="chapter09.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Category2<span class="sc">==</span><span class="dv">11</span>)<span class="ot">-&gt;</span>Cat2_11</span>
-<span id="cb258-4"><a href="chapter09.html#cb258-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-5"><a href="chapter09.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Cat2_11)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="chapter09.html#cb222-1" tabindex="-1"></a><span class="co"># 魚介類だけを取り出す</span></span>
+<span id="cb222-2"><a href="chapter09.html#cb222-2" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
+<span id="cb222-3"><a href="chapter09.html#cb222-3" tabindex="-1"></a>  <span class="fu">filter</span>(Category2<span class="sc">==</span><span class="dv">11</span>)<span class="ot">-&gt;</span>Cat2_11</span>
+<span id="cb222-4"><a href="chapter09.html#cb222-4" tabindex="-1"></a></span>
+<span id="cb222-5"><a href="chapter09.html#cb222-5" tabindex="-1"></a><span class="fu">print</span>(Cat2_11)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 27
 ## # Rowwise: 
-##   Category1 Catego…¹ Categ…² Categ…³ Categ…⁴ Categ…⁵ FY2000 FY2001 FY2002 FY2003 FY2004 FY2005 FY2006 FY2007 FY2008
-##       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1         1 食料          11 魚介類  1       生鮮魚…  67847  65056  64564  60487  57670  56018  55315  55007  52070
-## 2         1 食料          11 魚介類  2       塩干魚…  19876  19360  18741  18009  17293  17165  16955  16859  16671
-## 3         1 食料          11 魚介類  3       魚肉練…  10425  10329   9601   9203   9098   8942   8850   9048   9399
-## 4         1 食料          11 魚介類  4       他の魚…  12720  12345  11847  11198  10957  10915  10823  10850  10453
-## # … with 12 more variables: FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
-## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​Category1J, ²​Category2, ³​Category2J, ⁴​Category3, ⁵​Category3J</code></pre>
+##   Category1 Category1J Category2 Category2J Category3 Category3J     FY2000 FY2001 FY2002 FY2003
+##       &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1         1 食料              11 魚介類     1         生鮮魚介        67847  65056  64564  60487
+## 2         1 食料              11 魚介類     2         塩干魚介        19876  19360  18741  18009
+## 3         1 食料              11 魚介類     3         魚肉練製品      10425  10329   9601   9203
+## 4         1 食料              11 魚介類     4         他の魚介加工品  12720  12345  11847  11198
+## # ℹ 17 more variables: FY2004 &lt;dbl&gt;, FY2005 &lt;dbl&gt;, FY2006 &lt;dbl&gt;, FY2007 &lt;dbl&gt;, FY2008 &lt;dbl&gt;,
+## #   FY2009 &lt;dbl&gt;, FY2010 &lt;dbl&gt;, FY2011 &lt;dbl&gt;, FY2012 &lt;dbl&gt;, FY2013 &lt;dbl&gt;, FY2014 &lt;dbl&gt;,
+## #   FY2015 &lt;dbl&gt;, FY2016 &lt;dbl&gt;, FY2017 &lt;dbl&gt;, FY2018 &lt;dbl&gt;, FY2019 &lt;dbl&gt;, FY2020 &lt;dbl&gt;</code></pre>
 <p><code>group_by()</code>関数を使ってグループに分けて計算する。今回は<code>summarize()</code>関数を使って最大値を計算しています。</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="chapter09.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2000年の消費（大分類）</span></span>
-<span id="cb260-2"><a href="chapter09.html#cb260-2" aria-hidden="true" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
-<span id="cb260-3"><a href="chapter09.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Category1J) <span class="sc">%&gt;%</span></span>
-<span id="cb260-4"><a href="chapter09.html#cb260-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max2000=</span><span class="fu">max</span>(FY2000<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb260-5"><a href="chapter09.html#cb260-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb260-6"><a href="chapter09.html#cb260-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb260-7"><a href="chapter09.html#cb260-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb260-8"><a href="chapter09.html#cb260-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Category1J, <span class="at">y =</span> max2000),</span>
-<span id="cb260-9"><a href="chapter09.html#cb260-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="at">fill=</span><span class="st">&quot;orange&quot;</span>)<span class="sc">+</span></span>
-<span id="cb260-10"><a href="chapter09.html#cb260-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;大分類の最大値(2000年, 単位：千円/年)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb260-11"><a href="chapter09.html#cb260-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;家計調査による消費支出（名目値）&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="chapter09.html#cb224-1" tabindex="-1"></a><span class="co">#2000年の消費（大分類）</span></span>
+<span id="cb224-2"><a href="chapter09.html#cb224-2" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
+<span id="cb224-3"><a href="chapter09.html#cb224-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Category1J) <span class="sc">%&gt;%</span></span>
+<span id="cb224-4"><a href="chapter09.html#cb224-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max2000=</span><span class="fu">max</span>(FY2000<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb224-5"><a href="chapter09.html#cb224-5" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb224-6"><a href="chapter09.html#cb224-6" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb224-7"><a href="chapter09.html#cb224-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb224-8"><a href="chapter09.html#cb224-8" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Category1J, <span class="at">y =</span> max2000),</span>
+<span id="cb224-9"><a href="chapter09.html#cb224-9" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="at">fill=</span><span class="st">&quot;orange&quot;</span>)<span class="sc">+</span></span>
+<span id="cb224-10"><a href="chapter09.html#cb224-10" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;大分類の最大値(2000年, 単位：千円/年)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb224-11"><a href="chapter09.html#cb224-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;家計調査による消費支出（名目値）&quot;</span>)<span class="sc">+</span></span>
+<span id="cb224-12"><a href="chapter09.html#cb224-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/dplyrIntro6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="chapter09.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2020年の消費（大分類）</span></span>
-<span id="cb261-2"><a href="chapter09.html#cb261-2" aria-hidden="true" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
-<span id="cb261-3"><a href="chapter09.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Category1J) <span class="sc">%&gt;%</span></span>
-<span id="cb261-4"><a href="chapter09.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max2020=</span><span class="fu">max</span>(FY2020<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb261-5"><a href="chapter09.html#cb261-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb261-6"><a href="chapter09.html#cb261-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span> (<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb261-7"><a href="chapter09.html#cb261-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb261-8"><a href="chapter09.html#cb261-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Category1J, <span class="at">y =</span> max2020),</span>
-<span id="cb261-9"><a href="chapter09.html#cb261-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb261-10"><a href="chapter09.html#cb261-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;大分類の最大値(2020年, 単位：千円/年)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb261-11"><a href="chapter09.html#cb261-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;家計調査による消費支出（名目値）&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter09.html#cb225-1" tabindex="-1"></a><span class="co">#2020年の消費（大分類）</span></span>
+<span id="cb225-2"><a href="chapter09.html#cb225-2" tabindex="-1"></a>kakeiDB <span class="sc">%&gt;%</span></span>
+<span id="cb225-3"><a href="chapter09.html#cb225-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Category1J) <span class="sc">%&gt;%</span></span>
+<span id="cb225-4"><a href="chapter09.html#cb225-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max2020=</span><span class="fu">max</span>(FY2020<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb225-5"><a href="chapter09.html#cb225-5" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb225-6"><a href="chapter09.html#cb225-6" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb225-7"><a href="chapter09.html#cb225-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb225-8"><a href="chapter09.html#cb225-8" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Category1J, <span class="at">y =</span> max2020),</span>
+<span id="cb225-9"><a href="chapter09.html#cb225-9" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb225-10"><a href="chapter09.html#cb225-10" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;大分類の最大値(2020年, 単位：千円/年)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb225-11"><a href="chapter09.html#cb225-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;家計調査による消費支出（名目値）&quot;</span>)<span class="sc">+</span></span>
+<span id="cb225-12"><a href="chapter09.html#cb225-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="book_filename_files/figure-html/dplyrIntro6-2.png" width="672" /></p>
 <p>二つ以上のデータベースを結合する</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="chapter09.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2020年のセリーグの成績</span></span>
-<span id="cb262-2"><a href="chapter09.html#cb262-2" aria-hidden="true" tabindex="-1"></a>teamnameJ<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;巨人&quot;</span>, <span class="st">&quot;阪神&quot;</span>, <span class="st">&quot;中日&quot;</span>,<span class="st">&quot;DeNA&quot;</span>, <span class="st">&quot;広島&quot;</span>, <span class="st">&quot;ヤクルト&quot;</span>)</span>
-<span id="cb262-3"><a href="chapter09.html#cb262-3" aria-hidden="true" tabindex="-1"></a>win2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">67</span>,<span class="dv">60</span>,<span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">52</span>,<span class="dv">41</span>)</span>
-<span id="cb262-4"><a href="chapter09.html#cb262-4" aria-hidden="true" tabindex="-1"></a>lose2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">53</span>,<span class="dv">55</span>,<span class="dv">58</span>,<span class="dv">56</span>,<span class="dv">69</span>)</span>
-<span id="cb262-5"><a href="chapter09.html#cb262-5" aria-hidden="true" tabindex="-1"></a>pct2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.598</span>,<span class="fl">0.531</span>,<span class="fl">0.522</span>,<span class="fl">0.491</span>,<span class="fl">0.481</span>,<span class="fl">0.373</span>)</span>
-<span id="cb262-6"><a href="chapter09.html#cb262-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb262-7"><a href="chapter09.html#cb262-7" aria-hidden="true" tabindex="-1"></a>Cen2020<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(teamnameJ,win2020,lose2020,pct2020))</span>
-<span id="cb262-8"><a href="chapter09.html#cb262-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb262-9"><a href="chapter09.html#cb262-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Cen2020)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="chapter09.html#cb226-1" tabindex="-1"></a><span class="co">#2020年のセリーグの成績</span></span>
+<span id="cb226-2"><a href="chapter09.html#cb226-2" tabindex="-1"></a>teamnameJ<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;巨人&quot;</span>, <span class="st">&quot;阪神&quot;</span>, <span class="st">&quot;中日&quot;</span>,<span class="st">&quot;DeNA&quot;</span>, <span class="st">&quot;広島&quot;</span>, <span class="st">&quot;ヤクルト&quot;</span>)</span>
+<span id="cb226-3"><a href="chapter09.html#cb226-3" tabindex="-1"></a>win2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">67</span>,<span class="dv">60</span>,<span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">52</span>,<span class="dv">41</span>)</span>
+<span id="cb226-4"><a href="chapter09.html#cb226-4" tabindex="-1"></a>lose2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">53</span>,<span class="dv">55</span>,<span class="dv">58</span>,<span class="dv">56</span>,<span class="dv">69</span>)</span>
+<span id="cb226-5"><a href="chapter09.html#cb226-5" tabindex="-1"></a>pct2020<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.598</span>,<span class="fl">0.531</span>,<span class="fl">0.522</span>,<span class="fl">0.491</span>,<span class="fl">0.481</span>,<span class="fl">0.373</span>)</span>
+<span id="cb226-6"><a href="chapter09.html#cb226-6" tabindex="-1"></a></span>
+<span id="cb226-7"><a href="chapter09.html#cb226-7" tabindex="-1"></a>Cen2020<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(teamnameJ,win2020,lose2020,pct2020))</span>
+<span id="cb226-8"><a href="chapter09.html#cb226-8" tabindex="-1"></a></span>
+<span id="cb226-9"><a href="chapter09.html#cb226-9" tabindex="-1"></a><span class="fu">print</span>(Cen2020)</span></code></pre></div>
 <pre><code>##   teamnameJ win2020 lose2020 pct2020
 ## 1      巨人      67       45   0.598
 ## 2      阪神      60       53   0.531
@@ -493,15 +496,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      DeNA      58       58   0.491
 ## 5      広島      52       56   0.481
 ## 6  ヤクルト      41       69   0.373</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="chapter09.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2001年のセリーグの成績</span></span>
-<span id="cb264-2"><a href="chapter09.html#cb264-2" aria-hidden="true" tabindex="-1"></a>teamnameJ<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;ヤクルト&quot;</span>, <span class="st">&quot;巨人&quot;</span>, <span class="st">&quot;DeNA&quot;</span>, <span class="st">&quot;広島&quot;</span>, <span class="st">&quot;中日&quot;</span>,<span class="st">&quot;阪神&quot;</span>)</span>
-<span id="cb264-3"><a href="chapter09.html#cb264-3" aria-hidden="true" tabindex="-1"></a>win2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">76</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">68</span>,<span class="dv">62</span>,<span class="dv">57</span>)</span>
-<span id="cb264-4"><a href="chapter09.html#cb264-4" aria-hidden="true" tabindex="-1"></a>lose2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">58</span>,<span class="dv">63</span>,<span class="dv">67</span>,<span class="dv">65</span>,<span class="dv">74</span>,<span class="dv">80</span>)</span>
-<span id="cb264-5"><a href="chapter09.html#cb264-5" aria-hidden="true" tabindex="-1"></a>pct2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.567</span>,<span class="fl">0.543</span>,<span class="fl">0.507</span>,<span class="fl">0.511</span>,<span class="fl">0.456</span>,<span class="fl">0.416</span>)</span>
-<span id="cb264-6"><a href="chapter09.html#cb264-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb264-7"><a href="chapter09.html#cb264-7" aria-hidden="true" tabindex="-1"></a>Cen2001<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(teamnameJ,win2001,lose2001,pct2001))</span>
-<span id="cb264-8"><a href="chapter09.html#cb264-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb264-9"><a href="chapter09.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Cen2001)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="chapter09.html#cb228-1" tabindex="-1"></a><span class="co">#2001年のセリーグの成績</span></span>
+<span id="cb228-2"><a href="chapter09.html#cb228-2" tabindex="-1"></a>teamnameJ<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;ヤクルト&quot;</span>, <span class="st">&quot;巨人&quot;</span>, <span class="st">&quot;DeNA&quot;</span>, <span class="st">&quot;広島&quot;</span>, <span class="st">&quot;中日&quot;</span>,<span class="st">&quot;阪神&quot;</span>)</span>
+<span id="cb228-3"><a href="chapter09.html#cb228-3" tabindex="-1"></a>win2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">76</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">68</span>,<span class="dv">62</span>,<span class="dv">57</span>)</span>
+<span id="cb228-4"><a href="chapter09.html#cb228-4" tabindex="-1"></a>lose2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">58</span>,<span class="dv">63</span>,<span class="dv">67</span>,<span class="dv">65</span>,<span class="dv">74</span>,<span class="dv">80</span>)</span>
+<span id="cb228-5"><a href="chapter09.html#cb228-5" tabindex="-1"></a>pct2001<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.567</span>,<span class="fl">0.543</span>,<span class="fl">0.507</span>,<span class="fl">0.511</span>,<span class="fl">0.456</span>,<span class="fl">0.416</span>)</span>
+<span id="cb228-6"><a href="chapter09.html#cb228-6" tabindex="-1"></a></span>
+<span id="cb228-7"><a href="chapter09.html#cb228-7" tabindex="-1"></a>Cen2001<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(teamnameJ,win2001,lose2001,pct2001))</span>
+<span id="cb228-8"><a href="chapter09.html#cb228-8" tabindex="-1"></a></span>
+<span id="cb228-9"><a href="chapter09.html#cb228-9" tabindex="-1"></a><span class="fu">print</span>(Cen2001)</span></code></pre></div>
 <pre><code>##   teamnameJ win2001 lose2001 pct2001
 ## 1  ヤクルト      76       58   0.567
 ## 2      巨人      75       63   0.543
@@ -509,12 +512,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      広島      68       65   0.511
 ## 5      中日      62       74   0.456
 ## 6      阪神      57       80   0.416</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="chapter09.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 二つの記録を結合する</span></span>
-<span id="cb266-2"><a href="chapter09.html#cb266-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb266-3"><a href="chapter09.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="co">#left_join(A,B)関数はAにBを結合する</span></span>
-<span id="cb266-4"><a href="chapter09.html#cb266-4" aria-hidden="true" tabindex="-1"></a>Cen20012020<span class="ot">&lt;-</span><span class="fu">left_join</span>(Cen2001,Cen2020,<span class="at">by=</span><span class="st">&quot;teamnameJ&quot;</span>)</span>
-<span id="cb266-5"><a href="chapter09.html#cb266-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb266-6"><a href="chapter09.html#cb266-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Cen20012020)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="chapter09.html#cb230-1" tabindex="-1"></a><span class="co"># 二つの記録を結合する</span></span>
+<span id="cb230-2"><a href="chapter09.html#cb230-2" tabindex="-1"></a></span>
+<span id="cb230-3"><a href="chapter09.html#cb230-3" tabindex="-1"></a><span class="co">#left_join(A,B)関数はAにBを結合する</span></span>
+<span id="cb230-4"><a href="chapter09.html#cb230-4" tabindex="-1"></a>Cen20012020<span class="ot">&lt;-</span><span class="fu">left_join</span>(Cen2001,Cen2020,<span class="at">by=</span><span class="st">&quot;teamnameJ&quot;</span>)</span>
+<span id="cb230-5"><a href="chapter09.html#cb230-5" tabindex="-1"></a></span>
+<span id="cb230-6"><a href="chapter09.html#cb230-6" tabindex="-1"></a><span class="fu">print</span>(Cen20012020)</span></code></pre></div>
 <pre><code>##   teamnameJ win2001 lose2001 pct2001 win2020 lose2020 pct2020
 ## 1  ヤクルト      76       58   0.567      41       69   0.373
 ## 2      巨人      75       63   0.543      67       45   0.598
@@ -522,9 +525,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      広島      68       65   0.511      52       56   0.481
 ## 5      中日      62       74   0.456      56       55   0.522
 ## 6      阪神      57       80   0.416      60       53   0.531</code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="chapter09.html#cb268-1" aria-hidden="true" tabindex="-1"></a>Cen20202001<span class="ot">&lt;-</span><span class="fu">left_join</span>(Cen2020,Cen2001,<span class="at">by=</span><span class="st">&quot;teamnameJ&quot;</span>)</span>
-<span id="cb268-2"><a href="chapter09.html#cb268-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-3"><a href="chapter09.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Cen20202001)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="chapter09.html#cb232-1" tabindex="-1"></a>Cen20202001<span class="ot">&lt;-</span><span class="fu">left_join</span>(Cen2020,Cen2001,<span class="at">by=</span><span class="st">&quot;teamnameJ&quot;</span>)</span>
+<span id="cb232-2"><a href="chapter09.html#cb232-2" tabindex="-1"></a></span>
+<span id="cb232-3"><a href="chapter09.html#cb232-3" tabindex="-1"></a><span class="fu">print</span>(Cen20202001)</span></code></pre></div>
 <pre><code>##   teamnameJ win2020 lose2020 pct2020 win2001 lose2001 pct2001
 ## 1      巨人      67       45   0.598      75       63   0.543
 ## 2      阪神      60       53   0.531      57       80   0.416
@@ -532,7 +535,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      DeNA      58       58   0.491      69       67   0.507
 ## 5      広島      52       56   0.481      68       65   0.511
 ## 6  ヤクルト      41       69   0.373      76       58   0.567</code></pre>
-<p>```</p>
 
 </div>
 </div>
@@ -602,7 +604,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

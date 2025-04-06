@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chapter: 8 RによるSNSデータの分析 | データ分析入門</title>
-  <meta name="description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <title>chapter: 8 Rによる重回帰分析 | データ分析入門</title>
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="chapter: 8 RによるSNSデータの分析 | データ分析入門" />
+  <meta property="og:title" content="chapter: 8 Rによる重回帰分析 | データ分析入門" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chapter: 8 RによるSNSデータの分析 | データ分析入門" />
+  <meta name="twitter:title" content="chapter: 8 Rによる重回帰分析 | データ分析入門" />
   
-  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Tokai University." />
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
   
 
 <meta name="author" content="山本　雅資" />
 
 
-<meta name="date" content="2022-09-17" />
+<meta name="date" content="2025-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,20 +52,11 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
-<script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -114,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -149,9 +144,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#講義の概要"><i class="fa fa-check"></i><b>1.1</b> 講義の概要</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#成績評価の基準および方法"><i class="fa fa-check"></i><b>1.3</b> 成績評価の基準および方法</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.4</b> 授業計画</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.5</b> 謝辞</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.3</b> 授業計画</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.4</b> 謝辞</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
 <ul>
@@ -167,11 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="chapter03.html"><a href="chapter03.html#packageの応用例-野球"><i class="fa fa-check"></i><b>3.7.1</b> packageの応用例: 野球</a></li>
-<li class="chapter" data-level="3.7.2" data-path="chapter03.html"><a href="chapter03.html#packageの応用例バスケ"><i class="fa fa-check"></i><b>3.7.2</b> packageの応用例：バスケ</a></li>
-</ul></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
 <ul>
@@ -189,50 +179,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter05.html"><a href="chapter05.html"><i class="fa fa-check"></i><b>5</b> 可視化(2)：ggplot2による地図作成</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加"><i class="fa fa-check"></i><b>5.1</b> パレットの追加</a></li>
-<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.2</b> 塗り分け地図の作成</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.3</b> よりGISライクな地図の作成</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.4</b> 世界地図の活用</a>
+<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-1"><i class="fa fa-check"></i><b>5.1</b> パレットの追加 (1)</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-2"><i class="fa fa-check"></i><b>5.2</b> パレットの追加 (2)</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.3</b> 塗り分け地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.4</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.5</b> 世界地図の活用</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.4.1</b> 世界地図を利用した可視化</a></li>
-<li class="chapter" data-level="5.4.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.4.2</b> 世界銀行データの可視化</a></li>
+<li class="chapter" data-level="5.5.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.5.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.5.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.5.2</b> 世界銀行データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.5</b> さらに学びたい人へ</a></li>
+<li class="chapter" data-level="5.6" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.6</b> さらに学びたい人へ</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> Rによる統計的仮説検定</a>
+<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> 可視化(3)：貿易統計の可視化</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.1</b> データの読み込み</a></li>
-<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#平均分散標準偏差"><i class="fa fa-check"></i><b>6.2</b> 平均・分散・標準偏差</a></li>
-<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>6.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
-<li class="chapter" data-level="6.4" data-path="chapter06.html"><a href="chapter06.html#データフレームの要約"><i class="fa fa-check"></i><b>6.4</b> データフレームの要約</a></li>
-<li class="chapter" data-level="6.5" data-path="chapter06.html"><a href="chapter06.html#相関係数"><i class="fa fa-check"></i><b>6.5</b> 相関係数</a></li>
-<li class="chapter" data-level="6.6" data-path="chapter06.html"><a href="chapter06.html#仮説検定"><i class="fa fa-check"></i><b>6.6</b> 仮説検定</a></li>
-<li class="chapter" data-level="6.7" data-path="chapter06.html"><a href="chapter06.html#t検定"><i class="fa fa-check"></i><b>6.7</b> t検定</a></li>
+<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#貿易統計とは"><i class="fa fa-check"></i><b>6.1</b> 貿易統計とは</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#りんごの輸出データの可視化"><i class="fa fa-check"></i><b>6.3</b> りんごの輸出データの可視化</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる重回帰分析</a>
+<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる統計的仮説検定</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>7.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
-<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#単回帰の事例"><i class="fa fa-check"></i><b>7.2</b> 単回帰の事例</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#重回帰分析"><i class="fa fa-check"></i><b>7.3</b> 重回帰分析</a></li>
-<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>7.4</b> 因果推論 (Quasi Experiment)の例</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="chapter07.html"><a href="chapter07.html#例1"><i class="fa fa-check"></i><b>7.4.1</b> 例1</a></li>
-<li class="chapter" data-level="7.4.2" data-path="chapter07.html"><a href="chapter07.html#例2"><i class="fa fa-check"></i><b>7.4.2</b> 例2</a></li>
-<li class="chapter" data-level="7.4.3" data-path="chapter07.html"><a href="chapter07.html#例3"><i class="fa fa-check"></i><b>7.4.3</b> 例3</a></li>
-<li class="chapter" data-level="7.4.4" data-path="chapter07.html"><a href="chapter07.html#logをとった場合"><i class="fa fa-check"></i><b>7.4.4</b> logをとった場合</a></li>
+<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#データの読み込み-1"><i class="fa fa-check"></i><b>7.1</b> データの読み込み</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#平均分散標準偏差"><i class="fa fa-check"></i><b>7.2</b> 平均・分散・標準偏差</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>7.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#データフレームの要約"><i class="fa fa-check"></i><b>7.4</b> データフレームの要約</a></li>
+<li class="chapter" data-level="7.5" data-path="chapter07.html"><a href="chapter07.html#相関係数"><i class="fa fa-check"></i><b>7.5</b> 相関係数</a></li>
+<li class="chapter" data-level="7.6" data-path="chapter07.html"><a href="chapter07.html#仮説検定"><i class="fa fa-check"></i><b>7.6</b> 仮説検定</a></li>
+<li class="chapter" data-level="7.7" data-path="chapter07.html"><a href="chapter07.html#t検定"><i class="fa fa-check"></i><b>7.7</b> t検定</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> RによるSNSデータの分析</a>
+<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> Rによる重回帰分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#twitterデータの活用"><i class="fa fa-check"></i><b>8.1</b> Twitterデータの活用</a>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>8.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#単回帰の事例"><i class="fa fa-check"></i><b>8.2</b> 単回帰の事例</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#重回帰分析"><i class="fa fa-check"></i><b>8.3</b> 重回帰分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>8.4</b> 因果推論 (Quasi Experiment)の例</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="chapter08.html"><a href="chapter08.html#mecabのインストール"><i class="fa fa-check"></i><b>8.1.1</b> Mecabのインストール</a></li>
-<li class="chapter" data-level="8.1.2" data-path="chapter08.html"><a href="chapter08.html#windowsの場合"><i class="fa fa-check"></i><b>8.1.2</b> 1. Windowsの場合</a></li>
-<li class="chapter" data-level="8.1.3" data-path="chapter08.html"><a href="chapter08.html#macの場合"><i class="fa fa-check"></i><b>8.1.3</b> 2. Macの場合</a></li>
-<li class="chapter" data-level="8.1.4" data-path="chapter08.html"><a href="chapter08.html#twitterでの検索ワード"><i class="fa fa-check"></i><b>8.1.4</b> Twitterでの検索ワード</a></li>
+<li class="chapter" data-level="8.4.1" data-path="chapter08.html"><a href="chapter08.html#例1"><i class="fa fa-check"></i><b>8.4.1</b> 例1</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapter08.html"><a href="chapter08.html#例2"><i class="fa fa-check"></i><b>8.4.2</b> 例2</a></li>
+<li class="chapter" data-level="8.4.3" data-path="chapter08.html"><a href="chapter08.html#例3"><i class="fa fa-check"></i><b>8.4.3</b> 例3</a></li>
+<li class="chapter" data-level="8.4.4" data-path="chapter08.html"><a href="chapter08.html#logをとった場合"><i class="fa fa-check"></i><b>8.4.4</b> logをとった場合</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#ワードクラウド"><i class="fa fa-check"></i><b>8.2</b> ワードクラウド</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#googleトレンドの分析"><i class="fa fa-check"></i><b>8.3</b> Googleトレンドの分析</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
 <ul>
@@ -245,6 +230,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
 <li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
 <li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter11.html"><a href="chapter11.html"><i class="fa fa-check"></i><b>11</b> グラフを書いてみよう・問題を解いてみよう</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter11.html"><a href="chapter11.html#基礎編"><i class="fa fa-check"></i><b>11.1</b> 1. 基礎編</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter11.html"><a href="chapter11.html#応用編"><i class="fa fa-check"></i><b>11.2</b> 2. 応用編</a></li>
+<li class="chapter" data-level="11.3" data-path="chapter11.html"><a href="chapter11.html#応用編-1"><i class="fa fa-check"></i><b>11.3</b> 3. 応用編</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter12.html"><a href="chapter12.html"><i class="fa fa-check"></i><b>12</b> 参考になるウェブサイト</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter12.html"><a href="chapter12.html#データ"><i class="fa fa-check"></i><b>12.1</b> データ</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter12.html"><a href="chapter12.html#rについて"><i class="fa fa-check"></i><b>12.2</b> Rについて</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter12.html"><a href="chapter12.html#このサイトにある他の情報"><i class="fa fa-check"></i><b>12.3</b> このサイトにある他の情報</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -266,215 +263,889 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rによるsnsデータの分析" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">chapter: 8</span> RによるSNSデータの分析<a href="chapter08.html#rによるsnsデータの分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>以下では、Twitterデータを使ったワードクラウドの作成と、Googleトレンドの<code>R</code>を使った操作を解説します。</p>
-<div id="twitterデータの活用" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Twitterデータの活用<a href="chapter08.html#twitterデータの活用" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Twitterデータの取得・分析をおこないます。分析には、<code>rtweet</code>という<code>package</code>を使用します。ワードクラウドを作るための準備として、最初に形態素解析のためのソフトウェアを下記の手順でインストールします（ここは大きな山場です）。</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="chapter08.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;wordcloud2&quot;)</span></span>
-<span id="cb226-2"><a href="chapter08.html#cb226-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb226-3"><a href="chapter08.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb226-4"><a href="chapter08.html#cb226-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rtweet)</span></code></pre></div>
+<div id="rによる重回帰分析" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">chapter: 8</span> Rによる重回帰分析<a href="chapter08.html#rによる重回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="chapter08.html#cb184-1" tabindex="-1"></a><span class="co">#install.packages(&quot;gt&quot;)</span></span>
+<span id="cb184-2"><a href="chapter08.html#cb184-2" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
+<span id="cb184-3"><a href="chapter08.html#cb184-3" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="chapter08.html#cb184-4" tabindex="-1"></a><span class="co"># ライブラリコマンドでの読み込みは毎回必要</span></span>
+<span id="cb184-5"><a href="chapter08.html#cb184-5" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb184-6"><a href="chapter08.html#cb184-6" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb184-7"><a href="chapter08.html#cb184-7" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb184-8"><a href="chapter08.html#cb184-8" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb184-9"><a href="chapter08.html#cb184-9" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb184-10"><a href="chapter08.html#cb184-10" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb184-11"><a href="chapter08.html#cb184-11" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb184-12"><a href="chapter08.html#cb184-12" tabindex="-1"></a></span>
+<span id="cb184-13"><a href="chapter08.html#cb184-13" tabindex="-1"></a><span class="co">#getwd() # 現在の作業ディレクトリを確認</span></span>
+<span id="cb184-14"><a href="chapter08.html#cb184-14" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/users/yamamoto/R/ForTeaching&quot;</span>) <span class="co"># 作業ディレクトリの変更</span></span></code></pre></div>
+<div id="最小二乗法ordinary-least-squere-methodとは" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> 最小二乗法(Ordinary Least Squere Method)とは<a href="chapter08.html#最小二乗法ordinary-least-squere-methodとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>観測されたデータ<span class="math inline">\((X,Y)\)</span>に対して、</p>
+<p><span class="math display">\[Y=a+bX\]</span></p>
+<p>という直線を当てはめることを考える。データが現実を反映しているとすれば、当てはまりが良ければ良いほど、求められた直線は現実のメカニズムを反映していることになる。もし、完全に当てはまったとすれば問題はないがそのようなことはまずないので、当てはまりの良さを判断する客観的な基準が必要になる。</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="chapter08.html#cb185-1" tabindex="-1"></a><span class="co"># courtesy to</span></span>
+<span id="cb185-2"><a href="chapter08.html#cb185-2" tabindex="-1"></a><span class="co"># https://shohei-doi.github.io/notes/posts/2019-05-17-regression/</span></span>
+<span id="cb185-3"><a href="chapter08.html#cb185-3" tabindex="-1"></a></span>
+<span id="cb185-4"><a href="chapter08.html#cb185-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb185-5"><a href="chapter08.html#cb185-5" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb185-6"><a href="chapter08.html#cb185-6" tabindex="-1"></a>       <span class="at">y =</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb185-7"><a href="chapter08.html#cb185-7" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb185-8"><a href="chapter08.html#cb185-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb185-9"><a href="chapter08.html#cb185-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> x)) <span class="sc">+</span> </span>
+<span id="cb185-10"><a href="chapter08.html#cb185-10" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> x, <span class="at">ymax =</span> y),<span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/OLSpre-1.png" width="672" /></p>
+<p>上の図でいう垂直方向の直線は試しに引いてみた直線</p>
+<p><span class="math display">\[ \tilde{Y}=\tilde{a}+\tilde{b}x \]</span>
+と実際の観測値との誤差を示すものである。この誤差の二乗を最小にするような直線が最も当てはまりの良い直線と考える。誤差を<span class="math inline">\(u\)</span>とすれば、</p>
+<p><span class="math display">\[ \min J=\sum \tilde{u}_i^2=\sum(Y_i-\tilde{a}-\tilde{b}X_i)^2 \]</span></p>
+<p>の解である<span class="math inline">\(\hat{a}\)</span>と<span class="math inline">\(\hat{b}\)</span>を最小二乗推定量と呼ぶ。上式を微分してゼロとおくと、</p>
+<p><span class="math display">\[\frac{\partial J}{\partial \tilde{a}}=\sum(-2(Y_i-\hat{a}-\hat{b}X_i))=0\]</span>
+及び</p>
+<p><span class="math display">\[\frac{\partial J}{\partial \tilde{b}}=\sum(-2X_i(Y_i-\hat{a}-\hat{b}X_i))=0\]</span>
+となる。ここで、<span class="math inline">\(\hat{a}\)</span>と<span class="math inline">\(\hat{b}\)</span>は上式を満たす傾きと切片として、任意の<span class="math inline">\(a\)</span>と<span class="math inline">\(b\)</span>から区別する意味で使用している。これを変形すると以下を得る。</p>
+<p><span class="math display">\[n\hat{a}+\left(\sum X_i \right)\hat{b}=\sum Y_i\]</span>
+及び</p>
+<p><span class="math display">\[ \left(\sum X_i \right)\hat{a}+\left(\sum X_i^2 \right)\hat{b}=\sum X_i Y_i\]</span>
+これを連立して解くと、</p>
+<p><span class="math display">\[ \hat{b}=\frac{\sum \left(X_i - \overline{X}\right)\left(Y_i-\overline{Y}\right)}{\sum \left(X_i - \overline{X}\right)^2}\]</span>
+及び</p>
+<p><span class="math display">\[\hat{a}=\overline{Y}-\hat{b} \overline{X} \]</span>
+ただし、<span class="math inline">\(\overline{X}\)</span>と<span class="math inline">\(\overline{Y}\)</span>は平均値を意味する。</p>
+<p><span class="math inline">\(X\)</span>及び<span class="math inline">\(Y\)</span>は観測値なので、観測値から傾きと切片を計算できることがわかる。また、回帰直線は必ず標本平均を通ることも確認できる。</p>
+<p>なお、最小二乗法に必要な仮定やその優れた性質については、</p>
+<p><a href="http://www.yuhikaku.co.jp/books/detail/9784641053854" class="uri">http://www.yuhikaku.co.jp/books/detail/9784641053854</a></p>
+<p>などの入門の計量経済学の本を参照のこと。</p>
+</div>
+<div id="単回帰の事例" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> 単回帰の事例<a href="chapter08.html#単回帰の事例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="chapter08.html#cb186-1" tabindex="-1"></a><span class="co"># Wooldridge (2016) Introductory Econometrics, Thomson.</span></span>
+<span id="cb186-2"><a href="chapter08.html#cb186-2" tabindex="-1"></a><span class="co"># の事例より。</span></span>
+<span id="cb186-3"><a href="chapter08.html#cb186-3" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="chapter08.html#cb186-4" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb186-5"><a href="chapter08.html#cb186-5" tabindex="-1"></a><span class="co"># CEOのサラリーは会社のROEでどの程度説明できるか？</span></span>
+<span id="cb186-6"><a href="chapter08.html#cb186-6" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb186-7"><a href="chapter08.html#cb186-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb186-8"><a href="chapter08.html#cb186-8" tabindex="-1"></a><span class="co"># 自己資本利益率（ROE：Return on Equity）とは、自己資本（純資産）に対してどれだけの</span></span>
+<span id="cb186-9"><a href="chapter08.html#cb186-9" tabindex="-1"></a><span class="co"># 利益が生み出されたのかを示す財務分析の指標</span></span>
+<span id="cb186-10"><a href="chapter08.html#cb186-10" tabindex="-1"></a></span>
+<span id="cb186-11"><a href="chapter08.html#cb186-11" tabindex="-1"></a></span>
+<span id="cb186-12"><a href="chapter08.html#cb186-12" tabindex="-1"></a><span class="co"># from Wooldridge(2016, section 2.2)</span></span>
+<span id="cb186-13"><a href="chapter08.html#cb186-13" tabindex="-1"></a><span class="co">#ceosal1の最後の２文字は、小文字のエルと数字の１なので注意</span></span>
+<span id="cb186-14"><a href="chapter08.html#cb186-14" tabindex="-1"></a>ceosal1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/ceosal1.dta&quot;</span>)</span>
+<span id="cb186-15"><a href="chapter08.html#cb186-15" tabindex="-1"></a></span>
+<span id="cb186-16"><a href="chapter08.html#cb186-16" tabindex="-1"></a>ceoresult<span class="ot">&lt;-</span><span class="fu">lm</span>(salary<span class="sc">~</span>roe,<span class="at">data=</span>ceosal1)</span>
+<span id="cb186-17"><a href="chapter08.html#cb186-17" tabindex="-1"></a></span>
+<span id="cb186-18"><a href="chapter08.html#cb186-18" tabindex="-1"></a><span class="fu">summary</span>(ceoresult)</span></code></pre></div>
 <pre><code>## 
-## Attaching package: &#39;rtweet&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## Call:
+## lm(formula = salary ~ roe, data = ceosal1)
 ## 
-##     flatten</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter08.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb229-2"><a href="chapter08.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb229-3"><a href="chapter08.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
-<span id="cb229-4"><a href="chapter08.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
-<span id="cb229-5"><a href="chapter08.html#cb229-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##  -1160   -526   -254    139  13500 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    963.2      213.2    4.52  1.1e-05 ***
+## roe             18.5       11.1    1.66    0.098 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1370 on 207 degrees of freedom
+## Multiple R-squared:  0.0132, Adjusted R-squared:  0.00842 
+## F-statistic: 2.77 on 1 and 207 DF,  p-value: 0.0978</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="chapter08.html#cb188-1" tabindex="-1"></a><span class="fu">plot</span>(ceosal1<span class="sc">$</span>roe,ceosal1<span class="sc">$</span>salary,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4000</span>))</span>
+<span id="cb188-2"><a href="chapter08.html#cb188-2" tabindex="-1"></a></span>
+<span id="cb188-3"><a href="chapter08.html#cb188-3" tabindex="-1"></a><span class="fu">abline</span>(ceoresult)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/sigleOLS-1.png" width="672" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chapter08.html#cb189-1" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb189-2"><a href="chapter08.html#cb189-2" tabindex="-1"></a><span class="co"># 選挙費用で投票結果はどの程度説明できるか？</span></span>
+<span id="cb189-3"><a href="chapter08.html#cb189-3" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb189-4"><a href="chapter08.html#cb189-4" tabindex="-1"></a></span>
+<span id="cb189-5"><a href="chapter08.html#cb189-5" tabindex="-1"></a></span>
+<span id="cb189-6"><a href="chapter08.html#cb189-6" tabindex="-1"></a><span class="co"># from Wooldridge(2016, section 2.2のexample 2.5)</span></span>
+<span id="cb189-7"><a href="chapter08.html#cb189-7" tabindex="-1"></a><span class="co"># 1988年のアメリカのとある州における国会議員選挙の結果</span></span>
+<span id="cb189-8"><a href="chapter08.html#cb189-8" tabindex="-1"></a><span class="co"># voteAは候補者Aの得票シェア、shareAは候補者Aの選挙運動費のシェア</span></span>
+<span id="cb189-9"><a href="chapter08.html#cb189-9" tabindex="-1"></a></span>
+<span id="cb189-10"><a href="chapter08.html#cb189-10" tabindex="-1"></a>vote1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/vote1.dta&quot;</span>)</span>
+<span id="cb189-11"><a href="chapter08.html#cb189-11" tabindex="-1"></a></span>
+<span id="cb189-12"><a href="chapter08.html#cb189-12" tabindex="-1"></a>voteAresult<span class="ot">&lt;-</span><span class="fu">lm</span>(voteA<span class="sc">~</span>shareA,<span class="at">data=</span>vote1)</span>
+<span id="cb189-13"><a href="chapter08.html#cb189-13" tabindex="-1"></a></span>
+<span id="cb189-14"><a href="chapter08.html#cb189-14" tabindex="-1"></a><span class="fu">summary</span>(voteAresult)</span></code></pre></div>
 <pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:cowplot&#39;:
+## Call:
+## lm(formula = voteA ~ shareA, data = vote1)
 ## 
-##     stamp</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -16.89  -4.07  -0.17   3.50  29.98 
 ## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter08.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb233-2"><a href="chapter08.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb233-3"><a href="chapter08.html#cb233-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb233-4"><a href="chapter08.html#cb233-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb233-5"><a href="chapter08.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ディレクトリの設定</span></span>
-<span id="cb233-6"><a href="chapter08.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ここで指定したディレクトリにtmp_dataというフォルダを事前に作成する。</span></span>
-<span id="cb233-7"><a href="chapter08.html#cb233-7" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;/Users/yamamoto/R/forTeaching/&quot;)</span></span></code></pre></div>
-<div id="mecabのインストール" class="section level3 hasAnchor" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Mecabのインストール<a href="chapter08.html#mecabのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>はじめに日本語の形態素解析に必要なMecabというソフトウェアをインストールする。</p>
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  26.8125     0.8872    30.2   &lt;2e-16 ***
+## shareA        0.4638     0.0145    31.9   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.4 on 171 degrees of freedom
+## Multiple R-squared:  0.856,  Adjusted R-squared:  0.855 
+## F-statistic: 1.02e+03 on 1 and 171 DF,  p-value: &lt;2e-16</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="chapter08.html#cb191-1" tabindex="-1"></a><span class="fu">plot</span>(vote1<span class="sc">$</span>shareA,vote1<span class="sc">$</span>voteA)</span>
+<span id="cb191-2"><a href="chapter08.html#cb191-2" tabindex="-1"></a></span>
+<span id="cb191-3"><a href="chapter08.html#cb191-3" tabindex="-1"></a><span class="fu">abline</span>(voteAresult)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/sigleOLS-2.png" width="672" /></p>
+<p>上の２つ目の結果で、shareAのt値は31.9でt分布の97.5%よりもはるかに大きな値となっている。そのためめったに起らない事象と位置付けることができる。</p>
+<p>この時の事象は帰無仮説：<span class="math inline">\(\hat{b}=0\)</span>であるから、この帰無仮説を棄却し、<span class="math inline">\(X\)</span>と<span class="math inline">\(Y\)</span>は正の相関関係にあると言える。</p>
 </div>
-<div id="windowsの場合" class="section level3 hasAnchor" number="8.1.2">
-<h3><span class="header-section-number">8.1.2</span> 1. Windowsの場合<a href="chapter08.html#windowsの場合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Mecabのインストール
-最初に MeCabをインストールします。ただし、R-4.2.0 以降、オリジナルのMeCabでは動作しません。ここ <a href="https://github.com/ikegami-yukino/mecab/releases" class="uri">https://github.com/ikegami-yukino/mecab/releases</a> から　64bit版MeCabをダウンロードし、辞書として必ずUTF-8を指定してください。また、RMeCabで解析するファイルは UTF-8 で保存してください（WindowsのデフォルトはShift-JISであり、全角文字が含まれるCSVファイルなどもRMeCabに読ませる場合はUTF-8に変更してください）。</p></li>
-<li><p>RMeCabのインストール
-MeCab本体がデフォルトとは違うフォルダにインストールされている場合、インストール先（デフォルトだとC:Files）にあるmecabrcをコピーし、自分のホームフォルダ(C::）に、頭にドットを付けた .mecabrc ファイルとして用意する必要があります。その際、dicdir = を編集します。ちなみにデフォルトだとdicdir = C:Files 。</p></li>
-</ol>
+<div id="重回帰分析" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> 重回帰分析<a href="chapter08.html#重回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="chapter08.html#cb192-1" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb192-2"><a href="chapter08.html#cb192-2" tabindex="-1"></a><span class="co"># 大学の成績は何で説明できるか？</span></span>
+<span id="cb192-3"><a href="chapter08.html#cb192-3" tabindex="-1"></a><span class="do">#######################################################</span></span>
+<span id="cb192-4"><a href="chapter08.html#cb192-4" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="chapter08.html#cb192-5" tabindex="-1"></a></span>
+<span id="cb192-6"><a href="chapter08.html#cb192-6" tabindex="-1"></a><span class="co"># from Wooldridge(2016, example 4.3)</span></span>
+<span id="cb192-7"><a href="chapter08.html#cb192-7" tabindex="-1"></a><span class="co"># colGPA: 大学での成績</span></span>
+<span id="cb192-8"><a href="chapter08.html#cb192-8" tabindex="-1"></a><span class="co"># hsGPA: 高校での成績</span></span>
+<span id="cb192-9"><a href="chapter08.html#cb192-9" tabindex="-1"></a><span class="co"># ACT: 大学入試の際に受ける共通テストの成績</span></span>
+<span id="cb192-10"><a href="chapter08.html#cb192-10" tabindex="-1"></a><span class="co"># skipped: １週間の平均講義欠席回数</span></span>
+<span id="cb192-11"><a href="chapter08.html#cb192-11" tabindex="-1"></a></span>
+<span id="cb192-12"><a href="chapter08.html#cb192-12" tabindex="-1"></a>gpa1<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/gpa1.dta&quot;</span>)</span>
+<span id="cb192-13"><a href="chapter08.html#cb192-13" tabindex="-1"></a></span>
+<span id="cb192-14"><a href="chapter08.html#cb192-14" tabindex="-1"></a></span>
+<span id="cb192-15"><a href="chapter08.html#cb192-15" tabindex="-1"></a>GPAresult<span class="ot">&lt;-</span><span class="fu">lm</span>(colGPA<span class="sc">~</span>hsGPA<span class="sc">+</span>ACT<span class="sc">+</span>skipped,<span class="at">data=</span>gpa1)</span>
+<span id="cb192-16"><a href="chapter08.html#cb192-16" tabindex="-1"></a></span>
+<span id="cb192-17"><a href="chapter08.html#cb192-17" tabindex="-1"></a><span class="fu">summary</span>(GPAresult)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = colGPA ~ hsGPA + ACT + skipped, data = gpa1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8570 -0.2320 -0.0393  0.2482  0.8166 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   1.3896     0.3316    4.19  5.0e-05 ***
+## hsGPA         0.4118     0.0937    4.40  2.2e-05 ***
+## ACT           0.0147     0.0106    1.39   0.1658    
+## skipped      -0.0831     0.0260   -3.20   0.0017 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.33 on 137 degrees of freedom
+## Multiple R-squared:  0.234,  Adjusted R-squared:  0.217 
+## F-statistic: 13.9 on 3 and 137 DF,  p-value: 5.65e-08</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter08.html#cb194-1" tabindex="-1"></a><span class="fu">plot</span>(gpa1<span class="sc">$</span>colGPA,gpa1<span class="sc">$</span>skipped)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/multiOLS-1.png" width="672" /></p>
 </div>
-<div id="macの場合" class="section level3 hasAnchor" number="8.1.3">
-<h3><span class="header-section-number">8.1.3</span> 2. Macの場合<a href="chapter08.html#macの場合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>MacがIntelかM1チップかを確認する。M1チップのMacに誤ってIntel版のRがインストールされていないかも確認する。</p></li>
-<li><p>Mecabの本家は<a href="http://taku910.github.io/mecab/">ここ</a>ですが、今回はターミナルを立ち上げて以下を実行することで、 Mecab本体および使用する辞書のダウンロードからインストールまでを行います。この方法は、<a href="https://github.com/IshidaMotohiro/RMeCab/issues/13">こちら</a>を参考にさせていただきました。</p></li>
-</ol>
-<p>cd ~/Downloads</p>
-<p>curl -fsSL ‘<a href="https://drive.google.com/uc?export=download&amp;id=0B4y35FiV1wh7cENtOXlicTFaRUE" class="uri">https://drive.google.com/uc?export=download&amp;id=0B4y35FiV1wh7cENtOXlicTFaRUE</a>’ -o mecab-0.996.tar.gz</p>
-<p>tar xf mecab-0.996.tar.gz</p>
-<p>cd mecab-0.996</p>
-<p>./configure –with-charset=utf8</p>
-<p>make</p>
-<p>sudo make install</p>
-<p>以上でMeCabのインストールが終了する。</p>
-<ol start="4" style="list-style-type: decimal">
-<li>ターミナルから以下を実行する（辞書のインストール）</li>
-</ol>
-<p>cd ~/Downloads</p>
-<p>curl -fsSL ‘<a href="https://drive.google.com/uc?export=download&amp;id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" class="uri">https://drive.google.com/uc?export=download&amp;id=0B4y35FiV1wh7MWVlSDBCSXZMTXM</a>’ -o mecab-ipadic-2.7.0-20070801.tar.gz</p>
-<p>tar zvxf mecab-ipadic-2.7.0-20070801.tar.gz</p>
-<p>tar xf mecab-ipadic-2.7.0-20070801.tar.gz</p>
-<p>cd mecab-ipadic-2.7.0-20070801</p>
-<p>./configure –with-charset=utf8</p>
-<p>make</p>
-<p>sudo make install</p>
-<p>以上でMeCabが使う辞書のインストールが終了する。</p>
-<p>以下をターミナルで確認する。</p>
-<p>$ mecab</p>
-<p>すもももももももものうち</p>
-<p>すもも 名詞,一般,<em>,</em>,<em>,</em>,すもも,スモモ,スモモ</p>
-<p>も 助詞,係助詞,<em>,</em>,<em>,</em>,も,モ,モ</p>
-<p>もも 名詞,一般,<em>,</em>,<em>,</em>,もも,モモ,モモ</p>
-<p>も 助詞,係助詞,<em>,</em>,<em>,</em>,も,モ,モ</p>
-<p>もも 名詞,一般,<em>,</em>,<em>,</em>,もも,モモ,モモ</p>
-<p>の 助詞,連体化,<em>,</em>,<em>,</em>,の,ノ,ノ</p>
+<div id="因果推論-quasi-experimentの例" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> 因果推論 (Quasi Experiment)の例<a href="chapter08.html#因果推論-quasi-experimentの例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>因果推論の方法として、Wooldridge(2016, Example 13.3)を例にDifference-in-Differencesを解説する。この例は、Kiel and McClain(1995, JEEM)からの抜粋であり、Massachusetts州のNorth Andoverにおいて、焼却炉を建設することで周辺の住宅価値が下がったかどうかをDifference-in-Differencesで分析している。</p>
+<p>分析の前提条件として、1978年には焼却炉建設の噂さえなかったが1981年には建設の噂が出回ったという背景がある。</p>
+<p>住宅価格(<span class="math inline">\(=rprice\)</span>)を、1981年のデータだけを使って焼却炉に近い物件のダミー変数(<span class="math inline">\(=nearinc\)</span>)で回帰する。</p>
+<p><span class="math display">\[ rprice=a+b\times nearinc+u \]</span></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="chapter08.html#cb195-1" tabindex="-1"></a>kielmc<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/kielmc.dta&quot;</span>)</span>
+<span id="cb195-2"><a href="chapter08.html#cb195-2" tabindex="-1"></a></span>
+<span id="cb195-3"><a href="chapter08.html#cb195-3" tabindex="-1"></a><span class="co"># Separate regressions for 1978 and 1981: report coeeficients only</span></span>
+<span id="cb195-4"><a href="chapter08.html#cb195-4" tabindex="-1"></a><span class="fu">coef</span>( <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc, <span class="at">data=</span>kielmc, <span class="at">subset=</span>(year<span class="sc">==</span><span class="dv">1981</span>)) )</span></code></pre></div>
+<pre><code>## (Intercept)     nearinc 
+##      101308      -30688</code></pre>
+<p><span class="math inline">\(\hat{b}=-30,688.7\)</span>という結果を得る。<span class="math inline">\(\hat{a}\)</span>は平均的な1981年の住宅価格を意味している。しかし、この結果は焼却炉建設の噂がもたらしたマイナス要因とは言えない。なぜなら、まだ噂がなかった1978年のデータだけで上記の式を回帰しても、<span class="math inline">\(\hat{b}=-18824.37\)</span>というマイナスの結果となるためである。</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="chapter08.html#cb197-1" tabindex="-1"></a>kielmc<span class="ot">&lt;-</span><span class="fu">read.dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/kielmc.dta&quot;</span>)</span>
+<span id="cb197-2"><a href="chapter08.html#cb197-2" tabindex="-1"></a></span>
+<span id="cb197-3"><a href="chapter08.html#cb197-3" tabindex="-1"></a><span class="co"># Separate regressions for 1978 and 1981: report coeeficients only</span></span>
+<span id="cb197-4"><a href="chapter08.html#cb197-4" tabindex="-1"></a><span class="fu">coef</span>( <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc, <span class="at">data=</span>kielmc, <span class="at">subset=</span>(year<span class="sc">==</span><span class="dv">1978</span>)) )</span></code></pre></div>
+<pre><code>## (Intercept)     nearinc 
+##       82517      -18824</code></pre>
+<p>つまり、もともと住宅価格の安い地域に焼却炉の建設が行われたのである。よって、焼却炉立地の影響は、</p>
+<p><span class="math display">\[\hat{b}_{81}-\hat{b}_{78}=-30,68.27-(-18,824.37)=-11,863.9\]</span>
+と考えるのが自然である。これを差の差の推定量(difference-in-differences estimator)と呼ぶ。なぜなら、</p>
+<p><span class="math display">\[\hat{b}_{81}-\hat{b}_{78}=\left(\overline{rprice}_{81,n}-\overline{rprice}_{81,f}\right)-\left(\overline{rprice}_{78,n}-\overline{rprice}_{78,f}\right)\]</span>
+と書き直せるからである。ここで、添字の<span class="math inline">\(n\)</span>は焼却炉に近い住宅の価格、<span class="math inline">\(f\)</span>は遠い住宅の価格を表している。</p>
+<p>実践的には、統計的検定ができるように以下の回帰分析で推定量を計算する。</p>
+<p><span class="math display">\[rprice=a+b_{1} \cdot y81 + b_{2} \cdot  nearinc + b_{3} \cdot (y81 \times nearinc) + u\]</span>
+を1978年と1981年の両方のデータを使って推定する。ただし、<span class="math inline">\(y81\)</span>は1981年の住宅価格で1、1978年の住宅価格に対して0をとるダミー変数である。この時、<span class="math inline">\(a\)</span>は1978年の平均住宅価格、<span class="math inline">\(b_1\)</span>は1978年から1981年における住宅価格の変化を意味する。<span class="math inline">\(b_2\)</span>は、焼却炉建設と関係なく、焼却炉周辺地域の住宅価格の他地域との差を表す。最後に、<span class="math inline">\(b_3\)</span>は焼却炉建設の噂による価格変化を表す(=DiD estimator)。</p>
+<p>このように、焼却炉建設など政策の影響を受けるサンプルをTreatment groupと呼ぶ。影響を受けないグループをControl groupと言う。因果推論を行うためには、Treatment groupとControl groupの両方が必ず必要である。より一般には以下のように書ける。</p>
+<p><span class="math display">\[Y=a+b_{1} \cdot YD + b_{2} \cdot  T + b_{3} \cdot (YD \times T) +\mathbf{z}+ u\]</span>
+ここで、<span class="math inline">\(YD\)</span>はtreatmentの前と後でそれぞれ<span class="math inline">\(0\)</span>と<span class="math inline">\(1\)</span>をとるダミー変数、<span class="math inline">\(T\)</span>はtreatmentのあるなしでそれぞれ<span class="math inline">\(1\)</span>や<span class="math inline">\(0\)</span>をとるダミー変数、<span class="math inline">\(\mathbf{z}\)</span>はその他の変数をさす。DiD estimatorはもちろん<span class="math inline">\(b_3\)</span>である。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Before</th>
+<th align="center">After</th>
+<th align="center">After - Before</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Control</td>
+<td align="center"><span class="math inline">\(a\)</span></td>
+<td align="center"><span class="math inline">\(a+b_1\)</span></td>
+<td align="center"><span class="math inline">\(b_1\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Treatment</td>
+<td align="center"><span class="math inline">\(a+b_2\)</span></td>
+<td align="center"><span class="math inline">\(a+b_1+b_2+b_3\)</span></td>
+<td align="center"><span class="math inline">\(b_1+b_3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Treatment - Control</td>
+<td align="center"><span class="math inline">\(b_2\)</span></td>
+<td align="center"><span class="math inline">\(b_2+b_3\)</span></td>
+<td align="center"><span class="math inline">\(b_3\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="例1" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> 例1<a href="chapter08.html#例1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="chapter08.html#cb199-1" tabindex="-1"></a><span class="co"># Joint regression including an interaction term </span></span>
+<span id="cb199-2"><a href="chapter08.html#cb199-2" tabindex="-1"></a><span class="co"># 他のコントロール変数を含めない場合</span></span>
+<span id="cb199-3"><a href="chapter08.html#cb199-3" tabindex="-1"></a>result1<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81), <span class="at">data=</span>kielmc)</span>
+<span id="cb199-4"><a href="chapter08.html#cb199-4" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ nearinc + y81 + I(nearinc * y81), data = kielmc)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -60678 -17693  -3031  12483 236307 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         82517       2727   30.26  &lt; 2e-16 ***
+## nearinc            -18824       4875   -3.86  0.00014 ***
+## y81                 18790       4050    4.64  5.1e-06 ***
+## I(nearinc * y81)   -11864       7457   -1.59  0.11259    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 30200 on 317 degrees of freedom
+## Multiple R-squared:  0.174,  Adjusted R-squared:  0.166 
+## F-statistic: 22.3 on 3 and 317 DF,  p-value: 4.22e-13</code></pre>
 </div>
-<div id="twitterでの検索ワード" class="section level3 hasAnchor" number="8.1.4">
-<h3><span class="header-section-number">8.1.4</span> Twitterでの検索ワード<a href="chapter08.html#twitterでの検索ワード" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>以下の<span class="math inline">\(x\)</span>に検索したいワードを指定する。
-<span class="math inline">\(n\)</span>は入手するtweetの数（ただし、無料版では1週間程度しかさかのぼれない）。</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="chapter08.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co">#検索ワード</span></span>
-<span id="cb234-2"><a href="chapter08.html#cb234-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="st">&quot;エリザベス女王&quot;</span></span>
-<span id="cb234-3"><a href="chapter08.html#cb234-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb234-4"><a href="chapter08.html#cb234-4" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
-<span id="cb234-5"><a href="chapter08.html#cb234-5" aria-hidden="true" tabindex="-1"></a><span class="co">#https://medium.com/@afrasyab/the-best-way-to-use-r-to-get-twitter-data-56ad122194f</span></span>
-<span id="cb234-6"><a href="chapter08.html#cb234-6" aria-hidden="true" tabindex="-1"></a>rt<span class="ot">&lt;-</span><span class="fu">search_tweets</span>(x, <span class="at">n=</span><span class="dv">10000</span>,<span class="at">include_rts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="例2" class="section level3 hasAnchor" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> 例2<a href="chapter08.html#例2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="chapter08.html#cb201-1" tabindex="-1"></a><span class="co"># 住宅の築年数だけ含めた場合</span></span>
+<span id="cb201-2"><a href="chapter08.html#cb201-2" tabindex="-1"></a>result2<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81), <span class="at">data=</span>kielmc)</span>
+<span id="cb201-3"><a href="chapter08.html#cb201-3" tabindex="-1"></a><span class="fu">summary</span>(result2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ nearinc + y81 + age + I(age^2) + I(nearinc * 
+##     y81), data = kielmc)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -79349 -14431  -1711  10069 201486 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       8.91e+04   2.41e+03   37.04  &lt; 2e-16 ***
+## nearinc           9.40e+03   4.81e+03    1.95  0.05171 .  
+## y81               2.13e+04   3.44e+03    6.19  1.9e-09 ***
+## age              -1.49e+03   1.32e+02  -11.33  &lt; 2e-16 ***
+## I(age^2)          8.69e+00   8.48e-01   10.25  &lt; 2e-16 ***
+## I(nearinc * y81) -2.19e+04   6.36e+03   -3.45  0.00064 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 25500 on 315 degrees of freedom
+## Multiple R-squared:  0.414,  Adjusted R-squared:  0.405 
+## F-statistic: 44.6 on 5 and 315 DF,  p-value: &lt;2e-16</code></pre>
 </div>
-</div>
-<div id="ワードクラウド" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> ワードクラウド<a href="chapter08.html#ワードクラウド" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ワードクラウドでカウントしたくない記号などを排除する。</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="chapter08.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分析に加えたくない記号などを削除する</span></span>
-<span id="cb235-2"><a href="chapter08.html#cb235-2" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;https://.*&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-3"><a href="chapter08.html#cb235-3" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;@&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-4"><a href="chapter08.html#cb235-4" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;RT&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-5"><a href="chapter08.html#cb235-5" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;#&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-6"><a href="chapter08.html#cb235-6" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-7"><a href="chapter08.html#cb235-7" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-8"><a href="chapter08.html#cb235-8" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-9"><a href="chapter08.html#cb235-9" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;&quot;</span>, rt<span class="sc">$</span>text)</span>
-<span id="cb235-10"><a href="chapter08.html#cb235-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb235-11"><a href="chapter08.html#cb235-11" aria-hidden="true" tabindex="-1"></a><span class="co"># こちらにお世話になりました</span></span>
-<span id="cb235-12"><a href="chapter08.html#cb235-12" aria-hidden="true" tabindex="-1"></a><span class="co"># https://note.com/text_tier2718/n/n6b20ccd3cb49</span></span>
-<span id="cb235-13"><a href="chapter08.html#cb235-13" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span></span>
-<span id="cb235-14"><a href="chapter08.html#cb235-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">p{ASCII}&#39;</span>,<span class="at">replacement =</span> <span class="st">&quot;&quot;</span>) <span class="co"># 記号を消します。</span></span></code></pre></div>
-<p>形態素解析を実施</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter08.html#cb236-1" aria-hidden="true" tabindex="-1"></a>rt_text <span class="ot">&lt;-</span> rt<span class="sc">$</span>text <span class="sc">%&gt;%</span> </span>
-<span id="cb236-2"><a href="chapter08.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb236-3"><a href="chapter08.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#iconv(from = &quot;UTF-8&quot;, to = &quot;CP932&quot;) %&gt;%  # windowsのみEncodeの変更が必要です。</span></span>
-<span id="cb236-4"><a href="chapter08.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)    <span class="co"># テキストを結合</span></span>
-<span id="cb236-5"><a href="chapter08.html#cb236-5" aria-hidden="true" tabindex="-1"></a>textfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()    <span class="co"># 一時ファイルの入れ物を作成</span></span>
-<span id="cb236-6"><a href="chapter08.html#cb236-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(rt_text, textfile) <span class="co"># docDFで読むために一時ファイルを作成</span></span>
-<span id="cb236-7"><a href="chapter08.html#cb236-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb236-8"><a href="chapter08.html#cb236-8" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> <span class="fu">docDF</span>(textfile, <span class="at">type =</span> <span class="dv">1</span>) <span class="co">#形態素解析を行う際に特定の品詞に絞って抽出</span></span></code></pre></div>
-<pre><code>## file_name =  /var/folders/13/9dn0stxj0ms73960hn9c5b9r0000gn/T//RtmpAjqaZH/file32ab4b41ef2d opened
-## number of extracted terms = 16408
-## now making a data frame. wait a while!</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter08.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cloud &lt;- docDF(textfile, type = 1, pos = &quot;名詞&quot;) </span></span>
-<span id="cb238-2"><a href="chapter08.html#cb238-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb238-3"><a href="chapter08.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(textfile) <span class="co"># 一時ファイル消去</span></span>
-<span id="cb238-4"><a href="chapter08.html#cb238-4" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span> </span>
-<span id="cb238-5"><a href="chapter08.html#cb238-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="at">FREQ =</span> <span class="fu">starts_with</span>(<span class="st">&quot;file&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># 4列目のfile****....という名前が長いためFREQへ変更</span></span>
-<span id="cb238-6"><a href="chapter08.html#cb238-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(FREQ))</span>
-<span id="cb238-7"><a href="chapter08.html#cb238-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb238-8"><a href="chapter08.html#cb238-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 消したい不要なワードを設定</span></span>
-<span id="cb238-9"><a href="chapter08.html#cb238-9" aria-hidden="true" tabindex="-1"></a>exclude_word <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;する&quot;</span>,<span class="st">&quot;なる&quot;</span>,<span class="st">&quot;やる&quot;</span>,<span class="st">&quot;ある&quot;</span>,<span class="st">&quot;いる&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;♪&quot;</span>,<span class="st">&quot;エリザベス&quot;</span>,<span class="st">&quot;女王&quot;</span>,x)</span>
-<span id="cb238-10"><a href="chapter08.html#cb238-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb238-11"><a href="chapter08.html#cb238-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 動詞と名詞で良い感じのやつを残す</span></span>
-<span id="cb238-12"><a href="chapter08.html#cb238-12" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="ot">&lt;-</span> cloud <span class="sc">%&gt;%</span></span>
-<span id="cb238-13"><a href="chapter08.html#cb238-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;動詞|名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
-<span id="cb238-14"><a href="chapter08.html#cb238-14" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;助動詞|代名詞&quot;</span>, <span class="at">x =</span> POS1) <span class="sc">&amp;</span></span>
-<span id="cb238-15"><a href="chapter08.html#cb238-15" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;非自立|接尾|数|代名詞&quot;</span>, <span class="at">x =</span> POS2)</span>
-<span id="cb238-16"><a href="chapter08.html#cb238-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb238-17"><a href="chapter08.html#cb238-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>TERM <span class="sc">%in%</span> exclude_word)</span></code></pre></div>
-<p>可視化をする。</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="chapter08.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Takaoフォント様 https://launchpad.net/takao-fonts</span></span>
-<span id="cb239-2"><a href="chapter08.html#cb239-2" aria-hidden="true" tabindex="-1"></a>cloud2 <span class="sc">%&gt;%</span></span>
-<span id="cb239-3"><a href="chapter08.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(TERM,FREQ) <span class="sc">%&gt;%</span></span>
-<span id="cb239-4"><a href="chapter08.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># 描画する範囲を設定</span></span>
-<span id="cb239-5"><a href="chapter08.html#cb239-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">fontFamily =</span> <span class="st">&#39;Takao Pゴシック&#39;</span>, <span class="at">color =</span> <span class="st">&quot;random-light&quot;</span>,</span>
-<span id="cb239-6"><a href="chapter08.html#cb239-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">minRotation =</span> <span class="dv">0</span>, <span class="at">maxRotation =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="fl">1.2</span>)</span></code></pre></div>
-<div id="htmlwidget-7c7d2dbbd1df4eedf651" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7c7d2dbbd1df4eedf651">{"x":{"word":["国葬","陛下","弔問","参列","イギリス","英","英国","中国","議会","ニュース","日本","天皇","安倍","政府","皇后","時間","出発","思う","人","並ぶ","拒否","見る","葬儀","首相","岸田","招待","外務省","言う","反対","国民","王室","外交","列","棺","礼節","ロンドン","国","追悼","出席","速報","一般","即位","訪問","総理","専用","オンライン","議決","石破","外国","世界","会","見送り","国王","行く","ベッカム","亡くなる","晋","キャスター","前","年","天皇陛下","世","市民","死去","読売新聞","とる","聞く","国会","チャールズ","関係","知る","今","報道","参加","できる","国家","崩御","マスク","誤り","日","出る","ベッカム","一緒","代表","統一教会","話","内閣","行う","いう","行列","愛子","愛す","決定","回答","幹事","議員","情報","立憲","違う","招待客"],"freq":[5796,1649,1620,1419,1401,1347,1316,1253,1128,1089,1066,1008,991,917,871,838,827,743,733,705,647,619,605,593,586,585,579,549,544,530,512,508,467,448,418,380,379,371,357,344,343,340,340,335,327,322,322,315,313,312,303,301,294,292,282,279,279,267,267,262,260,257,257,254,238,230,229,228,220,219,217,215,211,207,205,202,202,198,195,191,190,189,183,182,182,182,179,179,178,178,175,171,171,170,166,164,162,161,159,157],"fontFamily":"Takao Pゴシック","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":0.0372670807453416,"backgroundColor":"white","gridSize":0,"minRotation":0,"maxRotation":0,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
-</div>
-<div id="googleトレンドの分析" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Googleトレンドの分析<a href="chapter08.html#googleトレンドの分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>社会トレンドを分析できる別の手段として、Googleトレンドがあります。検索数ではなく、相対的な変化を表すものですが、人々の関心の変化を時系列で見る上では非常に参考になります。Googleトレンドは、<code>gtrendsR</code>という<code>package</code>で分析することが可能です。</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="chapter08.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gtrendsR&quot;)</span></span>
-<span id="cb240-2"><a href="chapter08.html#cb240-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-3"><a href="chapter08.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
-<span id="cb240-4"><a href="chapter08.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-5"><a href="chapter08.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下は、https://skume.net/entry/2021/03/28/023122より</span></span>
-<span id="cb240-6"><a href="chapter08.html#cb240-6" aria-hidden="true" tabindex="-1"></a><span class="co">#引数について</span></span>
-<span id="cb240-7"><a href="chapter08.html#cb240-7" aria-hidden="true" tabindex="-1"></a><span class="co">#keyword: Google Trends query キーワードである文字ベクトル。複数のキーワード入力も可。</span></span>
-<span id="cb240-8"><a href="chapter08.html#cb240-8" aria-hidden="true" tabindex="-1"></a><span class="co">#geo: queryの地理的な地域を示す文字ベクトル。世界中の場合には、&quot;all&quot;を指定する。</span></span>
-<span id="cb240-9"><a href="chapter08.html#cb240-9" aria-hidden="true" tabindex="-1"></a><span class="co">#また上記の国コードなどを使用することで、複数の国・地域を指定できる。</span></span>
-<span id="cb240-10"><a href="chapter08.html#cb240-10" aria-hidden="true" tabindex="-1"></a><span class="co">#time: queryの期間を指定する文字列。以下を参照のこと。</span></span>
-<span id="cb240-11"><a href="chapter08.html#cb240-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-H&quot; 最後の1時間</span></span>
-<span id="cb240-12"><a href="chapter08.html#cb240-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 4-H&quot; 最後の4時間</span></span>
-<span id="cb240-13"><a href="chapter08.html#cb240-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 1-d&quot; 最後の1日</span></span>
-<span id="cb240-14"><a href="chapter08.html#cb240-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;now 7-d&quot; 過去7日間</span></span>
-<span id="cb240-15"><a href="chapter08.html#cb240-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 1-m&quot; 過去30日間</span></span>
-<span id="cb240-16"><a href="chapter08.html#cb240-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 3-m&quot; 過去90日</span></span>
-<span id="cb240-17"><a href="chapter08.html#cb240-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today 12-m&quot; 過去12ヶ月</span></span>
-<span id="cb240-18"><a href="chapter08.html#cb240-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;today+5-y&quot; 過去5年間(デフォルト)</span></span>
-<span id="cb240-19"><a href="chapter08.html#cb240-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;all&quot; Google Trends の開始時（2004 年）から</span></span>
-<span id="cb240-20"><a href="chapter08.html#cb240-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;Y-m-d Y-m-d&quot; 2つの日付の間で指定（例：「2010-01-01 2010-04-03」）</span></span>
-<span id="cb240-21"><a href="chapter08.html#cb240-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-22"><a href="chapter08.html#cb240-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-23"><a href="chapter08.html#cb240-23" aria-hidden="true" tabindex="-1"></a>trendWB5yrs <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb240-24"><a href="chapter08.html#cb240-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb240-25"><a href="chapter08.html#cb240-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time =</span> <span class="st">&quot;today+5-y&quot;</span>) <span class="co">#期間(例：五年)</span></span>
-<span id="cb240-26"><a href="chapter08.html#cb240-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trendWB5yrs)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/SNSintro2-1.png" width="672" /></p>
-<p>デフォルトの<code>plot</code>関数では凡例が文字化けするようなので、<code>ggplot2</code>にて描画します。</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="chapter08.html#cb241-1" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;女子バスケ&quot;</span>, </span>
-<span id="cb241-2"><a href="chapter08.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb241-3"><a href="chapter08.html#cb241-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;now 7-d&quot;</span>) </span>
-<span id="cb241-4"><a href="chapter08.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-5"><a href="chapter08.html#cb241-5" aria-hidden="true" tabindex="-1"></a>trendWB7days <span class="sc">%&gt;%</span></span>
-<span id="cb241-6"><a href="chapter08.html#cb241-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb241-7"><a href="chapter08.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits)) <span class="sc">+</span></span>
-<span id="cb241-8"><a href="chapter08.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb241-9"><a href="chapter08.html#cb241-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)<span class="sc">+</span></span>
-<span id="cb241-10"><a href="chapter08.html#cb241-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;直近１週間の検索数の推移(キーワード：「女子バスケ」)&quot;</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/SNSintro3-1.png" width="672" /></p>
-<p>複数キーワードに挑戦してみよう。</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter08.html#cb242-1" aria-hidden="true" tabindex="-1"></a>search_words<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;女子バスケ&quot;</span>, <span class="st">&quot;野球日本代表&quot;</span>)</span>
-<span id="cb242-2"><a href="chapter08.html#cb242-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-3"><a href="chapter08.html#cb242-3" aria-hidden="true" tabindex="-1"></a>Olympics <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> search_words, </span>
-<span id="cb242-4"><a href="chapter08.html#cb242-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>, <span class="co">#地域</span></span>
-<span id="cb242-5"><a href="chapter08.html#cb242-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">time=</span><span class="st">&quot;2021-07-21 2021-08-08&quot;</span>) </span>
-<span id="cb242-6"><a href="chapter08.html#cb242-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-7"><a href="chapter08.html#cb242-7" aria-hidden="true" tabindex="-1"></a>Olympics <span class="sc">%&gt;%</span></span>
-<span id="cb242-8"><a href="chapter08.html#cb242-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span></span>
-<span id="cb242-9"><a href="chapter08.html#cb242-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color=</span>keyword)) <span class="sc">+</span></span>
-<span id="cb242-10"><a href="chapter08.html#cb242-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb242-11"><a href="chapter08.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;オリンピック期間中のキーワード検索の推移&quot;</span>)</span></code></pre></div>
-<p><img src="book_filename_files/figure-html/SNSintro4-1.png" width="672" /></p>
-<p>上記の例では、<code>time="2021-07-21 2021-08-08"</code>というフォーマットで期間を設定している点にも注意しよう。これをみると、日本女子バスケットボール代表の快進撃で検索数が大きく増加していることがわかる。</p>
+<div id="例3" class="section level3 hasAnchor" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> 例3<a href="chapter08.html#例3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter08.html#cb203-1" tabindex="-1"></a><span class="co"># 他のコントロール変数も含めた場合</span></span>
+<span id="cb203-2"><a href="chapter08.html#cb203-2" tabindex="-1"></a>result3<span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice<span class="sc">~</span>nearinc<span class="sc">+</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(nearinc<span class="sc">*</span>y81)<span class="sc">+</span>intst<span class="sc">+</span></span>
+<span id="cb203-3"><a href="chapter08.html#cb203-3" tabindex="-1"></a>               land<span class="sc">+</span>area<span class="sc">+</span>rooms<span class="sc">+</span>baths, <span class="at">data=</span>kielmc)</span>
+<span id="cb203-4"><a href="chapter08.html#cb203-4" tabindex="-1"></a><span class="fu">summary</span>(result3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ nearinc + y81 + age + I(age^2) + I(nearinc * 
+##     y81) + intst + land + area + rooms + baths, data = kielmc)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -76721  -8885   -252   8433 136649 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       1.38e+04   1.12e+04    1.24   0.2172    
+## nearinc           3.78e+03   4.45e+03    0.85   0.3966    
+## y81               1.39e+04   2.80e+03    4.98  1.1e-06 ***
+## age              -7.39e+02   1.31e+02   -5.64  3.8e-08 ***
+## I(age^2)          3.45e+00   8.13e-01    4.25  2.9e-05 ***
+## I(nearinc * y81) -1.42e+04   4.99e+03   -2.84   0.0048 ** 
+## intst            -5.39e-01   1.96e-01   -2.74   0.0064 ** 
+## land              1.41e-01   3.11e-02    4.55  7.7e-06 ***
+## area              1.81e+01   2.31e+00    7.84  7.2e-14 ***
+## rooms             3.30e+03   1.66e+03    1.99   0.0476 *  
+## baths             6.98e+03   2.58e+03    2.70   0.0073 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 19600 on 310 degrees of freedom
+## Multiple R-squared:  0.66,   Adjusted R-squared:  0.649 
+## F-statistic: 60.2 on 10 and 310 DF,  p-value: &lt;2e-16</code></pre>
+<p><code>modelsummary</code>というパッケージでまとめて表示できる。</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter08.html#cb205-1" tabindex="-1"></a>DiDresults <span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb205-2"><a href="chapter08.html#cb205-2" tabindex="-1"></a>  <span class="st">&quot;Base&quot;</span> <span class="ot">=</span> result1,</span>
+<span id="cb205-3"><a href="chapter08.html#cb205-3" tabindex="-1"></a>  <span class="st">&quot;With year&quot;</span><span class="ot">=</span>result2,</span>
+<span id="cb205-4"><a href="chapter08.html#cb205-4" tabindex="-1"></a>  <span class="st">&quot;With all&quot;</span><span class="ot">=</span>result3</span>
+<span id="cb205-5"><a href="chapter08.html#cb205-5" tabindex="-1"></a>)</span>
+<span id="cb205-6"><a href="chapter08.html#cb205-6" tabindex="-1"></a></span>
+<span id="cb205-7"><a href="chapter08.html#cb205-7" tabindex="-1"></a><span class="fu">modelsummary</span>(DiDresults,<span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<!-- preamble start -->
 
+    <script>
+
+      function styleCell_i6g1nxondvoo3kywwo91(i, j, css_id) {
+          var table = document.getElementById("tinytable_i6g1nxondvoo3kywwo91");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_i6g1nxondvoo3kywwo91');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_i6g1nxondvoo3kywwo91(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_i6g1nxondvoo3kywwo91");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_x1ffb4wjwidaozdwse3z',}, 
+          { positions: [ { i: 30, j: 1 }, { i: 30, j: 2 }, { i: 30, j: 3 },  ], css_id: 'tinytable_css_u5gmyw8letr2qaevzo1o',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 26, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 },  ], css_id: 'tinytable_css_tmca17ay9jc8bebau0tm',}, 
+          { positions: [ { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 1, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 5, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 9, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 25, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 8, j: 3 }, { i: 18, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 21, j: 2 }, { i: 4, j: 3 }, { i: 23, j: 2 }, { i: 24, j: 2 }, { i: 25, j: 2 }, { i: 26, j: 2 }, { i: 27, j: 2 }, { i: 28, j: 2 }, { i: 29, j: 2 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 17, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 21, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 25, j: 3 }, { i: 26, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 29, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 }, { i: 23, j: 3 }, { i: 24, j: 3 }, { i: 27, j: 3 }, { i: 28, j: 3 },  ], css_id: 'tinytable_css_m8iuql8yq2y4d4lo3s9w',}, 
+          { positions: [ { i: 30, j: 0 },  ], css_id: 'tinytable_css_kcwulqwgst2mcxlsvryb',}, 
+          { positions: [ { i: 22, j: 0 },  ], css_id: 'tinytable_css_8r7o0ij39jpixfc0iwum',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_6gh7u1hcgse4unbdkny6',}, 
+          { positions: [ { i: 22, j: 2 }, { i: 22, j: 3 }, { i: 22, j: 1 },  ], css_id: 'tinytable_css_4op2ie5lhg4sgdsqbgob',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_i6g1nxondvoo3kywwo91(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_x1ffb4wjwidaozdwse3z, .table th.tinytable_css_x1ffb4wjwidaozdwse3z { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_u5gmyw8letr2qaevzo1o, .table th.tinytable_css_u5gmyw8letr2qaevzo1o { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_tmca17ay9jc8bebau0tm, .table th.tinytable_css_tmca17ay9jc8bebau0tm { text-align: left; }
+      .table td.tinytable_css_m8iuql8yq2y4d4lo3s9w, .table th.tinytable_css_m8iuql8yq2y4d4lo3s9w { text-align: center; }
+      .table td.tinytable_css_kcwulqwgst2mcxlsvryb, .table th.tinytable_css_kcwulqwgst2mcxlsvryb { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_8r7o0ij39jpixfc0iwum, .table th.tinytable_css_8r7o0ij39jpixfc0iwum { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_6gh7u1hcgse4unbdkny6, .table th.tinytable_css_6gh7u1hcgse4unbdkny6 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_4op2ie5lhg4sgdsqbgob, .table th.tinytable_css_4op2ie5lhg4sgdsqbgob { text-align: center; border-bottom: solid black 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_i6g1nxondvoo3kywwo91" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Base</th>
+                <th scope="col">With year</th>
+                <th scope="col">With all</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan='4'>+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>82517.228***</td>
+                  <td>89116.535***</td>
+                  <td>1.4e+04</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(2726.910)</td>
+                  <td>(2406.051)</td>
+                  <td>(1.1e+04)</td>
+                </tr>
+                <tr>
+                  <td>nearinc</td>
+                  <td>-18824.370***</td>
+                  <td>9397.936+</td>
+                  <td>3.8e+03</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(4875.322)</td>
+                  <td>(4812.222)</td>
+                  <td>(4.5e+03)</td>
+                </tr>
+                <tr>
+                  <td>y81</td>
+                  <td>18790.286***</td>
+                  <td>21321.042***</td>
+                  <td>1.4e+04***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(4050.065)</td>
+                  <td>(3443.631)</td>
+                  <td>(2.8e+03)</td>
+                </tr>
+                <tr>
+                  <td>I(nearinc * y81)</td>
+                  <td>-11863.903</td>
+                  <td>-21920.270***</td>
+                  <td>-1.4e+04**</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(7456.646)</td>
+                  <td>(6359.745)</td>
+                  <td>(5.0e+03)</td>
+                </tr>
+                <tr>
+                  <td>age</td>
+                  <td></td>
+                  <td>-1494.424***</td>
+                  <td>-7.4e+02***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(131.860)</td>
+                  <td>(1.3e+02)</td>
+                </tr>
+                <tr>
+                  <td>I(age^2)</td>
+                  <td></td>
+                  <td>8.691***</td>
+                  <td>3.5e+00***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.848)</td>
+                  <td>(8.1e-01)</td>
+                </tr>
+                <tr>
+                  <td>intst</td>
+                  <td></td>
+                  <td></td>
+                  <td>-5.4e-01**</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(2.0e-01)</td>
+                </tr>
+                <tr>
+                  <td>land</td>
+                  <td></td>
+                  <td></td>
+                  <td>1.4e-01***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(3.1e-02)</td>
+                </tr>
+                <tr>
+                  <td>area</td>
+                  <td></td>
+                  <td></td>
+                  <td>1.8e+01***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(2.3e+00)</td>
+                </tr>
+                <tr>
+                  <td>rooms</td>
+                  <td></td>
+                  <td></td>
+                  <td>3.3e+03*</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(1.7e+03)</td>
+                </tr>
+                <tr>
+                  <td>baths</td>
+                  <td></td>
+                  <td></td>
+                  <td>7.0e+03**</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(2.6e+03)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>321</td>
+                  <td>321</td>
+                  <td>321</td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>0.174</td>
+                  <td>0.414</td>
+                  <td>0.660</td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.</td>
+                  <td>0.166</td>
+                  <td>0.405</td>
+                  <td>0.649</td>
+                </tr>
+                <tr>
+                  <td>AIC</td>
+                  <td>7540.5</td>
+                  <td>7434.0</td>
+                  <td>7269.5</td>
+                </tr>
+                <tr>
+                  <td>BIC</td>
+                  <td>7559.3</td>
+                  <td>7460.4</td>
+                  <td>7314.7</td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.</td>
+                  <td>-3765.229</td>
+                  <td>-3710.001</td>
+                  <td>-3622.729</td>
+                </tr>
+                <tr>
+                  <td>F</td>
+                  <td>22.251</td>
+                  <td>44.591</td>
+                  <td>60.189</td>
+                </tr>
+                <tr>
+                  <td>RMSE</td>
+                  <td>30053.88</td>
+                  <td>25303.44</td>
+                  <td>19279.94</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div id="logをとった場合" class="section level3 hasAnchor" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> logをとった場合<a href="chapter08.html#logをとった場合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>効果を割合として解釈できる。より当てはまりがよくなる場合もある。</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="chapter08.html#cb206-1" tabindex="-1"></a>DiD      <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rprice)<span class="sc">~</span>nearinc<span class="sc">*</span>y81, <span class="at">data=</span>kielmc)</span>
+<span id="cb206-2"><a href="chapter08.html#cb206-2" tabindex="-1"></a>DiDcontr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rprice)<span class="sc">~</span>nearinc<span class="sc">*</span>y81<span class="sc">+</span>age<span class="sc">+</span><span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">log</span>(intst)<span class="sc">+</span></span>
+<span id="cb206-3"><a href="chapter08.html#cb206-3" tabindex="-1"></a>                            <span class="fu">log</span>(land)<span class="sc">+</span><span class="fu">log</span>(area)<span class="sc">+</span>rooms<span class="sc">+</span>baths, <span class="at">data=</span>kielmc)</span>
+<span id="cb206-4"><a href="chapter08.html#cb206-4" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="chapter08.html#cb206-5" tabindex="-1"></a>DiDlogresults<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb206-6"><a href="chapter08.html#cb206-6" tabindex="-1"></a>  <span class="st">&quot;Base (log)&quot;</span><span class="ot">=</span>DiD,</span>
+<span id="cb206-7"><a href="chapter08.html#cb206-7" tabindex="-1"></a>  <span class="st">&quot;With all (log)&quot;</span> <span class="ot">=</span> DiDcontr</span>
+<span id="cb206-8"><a href="chapter08.html#cb206-8" tabindex="-1"></a>)</span>
+<span id="cb206-9"><a href="chapter08.html#cb206-9" tabindex="-1"></a></span>
+<span id="cb206-10"><a href="chapter08.html#cb206-10" tabindex="-1"></a><span class="fu">modelsummary</span>(DiDlogresults,<span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_6oggwvbd3bchzp3cd2rs(i, j, css_id) {
+          var table = document.getElementById("tinytable_6oggwvbd3bchzp3cd2rs");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_6oggwvbd3bchzp3cd2rs');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_6oggwvbd3bchzp3cd2rs(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_6oggwvbd3bchzp3cd2rs");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 22, j: 0 },  ], css_id: 'tinytable_css_xx9fzs8x8o6goyhg0tl2',}, 
+          { positions: [ { i: 22, j: 1 }, { i: 22, j: 2 },  ], css_id: 'tinytable_css_rr8nldl7rtw6rnhqsrl0',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_r9p2sbwa4t3xxynj8t03',}, 
+          { positions: [ { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 1, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 5, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 4, j: 2 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 25, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 12, j: 2 }, { i: 18, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 17, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 25, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 21, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 29, j: 2 }, { i: 26, j: 2 }, { i: 23, j: 2 }, { i: 24, j: 2 }, { i: 27, j: 2 }, { i: 28, j: 2 },  ], css_id: 'tinytable_css_nv3xaeibwlgux9lk8cq0',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_auf7fqu156aa66ekpot2',}, 
+          { positions: [ { i: 30, j: 0 },  ], css_id: 'tinytable_css_3ylzk7fyt1oo22ax69yl',}, 
+          { positions: [ { i: 30, j: 1 }, { i: 30, j: 2 },  ], css_id: 'tinytable_css_39q6yeh9zyc5okuosd6o',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 26, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 },  ], css_id: 'tinytable_css_2oeolg4gx3up3n2954qg',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_6oggwvbd3bchzp3cd2rs(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_xx9fzs8x8o6goyhg0tl2, .table th.tinytable_css_xx9fzs8x8o6goyhg0tl2 { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_rr8nldl7rtw6rnhqsrl0, .table th.tinytable_css_rr8nldl7rtw6rnhqsrl0 { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_r9p2sbwa4t3xxynj8t03, .table th.tinytable_css_r9p2sbwa4t3xxynj8t03 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_nv3xaeibwlgux9lk8cq0, .table th.tinytable_css_nv3xaeibwlgux9lk8cq0 { text-align: center; }
+      .table td.tinytable_css_auf7fqu156aa66ekpot2, .table th.tinytable_css_auf7fqu156aa66ekpot2 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_3ylzk7fyt1oo22ax69yl, .table th.tinytable_css_3ylzk7fyt1oo22ax69yl { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_39q6yeh9zyc5okuosd6o, .table th.tinytable_css_39q6yeh9zyc5okuosd6o { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_2oeolg4gx3up3n2954qg, .table th.tinytable_css_2oeolg4gx3up3n2954qg { text-align: left; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_6oggwvbd3bchzp3cd2rs" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Base (log)</th>
+                <th scope="col">With all (log)</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan='3'>+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>11.285***</td>
+                  <td>7.652***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td>(0.416)</td>
+                </tr>
+                <tr>
+                  <td>nearinc</td>
+                  <td>-0.340***</td>
+                  <td>0.032</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.055)</td>
+                  <td>(0.047)</td>
+                </tr>
+                <tr>
+                  <td>y81</td>
+                  <td>0.193***</td>
+                  <td>0.162***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.045)</td>
+                  <td>(0.028)</td>
+                </tr>
+                <tr>
+                  <td>nearinc × y81</td>
+                  <td>-0.063</td>
+                  <td>-0.132*</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.083)</td>
+                  <td>(0.052)</td>
+                </tr>
+                <tr>
+                  <td>age</td>
+                  <td></td>
+                  <td>-0.008***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.001)</td>
+                </tr>
+                <tr>
+                  <td>I(age^2)</td>
+                  <td></td>
+                  <td>0.000***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>log(intst)</td>
+                  <td></td>
+                  <td>-0.061+</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>log(land)</td>
+                  <td></td>
+                  <td>0.100***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.024)</td>
+                </tr>
+                <tr>
+                  <td>log(area)</td>
+                  <td></td>
+                  <td>0.351***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.051)</td>
+                </tr>
+                <tr>
+                  <td>rooms</td>
+                  <td></td>
+                  <td>0.047**</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.017)</td>
+                </tr>
+                <tr>
+                  <td>baths</td>
+                  <td></td>
+                  <td>0.094***</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.028)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>321</td>
+                  <td>321</td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>0.246</td>
+                  <td>0.733</td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.</td>
+                  <td>0.239</td>
+                  <td>0.724</td>
+                </tr>
+                <tr>
+                  <td>AIC</td>
+                  <td>7451.2</td>
+                  <td>7132.4</td>
+                </tr>
+                <tr>
+                  <td>BIC</td>
+                  <td>7470.0</td>
+                  <td>7177.7</td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.</td>
+                  <td>-105.675</td>
+                  <td>60.690</td>
+                </tr>
+                <tr>
+                  <td>F</td>
+                  <td>34.470</td>
+                  <td>84.915</td>
+                </tr>
+                <tr>
+                  <td>RMSE</td>
+                  <td>0.34</td>
+                  <td>0.20</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<p>焼却炉立地の噂は13.2％の住宅価格押し下げ効果があったことがわかる。</p>
+
+</div>
 </div>
 </div>
             </section>
@@ -543,7 +1214,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

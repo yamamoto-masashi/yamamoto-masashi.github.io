@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>chapter: 11 グラフを書いてみよう・問題を解いてみよう | データ分析入門</title>
+  <meta name="description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="chapter: 11 グラフを書いてみよう・問題を解いてみよう | データ分析入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="chapter: 11 グラフを書いてみよう・問題を解いてみよう | データ分析入門" />
+  
+  <meta name="twitter:description" content="This site is prepared for Introductory Data Analysis at Kanagawa University." />
+  
+
+<meta name="author" content="山本　雅資" />
+
+
+<meta name="date" content="2025-04-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter10.html"/>
+<link rel="next" href="chapter12.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://yamamoto-masashi.github.io/teaching.html">Teachingへ戻る</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> イントロダクション</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#講義の概要"><i class="fa fa-check"></i><b>1.1</b> 講義の概要</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#履修上の注意点"><i class="fa fa-check"></i><b>1.2</b> 履修上の注意点</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#授業計画"><i class="fa fa-check"></i><b>1.3</b> 授業計画</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#謝辞"><i class="fa fa-check"></i><b>1.4</b> 謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter02.html"><a href="chapter02.html"><i class="fa fa-check"></i><b>2</b> R及びRStudioのインストール</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter02.html"><a href="chapter02.html#インストールを始める前に"><i class="fa fa-check"></i><b>2.1</b> インストールを始める前に</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter02.html"><a href="chapter02.html#rのインストール"><i class="fa fa-check"></i><b>2.2</b> Rのインストール</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter02.html"><a href="chapter02.html#rstudioのインストール"><i class="fa fa-check"></i><b>2.3</b> RStudioのインストール</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter03.html"><a href="chapter03.html"><i class="fa fa-check"></i><b>3</b> Rを使ってみよう：四則演算から外部データの読み込みまで</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter03.html"><a href="chapter03.html#基本的な計算"><i class="fa fa-check"></i><b>3.1</b> 基本的な計算</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter03.html"><a href="chapter03.html#変数の定義"><i class="fa fa-check"></i><b>3.2</b> 変数の定義</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter03.html"><a href="chapter03.html#データフレーム"><i class="fa fa-check"></i><b>3.3</b> データフレーム</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter03.html"><a href="chapter03.html#データの型"><i class="fa fa-check"></i><b>3.4</b> データの型</a></li>
+<li class="chapter" data-level="3.5" data-path="chapter03.html"><a href="chapter03.html#パッケージの考え方"><i class="fa fa-check"></i><b>3.5</b> パッケージの考え方</a></li>
+<li class="chapter" data-level="3.6" data-path="chapter03.html"><a href="chapter03.html#外部ファイルの読み込み"><i class="fa fa-check"></i><b>3.6</b> 外部ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter03.html"><a href="chapter03.html#描画系のpackageの例"><i class="fa fa-check"></i><b>3.7</b> 描画系のpackageの例</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter04.html"><a href="chapter04.html"><i class="fa fa-check"></i><b>4</b> 可視化(1)：ggplot2によるグラフ作成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter04.html"><a href="chapter04.html#可視化の重要性"><i class="fa fa-check"></i><b>4.1</b> 可視化の重要性</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter04.html"><a href="chapter04.html#rによる可視化のデモ"><i class="fa fa-check"></i><b>4.2</b> Rによる可視化のデモ</a></li>
+<li class="chapter" data-level="4.3" data-path="chapter04.html"><a href="chapter04.html#ggplot2の考え方"><i class="fa fa-check"></i><b>4.3</b> ggplot2の考え方</a></li>
+<li class="chapter" data-level="4.4" data-path="chapter04.html"><a href="chapter04.html#ggplot2の事例"><i class="fa fa-check"></i><b>4.4</b> ggplot2の事例</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="chapter04.html"><a href="chapter04.html#バブルチャート"><i class="fa fa-check"></i><b>4.4.1</b> バブルチャート</a></li>
+<li class="chapter" data-level="4.4.2" data-path="chapter04.html"><a href="chapter04.html#ロリポップチャート"><i class="fa fa-check"></i><b>4.4.2</b> ロリポップチャート</a></li>
+<li class="chapter" data-level="4.4.3" data-path="chapter04.html"><a href="chapter04.html#ヒストグラム"><i class="fa fa-check"></i><b>4.4.3</b> ヒストグラム</a></li>
+<li class="chapter" data-level="4.4.4" data-path="chapter04.html"><a href="chapter04.html#ボックスプロット"><i class="fa fa-check"></i><b>4.4.4</b> ボックスプロット</a></li>
+<li class="chapter" data-level="4.4.5" data-path="chapter04.html"><a href="chapter04.html#時系列データ"><i class="fa fa-check"></i><b>4.4.5</b> 時系列データ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter05.html"><a href="chapter05.html"><i class="fa fa-check"></i><b>5</b> 可視化(2)：ggplot2による地図作成</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-1"><i class="fa fa-check"></i><b>5.1</b> パレットの追加 (1)</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter05.html"><a href="chapter05.html#パレットの追加-2"><i class="fa fa-check"></i><b>5.2</b> パレットの追加 (2)</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter05.html"><a href="chapter05.html#塗り分け地図の作成"><i class="fa fa-check"></i><b>5.3</b> 塗り分け地図の作成</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter05.html"><a href="chapter05.html#よりgisライクな地図の作成"><i class="fa fa-check"></i><b>5.4</b> よりGISライクな地図の作成</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter05.html"><a href="chapter05.html#世界地図の活用"><i class="fa fa-check"></i><b>5.5</b> 世界地図の活用</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="chapter05.html"><a href="chapter05.html#世界地図を利用した可視化"><i class="fa fa-check"></i><b>5.5.1</b> 世界地図を利用した可視化</a></li>
+<li class="chapter" data-level="5.5.2" data-path="chapter05.html"><a href="chapter05.html#世界銀行データの可視化"><i class="fa fa-check"></i><b>5.5.2</b> 世界銀行データの可視化</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="chapter05.html"><a href="chapter05.html#さらに学びたい人へ"><i class="fa fa-check"></i><b>5.6</b> さらに学びたい人へ</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter06.html"><a href="chapter06.html"><i class="fa fa-check"></i><b>6</b> 可視化(3)：貿易統計の可視化</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter06.html"><a href="chapter06.html#貿易統計とは"><i class="fa fa-check"></i><b>6.1</b> 貿易統計とは</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter06.html"><a href="chapter06.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter06.html"><a href="chapter06.html#りんごの輸出データの可視化"><i class="fa fa-check"></i><b>6.3</b> りんごの輸出データの可視化</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapter07.html"><a href="chapter07.html"><i class="fa fa-check"></i><b>7</b> Rによる統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="chapter07.html"><a href="chapter07.html#データの読み込み-1"><i class="fa fa-check"></i><b>7.1</b> データの読み込み</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter07.html"><a href="chapter07.html#平均分散標準偏差"><i class="fa fa-check"></i><b>7.2</b> 平均・分散・標準偏差</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter07.html"><a href="chapter07.html#分散標準偏差が大きいことのイメージ"><i class="fa fa-check"></i><b>7.3</b> 分散・標準偏差が大きいことのイメージ</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter07.html"><a href="chapter07.html#データフレームの要約"><i class="fa fa-check"></i><b>7.4</b> データフレームの要約</a></li>
+<li class="chapter" data-level="7.5" data-path="chapter07.html"><a href="chapter07.html#相関係数"><i class="fa fa-check"></i><b>7.5</b> 相関係数</a></li>
+<li class="chapter" data-level="7.6" data-path="chapter07.html"><a href="chapter07.html#仮説検定"><i class="fa fa-check"></i><b>7.6</b> 仮説検定</a></li>
+<li class="chapter" data-level="7.7" data-path="chapter07.html"><a href="chapter07.html#t検定"><i class="fa fa-check"></i><b>7.7</b> t検定</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="chapter08.html"><a href="chapter08.html"><i class="fa fa-check"></i><b>8</b> Rによる重回帰分析</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter08.html"><a href="chapter08.html#最小二乗法ordinary-least-squere-methodとは"><i class="fa fa-check"></i><b>8.1</b> 最小二乗法(Ordinary Least Squere Method)とは</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter08.html"><a href="chapter08.html#単回帰の事例"><i class="fa fa-check"></i><b>8.2</b> 単回帰の事例</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter08.html"><a href="chapter08.html#重回帰分析"><i class="fa fa-check"></i><b>8.3</b> 重回帰分析</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter08.html"><a href="chapter08.html#因果推論-quasi-experimentの例"><i class="fa fa-check"></i><b>8.4</b> 因果推論 (Quasi Experiment)の例</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="chapter08.html"><a href="chapter08.html#例1"><i class="fa fa-check"></i><b>8.4.1</b> 例1</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapter08.html"><a href="chapter08.html#例2"><i class="fa fa-check"></i><b>8.4.2</b> 例2</a></li>
+<li class="chapter" data-level="8.4.3" data-path="chapter08.html"><a href="chapter08.html#例3"><i class="fa fa-check"></i><b>8.4.3</b> 例3</a></li>
+<li class="chapter" data-level="8.4.4" data-path="chapter08.html"><a href="chapter08.html#logをとった場合"><i class="fa fa-check"></i><b>8.4.4</b> logをとった場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter09.html"><a href="chapter09.html"><i class="fa fa-check"></i><b>9</b> dplyrによるデータ集計</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="chapter09.html"><a href="chapter09.html#はじめに"><i class="fa fa-check"></i><b>9.1</b> はじめに</a></li>
+<li class="chapter" data-level="9.2" data-path="chapter09.html"><a href="chapter09.html#パイプ演算子について"><i class="fa fa-check"></i><b>9.2</b> パイプ演算子について</a></li>
+<li class="chapter" data-level="9.3" data-path="chapter09.html"><a href="chapter09.html#エクセル作業を代替してみる"><i class="fa fa-check"></i><b>9.3</b> エクセル作業を代替してみる</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter10.html"><a href="chapter10.html"><i class="fa fa-check"></i><b>10</b> Rmarkdownの使い方</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter10.html"><a href="chapter10.html#rmarkdownを用いる理由"><i class="fa fa-check"></i><b>10.1</b> Rmarkdownを用いる理由</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter10.html"><a href="chapter10.html#rmarkdownの使い方-1"><i class="fa fa-check"></i><b>10.2</b> Rmarkdownの使い方</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter10.html"><a href="chapter10.html#参考資料"><i class="fa fa-check"></i><b>10.3</b> 参考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter11.html"><a href="chapter11.html"><i class="fa fa-check"></i><b>11</b> グラフを書いてみよう・問題を解いてみよう</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter11.html"><a href="chapter11.html#基礎編"><i class="fa fa-check"></i><b>11.1</b> 1. 基礎編</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter11.html"><a href="chapter11.html#応用編"><i class="fa fa-check"></i><b>11.2</b> 2. 応用編</a></li>
+<li class="chapter" data-level="11.3" data-path="chapter11.html"><a href="chapter11.html#応用編-1"><i class="fa fa-check"></i><b>11.3</b> 3. 応用編</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter12.html"><a href="chapter12.html"><i class="fa fa-check"></i><b>12</b> 参考になるウェブサイト</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter12.html"><a href="chapter12.html#データ"><i class="fa fa-check"></i><b>12.1</b> データ</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter12.html"><a href="chapter12.html#rについて"><i class="fa fa-check"></i><b>12.2</b> Rについて</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter12.html"><a href="chapter12.html#このサイトにある他の情報"><i class="fa fa-check"></i><b>12.3</b> このサイトにある他の情報</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">データ分析入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="グラフを書いてみよう問題を解いてみよう" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">chapter: 11</span> グラフを書いてみよう・問題を解いてみよう<a href="chapter11.html#グラフを書いてみよう問題を解いてみよう" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="chapter11.html#cb234-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="基礎編" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> 1. 基礎編<a href="chapter11.html#基礎編" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>問１</strong> <span class="math inline">\(-3&lt;x&lt;3\)</span>の範囲において、以下の(1)式および(2)式のグラフをかけ。</p>
+<p>(1). <span class="math inline">\(y=2x+2\)</span></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="chapter11.html#cb235-1" tabindex="-1"></a><span class="co"># To plot functions without data, specify range of x-axis</span></span>
+<span id="cb235-2"><a href="chapter11.html#cb235-2" tabindex="-1"></a>base <span class="ot">&lt;-</span></span>
+<span id="cb235-3"><a href="chapter11.html#cb235-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb235-4"><a href="chapter11.html#cb235-4" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb235-5"><a href="chapter11.html#cb235-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>)<span class="sc">+</span></span>
+<span id="cb235-6"><a href="chapter11.html#cb235-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb235-7"><a href="chapter11.html#cb235-7" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>))<span class="sc">+</span></span>
+<span id="cb235-8"><a href="chapter11.html#cb235-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb235-9"><a href="chapter11.html#cb235-9" tabindex="-1"></a></span>
+<span id="cb235-10"><a href="chapter11.html#cb235-10" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/mathQ1-1.png" width="672" /></p>
+<p>(2). <span class="math inline">\(y=x^{2}+2\)</span></p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter11.html#cb236-1" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/mathQ2-1.png" width="672" /></p>
+</div>
+<div id="応用編" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> 2. 応用編<a href="chapter11.html#応用編" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>問2</strong> <span class="math inline">\(-3&lt;x&lt;3\)</span>の範囲において、以下の(3)式、(4)式および(5)式のグラフをかけ</p>
+<p>(3). <span class="math inline">\(y=2^{x}\)</span></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="chapter11.html#cb237-1" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>{x})</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/mathQ3-1.png" width="672" /></p>
+<p>(4). <span class="math inline">\(y=\left(\frac{1}{2}\right)^{x}\)</span></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter11.html#cb238-1" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>{x})</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/Q4-1.png" width="672" /></p>
+<p>(5). <span class="math inline">\(y=\log_{2}x\)</span></p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="chapter11.html#cb239-1" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="fu">log2</span>(x))</span></code></pre></div>
+<pre><code>## Warning in fun(x_trans): NaNs produced</code></pre>
+<pre><code>## Warning: Removed 50 rows containing missing values or values outside the scale range
+## (`geom_function()`).</code></pre>
+<p><img src="book_filename_files/figure-html/mathQ5a-1.png" width="672" /></p>
+<p>ここで、NaNは、「Not a number」という意味で、「計算不可能な式の結果」を意味しています。高校の教科書で対数の定義を確認すると、<span class="math inline">\(a&gt;0\)</span>、<span class="math inline">\(a\neq 1\)</span>の時、任意の正の整数<span class="math inline">\(M\)</span>に対して、</p>
+<p><span class="math inline">\(a^p=M\)</span></p>
+<p>となる実数<span class="math inline">\(p\)</span>がただひとつ定まります。この<span class="math inline">\(p\)</span>を<span class="math inline">\(a\)</span>を<strong>底</strong>とする<span class="math inline">\(M\)</span>の<strong>対数</strong>といい、</p>
+<p><span class="math inline">\(\log_a M\)</span></p>
+<p>と書く、とされています。また、<span class="math inline">\(M\)</span>をこの対数の<strong>真数</strong>と言いますが、対数の真数は、正の数となります。<span class="math inline">\(a\)</span>が正の数である限りは、<span class="math inline">\(M\)</span>が負になることはないのです。このことを踏まえて、<span class="math inline">\(x\)</span>軸の範囲を変更して再度作図してみましょう。</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter11.html#cb242-1" tabindex="-1"></a>base<span class="sc">+</span><span class="fu">xlim</span>(<span class="fl">0.01</span>,<span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb242-2"><a href="chapter11.html#cb242-2" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="fu">log2</span>(x))<span class="sc">+</span></span>
+<span id="cb242-3"><a href="chapter11.html#cb242-3" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">0</span>,<span class="at">intercept=</span><span class="dv">1</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>## Scale for x is already present.
+## Adding another scale for x, which will replace the existing scale.</code></pre>
+<p><img src="book_filename_files/figure-html/mathQ5b-1.png" width="672" /></p>
+<p>対数関数はその性質上、<span class="math inline">\((1,0)\)</span>を必ず通ります。また、上図の赤線は、<span class="math inline">\(y=1\)</span>のグラフですが、この例の対数関数は、<span class="math inline">\(x=2\)</span>でこの赤線と交わります。</p>
+</div>
+<div id="応用編-1" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> 3. 応用編<a href="chapter11.html#応用編-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>問3.1</strong> <span class="math inline">\(-2 \leq x \leq 4\)</span>の範囲において、(6)式の関数の最大値と最小値を求めよ。</p>
+<p>(6). <span class="math inline">\(y=-2x^{3}+3x^{2}+12x\)</span></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="chapter11.html#cb244-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb244-2"><a href="chapter11.html#cb244-2" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-3"><a href="chapter11.html#cb244-3" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb244-4"><a href="chapter11.html#cb244-4" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>))<span class="sc">+</span></span>
+<span id="cb244-5"><a href="chapter11.html#cb244-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb244-6"><a href="chapter11.html#cb244-6" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span><span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">12</span><span class="sc">*</span>x,</span>
+<span id="cb244-7"><a href="chapter11.html#cb244-7" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-8"><a href="chapter11.html#cb244-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb244-9"><a href="chapter11.html#cb244-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb244-10"><a href="chapter11.html#cb244-10" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="dv">20</span>,<span class="at">xend=</span><span class="dv">2</span>,<span class="at">yend=</span><span class="dv">20</span>),</span>
+<span id="cb244-11"><a href="chapter11.html#cb244-11" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;red&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-12"><a href="chapter11.html#cb244-12" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">2</span>,<span class="at">y=</span><span class="dv">0</span>,<span class="at">xend=</span><span class="dv">2</span>,<span class="at">yend=</span><span class="dv">20</span>),</span>
+<span id="cb244-13"><a href="chapter11.html#cb244-13" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;red&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-14"><a href="chapter11.html#cb244-14" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">y=</span><span class="dv">0</span>,<span class="at">xend=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">yend=</span><span class="sc">-</span><span class="dv">7</span>),</span>
+<span id="cb244-15"><a href="chapter11.html#cb244-15" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;green&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-16"><a href="chapter11.html#cb244-16" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="sc">-</span><span class="dv">7</span>,<span class="at">xend=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">yend=</span><span class="sc">-</span><span class="dv">7</span>),</span>
+<span id="cb244-17"><a href="chapter11.html#cb244-17" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;green&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-18"><a href="chapter11.html#cb244-18" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">4</span>,<span class="at">y=</span><span class="dv">0</span>,<span class="at">xend=</span><span class="dv">4</span>,<span class="at">yend=</span><span class="sc">-</span><span class="dv">32</span>),</span>
+<span id="cb244-19"><a href="chapter11.html#cb244-19" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;green&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-20"><a href="chapter11.html#cb244-20" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="sc">-</span><span class="dv">32</span>,<span class="at">xend=</span><span class="dv">4</span>,<span class="at">yend=</span><span class="sc">-</span><span class="dv">32</span>),</span>
+<span id="cb244-21"><a href="chapter11.html#cb244-21" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;green&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb244-22"><a href="chapter11.html#cb244-22" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="dv">2</span>,<span class="at">y=</span><span class="sc">-</span><span class="fl">1.3</span>,<span class="at">label=</span><span class="st">&quot;2&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-23"><a href="chapter11.html#cb244-23" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="fl">0.2</span>,<span class="at">y=</span><span class="dv">20</span>,<span class="at">label=</span><span class="st">&quot;20&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-24"><a href="chapter11.html#cb244-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">y=</span><span class="fl">1.3</span>,<span class="at">label=</span><span class="st">&quot;-1&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-25"><a href="chapter11.html#cb244-25" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">0.2</span>,<span class="at">y=</span><span class="sc">-</span><span class="dv">7</span>,<span class="at">label=</span><span class="st">&quot;-7&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-26"><a href="chapter11.html#cb244-26" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="dv">4</span>,<span class="at">y=</span><span class="fl">1.3</span>,<span class="at">label=</span><span class="st">&quot;4&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-27"><a href="chapter11.html#cb244-27" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="fl">0.2</span>,<span class="at">y=</span><span class="sc">-</span><span class="dv">32</span>,<span class="at">label=</span><span class="st">&quot;-32&quot;</span>,<span class="at">size=</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb244-28"><a href="chapter11.html#cb244-28" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/mathQ6-1.png" width="672" /></p>
+<p><span class="math inline">\(y^\prime=-6x^2+6x+12=-6(x+1)(x-2)\)</span></p>
+<p>つまり、<span class="math inline">\(y^\prime=0\)</span>の時、<span class="math inline">\(x=-1,2\)</span>である。増減表の代わりにグラフを見ると、この例の範囲では、極大値は最大値となっているが、極小値は最小値ではない。<span class="math inline">\(=2\)</span>で最大値20、<span class="math inline">\(x=4\)</span>で最小値-32となっている。</p>
+<p><strong>問3.2</strong> 次の二つの放物線で囲まれた図形の面積<span class="math inline">\(S\)</span>を求めよ。</p>
+<p>(7). <span class="math inline">\(y=x^{2}+2x-3 ~~~ \text{and} ~~~ y=-x^{2}+2x+3\)</span></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="chapter11.html#cb245-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb245-2"><a href="chapter11.html#cb245-2" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-3"><a href="chapter11.html#cb245-3" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb245-4"><a href="chapter11.html#cb245-4" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>))<span class="sc">+</span></span>
+<span id="cb245-5"><a href="chapter11.html#cb245-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb245-6"><a href="chapter11.html#cb245-6" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) <span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">3</span>,</span>
+<span id="cb245-7"><a href="chapter11.html#cb245-7" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-8"><a href="chapter11.html#cb245-8" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span><span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>x<span class="dv">-3</span>,</span>
+<span id="cb245-9"><a href="chapter11.html#cb245-9" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;lightblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-10"><a href="chapter11.html#cb245-10" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb245-11"><a href="chapter11.html#cb245-11" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb245-12"><a href="chapter11.html#cb245-12" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">sqrt</span>(<span class="dv">3</span>),<span class="at">y=</span><span class="dv">0</span>,<span class="at">xend=</span><span class="fu">sqrt</span>(<span class="dv">3</span>),</span>
+<span id="cb245-13"><a href="chapter11.html#cb245-13" tabindex="-1"></a>                   <span class="at">yend=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">3</span>)),</span>
+<span id="cb245-14"><a href="chapter11.html#cb245-14" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;red&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-15"><a href="chapter11.html#cb245-15" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">3</span>),<span class="at">y=</span><span class="dv">0</span>,<span class="at">xend=</span><span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">3</span>),</span>
+<span id="cb245-16"><a href="chapter11.html#cb245-16" tabindex="-1"></a>                   <span class="at">yend=</span><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">3</span>)),</span>
+<span id="cb245-17"><a href="chapter11.html#cb245-17" tabindex="-1"></a>                   <span class="at">color=</span><span class="st">&#39;red&#39;</span>,<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-18"><a href="chapter11.html#cb245-18" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">3.2</span>,<span class="at">y=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="st">&quot;3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-19"><a href="chapter11.html#cb245-19" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="fl">2.9</span>,<span class="at">y=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="st">&quot;-3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-20"><a href="chapter11.html#cb245-20" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fu">sqrt</span>(<span class="dv">3</span>),<span class="at">y=</span><span class="sc">-</span><span class="fl">0.8</span>,</span>
+<span id="cb245-21"><a href="chapter11.html#cb245-21" tabindex="-1"></a>           <span class="at">label=</span><span class="fu">expression</span>(<span class="fu">sqrt</span>(<span class="dv">3</span>)))<span class="sc">+</span></span>
+<span id="cb245-22"><a href="chapter11.html#cb245-22" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="fl">0.2</span>,<span class="at">y=</span><span class="fl">3.1</span>,<span class="at">label=</span><span class="st">&quot;3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-23"><a href="chapter11.html#cb245-23" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">0.2</span>,<span class="at">y=</span><span class="sc">-</span><span class="dv">3</span>,<span class="at">label=</span><span class="st">&quot;-3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-24"><a href="chapter11.html#cb245-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">3</span>),<span class="at">y=</span><span class="fl">0.8</span>,</span>
+<span id="cb245-25"><a href="chapter11.html#cb245-25" tabindex="-1"></a>           <span class="at">label=</span><span class="fu">expression</span>(<span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">3</span>)))<span class="sc">+</span></span>
+<span id="cb245-26"><a href="chapter11.html#cb245-26" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="book_filename_files/figure-html/mathQ7-1.png" width="672" /></p>
+<p>２つの放物線は図のようになり、その交点の<span class="math inline">\(x\)</span>座標は、</p>
+<p><span class="math inline">\(x^2+2x+3=-x^2+2x+3\)</span></p>
+<p>を解くことで求められる。これを解くと、</p>
+<p><span class="math inline">\(2x^2-6=0\)</span></p>
+<p>より、</p>
+<p><span class="math inline">\(x=\pm \sqrt(3)\)</span></p>
+<p>よって、求める面積<span class="math inline">\(S\)</span>は、</p>
+<p><span class="math inline">\(S=\int_{-\sqrt(3)}^{\sqrt(3)} \{(-x^2+2x+3)- (x^2+2x+3)\} dx=\large[6x-\frac{2}{3}x^3 \large]_{-\sqrt(3)}^{\sqrt(3)}=8\sqrt(3)\)</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter10.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter12.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/chapter11.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
